@@ -1,0 +1,6 @@
+@Epm.FarmRoots.ReviewAndFeedback.API_HostAddress = http://localhost:5073
+
+GET {{Epm.FarmRoots.ReviewAndFeedback.API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

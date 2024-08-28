@@ -1,0 +1,6 @@
+@Epm.FarmRoots.LocationBasedVendorProducts.API_HostAddress = http://localhost:5094
+
+GET {{Epm.FarmRoots.LocationBasedVendorProducts.API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
