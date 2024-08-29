@@ -13,8 +13,9 @@ pipeline {
         stage('Build .NET Application') {
             steps {
                 script {
-                    dir('') {
-                        echo '.NET Build stage'
+                    dir('Dev') {
+                        bat 'dotnet restore Epm.FRoots.sln'
+                        bat 'dotnet build Epm.FRoots.sln' 
                     }
                 }
             }
@@ -22,11 +23,14 @@ pipeline {
 
         stage('Build Angular Application') {
             steps {
-                script {
-                    dir('') {
-                        echo 'Angular Build stage'
-                    }
-                }
+                echo 'Angular build'
+                // script {
+                //     dir('Dev/Epm.LGoods.UI/epm.lgoods.angularclient') {
+                //         bat 'npm install'
+                        
+                //         bat 'npm run build' 
+                //     }
+                // }
             }
         }
         
@@ -35,8 +39,10 @@ pipeline {
 	stage('Build React Application') {
             steps {
                 script {
-                    dir('') {
-                        echo 'React Build stage'
+                    dir('Dev/Epm.FarmRoots.UI/Epm.FarmRoots.UI.ReactClient') {
+                        bat 'npm install'
+                        
+                        bat 'npm run build' 
                     }
                 }
             }
@@ -47,8 +53,11 @@ pipeline {
             steps {
                 script {
                     dir('Dev') {
-                        echo '.NET Running stage'
-                    }
+                        
+                        bat 'FOR /R %%G IN (TestResults) DO IF EXIST "%%G" RMDIR /S /Q "%%G"'
+
+                        bat 'dotnet test Epm.FRoots.sln --collect:"XPlat Code Coverage" -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=opencover'
+                     }
                 }
             }
         }
@@ -58,28 +67,33 @@ pipeline {
 
         stage('Running Angular Tests') {
             steps {
-                script {
-                    dir('') {
-                        echo 'Angular Running stage'
-                    }
-                }
+                echo 'Angular Test'
+                // script {
+                //     dir('Dev/Epm.LGoods.UI/epm.lgoods.angularclient') {
+                //         bat 'npm test -- --code-coverage'
+                //     }
+                // }
             }
         }
 
         stage('Test React Application') {
             steps {
-                script {
-                    dir('') {
-                        echo 'React Test stage'
-                    }
-                }
+                echo 'React Test'
+                // script {
+                //     dir('Dev/Epm.LGoods.UI/epm.lgoods.reactclient') {
+                //         bat 'npm test' 
+                //     }
+                // }
             }
         }
 
         stage('Analyse application') {
             steps {
                 script {
-                    echo 'Analysis stage'
+                    def scannerHome = tool 'SonarQube Scanner'
+                        withSonarQubeEnv('SonarHyd') {
+                            bat "${scannerHome}/bin/sonar-scanner.bat"
+                    }
                 }
             }
         }
@@ -89,7 +103,11 @@ pipeline {
     post {
         always {
             script {
-                echo 'Pipeline Finished'
+                def qg = waitForQualityGate()
+                if (qg.status != 'OK') {
+                    currentBuild.result = 'FAILURE'
+                    error "Quality Gate failed: ${qg.status}"
+                }
             }
         }
     }
