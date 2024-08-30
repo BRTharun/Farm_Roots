@@ -9,7 +9,13 @@
   <ItemGroup>
     <Folder Include="Dtos\" />
     <Folder Include="Interfaces\" />
-    <Folder Include="Services\" />
   </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Epm.FarmRoots.UserManagement.Core\Epm.FarmRoots.UserManagement.Core.csproj" />
+    <ProjectReference Include="..\Epm.FarmRoots.UserManagement.Infrastructure\Epm.FarmRoots.UserManagement.Infrastructure.csproj" />
+  </ItemGroup>
+
+  
 
 </Project>
