@@ -70,9 +70,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Epm.FarmRoots.IdentityServi
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Epm.FarmRoots.UI", "Epm.FarmRoots.UI", "{92FFAFC5-92B7-4489-8EF0-51C07B357F80}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Epm.FarmRoots.AngularClient", "Epm.FarmRoots.AngularClient", "{3E433B05-A105-44AF-AD76-300AE693639B}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Epm.FarmRoots.AngularClient", "Epm.FarmRoots.UI\Epm.FarmRoots.AngularClient", "{3E433B05-A105-44AF-AD76-300AE693639B}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Epm.FarmRoots.ReactClient", "Epm.FarmRoots.ReactClient", "{88E95FE6-3B98-469D-BDD0-4B3F701BDF74}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Epm.FarmRoots.ReactClient", "Epm.FarmRoots.UI\Epm.FarmRoots.ReactClient", "{88E95FE6-3B98-469D-BDD0-4B3F701BDF74}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Epm.FarmRoots.OrderAndTracking.Test", "Epm.FarmRoots.OrderAndTracking\Epm.FarmRoots.OrderAndTracking.Test\Epm.FarmRoots.OrderAndTracking.Test.csproj", "{40DC9848-5019-4CA7-8E6D-9626E7139F12}"
 EndProject
