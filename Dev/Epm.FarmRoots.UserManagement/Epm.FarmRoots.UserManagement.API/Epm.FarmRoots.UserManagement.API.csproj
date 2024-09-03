@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="13.0.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.8" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.8" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.8">
       <PrivateAssets>all</PrivateAssets>
@@ -22,6 +23,8 @@
   </ItemGroup>
 
   <ItemGroup>
+   
+    <ProjectReference Include="..\..\Epm.FarmRoots.IdentityService\Epm.FarmRoots.IdentityService\Epm.FarmRoots.IdentityService.csproj" />
    
     <ProjectReference Include="..\Epm.FarmRoots.UserManagement.Infrastructure\Epm.FarmRoots.UserManagement.Infrastructure.csproj" />
 	  <ProjectReference Include="..\Epm.FarmRoots.UserManagement.Application\Epm.FarmRoots.UserManagement.Application.csproj" />

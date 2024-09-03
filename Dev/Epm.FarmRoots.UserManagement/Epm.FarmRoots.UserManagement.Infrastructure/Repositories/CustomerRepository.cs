@@ -67,5 +67,24 @@ namespace Epm.FarmRoots.UserManagement.Infrastructure.Repositories
         {
             return await _context.CustomerDb.ToListAsync();
         }
+
+        public async Task<Customer> LoginCustomerAsync(string email, string password)
+        {
+            var customer = await _context.CustomerDb.FirstOrDefaultAsync(c => c.Email == email && c.Password == password);
+
+            if (customer == null)
+            {
+                throw new UnauthorizedAccessException("Invalid credentials.");
+            }
+
+            return customer;
+        }
+
+        public async Task<Customer> GetCustomerByEmailAsync(string email)
+        {
+            return await _context.CustomerDb.FirstOrDefaultAsync(c => c.Email == email);
+        }
+
+
     }
 }

@@ -86,6 +86,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Epm.FarmRoots.UserManagemen
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Epm.FarmRoots.ProductCatalogue.Test", "Epm.FarmRoots.ProductCatalogue\Epm.FarmRoots.ProductCatalogue.Test\Epm.FarmRoots.ProductCatalogue.Test.csproj", "{C32FF3E7-D524-4253-B98B-41294EEA8B85}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Epm.FarmRoots.IdentityService", "Epm.FarmRoots.IdentityService\Epm.FarmRoots.IdentityService\Epm.FarmRoots.IdentityService.csproj", "{9C739FC3-335F-47C4-BCD6-F40DF7B3A1AF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -216,6 +218,10 @@ Global
 		{C32FF3E7-D524-4253-B98B-41294EEA8B85}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C32FF3E7-D524-4253-B98B-41294EEA8B85}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C32FF3E7-D524-4253-B98B-41294EEA8B85}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9C739FC3-335F-47C4-BCD6-F40DF7B3A1AF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9C739FC3-335F-47C4-BCD6-F40DF7B3A1AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9C739FC3-335F-47C4-BCD6-F40DF7B3A1AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9C739FC3-335F-47C4-BCD6-F40DF7B3A1AF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -254,6 +260,7 @@ Global
 		{E00E08C7-8EB0-4653-8894-4771F1B7BF15} = {2046A50D-F8C3-4C07-A5EF-E6A9E9BD185F}
 		{2BC7CC5A-BCE0-49A8-886C-5AE53E299768} = {C6702B91-DD7F-4326-85EE-F745571FAE37}
 		{C32FF3E7-D524-4253-B98B-41294EEA8B85} = {3BAFAD91-A059-4963-9B84-0E6573316AE8}
+		{9C739FC3-335F-47C4-BCD6-F40DF7B3A1AF} = {965E9378-1317-4009-B485-593133E0EA56}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {98C46B30-A136-41CE-979F-A6E1CE7117B2}

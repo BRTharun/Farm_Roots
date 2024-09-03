@@ -14,5 +14,7 @@ namespace Epm.FarmRoots.UserManagement.Core.Interfaces
         Task<Vendor> UpdateVendorDetailsAsync(Vendor customer);
         Task<Vendor> DeleteVendorAsync(int id);
         Task<Vendor> GetVendorByIdAsync(int id);
+        Task<Vendor> LoginVendorAsync(string email, string password);
+        Task<Vendor> GetVendorByEmailAsync(string email);
     }
 }

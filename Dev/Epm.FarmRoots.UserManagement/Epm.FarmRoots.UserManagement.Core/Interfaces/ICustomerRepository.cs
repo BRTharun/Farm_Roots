@@ -14,5 +14,7 @@ namespace Epm.FarmRoots.UserManagement.Core.Interfaces
         Task<Customer> UpdateCustomerDetailsAsync(Customer customer);
         Task<Customer> DeleteCustomerAsync(int id);
         Task<List<Customer>> GetAllCustomersAsync();
+        Task<Customer> LoginCustomerAsync(string email, string password);
+        Task<Customer> GetCustomerByEmailAsync(string email);
     }
 }
