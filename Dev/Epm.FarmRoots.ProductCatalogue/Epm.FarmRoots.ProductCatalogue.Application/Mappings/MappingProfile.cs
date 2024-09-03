@@ -13,6 +13,9 @@ namespace Epm.FarmRoots.ProductCatalogue.Application.Mappings
                 .ForMember(dest => dest.ProductSalePrice, opt => opt.MapFrom(src => src.ProductSale_Price))
                 .ReverseMap() // This allows mapping from ProductDto to Product as well
                 .ForMember(dest => dest.ProductSale_Price, opt => opt.MapFrom(src => src.ProductSalePrice));
+
+            CreateMap<Category, CategoryDto>().ReverseMap();
+
         }
     }
 }

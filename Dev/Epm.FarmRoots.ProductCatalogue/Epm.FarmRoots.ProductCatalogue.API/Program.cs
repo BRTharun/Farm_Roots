@@ -19,13 +19,7 @@ builder.Services.AddControllers();
 
 builder.Services.AddScoped<ICategoryService, CategoryService>();
 
-// Register the repositories from the Infrastructure layer
 builder.Services.AddScoped<ICategoryRepository, CategoryRepo>();
-
-// AutoMapper Service register
-IMapper mapper = CategoryMapper.RegisterMaps().CreateMapper();
-builder.Services.AddSingleton(mapper);
-builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
 builder.Services.AddDbContext<ProductCatalogueDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("ConnectionString")));
@@ -51,7 +45,7 @@ builder.Services.AddSwaggerGen();
 
 
 builder.Services.AddDbContext<ProductDbContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+    options.UseSqlServer(builder.Configuration.GetConnectionString("ConnectionString")));
 
 builder.Services.AddScoped<IProductSearchRepository, ProductSearchRepository>();
 builder.Services.AddScoped<IProductSearchService, ProductSearchService>();
@@ -82,15 +76,28 @@ app.UseCors(option => option.AllowAnyOrigin());
 app.UseAuthorization();
 
 app.MapControllers();
-ApplyMigration();
+ApplyMigration1();
+ApplyMigration2();
 
 app.Run();
 
-void ApplyMigration()
+void ApplyMigration1()
 {
     using (var scope = app.Services.CreateScope())
     {
         var _db = scope.ServiceProvider.GetRequiredService<ProductCatalogueDbContext>();
+
+        if (_db.Database.GetPendingMigrations().Count() > 0)
+        {
+            _db.Database.Migrate();
+        }
+    }
+}
+void ApplyMigration2()
+{
+    using (var scope = app.Services.CreateScope())
+    {
+        var _db = scope.ServiceProvider.GetRequiredService<ProductDbContext>();
 
         if (_db.Database.GetPendingMigrations().Count() > 0)
         {
