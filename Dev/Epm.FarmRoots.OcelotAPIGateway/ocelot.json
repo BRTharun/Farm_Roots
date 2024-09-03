@@ -1,40 +1,8 @@
 {
     "Routes": [
         {
-            "DownstreamPathTemplate": "/api/customer/{everything}",
-            "DownstreamScheme": "http",
-            "DownstreamHostAndPorts": [
-                {
-                    "Host": "localhost",
-                    "Port": 5123
-                }
-            ],
-            "UpstreamPathTemplate": "/customer/{everything}",
-            "UpstreamHttpMethod": [ "Get", "Post", "Put", "Delete" ],
-            "AuthenticationOptions": {
-                "AuthenticationProviderKey": "Bearer",
-                "AllowedScopes": []
-            }
-        },
-        {
-            "DownstreamPathTemplate": "/api/vendor/{everything}",
-            "DownstreamScheme": "http",
-            "DownstreamHostAndPorts": [
-                {
-                    "Host": "localhost",
-                    "Port": 5123
-                }
-            ],
-            "UpstreamPathTemplate": "/vendor/{everything}",
-            "UpstreamHttpMethod": [ "Get", "Post", "Put", "Delete" ],
-            "AuthenticationOptions": {
-                "AuthenticationProviderKey": "Bearer",
-                "AllowedScopes": []
-            }
-        },
-        {
             "DownstreamPathTemplate": "/api/customerlogin/{everything}",
-            "DownstreamScheme": "http",
+            "DownstreamScheme": "https",
             "DownstreamHostAndPorts": [
                 {
                     "Host": "localhost",
@@ -42,15 +10,11 @@
                 }
             ],
             "UpstreamPathTemplate": "/customerlogin/{everything}",
-            "UpstreamHttpMethod": [ "Post" ],
-            "AuthenticationOptions": {
-                "AuthenticationProviderKey": "Bearer",
-                "AllowedScopes": []
-            }
+            "UpstreamHttpMethod": [ "Post" ]
         },
         {
             "DownstreamPathTemplate": "/api/vendorlogin/{everything}",
-            "DownstreamScheme": "http",
+            "DownstreamScheme": "https",
             "DownstreamHostAndPorts": [
                 {
                     "Host": "localhost",
@@ -58,11 +22,7 @@
                 }
             ],
             "UpstreamPathTemplate": "/vendorlogin/{everything}",
-            "UpstreamHttpMethod": [ "Post" ],
-            "AuthenticationOptions": {
-                "AuthenticationProviderKey": "Bearer",
-                "AllowedScopes": []
-            }
+            "UpstreamHttpMethod": [ "Post" ]
         }
     ],
     "GlobalConfiguration": {

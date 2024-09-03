@@ -18,23 +18,13 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
 // Configure CORS to allow specific origin
-//builder.Services.AddCors(options =>
-//{
-//    options.AddPolicy("allowallorigins", builder =>
-//    {
-//        builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
-//    });
-//});
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy("AllowSpecificOrigins", builder =>
+    options.AddPolicy("AllowAllOrigins", builder =>
     {
-        builder.WithOrigins("http://localhost:4200") // Correct origin for Angular app
-               .AllowAnyMethod()
-               .AllowAnyHeader();
+        builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
     });
 });
-
 
 // Configure Dependency Injection for services
 builder.Services.AddScoped<ICustomerService, CustomerRegisterService>();
@@ -79,10 +69,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseRouting();
-
-// Apply CORS policy
-//app.UseCors("allowallorigins");
+app.UseCors("AllowAllOrigins"); // Ensure this is before authentication and authorization
 
 app.UseHttpsRedirection();
 app.UseAuthentication();

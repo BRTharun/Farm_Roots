@@ -1,6 +1,7 @@
 ﻿using Epm.FarmRoots.UserManagement.Application.Dtos;
 using Epm.FarmRoots.UserManagement.Application.Interfaces;
 using Microsoft.AspNetCore.Mvc;
+using Epm.FarmRoots.IdentityService;
 using System.Threading.Tasks;
 
 namespace Epm.FarmRoots.UserManagement.API.Controllers
@@ -10,10 +11,12 @@ namespace Epm.FarmRoots.UserManagement.API.Controllers
     public class CustomerLoginController : ControllerBase
     {
         private readonly ICustomerLoginService _customerLoginService;
+        private readonly TokenService _tokenService; // Ensure this is injected
 
-        public CustomerLoginController(ICustomerLoginService customerLoginService)
+        public CustomerLoginController(ICustomerLoginService customerLoginService, TokenService tokenService)
         {
             _customerLoginService = customerLoginService;
+            _tokenService = tokenService;
         }
 
         [HttpPost("login")]
@@ -26,8 +29,15 @@ namespace Epm.FarmRoots.UserManagement.API.Controllers
 
             try
             {
-                var loginResponse = await _customerLoginService.LoginCustomerAsync(loginDto.Email, loginDto.Password);
-                return Ok(loginResponse);
+                var customer = await _customerLoginService.LoginCustomerAsync(loginDto.Email, loginDto.Password);
+                if (customer == null)
+                {
+                    return Unauthorized("Invalid email or password.");
+                }
+
+                // Generate JWT Token
+                var token = _tokenService.GenerateToken(customer.Email, "Customer");
+                return Ok(new { token });
             }
             catch (UnauthorizedAccessException ex)
             {
