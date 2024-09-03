@@ -8,6 +8,8 @@ using Epm.FarmRoots.ProductCatalogue.Infrastructure;
 using Epm.FarmRoots.ProductCatalogue.Infrastructure.Data;
 using Epm.FarmRoots.ProductCatalogue.Infrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
+using Epm.FarmRoots.ProductCatalogue.Application.Dtos;
+using Epm.FarmRoots.ProductCatalogue.API;
 
 var builder = WebApplication.CreateBuilder(args);
 
