@@ -2,6 +2,8 @@ import './App.css'
 import RegisterPage from './components/pages/RegisterPage';
 import Header from './components/common/Header';
 import Footer from './components/common/Footer';
+import '@epam/uui-components/styles.css';
+import '@epam/uui/styles.css';
 
 const App : React.FC = () => {
   return (
