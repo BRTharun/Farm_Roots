@@ -1,3 +1,6 @@
+using AutoMapper;
+using Epm.FarmRoots.ProductCatalogue.Application.Interfaces;
+using Epm.FarmRoots.ProductCatalogue.Application.Services;
 using Epm.FarmRoots.ProductCatalogue.Application.Mappings;
 using Epm.FarmRoots.ProductCatalogue.Application.Services;
 using Epm.FarmRoots.ProductCatalogue.Core.Interfaces;
@@ -11,6 +14,20 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 
 builder.Services.AddControllers();
+
+builder.Services.AddScoped<ICategoryService, CategoryService>();
+
+// Register the repositories from the Infrastructure layer
+builder.Services.AddScoped<ICategoryRepository, CategoryRepo>();
+
+// AutoMapper Service register
+IMapper mapper = CategoryMapper.RegisterMaps().CreateMapper();
+builder.Services.AddSingleton(mapper);
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
+builder.Services.AddDbContext<ProductCatalogueDbContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("ConnectionString")));
+
 // Register AutoMapper
 builder.Services.AddAutoMapper(typeof(MappingProfile));
 
@@ -41,6 +58,8 @@ builder.Services.AddScoped<IProductSearchService, ProductSearchService>();
 
 var app = builder.Build();
 
+app.UseMiddleware<CustomExceptionMiddleware>();
+
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
@@ -56,8 +75,24 @@ app.UseRouting();
 app.UseCors("AllowAll"); // Use the CORS policy
 
 
+app.UseRouting();
+app.UseCors(option => option.AllowAnyOrigin());
 app.UseAuthorization();
 
 app.MapControllers();
+ApplyMigration();
 
 app.Run();
+
+void ApplyMigration()
+{
+    using (var scope = app.Services.CreateScope())
+    {
+        var _db = scope.ServiceProvider.GetRequiredService<ProductCatalogueDbContext>();
+
+        if (_db.Database.GetPendingMigrations().Count() > 0)
+        {
+            _db.Database.Migrate();
+        }
+    }
+}

@@ -22,6 +22,7 @@
     <ProjectReference Include="..\Epm.FarmRoots.ProductCatalogue.API\Epm.FarmRoots.ProductCatalogue.API.csproj" />
     <ProjectReference Include="..\Epm.FarmRoots.ProductCatalogue.Application\Epm.FarmRoots.ProductCatalogue.Application.csproj" />
     <ProjectReference Include="..\Epm.FarmRoots.ProductCatalogue.Core\Epm.FarmRoots.ProductCatalogue.Core.csproj" />
+    <ProjectReference Include="..\Epm.FarmRoots.ProductCatalogue.Infrastructure\Epm.FarmRoots.ProductCatalogue.Infrastructure.csproj" />
   </ItemGroup>
 
   <ItemGroup>
