@@ -16,7 +16,7 @@ namespace Epm.FarmRoots.IdentityService
             _configuration = configuration;
         }
 
-        public string GenerateToken(string username, string role)
+        public virtual string GenerateToken(string username, string role)
         {
             // Ensure configuration values are present
             var key = _configuration["Jwt:Key"];
