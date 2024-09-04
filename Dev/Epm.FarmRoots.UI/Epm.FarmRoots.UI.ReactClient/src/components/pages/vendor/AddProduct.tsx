@@ -7,8 +7,7 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import { addProduct } from "../../utils/productsSlice";
 import { AppDispatch } from "../../utils/store";
-import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+
 
 //------------------------------
 // Lazy load the TopBar component
@@ -69,37 +68,12 @@ const AddProduct: React.FC = () => {
             const product = {
                 ...values,
             };
+
             //------------------------------
             // Dispatch addProduct action
             //------------------------------
-            try {
-                //------------------------------
-                // Dispatch addProduct action
-                //------------------------------
-                await dispatch(addProduct(product));
-                console.log(product);
-
-                // Show success toast
-                toast.success("Product added successfully!", {
-                    position: "top-right", // String value for position
-                    autoClose: 3000, // Close after 3 seconds
-                    className: "bg-green-500 text-white",
-                    bodyClassName: "text-white",
-                });
-
-                // Redirect to /vendor page
-            } catch (error) {
-                // Show error toast
-                toast.error("Failed to add product. Please try again.", {
-                    position: "top-right", // String value for position
-                    autoClose: 3000, // Close after 3 seconds
-                    className: "bg-red-500 text-white",
-                    bodyClassName: "text-white",
-                });
-
-                // Optionally log error
-                console.error(error);
-            }
+            await dispatch(addProduct(product));
+            
         },
     });
 
