@@ -26,7 +26,7 @@ namespace Epm.FarmRoots.ProductCatalogue.Infrastructure.Repositories
                 throw new ArgumentNullException(nameof(category));
             }
 
-            _dbContext?.Categories?.Add(category);
+            _ = _dbContext.Categories.AddAsync(category);
             await _dbContext.SaveChangesAsync();
         }
 

@@ -12,11 +12,11 @@ namespace Epm.FarmRoots.ProductCatalogue.Core.Entities
     {
         public int ProductId { get; set; }
 
-        public string ProductName { get; set; }
+        public required string ProductName { get; set; }
 
-        public string ProductDescription { get; set; }
+        public required string ProductDescription { get; set; }
 
-        public string ProductCategory { get; set; }
+        public required string ProductCategory { get; set; }
 
         public int ProductStock { get; set; }
 
@@ -24,7 +24,7 @@ namespace Epm.FarmRoots.ProductCatalogue.Core.Entities
 
         public decimal ProductSale_Price { get; set; }
 
-        public string ProductImage { get; set; }
+        public string? ProductImage { get; set; }
 
     }
 }

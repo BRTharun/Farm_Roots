@@ -15,10 +15,10 @@ namespace Epm.FarmRoots.ProductCatalogue.Test
     [TestClass]
     public class ProductSearchTests
     {
-        private Mock<IProductSearchRepository> _mockRepository;
-        private Mock<IMapper> _mockMapper;
-        private ProductSearchService _service;
-        private ProductSearchController _controller;
+        private Mock<IProductSearchRepository>? _mockRepository;
+        private Mock<IMapper>? _mockMapper;
+        private ProductSearchService? _service;
+        private ProductSearchController? _controller;
 
         [TestInitialize]
         public void Setup()
@@ -35,21 +35,21 @@ namespace Epm.FarmRoots.ProductCatalogue.Test
             // Arrange
             var products = new List<Product>
             {
-                new Product { ProductId = 1, ProductName = "Apple", ProductDescription = "Fresh Apples" },
-                new Product { ProductId = 2, ProductName = "Banana", ProductDescription = "Organic Bananas" }
+                new() { ProductId = 1, ProductName = "Apple", ProductCategory = "Fruits", ProductDescription = "Fresh Apples" },
+                new() { ProductId = 2, ProductName = "Banana",ProductCategory = "Fruits", ProductDescription = "Organic Bananas" }
             };
-            
+
             var productDtos = new List<ProductDto>
             {
-                new ProductDto { ProductId = 1, ProductName = "Apple", ProductDescription = "Fresh Apples" },
-                new ProductDto { ProductId = 2, ProductName = "Banana", ProductDescription = "Organic Bananas" }
+                new() { ProductId = 1, ProductName = "Apple", ProductCategory = "Fruits", ProductDescription = "Fresh Apples" },
+                new() { ProductId = 2, ProductName = "Banana", ProductCategory = "Fruits", ProductDescription = "Organic Bananas" }
             };
 
-            _mockRepository.Setup(repo => repo.SearchProductsAsync("Apple")).ReturnsAsync(products);
-            _mockMapper.Setup(mapper => mapper.Map<IEnumerable<ProductDto>>(products)).Returns(productDtos);
+            _mockRepository!.Setup(repo => repo.SearchProductsAsync("Apple")).ReturnsAsync(products);
+            _mockMapper!.Setup(mapper => mapper.Map<IEnumerable<ProductDto>>(products)).Returns(productDtos);
 
             // Act
-            var actionResult = await _controller.SearchProductsByName("Apple");
+            var actionResult = await _controller!.SearchProductsByName("Apple");
 
             // Assert
             Assert.IsNotNull(actionResult);
@@ -63,14 +63,14 @@ namespace Epm.FarmRoots.ProductCatalogue.Test
         public async Task SearchProductsByName_NoResults()
         {
             // Arrange
-            _mockRepository.Setup(repo => repo.SearchProductsAsync("NonExistent")).ReturnsAsync(new List<Product>());
+            _mockRepository!.Setup(repo => repo.SearchProductsAsync("NonExistent")).ReturnsAsync([]);
 
             // Act
-            var actionResult = await _controller.SearchProductsByName("NonExistent");
+            var actionResult = await _controller!.SearchProductsByName("NonExistent");
 
             // Assert
             Assert.IsNotNull(actionResult);
-            var notFoundResult = actionResult.Result as NotFoundObjectResult; 
+            var notFoundResult = actionResult.Result as NotFoundObjectResult;
             Assert.IsNotNull(notFoundResult);
             Assert.AreEqual(404, notFoundResult.StatusCode);
             Assert.AreEqual("No products matching the criteria.", notFoundResult.Value);
@@ -80,19 +80,19 @@ namespace Epm.FarmRoots.ProductCatalogue.Test
         public async Task SearchProductsByVoice_ReturnsProducts()
         {
             // Arrange
-            var products = new List<Product>{new Product { ProductId = 1, ProductName = "Apple", ProductDescription = "Fresh Apples" }};
-            
-            var productDtos = new List<ProductDto>{new ProductDto { ProductId = 1, ProductName = "Apple", ProductDescription = "Fresh Apples" }};
+            var products = new List<Product> { new() { ProductId = 1, ProductName = "Apple", ProductCategory = "Fruits", ProductDescription = "Fresh Apples" } };
 
-            _mockRepository.Setup(repo => repo.SearchProductsAsync("Show me apples")).ReturnsAsync(products);
-            _mockMapper.Setup(mapper => mapper.Map<IEnumerable<ProductDto>>(products)).Returns(productDtos);
+            var productDtos = new List<ProductDto> { new() { ProductId = 1, ProductName = "Apple", ProductCategory = "Fruits", ProductDescription = "Fresh Apples" } };
+
+            _mockRepository!.Setup(repo => repo.SearchProductsAsync("Show me apples")).ReturnsAsync(products);
+            _mockMapper!.Setup(mapper => mapper.Map<IEnumerable<ProductDto>>(products)).Returns(productDtos);
 
             // Act
-            var actionResult = await _controller.VoiceSearch("Show me apples");
+            var actionResult = await _controller!.VoiceSearch("Show me apples");
 
             // Assert
             Assert.IsNotNull(actionResult);
-            var okResult = actionResult.Result as OkObjectResult; 
+            var okResult = actionResult.Result as OkObjectResult;
             Assert.IsNotNull(okResult, "Expected an OkObjectResult");
             Assert.AreEqual(200, okResult.StatusCode);
             Assert.AreEqual(productDtos, okResult.Value);
@@ -102,14 +102,14 @@ namespace Epm.FarmRoots.ProductCatalogue.Test
         public async Task SearchProductsByVoice_NoResults()
         {
             // Arrange
-            _mockRepository.Setup(repo => repo.SearchProductsAsync("NonExistent")).ReturnsAsync(new List<Product>());
+            _mockRepository!.Setup(repo => repo.SearchProductsAsync("NonExistent")).ReturnsAsync([]);
 
             // Act
-            var actionResult = await _controller.VoiceSearch("NonExistent");
+            var actionResult = await _controller!.VoiceSearch("NonExistent");
 
             // Assert
             Assert.IsNotNull(actionResult);
-            var notFoundResult = actionResult.Result as NotFoundObjectResult; 
+            var notFoundResult = actionResult.Result as NotFoundObjectResult;
             Assert.IsNotNull(notFoundResult, "Expected a NotFoundObjectResult");
             Assert.AreEqual(404, notFoundResult.StatusCode);
             Assert.AreEqual("No products matching the criteria.", notFoundResult.Value);

@@ -2,7 +2,6 @@ using AutoMapper;
 using Epm.FarmRoots.ProductCatalogue.Application.Interfaces;
 using Epm.FarmRoots.ProductCatalogue.Application.Services;
 using Epm.FarmRoots.ProductCatalogue.Application.Mappings;
-using Epm.FarmRoots.ProductCatalogue.Application.Services;
 using Epm.FarmRoots.ProductCatalogue.Core.Interfaces;
 using Epm.FarmRoots.ProductCatalogue.Infrastructure;
 using Epm.FarmRoots.ProductCatalogue.Infrastructure.Data;
@@ -83,25 +82,21 @@ app.Run();
 
 void ApplyMigration1()
 {
-    using (var scope = app.Services.CreateScope())
-    {
-        var _db = scope.ServiceProvider.GetRequiredService<ProductCatalogueDbContext>();
+    using var scope = app.Services.CreateScope();
+    var _db = scope.ServiceProvider.GetRequiredService<ProductCatalogueDbContext>();
 
-        if (_db.Database.GetPendingMigrations().Count() > 0)
-        {
-            _db.Database.Migrate();
-        }
+    if (_db.Database.GetPendingMigrations().Any())
+    {
+        _db.Database.Migrate();
     }
 }
 void ApplyMigration2()
 {
-    using (var scope = app.Services.CreateScope())
-    {
-        var _db = scope.ServiceProvider.GetRequiredService<ProductDbContext>();
+    using var scope = app.Services.CreateScope();
+    var _db = scope.ServiceProvider.GetRequiredService<ProductDbContext>();
 
-        if (_db.Database.GetPendingMigrations().Count() > 0)
-        {
-            _db.Database.Migrate();
-        }
+    if (_db.Database.GetPendingMigrations().Any())
+    {
+        _db.Database.Migrate();
     }
 }
