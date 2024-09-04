@@ -16,16 +16,6 @@ namespace Epm.FarmRoots.UserManagement.Infrastructure.Data
         {
 
         }
-
-        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        //{
-        //    if (!optionsBuilder.IsConfigured)
-        //    {
-        //        optionsBuilder.UseSqlServer("Server=EPINHYDW1074;Database=LocalGoods;Trusted_Connection=True;");
-        //    }
-        //}
-        
-           // server=;Database=LocalGoods;Trusted_Connection=True;MultipleActiveResultSets=true;Encrypt=False
         public DbSet<Customer> CustomerDb { get; set; }
         public DbSet<Vendor> VendorDb { get; set; }
 
@@ -58,12 +48,6 @@ namespace Epm.FarmRoots.UserManagement.Infrastructure.Data
                     .IsRequired()
                     .HasAnnotation("DataType", "Password")
                     .HasAnnotation("ErrorMessage", "Password is required.");
-
-                entity.Property(e => e.ConfirmPassword)
-                    .IsRequired()
-                    .HasAnnotation("Compare", "Password")
-                    .HasAnnotation("ErrorMessage", "Please confirm your password.")
-                    .HasAnnotation("ErrorMessage", "The password and confirmation password do not match.");
             });
 
 
@@ -71,10 +55,9 @@ namespace Epm.FarmRoots.UserManagement.Infrastructure.Data
             {
                 entity.Property(e => e.Name)
                     .IsRequired()
-                    .HasMaxLength(40)
+                    .HasMaxLength(20)
                     .HasAnnotation("ErrorMessage", "Name is required.")
                     .HasAnnotation("ErrorMessage", "Name cannot be longer than 40 characters.");
-
 
 
                 entity.Property(e => e.Email)
@@ -94,12 +77,6 @@ namespace Epm.FarmRoots.UserManagement.Infrastructure.Data
                    .IsRequired()
                    .HasAnnotation("DataType", "Password")
                    .HasAnnotation("ErrorMessage", "Password is required.");
-
-                entity.Property(e => e.ConfirmPassword)
-                    .IsRequired()
-                    .HasAnnotation("Compare", "Password")
-                    .HasAnnotation("ErrorMessage", "Please confirm your password.")
-                    .HasAnnotation("ErrorMessage", "The password and confirmation password do not match.");
             });
         }
 

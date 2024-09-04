@@ -4,7 +4,9 @@ using Epm.FarmRoots.UserManagement.Application.Interfaces;
 using Epm.FarmRoots.UserManagement.Application.Services;
 using Epm.FarmRoots.UserManagement.Core.Entities;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using System.Text.RegularExpressions;
 
 namespace Epm.FarmRoots.UserManagement.API.Controllers
 {
@@ -26,32 +28,24 @@ namespace Epm.FarmRoots.UserManagement.API.Controllers
             {
                 return BadRequest(ModelState);
             }
-
+            if (!Regex.IsMatch(vendorDto.PhoneNumber, @"^\d{10}$"))
+            {
+                return BadRequest("Invalid phone number");
+            }
+            bool emailExists = await _vendorService.EmailExistsAsync(vendorDto.Email);
+            if (emailExists)
+            {
+                return BadRequest("Email already exists");
+            }
+            vendorDto.Password = HashPassword(vendorDto.Password);
             await _vendorService.RegisterVendorAsync(vendorDto);
             return Ok(vendorDto);
         }
 
-
-
-        [HttpGet("{id}")]
-        public async Task<ActionResult<VendorDto>> GetVendorById(int id)
+        private string HashPassword(object password)
         {
-            try
-            {
-                var vendorDto = await _vendorService.GetVendorByIdAsync(id);
-                return Ok(vendorDto);
-            }
-            catch (KeyNotFoundException knfException)
-            {
-                return NotFound(knfException.Message);
-            }
-            catch (Exception ex)
-            {
-                // log the exception details
-                return StatusCode(StatusCodes.Status500InternalServerError, "Error retrieving data from the database");
-            }
-
-
+            var hasher = new PasswordHasher<IdentityUser>();
+            return hasher.HashPassword(null, password.ToString());
         }
     }
 }

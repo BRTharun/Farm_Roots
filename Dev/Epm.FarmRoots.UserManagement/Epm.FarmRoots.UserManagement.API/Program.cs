@@ -11,9 +11,7 @@ builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowAllOrigins", builder =>
     {
-        builder.AllowAnyOrigin() // Allow any origin
-                   .AllowAnyMethod() // Allow any HTTP method
-                   .AllowAnyHeader(); // Allow any header
+        builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
     });
 });
 
@@ -22,11 +20,9 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
-// Dependency injection for customer and vendor service
 builder.Services.AddScoped<ICustomerService, CustomerRegisterService>();
 builder.Services.AddScoped<IVendorService, VendorRegisterService>();
 
-// Assuming CustomerRepository and VendorRepository implement ICustomerRepository and IVendorRepository respectively
 builder.Services.AddScoped<ICustomerRepository, CustomerRepository>();
 builder.Services.AddScoped<IVendorRepository, VendorRepository>();
 

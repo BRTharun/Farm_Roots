@@ -34,38 +34,14 @@ namespace Epm.FarmRoots.UserManagement.Infrastructure.Repositories
             return customer;
         }
 
-
-        public async Task<Customer> DeleteCustomerAsync(int id)
-        {
-            var customer = await _context.CustomerDb.FirstOrDefaultAsync(c => c.CustomerId == id);
-
-            if (customer == null)
-            {
-                throw new InvalidOperationException("Customer not found.");
-            }
-
-            _context.CustomerDb.Remove(customer);
-            await _context.SaveChangesAsync();
-            return customer;
-        }
-
-        public async Task<Customer> UpdateCustomerDetailsAsync(Customer customer)
-        {
-            var existingCustomer= await _context.CustomerDb.FirstOrDefaultAsync(v => v.CustomerId == customer.CustomerId);
-
-            if (existingCustomer == null)
-            {
-                throw new InvalidOperationException("Customer not found.");
-            }
-
-            existingCustomer.Name = customer.Name;
-            existingCustomer.Email = customer.Email;
-            await _context.SaveChangesAsync();
-            return customer;
-        }
         public async Task<List<Customer>> GetAllCustomersAsync()
         {
             return await _context.CustomerDb.ToListAsync();
+        }
+
+        public async Task<bool> EmailExistsAsync(string email)
+        {
+            return await _context.CustomerDb.AnyAsync(u => u.Email == email);
         }
     }
 }

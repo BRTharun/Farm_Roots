@@ -5,6 +5,9 @@ using Epm.FarmRoots.UserManagement.Application.Interfaces;
 using Epm.FarmRoots.UserManagement.Core.Entities;
 using Epm.FarmRoots.UserManagement.Core.Interfaces;
 using Epm.FarmRoots.UserManagement.Infrastructure.Data;
+using Epm.FarmRoots.UserManagement.Infrastructure.Repositories;
+using Microsoft.AspNet.Identity.EntityFramework;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -23,23 +26,24 @@ namespace Epm.FarmRoots.UserManagement.Application.Services
             _vendorRepository = vendorRepository;
             _mapper = mapper;
         }
+
         public async Task<VendorDto> RegisterVendorAsync(VendorDto vendorDto)
         {
-            var vendor = _mapper.Map<Vendor>(vendorDto);
-            var registeredVendor = await _vendorRepository.RegisterVendorAsync(vendor);
-            var registeredVendorDto = _mapper.Map<VendorDto>(registeredVendor);
-            return registeredVendorDto;
-        }
-
-        public async Task<VendorDto> GetVendorByIdAsync(int id)
-        {
-            var vendor = await _vendorRepository.GetVendorByIdAsync(id);
-            if (vendor == null)
-            {
-                throw new KeyNotFoundException("Vendor not found.");
+            try{
+                var vendor = _mapper.Map<Vendor>(vendorDto);
+                var registeredVendor = await _vendorRepository.RegisterVendorAsync(vendor);
+                var registeredVendorDto = _mapper.Map<VendorDto>(registeredVendor);
+                return registeredVendorDto;
             }
-            return _mapper.Map<VendorDto>(vendor);
+            catch (Exception ex)
+            {
+                throw new Exception("Vendor Registration Failed.");
+            }
         }
 
+        public async Task<bool> EmailExistsAsync(string email)
+        {
+            return await _vendorRepository.EmailExistsAsync(email);
+        }
     }
 }

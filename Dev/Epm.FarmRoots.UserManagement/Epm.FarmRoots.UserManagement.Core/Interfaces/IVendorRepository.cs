@@ -11,8 +11,7 @@ namespace Epm.FarmRoots.UserManagement.Core.Interfaces
     public interface IVendorRepository
     {
         Task<Vendor> RegisterVendorAsync(Vendor customer);
-        Task<Vendor> UpdateVendorDetailsAsync(Vendor customer);
-        Task<Vendor> DeleteVendorAsync(int id);
         Task<Vendor> GetVendorByIdAsync(int id);
+        Task<bool> EmailExistsAsync(string email);
     }
 }

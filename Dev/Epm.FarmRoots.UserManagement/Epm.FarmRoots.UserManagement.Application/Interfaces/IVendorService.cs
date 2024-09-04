@@ -13,7 +13,6 @@ namespace Epm.FarmRoots.UserManagement.Application.Interfaces
     public interface IVendorService
     {
         Task<VendorDto> RegisterVendorAsync(VendorDto vendorDto);
-        //Task<VendorDto> UpdateVendorDetailsAsync(Vendor vendor);
-        Task<VendorDto> GetVendorByIdAsync(int id);
+        Task<bool> EmailExistsAsync(string email);
     }
 }

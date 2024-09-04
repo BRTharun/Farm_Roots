@@ -11,8 +11,7 @@ namespace Epm.FarmRoots.UserManagement.Core.Interfaces
     public interface ICustomerRepository
     {
         Task<Customer> RegisterCustomerAsync(Customer customer);
-        Task<Customer> UpdateCustomerDetailsAsync(Customer customer);
-        Task<Customer> DeleteCustomerAsync(int id);
         Task<List<Customer>> GetAllCustomersAsync();
+<       Task<bool> EmailExistsAsync(string email);
     }
 }

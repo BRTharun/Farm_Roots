@@ -1,12 +1,15 @@
 ﻿#pragma warning disable
+using AutoMapper;
 using Epm.FarmRoots.UserManagement.Application.Dtos;
 using Epm.FarmRoots.UserManagement.Application.Interfaces;
 using Epm.FarmRoots.UserManagement.Application.Services;
 using Epm.FarmRoots.UserManagement.Core.Entities;
 using Epm.FarmRoots.UserManagement.Infrastructure.Data;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Text.RegularExpressions;
 
 namespace Epm.FarmRoots.UserManagement.API.Controllers
 {
@@ -28,12 +31,21 @@ namespace Epm.FarmRoots.UserManagement.API.Controllers
             {
                 return BadRequest(ModelState);
             }
+            if (!Regex.IsMatch(customerDto.PhoneNumber, @"^\d{10}$"))
+            {
+                return BadRequest("Invalid phone number");
+            }
 
-            await _customerService.RegisterCustomerAsync(customerDto);
-            return Ok(customerDto);
+            bool emailExists = await _customerService.EmailExistsAsync(customerDto.Email);
+            if (emailExists)
+            {
+                return BadRequest("Email already exists");
+            }
+
+            customerDto.Password = HashPassword(customerDto.Password);
+            var registeredCustomer = await _customerService.RegisterCustomerAsync(customerDto);
+            return Ok(registeredCustomer);
         }
-
-
 
         [HttpGet]
         [Route("GetCustomers")]
@@ -41,13 +53,19 @@ namespace Epm.FarmRoots.UserManagement.API.Controllers
         {
             try
             {
-                var customerDtos = await _customerService.GetAllCustomersAsync();
-                return Ok(customerDtos);
+                var customerDto = await _customerService.GetAllCustomersAsync();
+                return Ok(customerDto);
             }
             catch (Exception ex)
             {
                 return StatusCode(StatusCodes.Status500InternalServerError, "Error retrieving data from the database");
             }
+        }
+
+        private string HashPassword(object password)
+        {
+            var hasher = new PasswordHasher<IdentityUser>();
+            return hasher.HashPassword(null, password.ToString());
         }
     }
 }
