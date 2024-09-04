@@ -3,6 +3,8 @@ import InputField from "../common/InputField";
 // import { Button } from "@epam/uui";
 import CheckBox from "../common/CheckBox";
 import Button from "../common/Button";
+import { toast, ToastContainer } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 import {
   validateEmail,
   validatePassword,
@@ -32,7 +34,6 @@ const RegistrationForm: React.FC = () => {
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [success, setSuccess] = useState(false);
   const [errMsg, setErrMsg] = useState('');
-  const errRef = useRef<HTMLParagraphElement>(null);
 
 
   const [formData, setFormData] = useState({
@@ -86,6 +87,12 @@ const RegistrationForm: React.FC = () => {
     };
     setErrors(newErrors);
     focusFirstErrorField(newErrors);
+
+    const firstError = Object.values(newErrors).find((error) => error !== "");
+    if (firstError) {
+      toast.error(firstError); // Show the first validation error as a toast
+    }
+
     return Object.values(newErrors).every((error) => error === "");
   };
 
@@ -106,6 +113,7 @@ const RegistrationForm: React.FC = () => {
         console.log(response.data);
         console.log(JSON.stringify(response));
         setSuccess(true);
+        toast.success("Registration successful!");
       } catch(err) {
         if (!err?.response) {
           setErrMsg('No Server Response');
@@ -114,6 +122,7 @@ const RegistrationForm: React.FC = () => {
       } else {
           setErrMsg('Registration Failed')
       }
+      toast.error(errMsg);
     }
     }
   };
@@ -136,6 +145,7 @@ const RegistrationForm: React.FC = () => {
       role: "",
     });
     nameRef.current?.focus();
+    toast.info("Form reset");
   };
 
   const focusFirstErrorField = (errors : Errors) => {
@@ -158,6 +168,17 @@ const RegistrationForm: React.FC = () => {
 
   return (
     <>
+    <ToastContainer 
+    position="top-center"
+    autoClose={3000}
+    hideProgressBar={false}
+    newestOnTop={true}
+    closeOnClick
+    rtl={false}
+    pauseOnFocusLoss = {false}
+    draggable
+    pauseOnHover = {false}
+    theme="light"/>
     {
       success ? (
         <section className="flex flex-col items-center justify-center min-h-screen p-6 bg-gray-100">
@@ -176,9 +197,6 @@ const RegistrationForm: React.FC = () => {
       </section>
       ) : (
       <section>
-<p ref={errRef} className={errMsg ? "errmsg" : "offscreen"} aria-live="assertive">
-  {errMsg}
-</p>
     <form
       onSubmit={handleSubmit}
       className="max-w-lg mx-auto p-6 bg-white shadow-lg rounded-xl space-y-6"
@@ -190,9 +208,7 @@ const RegistrationForm: React.FC = () => {
         value={formData.name}
         onChange={handleChange}
         placeholder="Name"
-        error={errors.name}
         ref={nameRef}
-        required
         additionalLabel={<span className="text-red-500">*</span>}
       />
       <InputField
@@ -202,9 +218,7 @@ const RegistrationForm: React.FC = () => {
         value={formData.email}
         onChange={handleChange}
         placeholder="Email"
-        error={errors.email}
         ref={emailRef}
-        required
         additionalLabel={<span className="text-red-500">*</span>}
       />
       <div className="relative">
@@ -216,10 +230,8 @@ const RegistrationForm: React.FC = () => {
           onChange={handleChange}
           maxLength={24}
           ref={passwordRef}
-          required
           additionalLabel={<span className="text-red-500">*</span>}
           placeholder="Password"
-          error={errors.password}
         />
         <div className="absolute inset-y-0 right-3 flex items-center">
           <button
@@ -255,9 +267,7 @@ const RegistrationForm: React.FC = () => {
           ref={confirmPasswordRef}
           maxLength={24}
           placeholder="Confirm Password"
-          required
           additionalLabel={<span className="text-red-500">*</span>}
-          error={errors.confirmPassword}
         />
         <div className="absolute inset-y-0 right-3 flex items-center">
           <button
@@ -297,8 +307,6 @@ const RegistrationForm: React.FC = () => {
           ref={phoneRef}
           maxLength={10}
           placeholder="Phone Number"
-          error={errors.phoneNumber}
-          required
           additionalLabel={<span className="text-red-500">*</span>}
         />
       </div>
