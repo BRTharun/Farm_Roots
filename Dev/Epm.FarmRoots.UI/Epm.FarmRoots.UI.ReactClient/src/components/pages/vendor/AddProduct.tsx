@@ -1,70 +1,122 @@
+//------------------------------
+// Import necessary libraries and hooks
+//------------------------------
 import React, { Suspense, lazy } from "react";
 import { useDispatch } from "react-redux";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import { addProduct } from "../../utils/products";
+import { addProduct } from "../../utils/productsSlice";
 import { AppDispatch } from "../../utils/store";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
+//------------------------------
 // Lazy load the TopBar component
+//------------------------------
 const TopBar = lazy(() => import("./TopBar"));
 
+//------------------------------
 // Validation schema using Yup
+//------------------------------
 const validationSchema = Yup.object({
-    name: Yup.string().required("Name is required"),
-    category: Yup.string().required("Category is required"),
-    image: Yup.string()
+    productName: Yup.string().required("Name is required"),
+    productCategory: Yup.string().required("Category is required"),
+    productImage: Yup.string()
         .url("Invalid URL format")
         .required("Image URL is required"),
-    description: Yup.string().required("Description is required"),
-    stock: Yup.number()
+    productDescription: Yup.string().required("Description is required"),
+    productStock: Yup.number()
         .required("Stock is required")
         .min(1, "Stock cannot be less than one"),
-    tags: Yup.string(),
-    regularPrice: Yup.number()
-        .required("Regular Price is required")
-        .min(1, "Regular Price cannot be less than one"),
-    salePrice: Yup.number()
-        .required("Sale Price is required")
-        .min(1, "Sale Price cannot be less than one")
+    productSale_Price: Yup.number()
+        .required("Sale's Price is required")
+        .min(1, "Sale's Price cannot be less than one"),
+    productMrp: Yup.number()
+        .required("Mrp Price is required")
+        .min(1, "Mrp Price cannot be less than one")
         .max(
-            Yup.ref("regularPrice"),
-            "Sale Price cannot be greater than Regular Price"
+            Yup.ref("productSale_Price"),
+            "Mrp Price cannot be greater than Regular Price"
         ),
-    publish: Yup.boolean(),
 });
 
+//------------------------------
+// List of product categories
+//------------------------------
+const categories = ["Fruits", "Vegetables", "Groceries", "Meat"];
+
 const AddProduct: React.FC = () => {
+    //------------------------------
+    // Dispatch hook from Redux store
+    //------------------------------
     const dispatch = useDispatch<AppDispatch>();
 
+    //------------------------------
+    // Formik initialization
+    //------------------------------
     const formik = useFormik({
         initialValues: {
-            name: "",
-            category: "",
-            image: "",
-            description: "",
-            stock: 0,
-            tags: "",
-            regularPrice: 0,
-            salePrice: 0,
-            publish: false,
+            productName: "",
+            productCategory: "",
+            productImage: "",
+            productDescription: "",
+            productStock: 0,
+            productSale_Price: 0,
+            productMrp: 0,
         },
         validationSchema,
-        onSubmit: (values) => {
-            const tagsArray = values.tags.split(",").map((tag) => tag.trim());
+        onSubmit: async (values) => {
             const product = {
                 ...values,
-                tags: tagsArray,
             };
-            dispatch(addProduct(product));
+            //------------------------------
+            // Dispatch addProduct action
+            //------------------------------
+            try {
+                //------------------------------
+                // Dispatch addProduct action
+                //------------------------------
+                await dispatch(addProduct(product));
+                console.log(product);
+
+                // Show success toast
+                toast.success("Product added successfully!", {
+                    position: "top-right", // String value for position
+                    autoClose: 3000, // Close after 3 seconds
+                    className: "bg-green-500 text-white",
+                    bodyClassName: "text-white",
+                });
+
+                // Redirect to /vendor page
+            } catch (error) {
+                // Show error toast
+                toast.error("Failed to add product. Please try again.", {
+                    position: "top-right", // String value for position
+                    autoClose: 3000, // Close after 3 seconds
+                    className: "bg-red-500 text-white",
+                    bodyClassName: "text-white",
+                });
+
+                // Optionally log error
+                console.error(error);
+            }
         },
     });
 
     return (
         <div className="flex flex-col md:flex-row">
-            <div className="bg-gray-800 p-4 text-white fixed">
-                
-            </div>
+            {/* 
+            ------------------------------
+            // Fixed sidebar or header (not implemented here)
+            ------------------------------
+            */}
+            <div className="bg-gray-800 p-4 text-white fixed"></div>
             <div className="md:ml-64 mt-12 w-full">
+                {/* 
+                ------------------------------
+                // Suspense for lazy-loaded TopBar
+                ------------------------------
+                */}
                 <Suspense fallback={<ShimmerEffect />}>
                     <TopBar />
                 </Suspense>
@@ -77,21 +129,26 @@ const AddProduct: React.FC = () => {
                             onSubmit={formik.handleSubmit}
                             className="bg-white mt-13 p-6 rounded-lg shadow-md"
                         >
+                            {/* 
+                            ------------------------------
+                            // Form fields for product details
+                            ------------------------------
+                            */}
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                 <label className="block">
                                     <span className="text-gray-700">Name</span>
                                     <input
                                         type="text"
-                                        name="name"
-                                        value={formik.values.name}
+                                        name="productName"
+                                        value={formik.values.productName}
                                         onChange={formik.handleChange}
                                         onBlur={formik.handleBlur}
                                         className="mt-1 block w-full rounded-md border border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
                                     />
-                                    {formik.touched.name &&
-                                    formik.errors.name ? (
+                                    {formik.touched.productName &&
+                                    formik.errors.productName ? (
                                         <div className="text-red-500 text-sm mt-1">
-                                            {formik.errors.name}
+                                            {formik.errors.productName}
                                         </div>
                                     ) : null}
                                 </label>
@@ -99,18 +156,30 @@ const AddProduct: React.FC = () => {
                                     <span className="text-gray-700">
                                         Category
                                     </span>
-                                    <input
-                                        type="text"
-                                        name="category"
-                                        value={formik.values.category}
+                                    <select
+                                        name="productCategory"
+                                        value={formik.values.productCategory}
                                         onChange={formik.handleChange}
                                         onBlur={formik.handleBlur}
                                         className="mt-1 block w-full rounded-md border border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
-                                    />
-                                    {formik.touched.category &&
-                                    formik.errors.category ? (
+                                    >
+                                        <option
+                                            value=""
+                                            label="Select category"
+                                        />
+                                        {categories.map((category) => (
+                                            <option
+                                                key={category}
+                                                value={category}
+                                            >
+                                                {category}
+                                            </option>
+                                        ))}
+                                    </select>
+                                    {formik.touched.productCategory &&
+                                    formik.errors.productCategory ? (
                                         <div className="text-red-500 text-sm mt-1">
-                                            {formik.errors.category}
+                                            {formik.errors.productCategory}
                                         </div>
                                     ) : null}
                                 </label>
@@ -120,16 +189,16 @@ const AddProduct: React.FC = () => {
                                     </span>
                                     <input
                                         type="text"
-                                        name="image"
-                                        value={formik.values.image}
+                                        name="productImage"
+                                        value={formik.values.productImage}
                                         onChange={formik.handleChange}
                                         onBlur={formik.handleBlur}
                                         className="mt-1 block w-full rounded-md border border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
                                     />
-                                    {formik.touched.image &&
-                                    formik.errors.image ? (
+                                    {formik.touched.productImage &&
+                                    formik.errors.productImage ? (
                                         <div className="text-red-500 text-sm mt-1">
-                                            {formik.errors.image}
+                                            {formik.errors.productImage}
                                         </div>
                                     ) : null}
                                 </label>
@@ -138,17 +207,17 @@ const AddProduct: React.FC = () => {
                                         Description
                                     </span>
                                     <textarea
-                                        name="description"
-                                        value={formik.values.description}
+                                        name="productDescription"
+                                        value={formik.values.productDescription}
                                         onChange={formik.handleChange}
                                         onBlur={formik.handleBlur}
                                         className="mt-1 block w-full rounded-md border border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
                                         rows={4}
                                     />
-                                    {formik.touched.description &&
-                                    formik.errors.description ? (
+                                    {formik.touched.productDescription &&
+                                    formik.errors.productDescription ? (
                                         <div className="text-red-500 text-sm mt-1">
-                                            {formik.errors.description}
+                                            {formik.errors.productDescription}{" "}
                                         </div>
                                     ) : null}
                                 </label>
@@ -156,84 +225,62 @@ const AddProduct: React.FC = () => {
                                     <span className="text-gray-700">Stock</span>
                                     <input
                                         type="number"
-                                        name="stock"
-                                        value={formik.values.stock}
+                                        name="productStock"
+                                        value={formik.values.productStock}
                                         onChange={formik.handleChange}
                                         onBlur={formik.handleBlur}
                                         className="mt-1 block w-full rounded-md border border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
                                     />
-                                    {formik.touched.stock &&
-                                    formik.errors.stock ? (
+                                    {formik.touched.productStock &&
+                                    formik.errors.productStock ? (
                                         <div className="text-red-500 text-sm mt-1">
-                                            {formik.errors.stock}
+                                            {formik.errors.productStock}
                                         </div>
                                     ) : null}
                                 </label>
+
                                 <label className="block">
                                     <span className="text-gray-700">
-                                        Tags (comma-separated)
-                                    </span>
-                                    <input
-                                        type="text"
-                                        name="tags"
-                                        value={formik.values.tags}
-                                        onChange={formik.handleChange}
-                                        onBlur={formik.handleBlur}
-                                        className="mt-1 block w-full rounded-md border border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
-                                    />
-                                </label>
-                                <label className="block">
-                                    <span className="text-gray-700">
-                                        Regular Price
+                                        Sale's Price
                                     </span>
                                     <input
                                         type="number"
-                                        name="regularPrice"
-                                        value={formik.values.regularPrice}
+                                        name="productSale_Price"
+                                        value={formik.values.productSale_Price}
                                         onChange={formik.handleChange}
                                         onBlur={formik.handleBlur}
                                         className="mt-1 block w-full rounded-md border border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
                                     />
-                                    {formik.touched.regularPrice &&
-                                    formik.errors.regularPrice ? (
+                                    {formik.touched.productSale_Price &&
+                                    formik.errors.productSale_Price ? (
                                         <div className="text-red-500 text-sm mt-1">
-                                            {formik.errors.regularPrice}
+                                            {formik.errors.productSale_Price}
                                         </div>
                                     ) : null}
                                 </label>
                                 <label className="block">
-                                    <span className="text-gray-700">
-                                        Sale Price
-                                    </span>
+                                    <span className="text-gray-700">MRP</span>
                                     <input
                                         type="number"
-                                        name="salePrice"
-                                        value={formik.values.salePrice}
+                                        name="productMrp"
+                                        value={formik.values.productMrp}
                                         onChange={formik.handleChange}
                                         onBlur={formik.handleBlur}
                                         className="mt-1 block w-full rounded-md border border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
                                     />
-                                    {formik.touched.salePrice &&
-                                    formik.errors.salePrice ? (
+                                    {formik.touched.productMrp &&
+                                    formik.errors.productMrp ? (
                                         <div className="text-red-500 text-sm mt-1">
-                                            {formik.errors.salePrice}
+                                            {formik.errors.productMrp}
                                         </div>
                                     ) : null}
-                                </label>
-                                <label className="block md:col-span-2 flex items-center">
-                                    <input
-                                        type="checkbox"
-                                        name="publish"
-                                        checked={formik.values.publish}
-                                        onChange={formik.handleChange}
-                                        onBlur={formik.handleBlur}
-                                        className="mr-2 rounded border border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
-                                    />
-                                    <span className="text-gray-700">
-                                        Publish
-                                    </span>
                                 </label>
                             </div>
+                            {/* 
+                            ------------------------------
+                            // Submit button for the form
+                            ------------------------------
+                            */}
                             <button
                                 type="submit"
                                 className="mt-6 w-full md:w-auto bg-indigo-600 text-white font-bold py-2 px-4 rounded-md hover:bg-indigo-500 focus:outline-none focus:bg-indigo-500"
@@ -248,15 +295,14 @@ const AddProduct: React.FC = () => {
     );
 };
 
+//------------------------------
 // Shimmer Effect Component
+//------------------------------
 const ShimmerEffect: React.FC = () => (
     <div className="animate-pulse">
-        <div className="h-4 bg-gray-200 rounded mb-4 w-3/4"></div>
-        <div className="h-6 bg-gray-200 rounded mb-4 w-full"></div>
-        <div className="h-4 bg-gray-200 rounded mb-4 w-1/2"></div>
-        <div className="h-6 bg-gray-200 rounded mb-4 w-full"></div>
-        <div className="h-4 bg-gray-200 rounded mb-4 w-3/4"></div>
-        <div className="h-6 bg-gray-200 rounded mb-4 w-full"></div>
+        <div className="h-4 bg-gray-200 rounded mb-4" />
+        <div className="h-4 bg-gray-200 rounded mb-4" />
+        <div className="h-4 bg-gray-200 rounded mb-4" />
     </div>
 );
 

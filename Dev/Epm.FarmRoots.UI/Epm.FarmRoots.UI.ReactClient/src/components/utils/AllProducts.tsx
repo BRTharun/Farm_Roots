@@ -2,10 +2,10 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState, AppDispatch } from "./store";
-import { fetchProducts } from "./products";
+import { fetchProducts } from "./productsSlice";
 //import { Product } from './types';
 
-const Products: React.FC = () => {
+const AllProducts: React.FC = () => {
     const dispatch = useDispatch<AppDispatch>();
     const {
         products = [],
@@ -26,13 +26,13 @@ const Products: React.FC = () => {
                 {products.map((product) => (
                     <li key={product._id}>
                         <img
-                            src={product.image}
-                            alt={product.name}
+                            src={product.productImage}
+                            alt={product.productName}
                             width="100"
                         />
-                        <h2>{product.name}</h2>
-                        <p>{product.description}</p>
-                        <p>Price: ${product.salePrice}</p>
+                        <h2>{product.productName}</h2>
+                        <p>{product.productDescription}</p>
+                        <p>Price: ${product.productMrp}</p>
                     </li>
                 ))}
             </ul>
@@ -40,4 +40,4 @@ const Products: React.FC = () => {
     );
 };
 
-export default Products;
+export default AllProducts;

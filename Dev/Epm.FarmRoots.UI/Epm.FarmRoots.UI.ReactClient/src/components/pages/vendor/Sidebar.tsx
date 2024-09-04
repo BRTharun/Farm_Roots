@@ -47,19 +47,6 @@ const Sidebar: React.FC = () => {
                 </div>
                 <nav className="mt-10">
                     <div className="flex flex-col">
-                        {/* <Link
-                            to="/"
-                            className="flex items-center p-2 mb-4 hover:bg-gray-700 rounded-md"
-                        >
-                            <FontAwesomeIcon
-                                icon={faStore}
-                                className="mr-3"
-                                size="lg"
-                            />
-                            <span className={`${!isOpen && "hidden"} md:block`}>
-                                Home
-                            </span>
-                        </Link> */}
                         <Link
                             to="/add-product"
                             className="flex items-center p-2 mb-4 hover:bg-gray-700 rounded-md"

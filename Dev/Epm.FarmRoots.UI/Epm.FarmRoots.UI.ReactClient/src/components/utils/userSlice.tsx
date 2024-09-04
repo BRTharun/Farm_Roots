@@ -1,6 +1,14 @@
+// src/redux/userSlice.ts
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+import { LOGIN_USER, REGISTER_USER } from "./constants/Api";
 
+//------------------------------
+// Types
+//------------------------------
+/**
+ * Type definition for a User.
+ */
 interface User {
     firstName: string;
     lastName: string;
@@ -9,48 +17,71 @@ interface User {
     role: string;
 }
 
+/**
+ * Type definition for the user slice state.
+ */
 interface UserState {
     user: User | null;
     loading: boolean;
     error: string | null;
 }
 
+//------------------------------
+// Initial State
+//------------------------------
+/**
+ * Initial state for the user slice.
+ */
 const initialState: UserState = {
     user: null,
     loading: false,
     error: null,
 };
 
-// Async thunks
+//------------------------------
+// Async Thunks
+//------------------------------
+/**
+ * Async thunk for logging in a user.
+ * Performs an API request to log in and returns user data.
+ */
 export const loginUser = createAsyncThunk<
     User,
     { email: string; password: string }
 >("user/login", async (userData) => {
-    const response = await axios.post<User>(
-        "http://localhost:5000/api/auth/login/user",
-        userData
-    );
-    console.log("lll",response.data)
+    const response = await axios.post<User>(LOGIN_USER, userData);
+    console.log("lll", response.data); // Debugging output
     return response.data;
 });
 
+/**
+ * Async thunk for registering a new user.
+ * Performs an API request to register and returns user data.
+ */
 export const registerUser = createAsyncThunk<
     User,
     { firstName: string; lastName: string; email: string; password: string }
 >("user/register", async (userData) => {
-    console.log("userData", userData);
-    const response = await axios.post<User>(
-        "http://localhost:5000/api/auth/register/user",
-        userData
-    );
+    console.log("userData", userData); // Debugging output
+    const response = await axios.post<User>(REGISTER_USER, userData);
     return response.data;
 });
 
+/**
+ * Async thunk for logging out a user.
+ * Performs any necessary logout operations.
+ */
 export const logoutUser = createAsyncThunk("user/logout", async () => {
     // Perform any necessary logout operations
     localStorage.removeItem("user");
 });
 
+//------------------------------
+// Slice
+//------------------------------
+/**
+ * User slice that contains the reducer and actions related to user state.
+ */
 const userSlice = createSlice({
     name: "user",
     initialState,

@@ -1,0 +1,8 @@
+export const GET_PRODUCTS = "http://localhost:5000/api/products"
+export const VENDOR_PRODUCTS = "http://localhost:5000/api/vendors/products"
+export const ADD_PRODUCT = "https://localhost:7189/api/Product"
+export const LOGIN_USER = "http://localhost:5000/api/auth/login/user"
+export const REGISTER_USER = "http://localhost:5000/api/auth/register/user"
+export const LOGIN_VENDOR = "http://localhost:5000/api/auth/login/vendor"
+export const REGISTER_VENDOR = "http://localhost:5000/api/auth/register/vendor"
+export const GET_VENDOR_PROFILE = "http://localhost:5000/api/vendors/profile"

@@ -6,11 +6,21 @@ import VendorProducts from "./components/pages/vendor/VendorProducts";
 import AddProduct from "./components/pages/vendor/AddProduct";
 import VendorProfile from "./components/pages/vendor/VendorProfile";
 import VendorNavBar from "./components/navbar/VendorNavBar";
+import { useErrorBoundary } from "use-error-boundary"
 
 
 const App: React.FC = () => {
 
+    const {
+        didCatch,
+        error,
+      } = useErrorBoundary()
+
     return (
+        <>
+        {didCatch ? (
+        <p>An error has been caught: {error.message}</p>
+      ) :(
         <Router>
                 <VendorNavBar/>
                 <Routes>
@@ -25,7 +35,8 @@ const App: React.FC = () => {
                             element={<VendorProfile />}
                         />
                 </Routes>
-        </Router>
+        </Router>)}
+        </>
     );
 };
 

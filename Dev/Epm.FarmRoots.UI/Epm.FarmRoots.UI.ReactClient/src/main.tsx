@@ -7,6 +7,7 @@ import "./index.css";
 import store from "./components/utils/store";
 import ErrorBoundary from "./components/pages/vendor/ErrorBoundary";
 
+
 createRoot(document.getElementById("root")!).render(
     <StrictMode>
         <ErrorBoundary>

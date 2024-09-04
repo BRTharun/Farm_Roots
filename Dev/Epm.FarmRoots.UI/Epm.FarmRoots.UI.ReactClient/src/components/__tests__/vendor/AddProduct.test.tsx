@@ -27,10 +27,9 @@ describe("AddProduct Component Tests", () => {
         expect(screen.getByLabelText(/Image URL/i)).toBeInTheDocument();
         expect(screen.getByLabelText(/Description/i)).toBeInTheDocument();
         expect(screen.getByLabelText(/Stock/i)).toBeInTheDocument();
-        expect(screen.getByLabelText(/Tags/i)).toBeInTheDocument();
-        expect(screen.getByLabelText(/Regular Price/i)).toBeInTheDocument();
-        expect(screen.getByLabelText(/Sale Price/i)).toBeInTheDocument();
-        expect(screen.getByLabelText(/Publish/i)).toBeInTheDocument();
+        
+        expect(screen.getByLabelText(/Sale's Price/i)).toBeInTheDocument();
+        expect(screen.getByLabelText(/MRP/i)).toBeInTheDocument();
     });
 
     test("fields should have initial empty or default values", () => {
@@ -45,10 +44,9 @@ describe("AddProduct Component Tests", () => {
         expect((screen.getByLabelText(/Image URL/i) as HTMLInputElement).value).toBe("");
         expect((screen.getByLabelText(/Description/i) as HTMLTextAreaElement).value).toBe("");
         expect((screen.getByLabelText(/Stock/i) as HTMLInputElement).value).toBe("0");
-        expect((screen.getByLabelText(/Tags/i) as HTMLInputElement).value).toBe("");
-        expect((screen.getByLabelText(/Regular Price/i) as HTMLInputElement).value).toBe("0");
-        expect((screen.getByLabelText(/Sale Price/i) as HTMLInputElement).value).toBe("0");
-        expect((screen.getByLabelText(/Publish/i) as HTMLInputElement).checked).toBeFalsy();
+        expect((screen.getByLabelText(/Sale's Price/i) as HTMLInputElement).value).toBe("0");
+        expect((screen.getByLabelText(/MRP/i) as HTMLInputElement).value).toBe("0");
+        
     });
 
     test("should display error message when required fields are empty on submit", async () => {
@@ -64,8 +62,8 @@ describe("AddProduct Component Tests", () => {
             expect(screen.getByText(/Image URL is required/i)).toBeInTheDocument();
             expect(screen.getByText(/Description is required/i)).toBeInTheDocument();
             expect(screen.getByText(/Stock cannot be less than one/i)).toBeInTheDocument();
-            expect(screen.getByText(/Regular Price cannot be less than one/i)).toBeInTheDocument();
-            expect(screen.getByText(/Sale Price cannot be less than one/i)).toBeInTheDocument();
+            expect(screen.getByText(/Sale's Price cannot be less than one/i)).toBeInTheDocument();
+            expect(screen.getByText(/Mrp Price cannot be less than one/i)).toBeInTheDocument();
         });
     });
 
@@ -82,12 +80,10 @@ describe("AddProduct Component Tests", () => {
             "Image URL": "http://example.com/image.jpg",
             Description: "A sample product description",
             Stock: "10",
-            Tags: "sample, product",
-            "Regular Price": "100",
-            "Sale Price": "90",
+            "MRP": "100",
+            "Sale's Price": "90",
         });
 
-        fireEvent.click(screen.getByLabelText(/Publish/i));
         fireEvent.submit(screen.getByRole("button", { name: /Add Product/i }));
 
         await waitFor(async () => {
@@ -124,16 +120,16 @@ describe("AddProduct Component Tests", () => {
 
         fillInputs({
             Stock: "0",
-            "Regular Price": "0",
-            "Sale Price": "0",
+            "MRP": "0",
+            "Sale's Price": "0",
         });
 
         fireEvent.submit(screen.getByRole("button", { name: /Add Product/i }));
 
         await waitFor(async () => {
             expect(screen.getByText(/Stock cannot be less than one/i)).toBeInTheDocument();
-            expect(screen.getByText(/Regular Price cannot be less than one/i)).toBeInTheDocument();
-            expect(screen.getByText(/Sale Price cannot be less than one/i)).toBeInTheDocument();
+            expect(screen.getByText(/MRP Price cannot be less than one/i)).toBeInTheDocument();
+            expect(screen.getByText(/Sale's Price cannot be less than one/i)).toBeInTheDocument();
         });
     });
 
