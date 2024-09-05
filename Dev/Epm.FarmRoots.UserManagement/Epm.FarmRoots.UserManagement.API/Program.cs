@@ -29,11 +29,25 @@ builder.Services.AddScoped<IVendorRepository, VendorRepository>();
 
 var provider = builder.Services.BuildServiceProvider();
 var config = provider.GetRequiredService<IConfiguration>();
-builder.Services.AddDbContext<ApplicationDbContext>(item => item.UseSqlServer(config.GetConnectionString("DefaultConnection")));
+builder.Services.AddDbContext<RegistrationDbContext>(item => item.UseSqlServer(config.GetConnectionString("DefaultConnection")));
 builder.Services.AddScoped<CustomerRegisterService>(); 
 builder.Services.AddScoped<VendorRegisterService>();
 
 var app = builder.Build();
+using (var scope = app.Services.CreateScope())
+{
+    var services = scope.ServiceProvider;
+    var dbContext = services.GetRequiredService<RegistrationDbContext>();
+    try
+    {
+        dbContext.Database.Migrate();
+    }
+    catch (Exception ex)
+    {
+        Console.WriteLine("An error occurred while migrating the database.");
+        Console.WriteLine(ex.Message);
+    }
+}
 
 if (app.Environment.IsDevelopment())
 {

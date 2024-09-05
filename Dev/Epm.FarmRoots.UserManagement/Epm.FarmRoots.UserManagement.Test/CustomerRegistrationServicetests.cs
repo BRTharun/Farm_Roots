@@ -15,9 +15,9 @@ namespace Epm.FarmRoots.UserManagement.Test
 {
     public class CustomerRegistrationServicetests
     {
-        private Mock<ICustomerRepository> _mockCustomerRepository;
-        private Mock<IMapper> _mockMapper;
-        private ICustomerService _customerService;
+        private Mock<ICustomerRepository>? _mockCustomerRepository;
+        private Mock<IMapper>? _mockMapper;
+        private ICustomerService? _customerService;
 
         [TestInitialize]
         public void Setup()

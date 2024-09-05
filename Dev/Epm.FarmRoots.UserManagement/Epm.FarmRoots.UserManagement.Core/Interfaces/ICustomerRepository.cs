@@ -1,10 +1,5 @@
-﻿#pragma warning disable
+﻿
 using Epm.FarmRoots.UserManagement.Core.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Epm.FarmRoots.UserManagement.Core.Interfaces
 {
@@ -12,6 +7,6 @@ namespace Epm.FarmRoots.UserManagement.Core.Interfaces
     {
         Task<Customer> RegisterCustomerAsync(Customer customer);
         Task<List<Customer>> GetAllCustomersAsync();
-<       Task<bool> EmailExistsAsync(string email);
+         Task<bool> EmailExistsAsync(string email);
     }
 }

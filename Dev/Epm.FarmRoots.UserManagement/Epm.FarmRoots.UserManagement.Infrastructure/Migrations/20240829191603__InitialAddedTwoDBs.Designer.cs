@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Epm.FarmRoots.UserManagement.Infrastructure.Migrations
 {
-    [DbContext(typeof(ApplicationDbContext))]
+    [DbContext(typeof(RegistrationDbContext))]
     [Migration("20240829191603__InitialAddedTwoDBs")]
     partial class _InitialAddedTwoDBs
     {

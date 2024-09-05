@@ -16,9 +16,9 @@ namespace Epm.FarmRoots.UserManagement.Test
     public class VendorRegistrationServiceTests
     {
 
-        private Mock<IVendorRepository> _mockVendorRepository;
-        private Mock<IMapper> _mockMapper;
-        private IVendorService _vendorService;
+        private Mock<IVendorRepository>? _mockVendorRepository;
+        private Mock<IMapper>? _mockMapper;
+        private IVendorService? _vendorService;
 
         [TestInitialize]
         public void Setup()

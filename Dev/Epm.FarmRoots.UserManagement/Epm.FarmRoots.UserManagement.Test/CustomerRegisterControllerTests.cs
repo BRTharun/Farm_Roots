@@ -1,14 +1,9 @@
-﻿#pragma warning disable
+﻿
 using Epm.FarmRoots.UserManagement.API.Controllers;
 using Epm.FarmRoots.UserManagement.Application.Dtos;
 using Epm.FarmRoots.UserManagement.Application.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Moq;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Epm.FarmRoots.UserManagement.Test
 {
