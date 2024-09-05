@@ -12,7 +12,6 @@ using Epm.FarmRoots.ProductCatalogue.API;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
 
 builder.Services.AddControllers();
 
@@ -52,6 +51,63 @@ builder.Services.AddScoped<IProductSearchService, ProductSearchService>();
 
 
 var app = builder.Build();
+var config = builder.Configuration;
+
+builder.Services.AddDbContext<InventoryDbContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection1")));
+
+builder.Services.AddScoped<ProductRepository>();
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAllOrigins",
+        builder =>
+        {
+            builder.AllowAnyOrigin()
+                   .AllowAnyMethod()
+                   .AllowAnyHeader();
+        });
+});
+
+builder.Services.AddDbContext<ApplicationDbContext>(item => item.UseSqlServer(config.GetConnectionString("DefaultConnection")));
+
+builder.Services.AddScoped<IProductRepository, ProductRepository>();
+builder.Services.AddScoped<IProductService, ProductService>();
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
+
+
+
+
+
+var app = builder.Build(); 
+ApplyMigration3();
+ApplyMigration4();
+
+void ApplyMigration3()
+{
+    using (var scope = app.Services.CreateScope())
+    {
+        var _db = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+
+        if (_db.Database.GetPendingMigrations().Any())
+        {
+            _db.Database.Migrate();
+        }
+    }
+}
+void ApplyMigration4()
+{
+    using (var scope = app.Services.CreateScope())
+    {
+        var _db = scope.ServiceProvider.GetRequiredService<InventoryDbContext>();
+
+        if (_db.Database.GetPendingMigrations().Any())
+        {
+            _db.Database.Migrate();
+        }
+    }
+}
 
 app.UseMiddleware<CustomExceptionMiddleware>();
 
@@ -65,13 +121,8 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
-app.UseRouting();
+app.UseCors("AllowAllOrigins");
 
-app.UseCors("AllowAll"); // Use the CORS policy
-
-
-app.UseRouting();
-app.UseCors(option => option.AllowAnyOrigin());
 app.UseAuthorization();
 
 app.MapControllers();

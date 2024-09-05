@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -10,21 +11,25 @@ namespace Epm.FarmRoots.ProductCatalogue.Core.Entities
 {
     public class Product
     {
-        public int ProductId { get; set; }
-
+        public required int ProductId { get; set; }
+        
         public required string ProductName { get; set; }
 
         public required string ProductDescription { get; set; }
 
+       
         public required string ProductCategory { get; set; }
 
         public int ProductStock { get; set; }
+        
+        public required int ProductStock { get; set; }
 
-        public decimal ProductMrp { get; set; }
+        
+        public required decimal ProductMrp { get; set; }
 
-        public decimal ProductSale_Price { get; set; }
+        public required decimal ProductSale_Price { get; set; }
 
-        public string? ProductImage { get; set; }
+        public required byte[] ProductImage { get; set; }
 
     }
 }
