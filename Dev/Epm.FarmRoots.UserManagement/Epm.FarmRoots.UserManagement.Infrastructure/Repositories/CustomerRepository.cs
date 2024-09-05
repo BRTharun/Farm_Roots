@@ -1,13 +1,8 @@
-﻿#pragma warning disable
+﻿
 using Epm.FarmRoots.UserManagement.Core.Entities;
 using Epm.FarmRoots.UserManagement.Core.Interfaces;
 using Epm.FarmRoots.UserManagement.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Epm.FarmRoots.UserManagement.Infrastructure.Repositories
 {

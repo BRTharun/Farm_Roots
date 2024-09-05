@@ -5,20 +5,15 @@ using Epm.FarmRoots.UserManagement.Application.Services;
 using Epm.FarmRoots.UserManagement.Core.Entities;
 using Epm.FarmRoots.UserManagement.Core.Interfaces;
 using Moq;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Epm.FarmRoots.UserManagement.Test
 {
     public class VendorRegistrationServiceTests
     {
 
-        private Mock<IVendorRepository> _mockVendorRepository;
-        private Mock<IMapper> _mockMapper;
-        private IVendorService _vendorService;
+        private Mock<IVendorRepository>? _mockVendorRepository;
+        private Mock<IMapper>? _mockMapper;
+        private IVendorService? _vendorService;
 
         [TestInitialize]
         public void Setup()
