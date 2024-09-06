@@ -14,5 +14,6 @@ namespace Epm.FarmRoots.UserManagement.Application.Interfaces
     {
         Task<VendorDto> RegisterVendorAsync(VendorDto vendorDto);
         Task<bool> EmailExistsAsync(string email);
+        Task<VendorDto> GetVendorByIdAsync(int id);
     }
 }

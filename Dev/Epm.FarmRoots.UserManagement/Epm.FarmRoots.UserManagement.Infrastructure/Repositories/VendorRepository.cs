@@ -33,5 +33,25 @@ namespace Epm.FarmRoots.UserManagement.Infrastructure.Repositories
         {
             return await _context.VendorDb.AnyAsync(u => u.Email == email);
         }
+
+        public async Task<Vendor> LoginVendorAsync(string email, string password)
+        {
+            var vendor = await _context.VendorDb.FirstOrDefaultAsync(v => v.Email == email && v.Password == password);
+
+            if (vendor == null)
+            {
+                throw new UnauthorizedAccessException("Invalid credentials.");
+            }
+
+            return vendor;
+        }
+
+        public async Task<Vendor> GetVendorByEmailAsync(string email)
+        {
+            return await _context.VendorDb.FirstOrDefaultAsync(v => v.Email == email);
+        }
+
+
+
     }
 }

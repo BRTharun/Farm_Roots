@@ -11,9 +11,11 @@
     <PackageReference Include="Microsoft.AspNet.Identity.Core" Version="2.2.4" />
     <PackageReference Include="Microsoft.AspNet.Identity.EntityFramework" Version="2.2.4" />
     <PackageReference Include="Microsoft.Extensions.Identity.Core" Version="8.0.8" />
+    <PackageReference Include="Microsoft.IdentityModel" Version="7.0.0" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\Epm.FarmRoots.IdentityService\Epm.FarmRoots.IdentityService\Epm.FarmRoots.IdentityService.csproj" />
     <ProjectReference Include="..\Epm.FarmRoots.UserManagement.Core\Epm.FarmRoots.UserManagement.Core.csproj" />
     <ProjectReference Include="..\Epm.FarmRoots.UserManagement.Infrastructure\Epm.FarmRoots.UserManagement.Infrastructure.csproj" />
   </ItemGroup>
