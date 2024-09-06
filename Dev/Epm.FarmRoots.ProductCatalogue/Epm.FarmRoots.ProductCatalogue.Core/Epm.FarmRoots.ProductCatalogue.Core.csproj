@@ -9,7 +9,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Entities\" />
     <Folder Include="Interfaces\" />
 	<PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.8">
 		  <PrivateAssets>all</PrivateAssets>

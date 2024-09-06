@@ -12,41 +12,50 @@ namespace Epm.FarmRoots.ProductCatalogue.Infrastructure.Data
     public class ProductCatalogueDbContext : DbContext
     {
         public ProductCatalogueDbContext(DbContextOptions<ProductCatalogueDbContext> options) : base(options) { }
+
         public DbSet<Category> Categories { get; set; }
+        public DbSet<SubCategory> SubCategories { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
 
-
-            modelBuilder.Entity<Category>().HasData(new Category
+            // Configure Category
+            modelBuilder.Entity<Category>(entity =>
             {
-                CategoryId = 1,
-                CategoryName = "Fruits",
-                ImageUrl = null
+                entity.HasKey(e => e.CategoryId);
+                entity.Property(e => e.CategoryName)
+                      .IsRequired()
+                      .HasMaxLength(100);
+                entity.Property(e => e.ImageUrl);
+
+                entity.HasMany(e => e.SubCategories)
+                      .WithOne(sc => sc.Category)
+                      .HasForeignKey(sc => sc.CategoryId);
             });
 
-
-            modelBuilder.Entity<Category>().HasData(new Category
+            // Configure SubCategory
+            modelBuilder.Entity<SubCategory>(entity =>
             {
-                CategoryId = 2,
-                CategoryName = "Vegetables",
-                ImageUrl = null
+                entity.HasKey(e => e.SubCategoryId);
+                entity.Property(e => e.SubCategoryName)
+                      .IsRequired()
+                      .HasMaxLength(100);
+                entity.Property(e => e.ImageUrl);
+                entity.Property(e => e.CategoryId);
+
+                entity.HasOne(e => e.Category)
+                      .WithMany(c => c.SubCategories)
+                      .HasForeignKey(e => e.CategoryId);
             });
 
-            modelBuilder.Entity<Category>().HasData(new Category
-            {
-                CategoryId = 3,
-                CategoryName = "Groceries",
-                ImageUrl = null
-            });
-
-            modelBuilder.Entity<Category>().HasData(new Category
-            {
-                CategoryId = 4,
-                CategoryName = "Meat",
-                ImageUrl = null
-            });
+            // Seed data for Category
+            modelBuilder.Entity<Category>().HasData(
+                new Category { CategoryId = 1, CategoryName = "Fruits" },
+                new Category { CategoryId = 2, CategoryName = "Vegetables" },
+                new Category { CategoryId = 3, CategoryName = "Groceries" },
+                new Category { CategoryId = 4, CategoryName = "Meat" }
+            );
         }
     }
 }

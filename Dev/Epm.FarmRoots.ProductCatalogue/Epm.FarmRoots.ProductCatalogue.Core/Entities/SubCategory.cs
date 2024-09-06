@@ -7,11 +7,12 @@ using System.Threading.Tasks;
 
 namespace Epm.FarmRoots.ProductCatalogue.Core.Entities
 {
-    public class Category
+    public class SubCategory
     {
+        public int SubCategoryId { get; set; }
+        public required string SubCategoryName { get; set; }
         public int CategoryId { get; set; }
-        public required string CategoryName { get; set; }
         public byte[]? ImageUrl { get; set; }
-        public ICollection<SubCategory> SubCategories { get; set; } = new List<SubCategory>();
+        public Category Category { get; set; }
     }
 }
