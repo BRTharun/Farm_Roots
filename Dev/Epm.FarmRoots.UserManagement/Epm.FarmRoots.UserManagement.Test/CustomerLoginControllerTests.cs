@@ -4,27 +4,22 @@ using Epm.FarmRoots.UserManagement.Application.Interfaces;
 using Microsoft.Extensions.Configuration;
 using Epm.FarmRoots.IdentityService;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
-using System.Threading.Tasks;
-using System.Collections.Generic;
-using Microsoft.AspNetCore.Http;
 
 namespace Epm.FarmRoots.UserManagement.Test
 {
     [TestClass]
     public class CustomerLoginControllerTests
     {
-        private Mock<ICustomerLoginService> _customerLoginServiceMock;
-        private Mock<TokenService> _tokenServiceMock;
-        private CustomerLoginController _controller;
+        private Mock<ICustomerLoginService>? _customerLoginServiceMock;
+        private Mock<TokenService>? _tokenServiceMock;
+        private CustomerLoginController? _controller;
 
         [TestInitialize]
         public void Setup()
         {
             _customerLoginServiceMock = new Mock<ICustomerLoginService>();
 
-            // Setting up configuration for TokenService
             var inMemorySettings = new Dictionary<string, string>
             {
                 {"Jwt:Key", "testkeytestkeytestkeytestkeytestkeytestkeytestkeytestkey"},
@@ -69,9 +64,6 @@ namespace Epm.FarmRoots.UserManagement.Test
             // Cast result value to dynamic object
             dynamic response = okResult.Value;
 
-            // Ensure the response contains the 'token' key and its value matches the expected token
-            //Assert.IsNotNull(response.token, "Response does not contain 'token'");
-            //Assert.AreEqual(expectedToken, response.token, "Token value mismatch");
         }
 
 
@@ -81,8 +73,8 @@ namespace Epm.FarmRoots.UserManagement.Test
         {
             // Arrange
             var loginDto = new LoginDto { Email = "invalid-email", Password = "" };
-            _controller.ModelState.AddModelError("Email", "Invalid email format");
-            _controller.ModelState.AddModelError("Password", "Password is required");
+            _controller?.ModelState.AddModelError("Email", "Invalid email format");
+            _controller?.ModelState.AddModelError("Password", "Password is required");
 
             // Act
             var result = await _controller.Login(loginDto);

@@ -1,5 +1,4 @@
-﻿using System;
-using System.IdentityModel.Tokens.Jwt;
+﻿using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 using Microsoft.Extensions.Configuration;
@@ -18,7 +17,6 @@ namespace Epm.FarmRoots.IdentityService
 
         public virtual string GenerateToken(string username, string role)
         {
-            // Ensure configuration values are present
             var key = _configuration["Jwt:Key"];
             var issuer = _configuration["Jwt:Issuer"];
             var audience = _configuration["Jwt:Audience"];
@@ -41,7 +39,7 @@ namespace Epm.FarmRoots.IdentityService
                 issuer: issuer,
                 audience: audience,
                 claims: claims,
-                expires: DateTime.UtcNow.AddMinutes(30), // Use UTC for consistency
+                expires: DateTime.UtcNow.AddMinutes(30),
                 signingCredentials: credentials);
 
             return new JwtSecurityTokenHandler().WriteToken(token);

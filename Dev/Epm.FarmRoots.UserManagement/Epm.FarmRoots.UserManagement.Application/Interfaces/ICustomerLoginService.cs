@@ -1,5 +1,4 @@
 ﻿using Epm.FarmRoots.UserManagement.Application.Dtos;
-using System.Threading.Tasks;
 
 namespace Epm.FarmRoots.UserManagement.Application.Interfaces
 {

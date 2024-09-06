@@ -6,11 +6,6 @@ using Epm.FarmRoots.UserManagement.Core.Entities;
 using Epm.FarmRoots.UserManagement.Core.Interfaces;
 using Microsoft.Extensions.Configuration;
 using Moq;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Epm.FarmRoots.UserManagement.Test
 {

@@ -4,7 +4,7 @@
         "windowsAuthentication": false,
         "anonymousAuthentication": true,
         "iisExpress": {
-            "applicationUrl": "https://localhost:44313", // Use HTTPS if testing HTTPS
+            "applicationUrl": "https://localhost:44313",
             "sslPort": 44313
         }
     },
@@ -31,7 +31,7 @@
             "commandName": "IISExpress",
             "launchBrowser": true,
             "launchUrl": "swagger",
-            "applicationUrl": "https://localhost:44313", // Use HTTPS if testing HTTPS
+            "applicationUrl": "https://localhost:44313",
             "environmentVariables": {
                 "ASPNETCORE_ENVIRONMENT": "Development"
             }

@@ -6,10 +6,8 @@ using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add Ocelot configuration
 builder.Configuration.AddJsonFile("ocelot.json", optional: false, reloadOnChange: true);
 
-// Add Ocelot and JWT authentication services
 builder.Services.AddOcelot(builder.Configuration);
 
 builder.Services.AddCors(options =>
@@ -20,7 +18,6 @@ builder.Services.AddCors(options =>
     });
 });
 
-// Configure JWT Authentication
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer("Bearer", options =>
     {
@@ -39,11 +36,10 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 var app = builder.Build();
 
 app.UseCors("AllowAllOrigins");
-// Middleware to handle authentication and authorization
+
 app.UseAuthentication();
 app.UseAuthorization();
 
-// Configure Ocelot Middleware
 await app.UseOcelot();
 
 app.Run();

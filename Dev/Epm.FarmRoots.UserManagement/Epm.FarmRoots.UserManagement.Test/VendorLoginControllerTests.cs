@@ -4,11 +4,7 @@ using Epm.FarmRoots.UserManagement.Application.Interfaces;
 using Microsoft.Extensions.Configuration;
 using Epm.FarmRoots.IdentityService;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
-using System.Threading.Tasks;
-using System.Collections.Generic;
-using Microsoft.AspNetCore.Http;
 
 namespace Epm.FarmRoots.UserManagement.Test
 {

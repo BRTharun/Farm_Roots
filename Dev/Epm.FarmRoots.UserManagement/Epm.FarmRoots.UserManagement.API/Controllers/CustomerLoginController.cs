@@ -2,7 +2,6 @@
 using Epm.FarmRoots.UserManagement.Application.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Epm.FarmRoots.IdentityService;
-using System.Threading.Tasks;
 
 namespace Epm.FarmRoots.UserManagement.API.Controllers
 {
@@ -11,7 +10,7 @@ namespace Epm.FarmRoots.UserManagement.API.Controllers
     public class CustomerLoginController : ControllerBase
     {
         private readonly ICustomerLoginService _customerLoginService;
-        private readonly TokenService _tokenService; // Ensure this is injected
+        private readonly TokenService _tokenService; 
 
         public CustomerLoginController(ICustomerLoginService customerLoginService, TokenService tokenService)
         {
@@ -35,7 +34,6 @@ namespace Epm.FarmRoots.UserManagement.API.Controllers
                     return Unauthorized("Invalid email or password.");
                 }
 
-                // Generate JWT Token
                 var token = _tokenService.GenerateToken(customer.Email, "Customer");
                 return Ok(new { token });
             }

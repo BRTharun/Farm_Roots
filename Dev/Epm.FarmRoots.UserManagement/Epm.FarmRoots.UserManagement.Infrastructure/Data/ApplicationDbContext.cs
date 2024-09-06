@@ -16,16 +16,7 @@ namespace Epm.FarmRoots.UserManagement.Infrastructure.Data
         {
 
         }
-
-        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        //{
-        //    if (!optionsBuilder.IsConfigured)
-        //    {
-        //        optionsBuilder.UseSqlServer("Server=EPINHYDW1074;Database=LocalGoods;Trusted_Connection=True;");
-        //    }
-        //}
         
-           // server=;Database=LocalGoods;Trusted_Connection=True;MultipleActiveResultSets=true;Encrypt=False
         public DbSet<Customer> CustomerDb { get; set; }
         public DbSet<Vendor> VendorDb { get; set; }
 

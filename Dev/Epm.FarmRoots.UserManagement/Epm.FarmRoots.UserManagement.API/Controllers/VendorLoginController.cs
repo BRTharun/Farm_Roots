@@ -2,7 +2,6 @@
 using Epm.FarmRoots.UserManagement.Application.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Epm.FarmRoots.IdentityService;
-using System.Threading.Tasks;
 
 namespace Epm.FarmRoots.UserManagement.API.Controllers
 {

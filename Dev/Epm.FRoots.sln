@@ -70,9 +70,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Epm.FarmRoots.IdentityServi
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Epm.FarmRoots.UI", "Epm.FarmRoots.UI", "{92FFAFC5-92B7-4489-8EF0-51C07B357F80}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Epm.FarmRoots.AngularClient", "Epm.FarmRoots.UI\Epm.FarmRoots.AngularClient", "{3E433B05-A105-44AF-AD76-300AE693639B}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Epm.FarmRoots.AngularClient", "Epm.FarmRoots.AngularClient", "{3E433B05-A105-44AF-AD76-300AE693639B}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Epm.FarmRoots.ReactClient", "Epm.FarmRoots.UI\Epm.FarmRoots.ReactClient", "{88E95FE6-3B98-469D-BDD0-4B3F701BDF74}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Epm.FarmRoots.ReactClient", "Epm.FarmRoots.ReactClient", "{88E95FE6-3B98-469D-BDD0-4B3F701BDF74}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Epm.FarmRoots.OrderAndTracking.Test", "Epm.FarmRoots.OrderAndTracking\Epm.FarmRoots.OrderAndTracking.Test\Epm.FarmRoots.OrderAndTracking.Test.csproj", "{40DC9848-5019-4CA7-8E6D-9626E7139F12}"
 EndProject
@@ -87,8 +87,6 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Epm.FarmRoots.ProductCatalogue.Test", "Epm.FarmRoots.ProductCatalogue\Epm.FarmRoots.ProductCatalogue.Test\Epm.FarmRoots.ProductCatalogue.Test.csproj", "{C32FF3E7-D524-4253-B98B-41294EEA8B85}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Epm.FarmRoots.IdentityService", "Epm.FarmRoots.IdentityService\Epm.FarmRoots.IdentityService\Epm.FarmRoots.IdentityService.csproj", "{9C739FC3-335F-47C4-BCD6-F40DF7B3A1AF}"
-EndProject
-Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "Epm.FarmRoots.AngularClient", "Epm.FarmRoots.UI\Epm.FarmRoots.UI.AngularClient\Epm.FarmRoots.AngularClient\Epm.FarmRoots.AngularClient.esproj", "{306C9BD4-ACD8-4331-B876-ADC8E2645159}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -224,12 +222,6 @@ Global
 		{9C739FC3-335F-47C4-BCD6-F40DF7B3A1AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9C739FC3-335F-47C4-BCD6-F40DF7B3A1AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9C739FC3-335F-47C4-BCD6-F40DF7B3A1AF}.Release|Any CPU.Build.0 = Release|Any CPU
-		{306C9BD4-ACD8-4331-B876-ADC8E2645159}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{306C9BD4-ACD8-4331-B876-ADC8E2645159}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{306C9BD4-ACD8-4331-B876-ADC8E2645159}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
-		{306C9BD4-ACD8-4331-B876-ADC8E2645159}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{306C9BD4-ACD8-4331-B876-ADC8E2645159}.Release|Any CPU.Build.0 = Release|Any CPU
-		{306C9BD4-ACD8-4331-B876-ADC8E2645159}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -269,7 +261,6 @@ Global
 		{2BC7CC5A-BCE0-49A8-886C-5AE53E299768} = {C6702B91-DD7F-4326-85EE-F745571FAE37}
 		{C32FF3E7-D524-4253-B98B-41294EEA8B85} = {3BAFAD91-A059-4963-9B84-0E6573316AE8}
 		{9C739FC3-335F-47C4-BCD6-F40DF7B3A1AF} = {965E9378-1317-4009-B485-593133E0EA56}
-		{306C9BD4-ACD8-4331-B876-ADC8E2645159} = {3E433B05-A105-44AF-AD76-300AE693639B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {98C46B30-A136-41CE-979F-A6E1CE7117B2}

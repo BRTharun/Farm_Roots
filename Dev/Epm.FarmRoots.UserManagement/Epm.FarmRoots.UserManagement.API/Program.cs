@@ -11,13 +11,11 @@ using Epm.FarmRoots.IdentityService;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
-// Configure CORS to allow specific origin
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowAllOrigins", builder =>
@@ -26,25 +24,20 @@ builder.Services.AddCors(options =>
     });
 });
 
-// Configure Dependency Injection for services
 builder.Services.AddScoped<ICustomerService, CustomerRegisterService>();
 builder.Services.AddScoped<IVendorService, VendorRegisterService>();
 builder.Services.AddScoped<ICustomerLoginService, CustomerLoginService>();
 builder.Services.AddScoped<IVendorLoginService, VendorLoginService>();
 
-// Configure Dependency Injection for repositories
 builder.Services.AddScoped<ICustomerRepository, CustomerRepository>();
 builder.Services.AddScoped<IVendorRepository, VendorRepository>();
 
-// Configure DbContext
 var config = builder.Configuration;
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(config.GetConnectionString("DefaultConnection")));
 
-// Configure TokenService from IdentityService
 builder.Services.AddScoped<TokenService>();
 
-// Configure JWT Authentication
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>
     {
@@ -62,14 +55,13 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 
 var app = builder.Build();
 
-// Configure middleware
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
 }
 
-app.UseCors("AllowAllOrigins"); // Ensure this is before authentication and authorization
+app.UseCors("AllowAllOrigins");
 
 app.UseHttpsRedirection();
 app.UseAuthentication();

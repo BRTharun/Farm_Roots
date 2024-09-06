@@ -2,10 +2,7 @@
 using Epm.FarmRoots.IdentityService;
 using Epm.FarmRoots.UserManagement.Application.Dtos;
 using Epm.FarmRoots.UserManagement.Application.Interfaces;
-using Epm.FarmRoots.UserManagement.Core.Entities;
 using Epm.FarmRoots.UserManagement.Core.Interfaces;
-using System;
-using System.Threading.Tasks;
 
 public class VendorLoginService : IVendorLoginService
 {
