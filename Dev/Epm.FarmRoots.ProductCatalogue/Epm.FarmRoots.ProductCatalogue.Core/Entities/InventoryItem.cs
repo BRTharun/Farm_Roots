@@ -1,6 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace Epm.FarmRoots.ProductCatalogue.Core.Entities
+﻿namespace Epm.FarmRoots.ProductCatalogue.Core.Entities
 {
     public class InventoryItem
     {

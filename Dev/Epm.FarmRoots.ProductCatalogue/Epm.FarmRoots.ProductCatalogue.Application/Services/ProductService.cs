@@ -3,8 +3,6 @@ using Epm.FarmRoots.ProductCatalogue.Application.Interfaces;
 using Epm.FarmRoots.ProductCatalogue.Core.Interfaces;
 using Epm.FarmRoots.ProductCatalogue.Core.Entities;
 using AutoMapper;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 
 namespace Epm.FarmRoots.ProductCatalogue.Application.Services
 {

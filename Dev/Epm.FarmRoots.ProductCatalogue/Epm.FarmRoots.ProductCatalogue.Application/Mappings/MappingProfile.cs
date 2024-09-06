@@ -8,7 +8,6 @@ namespace Epm.FarmRoots.ProductCatalogue.Application.Mappings
     {
         public MappingProfile()
         {
-            // Define the mapping from the Product entity to the ProductDto
             CreateMap<Product, ProductDto>().ReverseMap();
 
             CreateMap<Category, CategoryDto>().ReverseMap();

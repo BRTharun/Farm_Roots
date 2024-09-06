@@ -1,5 +1,4 @@
-﻿using AutoMapper;
-using Epm.FarmRoots.ProductCatalogue.Core.Entities;
+﻿using Epm.FarmRoots.ProductCatalogue.Core.Entities;
 using Epm.FarmRoots.ProductCatalogue.Core.Interfaces;
 
 namespace Epm.FarmRoots.ProductCatalogue.Application.Services

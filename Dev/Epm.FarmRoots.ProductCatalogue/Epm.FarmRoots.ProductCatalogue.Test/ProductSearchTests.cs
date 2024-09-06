@@ -1,4 +1,3 @@
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using Epm.FarmRoots.ProductCatalogue.Core.Entities;
 using Epm.FarmRoots.ProductCatalogue.Core.Interfaces;
@@ -6,8 +5,6 @@ using Epm.FarmRoots.ProductCatalogue.Application.Services;
 using Epm.FarmRoots.ProductCatalogue.Application.Dtos;
 using Epm.FarmRoots.ProductCatalogue.API.Controllers;
 using AutoMapper;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Epm.FarmRoots.ProductCatalogue.Test

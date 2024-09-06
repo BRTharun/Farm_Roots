@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+
 using Epm.FarmRoots.ProductCatalogue.Core.Entities;
 
 namespace Epm.FarmRoots.ProductCatalogue.Infrastructure.Data

@@ -1,6 +1,4 @@
 ﻿using Epm.FarmRoots.ProductCatalogue.Infrastructure.Data;
-using Epm.FarmRoots.ProductCatalogue.Infrastructure.Repositories;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 

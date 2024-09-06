@@ -1,8 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Epm.FarmRoots.ProductCatalogue.Application.Dtos;
 using Epm.FarmRoots.ProductCatalogue.Application.Interfaces;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 
 namespace Epm.FarmRoots.ProductCatalogue.Api.Controllers
 {
