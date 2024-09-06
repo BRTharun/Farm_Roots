@@ -13,9 +13,9 @@ namespace Epm.FarmRoots.ProductCatalogue.Infrastructure.Repositories
 {
     public class ProductSearchRepository : IProductSearchRepository
     {
-        private readonly ProductDbContext _context;
+        private readonly ApplicationDbContext _context;
 
-        public ProductSearchRepository(ProductDbContext context)
+        public ProductSearchRepository(ApplicationDbContext context)
         {
             _context = context;
         }

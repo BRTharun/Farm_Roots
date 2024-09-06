@@ -8,11 +8,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace Epm.FarmRoots.ProductCatalogue.Infrastructure.Migrations
+namespace Epm.FarmRoots.ProductCatalogue.Infrastructure.Migrations.InventoryDb
 {
-    [DbContext(typeof(ProductDbContext))]
-    [Migration("20240901124018_Initial Create DataBase")]
-    partial class InitialCreateDataBase
+    [DbContext(typeof(InventoryDbContext))]
+    [Migration("20240905055213_Create DB")]
+    partial class CreateDB
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -24,7 +24,7 @@ namespace Epm.FarmRoots.ProductCatalogue.Infrastructure.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("Epm.FarmRoots.ProductCatalogue.Core.Entities.Product", b =>
+            modelBuilder.Entity("Epm.FarmRoots.ProductCatalogue.Core.Entities.InventoryItem", b =>
                 {
                     b.Property<int>("ProductId")
                         .ValueGeneratedOnAdd()
@@ -32,34 +32,26 @@ namespace Epm.FarmRoots.ProductCatalogue.Infrastructure.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ProductId"));
 
-                    b.Property<string>("ProductCategory")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ProductDescription")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ProductImage")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<decimal>("ProductMrp")
-                        .HasColumnType("decimal(18,2)");
-
                     b.Property<string>("ProductName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)")
+                        .HasColumnName("ProductName")
+                        .HasComment("Name must be between 3 and 100 characters long.");
 
-                    b.Property<decimal>("ProductSale_Price")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<bool>("ProductStatus")
+                        .HasColumnType("bit")
+                        .HasColumnName("ProductStatus");
 
                     b.Property<int>("ProductStock")
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasColumnName("ProductStock")
+                        .HasComment("Stock must be a non-negative number.")
+                        .HasAnnotation("Range", new[] { 0, 2147483647 });
 
                     b.HasKey("ProductId");
 
-                    b.ToTable("Products");
+                    b.ToTable("InventoryItems");
                 });
 #pragma warning restore 612, 618
         }
