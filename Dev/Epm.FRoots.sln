@@ -13,6 +13,9 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Epm.FarmRoots.UserManagement.Infrastructure", "Epm.FarmRoots.UserManagement\Epm.FarmRoots.UserManagement.Infrastructure\Epm.FarmRoots.UserManagement.Infrastructure.csproj", "{C1C01D3D-010B-4DE3-A1E9-EC1BD18C5408}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Epm.FarmRoots.ProductCatalogue", "Epm.FarmRoots.ProductCatalogue", "{3BAFAD91-A059-4963-9B84-0E6573316AE8}"
+	ProjectSection(SolutionItems) = preProject
+		common.props = common.props
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Epm.FarmRoots.ProductCatalogue.API", "Epm.FarmRoots.ProductCatalogue\Epm.FarmRoots.ProductCatalogue.API\Epm.FarmRoots.ProductCatalogue.API.csproj", "{C38FFDCC-CE76-4171-83D7-4E0522DD66F0}"
 EndProject
