@@ -5,7 +5,6 @@ const Header: React.FC = () => {
     <header className="bg-[#0078C2] text-white py-4 px-6 w-full">
       <div className="container mx-auto flex items-center justify-between">
         <h1 className="text-2xl font-bold">Farm Roots</h1>
-        {/* Add any additional header content or navigation links here */}
       </div>
     </header>
   );
