@@ -51,7 +51,7 @@ namespace Epm.FarmRoots.UserManagement.Infrastructure.Repositories
             return customer;
         }
 
-        public async Task<Customer> GetCustomerByEmailAsync(string email)
+        public async Task<Customer?> GetCustomerByEmailAsync(string email)
         {
             return await _context.CustomerDb.FirstOrDefaultAsync(c => c.Email == email);
         }

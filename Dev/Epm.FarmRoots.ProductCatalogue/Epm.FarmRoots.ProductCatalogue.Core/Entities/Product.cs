@@ -1,13 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Epm.FarmRoots.ProductCatalogue.Core.Entities
+﻿namespace Epm.FarmRoots.ProductCatalogue.Core.Entities
 {
     public class Product
     {
@@ -20,8 +11,6 @@ namespace Epm.FarmRoots.ProductCatalogue.Core.Entities
        
         public required string ProductCategory { get; set; }
 
-        public int ProductStock { get; set; }
-        
         public required int ProductStock { get; set; }
 
         

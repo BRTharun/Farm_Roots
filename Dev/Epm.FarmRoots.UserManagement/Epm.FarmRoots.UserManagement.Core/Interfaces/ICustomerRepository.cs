@@ -6,8 +6,8 @@ namespace Epm.FarmRoots.UserManagement.Core.Interfaces
     {
         Task<Customer> RegisterCustomerAsync(Customer customer);
         Task<List<Customer>> GetAllCustomersAsync();
-<       Task<bool> EmailExistsAsync(string email);
+        Task<bool> EmailExistsAsync(string email);
         Task<Customer> LoginCustomerAsync(string email, string password);
-        Task<Customer> GetCustomerByEmailAsync(string email);
+        Task<Customer?> GetCustomerByEmailAsync(string email);
     }
 }

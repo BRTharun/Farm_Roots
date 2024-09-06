@@ -24,7 +24,7 @@ namespace Epm.FarmRoots.UserManagement.Infrastructure.Repositories
             await _context.SaveChangesAsync();
             return vendor;
         }
-        public async Task<Vendor> GetVendorByIdAsync(int id)
+        public async Task<Vendor?> GetVendorByIdAsync(int id)
         {
             return await _context.VendorDb.FirstOrDefaultAsync(v => v.Id == id);
         }
@@ -46,7 +46,7 @@ namespace Epm.FarmRoots.UserManagement.Infrastructure.Repositories
             return vendor;
         }
 
-        public async Task<Vendor> GetVendorByEmailAsync(string email)
+        public async Task<Vendor?> GetVendorByEmailAsync(string email)
         {
             return await _context.VendorDb.FirstOrDefaultAsync(v => v.Email == email);
         }

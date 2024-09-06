@@ -35,5 +35,15 @@ namespace Epm.FarmRoots.UserManagement.Application.Services
         {
             return await _vendorRepository.EmailExistsAsync(email);
         }
+
+        public async Task<VendorDto> GetVendorByIdAsync(int id) 
+        {
+            var vendor = await _vendorRepository.GetVendorByIdAsync(id);
+            if (vendor == null)
+            {
+                throw new KeyNotFoundException("Vendor not found.");
+            }
+            return _mapper.Map<VendorDto>(vendor);
+        }
     }
 }
