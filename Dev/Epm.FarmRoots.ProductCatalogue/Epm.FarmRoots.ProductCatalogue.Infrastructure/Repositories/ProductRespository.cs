@@ -1,10 +1,7 @@
-﻿#pragma warning disable
-using Epm.FarmRoots.ProductCatalogue.Core.Entities;
+﻿using Epm.FarmRoots.ProductCatalogue.Core.Entities;
 using Epm.FarmRoots.ProductCatalogue.Core.Interfaces;
 using Epm.FarmRoots.ProductCatalogue.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 
 namespace Epm.FarmRoots.ProductCatalogue.Infrastructure.Repositories
 {

@@ -2,20 +2,14 @@
 using Epm.FarmRoots.ProductCatalogue.Core.Interfaces;
 using Epm.FarmRoots.ProductCatalogue.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 
 namespace Epm.FarmRoots.ProductCatalogue.Infrastructure.Repositories
 {
     public class ProductSearchRepository : IProductSearchRepository
     {
-        private readonly ProductDbContext _context;
+        private readonly ApplicationDbContext _context;
 
-        public ProductSearchRepository(ProductDbContext context)
+        public ProductSearchRepository(ApplicationDbContext context)
         {
             _context = context;
         }

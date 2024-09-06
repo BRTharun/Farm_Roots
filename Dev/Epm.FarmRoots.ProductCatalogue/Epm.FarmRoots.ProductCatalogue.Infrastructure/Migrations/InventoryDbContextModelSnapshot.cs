@@ -32,13 +32,19 @@ namespace Epm.FarmRoots.ProductCatalogue.Infrastructure.Migrations
                     b.Property<string>("ProductName")
                         .IsRequired()
                         .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+                        .HasColumnType("nvarchar(100)")
+                        .HasColumnName("ProductName")
+                        .HasComment("Name must be between 3 and 100 characters long.");
 
                     b.Property<bool>("ProductStatus")
-                        .HasColumnType("bit");
+                        .HasColumnType("bit")
+                        .HasColumnName("ProductStatus");
 
                     b.Property<int>("ProductStock")
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasColumnName("ProductStock")
+                        .HasComment("Stock must be a non-negative number.")
+                        .HasAnnotation("Range", new[] { 0, 2147483647 });
 
                     b.HasKey("ProductId");
 

@@ -1,4 +1,3 @@
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using Epm.FarmRoots.ProductCatalogue.Core.Entities;
 using Epm.FarmRoots.ProductCatalogue.Core.Interfaces;
@@ -6,8 +5,6 @@ using Epm.FarmRoots.ProductCatalogue.Application.Services;
 using Epm.FarmRoots.ProductCatalogue.Application.Dtos;
 using Epm.FarmRoots.ProductCatalogue.API.Controllers;
 using AutoMapper;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Epm.FarmRoots.ProductCatalogue.Test
@@ -35,14 +32,56 @@ namespace Epm.FarmRoots.ProductCatalogue.Test
             // Arrange
             var products = new List<Product>
             {
-                new() { ProductId = 1, ProductName = "Apple", ProductCategory = "Fruits", ProductDescription = "Fresh Apples" },
-                new() { ProductId = 2, ProductName = "Banana",ProductCategory = "Fruits", ProductDescription = "Organic Bananas" }
+                new Product
+                {
+                ProductId = 1,
+                ProductName = "Apple",
+                ProductCategory = "Fruits",
+                ProductDescription = "Fresh Apples",
+                ProductStock = 100,
+                ProductMrp = 1.50m,
+                ProductSale_Price = 1.20m,
+                ProductImage = new byte[] {}
+                },
+
+                new Product
+                {
+                ProductId = 2,
+                ProductName = "Banana",
+                ProductCategory = "Fruits",
+                ProductDescription = "Organic Bananas",
+                ProductStock = 150,
+                ProductMrp = 0.50m,
+                ProductSale_Price = 0.45m,
+                ProductImage = new byte[] {} 
+                }
             };
 
             var productDtos = new List<ProductDto>
             {
-                new() { ProductId = 1, ProductName = "Apple", ProductCategory = "Fruits", ProductDescription = "Fresh Apples" },
-                new() { ProductId = 2, ProductName = "Banana", ProductCategory = "Fruits", ProductDescription = "Organic Bananas" }
+                new ProductDto
+                {
+                ProductId = 1,
+                ProductName = "Apple",
+                ProductCategory = "Fruits",
+                ProductDescription = "Fresh Apples",
+                ProductStock = 100,
+                ProductMrp = 1.50m,
+                ProductSale_Price = 1.20m,
+                ProductImage = new byte[] {}
+                },
+
+                new ProductDto
+                {
+                ProductId = 2,
+                ProductName = "Banana",
+                ProductCategory = "Fruits",
+                ProductDescription = "Organic Bananas",
+                ProductStock = 150,
+                ProductMrp = 0.50m,
+                ProductSale_Price = 0.45m,
+                ProductImage = new byte[] {} 
+                }
             };
 
             _mockRepository!.Setup(repo => repo.SearchProductsAsync("Apple")).ReturnsAsync(products);
@@ -80,9 +119,35 @@ namespace Epm.FarmRoots.ProductCatalogue.Test
         public async Task SearchProductsByVoice_ReturnsProducts()
         {
             // Arrange
-            var products = new List<Product> { new() { ProductId = 1, ProductName = "Apple", ProductCategory = "Fruits", ProductDescription = "Fresh Apples" } };
+            var products = new List<Product>
+            {
+                new Product
+                {
+                ProductId = 1,
+                ProductName = "Apple",
+                ProductCategory = "Fruits",
+                ProductDescription = "Fresh Apples",
+                ProductStock = 100,
+                ProductMrp = 1.50m,
+                ProductSale_Price = 1.20m,
+                ProductImage = new byte[] {}
+                }
+            };
 
-            var productDtos = new List<ProductDto> { new() { ProductId = 1, ProductName = "Apple", ProductCategory = "Fruits", ProductDescription = "Fresh Apples" } };
+            var productDtos = new List<ProductDto>
+            {
+                new ProductDto
+                {
+                ProductId = 1,
+                ProductName = "Apple",
+                ProductCategory = "Fruits",
+                ProductDescription = "Fresh Apples",
+                ProductStock = 100,
+                ProductMrp = 1.50m,
+                ProductSale_Price = 1.20m,
+                ProductImage = new byte[] {}
+                }
+            };
 
             _mockRepository!.Setup(repo => repo.SearchProductsAsync("Show me apples")).ReturnsAsync(products);
             _mockMapper!.Setup(mapper => mapper.Map<IEnumerable<ProductDto>>(products)).Returns(productDtos);

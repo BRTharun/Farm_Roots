@@ -1,8 +1,5 @@
-﻿using System.Collections.Generic;
-using Epm.FarmRoots.ProductCatalogue.Application.Dtos;
+﻿using Epm.FarmRoots.ProductCatalogue.Application.Dtos;
 using Microsoft.AspNetCore.Mvc;
-using Epm.FarmRoots.ProductCatalogue.Core.Entities;
-using Epm.FarmRoots.ProductCatalogue.Infrastructure.Data;
 using Epm.FarmRoots.ProductCatalogue.Application.Interfaces;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860

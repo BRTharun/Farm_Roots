@@ -1,15 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using AutoMapper;
+﻿using AutoMapper;
 using Epm.FarmRoots.ProductCatalogue.Application.Dtos;
 using Epm.FarmRoots.ProductCatalogue.Application.Interfaces;
 using Epm.FarmRoots.ProductCatalogue.Core.Interfaces;
-using Epm.FarmRoots.ProductCatalogue.Core.Entities;
-using Microsoft.Data.SqlClient;
-using Microsoft.EntityFrameworkCore;
 
 namespace Epm.FarmRoots.ProductCatalogue.Application.Services
 {

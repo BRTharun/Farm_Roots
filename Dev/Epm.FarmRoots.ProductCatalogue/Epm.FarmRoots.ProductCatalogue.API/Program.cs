@@ -9,107 +9,51 @@ using Epm.FarmRoots.ProductCatalogue.Infrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Epm.FarmRoots.ProductCatalogue.Application.Dtos;
 using Epm.FarmRoots.ProductCatalogue.API;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
-
+// Add services to the DI container.
 builder.Services.AddControllers();
-
 builder.Services.AddScoped<ICategoryService, CategoryService>();
-
 builder.Services.AddScoped<ICategoryRepository, CategoryRepo>();
-
-builder.Services.AddDbContext<ProductCatalogueDbContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("ConnectionString")));
-
-// Register AutoMapper
-builder.Services.AddAutoMapper(typeof(MappingProfile));
-
-// Configure CORS
-builder.Services.AddCors(options =>
-{
-    options.AddPolicy("AllowAll",
-        policy =>
-        {
-            policy.AllowAnyOrigin()  // Allow requests from any origin
-                  .AllowAnyHeader()  // Allow any headers
-                  .AllowAnyMethod(); // Allow any HTTP methods
-        });
-});
-
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
-
-
-builder.Services.AddDbContext<ProductDbContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("ConnectionString")));
-
 builder.Services.AddScoped<IProductSearchRepository, ProductSearchRepository>();
 builder.Services.AddScoped<IProductSearchService, ProductSearchService>();
-
-
-
-var app = builder.Build();
-var config = builder.Configuration;
-
-builder.Services.AddDbContext<InventoryDbContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection1")));
-
-builder.Services.AddScoped<ProductRepository>();
-
-builder.Services.AddCors(options =>
-{
-    options.AddPolicy("AllowAllOrigins",
-        builder =>
-        {
-            builder.AllowAnyOrigin()
-                   .AllowAnyMethod()
-                   .AllowAnyHeader();
-        });
-});
-
-builder.Services.AddDbContext<ApplicationDbContext>(item => item.UseSqlServer(config.GetConnectionString("DefaultConnection")));
-
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
 builder.Services.AddScoped<IProductService, ProductService>();
+
+// Register DbContexts
+builder.Services.AddDbContext<ProductCatalogueDbContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+builder.Services.AddDbContext<InventoryDbContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+builder.Services.AddDbContext<ApplicationDbContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
-
-
-
-
-
-var app = builder.Build(); 
-ApplyMigration3();
-ApplyMigration4();
-
-void ApplyMigration3()
+// CORS policy setup
+builder.Services.AddCors(options =>
 {
-    using (var scope = app.Services.CreateScope())
+    options.AddPolicy("AllowAll", policy =>
     {
-        var _db = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+        policy.AllowAnyOrigin()
+              .AllowAnyHeader()
+              .AllowAnyMethod();
+    });
+});
 
-        if (_db.Database.GetPendingMigrations().Any())
-        {
-            _db.Database.Migrate();
-        }
-    }
-}
-void ApplyMigration4()
+// Swagger configuration
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen(c =>
 {
-    using (var scope = app.Services.CreateScope())
-    {
-        var _db = scope.ServiceProvider.GetRequiredService<InventoryDbContext>();
+    c.SwaggerDoc("v1", new OpenApiInfo { Title = "Product Catalogue API", Version = "v1" });
+});
 
-        if (_db.Database.GetPendingMigrations().Any())
-        {
-            _db.Database.Migrate();
-        }
-    }
-}
-
-app.UseMiddleware<CustomExceptionMiddleware>();
+var app = builder.Build();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -120,34 +64,31 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
-
-app.UseCors("AllowAllOrigins");
-
+app.UseRouting();
+app.UseCors("AllowAll");
 app.UseAuthorization();
-
 app.MapControllers();
-ApplyMigration1();
-ApplyMigration2();
 
-app.Run();
+// Apply database migrations
+ApplyMigrations(app);
 
-void ApplyMigration1()
+await app.RunAsync();
+
+void ApplyMigrations(IHost app)
 {
     using var scope = app.Services.CreateScope();
-    var _db = scope.ServiceProvider.GetRequiredService<ProductCatalogueDbContext>();
+    var services = scope.ServiceProvider;
 
-    if (_db.Database.GetPendingMigrations().Any())
-    {
-        _db.Database.Migrate();
-    }
+    MigrateDbContext<ProductCatalogueDbContext>(services);
+    MigrateDbContext<InventoryDbContext>(services);
+    MigrateDbContext<ApplicationDbContext>(services);
 }
-void ApplyMigration2()
-{
-    using var scope = app.Services.CreateScope();
-    var _db = scope.ServiceProvider.GetRequiredService<ProductDbContext>();
 
-    if (_db.Database.GetPendingMigrations().Any())
+void MigrateDbContext<TContext>(IServiceProvider services) where TContext : DbContext
+{
+    var context = services.GetRequiredService<TContext>();
+    if (context.Database.GetPendingMigrations().Any())
     {
-        _db.Database.Migrate();
+        context.Database.Migrate();
     }
 }

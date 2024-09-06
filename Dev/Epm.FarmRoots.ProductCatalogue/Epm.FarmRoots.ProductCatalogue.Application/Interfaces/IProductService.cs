@@ -1,7 +1,4 @@
-﻿// IProductService.cs
-using Epm.FarmRoots.ProductCatalogue.Application.Dtos;
-using System.Collections.Generic;
-using System.Threading.Tasks;
+﻿using Epm.FarmRoots.ProductCatalogue.Application.Dtos;
 
 namespace Epm.FarmRoots.ProductCatalogue.Application.Interfaces
 {
