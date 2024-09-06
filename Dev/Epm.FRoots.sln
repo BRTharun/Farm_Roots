@@ -13,6 +13,9 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Epm.FarmRoots.UserManagement.Infrastructure", "Epm.FarmRoots.UserManagement\Epm.FarmRoots.UserManagement.Infrastructure\Epm.FarmRoots.UserManagement.Infrastructure.csproj", "{C1C01D3D-010B-4DE3-A1E9-EC1BD18C5408}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Epm.FarmRoots.ProductCatalogue", "Epm.FarmRoots.ProductCatalogue", "{3BAFAD91-A059-4963-9B84-0E6573316AE8}"
+	ProjectSection(SolutionItems) = preProject
+		common.props = common.props
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Epm.FarmRoots.ProductCatalogue.API", "Epm.FarmRoots.ProductCatalogue\Epm.FarmRoots.ProductCatalogue.API\Epm.FarmRoots.ProductCatalogue.API.csproj", "{C38FFDCC-CE76-4171-83D7-4E0522DD66F0}"
 EndProject
@@ -85,6 +88,8 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Epm.FarmRoots.UserManagement.Test", "Epm.FarmRoots.UserManagement\Epm.FarmRoots.UserManagement.Test\Epm.FarmRoots.UserManagement.Test.csproj", "{2BC7CC5A-BCE0-49A8-886C-5AE53E299768}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Epm.FarmRoots.ProductCatalogue.Test", "Epm.FarmRoots.ProductCatalogue\Epm.FarmRoots.ProductCatalogue.Test\Epm.FarmRoots.ProductCatalogue.Test.csproj", "{C32FF3E7-D524-4253-B98B-41294EEA8B85}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Epm.FarmRoots.IdentityService", "Epm.FarmRoots.IdentityService\Epm.FarmRoots.IdentityService\Epm.FarmRoots.IdentityService.csproj", "{9C739FC3-335F-47C4-BCD6-F40DF7B3A1AF}"
 EndProject
 Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "AngularProject", "Epm.FarmRoots.UI\Epm.FarmRoots.UI.AngularClient\AngularProject\AngularProject.esproj", "{296446E4-DD7E-4A4A-B06A-0FA022817EF1}"
 EndProject
@@ -218,6 +223,10 @@ Global
 		{C32FF3E7-D524-4253-B98B-41294EEA8B85}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C32FF3E7-D524-4253-B98B-41294EEA8B85}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C32FF3E7-D524-4253-B98B-41294EEA8B85}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9C739FC3-335F-47C4-BCD6-F40DF7B3A1AF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9C739FC3-335F-47C4-BCD6-F40DF7B3A1AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9C739FC3-335F-47C4-BCD6-F40DF7B3A1AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9C739FC3-335F-47C4-BCD6-F40DF7B3A1AF}.Release|Any CPU.Build.0 = Release|Any CPU
 		{296446E4-DD7E-4A4A-B06A-0FA022817EF1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{296446E4-DD7E-4A4A-B06A-0FA022817EF1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{296446E4-DD7E-4A4A-B06A-0FA022817EF1}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
@@ -262,6 +271,7 @@ Global
 		{E00E08C7-8EB0-4653-8894-4771F1B7BF15} = {2046A50D-F8C3-4C07-A5EF-E6A9E9BD185F}
 		{2BC7CC5A-BCE0-49A8-886C-5AE53E299768} = {C6702B91-DD7F-4326-85EE-F745571FAE37}
 		{C32FF3E7-D524-4253-B98B-41294EEA8B85} = {3BAFAD91-A059-4963-9B84-0E6573316AE8}
+		{9C739FC3-335F-47C4-BCD6-F40DF7B3A1AF} = {965E9378-1317-4009-B485-593133E0EA56}
 		{296446E4-DD7E-4A4A-B06A-0FA022817EF1} = {3E433B05-A105-44AF-AD76-300AE693639B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution

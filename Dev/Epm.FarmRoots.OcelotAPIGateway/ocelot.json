@@ -1,7 +1,31 @@
 {
-    "GlobalConfiguration": {},
     "Routes": [
-        {}
-    ]
-
+        {
+            "DownstreamPathTemplate": "/api/customerlogin/{everything}",
+            "DownstreamScheme": "https",
+            "DownstreamHostAndPorts": [
+                {
+                    "Host": "localhost",
+                    "Port": 5123
+                }
+            ],
+            "UpstreamPathTemplate": "/customerlogin/{everything}",
+            "UpstreamHttpMethod": [ "Post" ]
+        },
+        {
+            "DownstreamPathTemplate": "/api/vendorlogin/{everything}",
+            "DownstreamScheme": "https",
+            "DownstreamHostAndPorts": [
+                {
+                    "Host": "localhost",
+                    "Port": 5123
+                }
+            ],
+            "UpstreamPathTemplate": "/vendorlogin/{everything}",
+            "UpstreamHttpMethod": [ "Post" ]
+        }
+    ],
+    "GlobalConfiguration": {
+        "BaseUrl": "https://localhost:44350"
+    }
 }

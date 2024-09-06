@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
@@ -10,10 +10,19 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="13.0.1" />
     <PackageReference Include="coverlet.collector" Version="6.0.0" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.8.0" />
+    <PackageReference Include="Moq" Version="4.20.71" />
     <PackageReference Include="MSTest.TestAdapter" Version="3.1.1" />
     <PackageReference Include="MSTest.TestFramework" Version="3.1.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Epm.FarmRoots.UserManagement.API\Epm.FarmRoots.UserManagement.API.csproj" />
+    <ProjectReference Include="..\Epm.FarmRoots.UserManagement.Application\Epm.FarmRoots.UserManagement.Application.csproj" />
+    <ProjectReference Include="..\Epm.FarmRoots.UserManagement.Core\Epm.FarmRoots.UserManagement.Core.csproj" />
+    <ProjectReference Include="..\Epm.FarmRoots.UserManagement.Infrastructure\Epm.FarmRoots.UserManagement.Infrastructure.csproj" />
   </ItemGroup>
 
   <ItemGroup>
