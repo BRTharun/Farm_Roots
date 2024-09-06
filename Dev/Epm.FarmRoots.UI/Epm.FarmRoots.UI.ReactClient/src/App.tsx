@@ -4,6 +4,8 @@ import RegisterPage from './components/pages/RegisterPage';
 import Header from './components/common/Header';
 import Footer from './components/common/Footer';
 import CategoryRoute from './components/routes/CategoryRoute'
+import '@epam/uui-components/styles.css';
+import '@epam/uui/styles.css';
 
 const App : React.FC = () => {
   return (

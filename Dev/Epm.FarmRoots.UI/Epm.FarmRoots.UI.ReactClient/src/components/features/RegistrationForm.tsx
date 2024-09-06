@@ -1,21 +1,40 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import InputField from "../common/InputField";
 // import { Button } from "@epam/uui";
 import CheckBox from "../common/CheckBox";
 import Button from "../common/Button";
+import { toast, ToastContainer } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 import {
   validateEmail,
   validatePassword,
   validatePhoneNumber,
+  validateName,
 } from "../utils/validation";
 import { UserRole } from "../types/UserRole";
 import { FaInfoCircle } from "react-icons/fa";
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
+import { Link } from "react-router-dom"; 
+import axios from "../services/api"
+
+const REGISTER_URL = '/register';
+
+interface Errors {
+  name: string;
+  email: string;
+  password: string;
+  confirmPassword: string;
+  phoneNumber: string;
+  role: string;
+}
 
 
 const RegistrationForm: React.FC = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const [success, setSuccess] = useState(false);
+  const [errMsg, setErrMsg] = useState('');
+
 
   const [formData, setFormData] = useState({
     name: "",
@@ -34,6 +53,13 @@ const RegistrationForm: React.FC = () => {
     role: "",
   });
 
+  const nameRef = useRef<HTMLInputElement>(null);
+  const phoneRef = useRef<HTMLInputElement>(null);
+  const emailRef = useRef<HTMLInputElement>(null);
+  const passwordRef = useRef<HTMLInputElement>(null);
+  const confirmPasswordRef = useRef<HTMLInputElement>(null);
+
+
   const toggleShowPassword = () => setShowPassword(!showPassword);
   const toggleShowConfirmPassword = () =>
     setShowConfirmPassword(!showConfirmPassword);
@@ -48,26 +74,56 @@ const RegistrationForm: React.FC = () => {
 
   const validateForm = () => {
     const newErrors = {
-      name: formData.name ? "" : "Name is required",
+      name: validateName(formData.name) ? "" : "Name only contain alphabets and Should not be Empty",
       email: validateEmail(formData.email) ? "" : "Invalid email address",
       password: validatePassword(formData.password) ? "" : "Invalid password",
-      confirmPassword: validatePassword(formData.confirmPassword)
+      confirmPassword: formData.confirmPassword === formData.password
         ? ""
-        : "Invalid password",
+        : "Passwords do not match",
       phoneNumber: validatePhoneNumber(formData.phoneNumber)
         ? ""
         : "Invalid phone number",
       role: formData.role ? "" : "Please select a role",
     };
     setErrors(newErrors);
+    focusFirstErrorField(newErrors);
+
+    const firstError = Object.values(newErrors).find((error) => error !== "");
+    if (firstError) {
+      toast.error(firstError); // Show the first validation error as a toast
+    }
+
     return Object.values(newErrors).every((error) => error === "");
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (validateForm()) {
-      console.log("Form submitted:", formData);
-      // Handle form submission
+      try {
+        const response = await axios.post(REGISTER_URL,
+          JSON.stringify({
+            email : formData.email,
+            password : formData.password
+          }), 
+          {
+            headers: {'Content-Type' : 'application/json'},
+            withCredentials: true
+          }   
+        );
+        console.log(response.data);
+        console.log(JSON.stringify(response));
+        setSuccess(true);
+        toast.success("Registration successful!");
+      } catch(err) {
+        if (!err?.response) {
+          setErrMsg('No Server Response');
+      } else if (err.response?.status === 409) {
+          setErrMsg('Username Taken');
+      } else {
+          setErrMsg('Registration Failed')
+      }
+      toast.error(errMsg);
+    }
     }
   };
 
@@ -88,9 +144,59 @@ const RegistrationForm: React.FC = () => {
       phoneNumber: "",
       role: "",
     });
+    nameRef.current?.focus();
+    toast.info("Form reset");
   };
 
+  const focusFirstErrorField = (errors : Errors) => {
+    if (errors.name) {
+      nameRef.current?.focus();
+    } else if (errors.email) {
+      emailRef.current?.focus();
+    } else if (errors.password) {
+      passwordRef.current?.focus();
+    } else if (errors.confirmPassword) {
+      confirmPasswordRef.current?.focus();
+    } else if (errors.phoneNumber) {
+      phoneRef.current?.focus();
+    }
+  };
+
+  useEffect(() => {
+    nameRef.current?.focus(); // Focus on the name input field on initial render
+  }, []);
+
   return (
+    <>
+    <ToastContainer 
+    position="top-center"
+    autoClose={3000}
+    hideProgressBar={false}
+    newestOnTop={true}
+    closeOnClick
+    rtl={false}
+    pauseOnFocusLoss = {false}
+    draggable
+    pauseOnHover = {false}
+    theme="light"/>
+    {
+      success ? (
+        <section className="flex flex-col items-center justify-center min-h-screen p-6 bg-gray-100">
+        <div className="bg-white p-8 rounded-lg shadow-lg max-w-md w-full">
+          <h1 className="text-3xl font-bold text-green-600 mb-4">Success!</h1>
+          <p className="text-lg text-gray-700 mb-6">
+            Your registration was successful. You can now sign in and start using the application.
+          </p>
+          <Link
+            to="/" 
+            className="inline-block px-6 py-3 text-white bg-indigo-600 rounded-lg shadow-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+          >
+            Sign In
+          </Link>
+        </div>
+      </section>
+      ) : (
+      <section>
     <form
       onSubmit={handleSubmit}
       className="max-w-lg mx-auto p-6 bg-white shadow-lg rounded-xl space-y-6"
@@ -102,7 +208,8 @@ const RegistrationForm: React.FC = () => {
         value={formData.name}
         onChange={handleChange}
         placeholder="Name"
-        error={errors.name}
+        ref={nameRef}
+        additionalLabel={<span className="text-red-500">*</span>}
       />
       <InputField
         label="Email"
@@ -111,8 +218,7 @@ const RegistrationForm: React.FC = () => {
         value={formData.email}
         onChange={handleChange}
         placeholder="Email"
-        error={errors.email}
-        required
+        ref={emailRef}
         additionalLabel={<span className="text-red-500">*</span>}
       />
       <div className="relative">
@@ -123,10 +229,9 @@ const RegistrationForm: React.FC = () => {
           value={formData.password}
           onChange={handleChange}
           maxLength={24}
-          required
+          ref={passwordRef}
           additionalLabel={<span className="text-red-500">*</span>}
           placeholder="Password"
-          error={errors.password}
         />
         <div className="absolute inset-y-0 right-3 flex items-center">
           <button
@@ -159,11 +264,10 @@ const RegistrationForm: React.FC = () => {
           name="confirmPassword"
           value={formData.confirmPassword}
           onChange={handleChange}
+          ref={confirmPasswordRef}
           maxLength={24}
           placeholder="Confirm Password"
-          required
           additionalLabel={<span className="text-red-500">*</span>}
-          error={errors.confirmPassword}
         />
         <div className="absolute inset-y-0 right-3 flex items-center">
           <button
@@ -200,10 +304,9 @@ const RegistrationForm: React.FC = () => {
           }}
           value={formData.phoneNumber}
           onChange={handleChange}
+          ref={phoneRef}
           maxLength={10}
           placeholder="Phone Number"
-          error={errors.phoneNumber}
-          required
           additionalLabel={<span className="text-red-500">*</span>}
         />
       </div>
@@ -248,7 +351,10 @@ const RegistrationForm: React.FC = () => {
         </Button>
       </div>
     </form>
-  );
+    </section>
+    )}
+    </>
+  )
 };
 
 export default RegistrationForm;

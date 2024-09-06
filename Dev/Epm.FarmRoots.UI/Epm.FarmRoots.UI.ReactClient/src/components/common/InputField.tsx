@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {forwardRef} from 'react';
 
 interface InputFieldProps {
   label?: string;
@@ -15,7 +15,7 @@ interface InputFieldProps {
   onKeyDown?: (e: React.KeyboardEvent<HTMLInputElement>) => void;
 }
 
-const InputField: React.FC<InputFieldProps> = ({
+const InputField =  forwardRef<HTMLInputElement, InputFieldProps>(({
   label,
   type,
   name,
@@ -28,7 +28,7 @@ const InputField: React.FC<InputFieldProps> = ({
   maxLength,
   additionalLabel,
   onKeyDown,
-}) => {
+}, ref) => {
   const handleCopyPasteCut = (e: React.ClipboardEvent<HTMLInputElement>) => {
     e.preventDefault(); // Prevent copy, cut, and paste actions
   };
@@ -51,11 +51,12 @@ const InputField: React.FC<InputFieldProps> = ({
         onKeyDown={onKeyDown}
         className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
         onCopy={handleCopyPasteCut}
+        ref = {ref}
       />
       </div>
       {error && <p className="text-red-500 text-sm">{error}</p>}
     </div>
   );
-};
+});
 
 export default InputField;
