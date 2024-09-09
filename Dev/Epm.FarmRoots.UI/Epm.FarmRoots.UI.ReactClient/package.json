@@ -14,10 +14,12 @@
     "@epam/uui": "^5.9.1",
     "@epam/uui-components": "^5.9.1",
     "@epam/uui-core": "^5.9.1",
+    "@reduxjs/toolkit": "^2.2.7",
     "axios": "^1.7.7",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-icons": "^5.3.0",
+    "react-redux": "^9.1.2",
     "react-router-dom": "^6.26.1",
     "react-toastify": "^10.0.5"
   },
@@ -26,6 +28,7 @@
     "@testing-library/jest-dom": "^6.5.0",
     "@testing-library/react": "^16.0.1",
     "@types/jest": "^29.5.12",
+    "@types/node": "^22.5.4",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
     "@vitejs/plugin-react": "^4.3.1",
@@ -34,16 +37,14 @@
     "eslint-plugin-react-hooks": "^5.1.0-rc.0",
     "eslint-plugin-react-refresh": "^0.4.9",
     "globals": "^15.9.0",
-    "identity-obj-proxy": "^3.0.0",
     "jest": "^29.7.0",
     "jest-environment-jsdom": "^29.7.0",
-    "jest-fetch-mock": "^3.0.3",
     "postcss": "^8.4.41",
     "tailwindcss": "^3.4.10",
     "ts-jest": "^29.2.5",
     "ts-node": "^10.9.2",
     "typescript": "^5.5.3",
     "typescript-eslint": "^8.0.1",
-    "vite": "^5.4.2"
+    "vite": "^5.4.1"
   }
 }
