@@ -7,9 +7,9 @@ namespace Epm.FarmRoots.ProductCatalogue.Infrastructure.Repositories
 {
     public class ProductRepository : IProductRepository
     {
-        private readonly ApplicationDbContext _context;
+        private readonly ProductDbContext _context;
 
-        public ProductRepository(ApplicationDbContext context)
+        public ProductRepository(ProductDbContext context)
         {
             _context = context;
         }
@@ -27,8 +27,13 @@ namespace Epm.FarmRoots.ProductCatalogue.Infrastructure.Repositories
         public async Task AddProductAsync(Product product)
         {
             _context.Products.Add(product);
+            if (product.Images != null)
+            {
+                _context.Add(product.Images);
+            }
             await _context.SaveChangesAsync();
         }
+
 
         public async Task UpdateProductAsync(Product product)
         {

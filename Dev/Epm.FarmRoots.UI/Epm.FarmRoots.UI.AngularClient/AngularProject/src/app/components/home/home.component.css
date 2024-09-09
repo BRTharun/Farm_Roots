@@ -1,0 +1,13 @@
+/* home.component.css */
+
+h1 {
+  text-align: center;
+  color: var(--blue-color);
+  margin: 20px 0;
+}
+
+p {
+  text-align: center;
+  color: var(--grey-color);
+  font-size: 18px;
+}

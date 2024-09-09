@@ -9,6 +9,6 @@
         public required int ProductStock { get; set; }
         public required decimal ProductMrp { get; set; }
         public required decimal ProductSale_Price { get; set; }
-        public required byte[] ProductImage { get; set; }
+        public required byte[]? ProductImage { get; set; }
     }
 }

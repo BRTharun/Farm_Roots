@@ -1,0 +1,55 @@
+/* sidebar.component.css */
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 250px;
+  height: 100vh;
+  background: #f4f4f4;
+  border-right: 1px solid #ddd;
+  transition: transform 0.3s ease;
+}
+
+  .sidebar.close {
+    transform: translateX(-100%);
+  }
+
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: #333;
+  color: white;
+  z-index: 1000;
+}
+
+.menu_content {
+  padding: 20px;
+}
+
+.menu_items {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.item {
+  margin: 10px 0;
+}
+
+.nav_link {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: #333;
+  padding: 10px;
+}
+
+  .nav_link.active {
+    background: #ddd;
+  }
+
+.navlink_icon {
+  margin-right: 10px;
+}

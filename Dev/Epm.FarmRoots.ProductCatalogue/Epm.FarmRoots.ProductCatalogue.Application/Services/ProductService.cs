@@ -32,6 +32,14 @@ namespace Epm.FarmRoots.ProductCatalogue.Application.Services
         public async Task AddProductAsync(ProductDto productDto)
         {
             var product = _mapper.Map<Product>(productDto);
+            if (productDto.ProductImage != null)
+            {
+                product.Images = new Images
+                {
+                    ImageData = productDto.ProductImage,
+                    ProductId = product.ProductId
+                };
+            }
             await _productRepository.AddProductAsync(product);
         }
 

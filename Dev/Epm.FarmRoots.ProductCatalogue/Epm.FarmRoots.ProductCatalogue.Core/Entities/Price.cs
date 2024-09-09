@@ -8,6 +8,6 @@ namespace Epm.FarmRoots.ProductCatalogue.Core.Entities
 {
     public class Price
     {
-
+        public int PriceId {  get; set; }
     }
 }

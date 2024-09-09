@@ -1,18 +1,14 @@
-using AutoMapper;
 using Epm.FarmRoots.ProductCatalogue.Application.Interfaces;
 using Epm.FarmRoots.ProductCatalogue.Application.Services;
-using Epm.FarmRoots.ProductCatalogue.Application.Mappings;
 using Epm.FarmRoots.ProductCatalogue.Core.Interfaces;
 using Epm.FarmRoots.ProductCatalogue.Infrastructure;
 using Epm.FarmRoots.ProductCatalogue.Infrastructure.Data;
 using Epm.FarmRoots.ProductCatalogue.Infrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
-using Epm.FarmRoots.ProductCatalogue.Application.Dtos;
-using Epm.FarmRoots.ProductCatalogue.API;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Configuration;
 using Microsoft.OpenApi.Models;
+using Microsoft.AspNetCore.Http.Features;
+using Swashbuckle.AspNetCore.SwaggerGen;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -24,15 +20,19 @@ builder.Services.AddScoped<IProductSearchRepository, ProductSearchRepository>();
 builder.Services.AddScoped<IProductSearchService, ProductSearchService>();
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
 builder.Services.AddScoped<IProductService, ProductService>();
+builder.Services.AddScoped<IImageService, ImageService>();
 
 // Register DbContexts
+builder.Services.AddDbContext<ProductDbContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 builder.Services.AddDbContext<ProductCatalogueDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 builder.Services.AddDbContext<InventoryDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
-builder.Services.AddDbContext<ApplicationDbContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+builder.Services.AddDbContext<ImageDbContext>(options =>
+            options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
+// Add AutoMapper
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
 // CORS policy setup
@@ -46,12 +46,24 @@ builder.Services.AddCors(options =>
     });
 });
 
-// Swagger configuration
-builder.Services.AddEndpointsApiExplorer();
+
+// Configure file upload size (optional, you can adjust the limit)
+builder.Services.Configure<FormOptions>(options =>
+{
+    options.MultipartBodyLengthLimit = 104857600; // 100 MB limit, adjust as needed
+});
+
+//// Swagger configuration for file upload
 builder.Services.AddSwaggerGen(c =>
 {
     c.SwaggerDoc("v1", new OpenApiInfo { Title = "Product Catalogue API", Version = "v1" });
+
+    // Add file upload support
+    c.OperationFilter<FileUploadOperationFilter>();
 });
+
+
+
 
 var app = builder.Build();
 
@@ -81,7 +93,8 @@ void ApplyMigrations(IHost app)
 
     MigrateDbContext<ProductCatalogueDbContext>(services);
     MigrateDbContext<InventoryDbContext>(services);
-    MigrateDbContext<ApplicationDbContext>(services);
+    MigrateDbContext<ProductDbContext>(services);
+    MigrateDbContext<ImageDbContext>(services);
 }
 
 void MigrateDbContext<TContext>(IServiceProvider services) where TContext : DbContext

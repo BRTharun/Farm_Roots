@@ -1,0 +1,24 @@
+<h2>Upload Pictures</h2>
+
+<!-- File input and drag-and-drop area -->
+<div class="drop-area"
+     (dragover)="onDragOver($event)"
+     (drop)="onDrop($event)"
+     (click)="fileInput.click()">
+  <p>Drag & drop images here or click to browse</p>
+  <!--<input type="file" #fileInput (change)="onFilesChange($event)" accept="image/*" multiple style="display: none;">-->
+  <input type="file" #fileInput (change)="onFilesChange($event)" accept="image/*" multiple style="display: none;">
+
+</div>
+
+<!-- Thumbnails of selected images -->
+<div *ngIf="selectedFiles.length > 0">
+  <h3>Selected Images</h3>
+  <div class="thumbnail-container">
+    <div *ngFor="let file of selectedFiles" class="thumbnail">
+      <img [src]="file.preview" alt="Thumbnail" />
+      <button (click)="removeFile(file)">Remove</button>
+    </div>
+  </div>
+  <button (click)="uploadPictures()">Upload</button>
+</div>

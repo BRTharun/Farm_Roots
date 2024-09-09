@@ -34,11 +34,21 @@ namespace Epm.FarmRoots.ProductCatalogue.Api.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<ProductDto>> AddProduct([FromBody] ProductDto productDto)
+        public async Task<ActionResult<ProductDto>> AddProduct([FromForm] ProductDto productDto, [FromForm] IFormFile imageFile)
         {
+            if (imageFile != null)
+            {
+                using (var memoryStream = new MemoryStream())
+                {
+                    await imageFile.CopyToAsync(memoryStream);
+                    productDto.ProductImage = memoryStream.ToArray();
+                }
+            }
+
             await _productService.AddProductAsync(productDto);
             return CreatedAtAction(nameof(GetProductById), new { id = productDto.ProductId }, productDto);
         }
+
 
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateProduct(int id, [FromBody] ProductDto productDto)
