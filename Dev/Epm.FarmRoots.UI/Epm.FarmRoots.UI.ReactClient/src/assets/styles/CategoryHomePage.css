@@ -1,0 +1,15 @@
+.category-card {
+    overflow: hidden; /* Hide overflow */
+    border: none; /* Remove border if needed */
+    transition: transform 0.3s ease; /* Smooth transform effect */
+  }
+  
+  .category-card:hover {
+    transform: scale(1.05); /* Slight zoom effect on hover */
+  }
+  
+  .category-card .card-img-top {
+    height: 180px; /* Set a fixed height */
+    object-fit: contain; /* Ensure image covers the area without distortion */
+  }
+  

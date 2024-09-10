@@ -1,0 +1,32 @@
+/* App.css */
+.home-page, .category-page {
+  padding: 20px;
+}
+
+.category-cards {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.category-card, .product-card {
+  border: 1px solid #ddd;
+  padding: 20px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.sidebar {
+  float: left;
+  width: 200px;
+}
+
+.product-list {
+  margin-left: 220px;
+}
+
+.products {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
