@@ -24,7 +24,6 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { PricePageComponent } from './components/price-page/price-page.component';
-import { SideBarComponent } from './components/side-bar/side-bar.component';
 import { RouterModule, Routes } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 
@@ -35,8 +34,6 @@ import { HttpClientModule } from '@angular/common/http';
     HeaderComponent,
     FooterComponent,
     PricePageComponent,
-    SideBarComponent
-     
     BodyComponent,
     SidenavComponent,
     StatisticsComponent,

@@ -6,9 +6,8 @@ import { ProductInfoComponent } from './components/productinfo/productinfo.compo
 import { PricePageComponent } from './components/price-page/price-page.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/price', pathMatch: 'full' },  // Redirect to /price by default
     { path: 'price', component: PricePageComponent },
-  { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
+    { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
     { path: 'statistics', component: StatisticsComponent },
     { path: 'productinfo', component: ProductInfoComponent }
 ];
