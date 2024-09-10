@@ -8,5 +8,7 @@ namespace Epm.FarmRoots.ProductCatalogue.Core.Entities
 {
     public class Inventory
     {
+        public int InventoryId { get; set; }
+        public int ProductId {  get; set; }
     }
 }

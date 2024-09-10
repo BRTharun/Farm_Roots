@@ -1,4 +1,5 @@
-﻿using Epm.FarmRoots.ProductCatalogue.Core.Entities;
+﻿using System.Linq.Expressions;
+using Epm.FarmRoots.ProductCatalogue.Core.Entities;
 using Epm.FarmRoots.ProductCatalogue.Core.Interfaces;
 using Epm.FarmRoots.ProductCatalogue.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
@@ -7,43 +8,44 @@ namespace Epm.FarmRoots.ProductCatalogue.Infrastructure.Repositories
 {
     public class ProductRepository : IProductRepository
     {
-        private readonly ApplicationDbContext _context;
+        private readonly ProductDbContext _context;
 
-        public ProductRepository(ApplicationDbContext context)
+        public ProductRepository(ProductDbContext context)
         {
             _context = context;
         }
 
-        public async Task<IEnumerable<Product>> GetAllProductsAsync()
+        public async Task<Product> GetByIdAsync(int id)
+        {
+            return await _context.Products.FirstOrDefaultAsync(p => p.ProductId == id);
+        }
+
+        public async Task<List<Product>> GetAllAsync()
         {
             return await _context.Products.ToListAsync();
         }
 
-        public async Task<Product> GetProductByIdAsync(int productId)
+        public async Task AddAsync(Product entity)
         {
-            return await _context.Products.FirstOrDefaultAsync(p => p.ProductId == productId);
-        }
-
-        public async Task AddProductAsync(Product product)
-        {
-            _context.Products.Add(product);
+            await _context.Products.AddAsync(entity);
             await _context.SaveChangesAsync();
         }
 
-        public async Task UpdateProductAsync(Product product)
+        public async Task UpdateAsync(Product entity)
         {
-            _context.Products.Update(product);
+            _context.Products.Update(entity);
             await _context.SaveChangesAsync();
         }
 
-        public async Task DeleteProductAsync(int productId)
+        public async Task DeleteAsync(Product entity)
         {
-            var product = await _context.Products.FirstOrDefaultAsync(p => p.ProductId == productId);
-            if (product != null)
-            {
-                _context.Products.Remove(product);
-                await _context.SaveChangesAsync();
-            }
+            _context.Products.Remove(entity);
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task<IEnumerable<Product>> FindAsync(Expression<Func<Product, bool>> predicate)
+        {
+            return await _context.Products.Where(predicate).ToListAsync();
         }
     }
 }

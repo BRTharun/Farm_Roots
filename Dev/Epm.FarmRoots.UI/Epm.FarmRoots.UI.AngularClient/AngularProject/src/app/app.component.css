@@ -1,0 +1,42 @@
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  display: flex;
+}
+
+/* Side Navigation */
+app-side-nav {
+  width: 250px; /* Adjust width according to your side nav's design */
+  height: 100vh;
+  position: fixed;
+  z-index: 1050; /* Higher z-index if it should overlap other content when expanded */
+}
+
+/* Main content area */
+.main {
+  margin-left: 250px; /* Same as the width of the side nav */
+  width: calc(100% - 250px); /* Adjust based on side nav width */
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Sticky Header */
+app-header {
+  width: 100%;
+  z-index: 1000;
+  height: 50px; /* Adjust based on actual header height */
+}
+
+.content {
+  flex-grow: 1;
+  padding-top: 50px; /* Same as header height */
+}
+
+/* Footer */
+app-footer {
+  width: 100%;
+  position: relative;
+}

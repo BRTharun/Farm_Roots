@@ -17,33 +17,38 @@ namespace Epm.FarmRoots.ProductCatalogue.Application.Services
             _mapper = mapper;
         }
 
-        public async Task<IEnumerable<ProductDto>> GetAllProductsAsync()
+        public async Task<IEnumerable<ResponseProductDto>> GetAllProductsAsync()
         {
-            var products = await _productRepository.GetAllProductsAsync();
-            return _mapper.Map<IEnumerable<ProductDto>>(products);
+            return _mapper.Map<IEnumerable<ResponseProductDto>>(await _productRepository.GetAllAsync());
         }
 
-        public async Task<ProductDto> GetProductByIdAsync(int id)
+        public async Task<ResponseProductDto> GetProductByIdAsync(int id)
         {
-            var product = await _productRepository.GetProductByIdAsync(id);
-            return _mapper.Map<ProductDto>(product);
+            return _mapper.Map<ResponseProductDto>(await _productRepository.GetByIdAsync(id));
         }
 
-        public async Task AddProductAsync(ProductDto productDto)
+        public async Task<ResponseProductDto> CreateProductAsync(CreateProductDto product)
         {
-            var product = _mapper.Map<Product>(productDto);
-            await _productRepository.AddProductAsync(product);
+            
+            var prod= _mapper.Map<Product>(product);
+            prod.CreatedOn = DateTime.Today;
+            prod.UpdatedOn = DateTime.Today;
+            await _productRepository.AddAsync(prod);
+            return _mapper.Map<ResponseProductDto>(prod);
         }
 
-        public async Task UpdateProductAsync(ProductDto productDto)
+        public async Task UpdateProductAsync(ResponseProductDto product)
         {
-            var product = _mapper.Map<Product>(productDto);
-            await _productRepository.UpdateProductAsync(product);
+            await _productRepository.UpdateAsync(_mapper.Map<Product>(product));
         }
 
         public async Task DeleteProductAsync(int id)
         {
-            await _productRepository.DeleteProductAsync(id);
+            var product = await _productRepository.GetByIdAsync(id);
+            if (product != null)
+            {
+                await _productRepository.DeleteAsync(product);
+            }
         }
     }
 }

@@ -1,0 +1,90 @@
+/* Red color for required asterisks */
+.required {
+  color: red;
+}
+
+/* General form styling */
+form {
+  max-width: 600px;
+  margin: 20px auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background: #f9f9f9;
+}
+
+/* Style for all input fields and textareas */
+input[type="text"],
+input[type="url"],
+input[type="date"],
+select,
+textarea {
+  width: 100%;
+  padding: 10px;
+  margin-top: 8px;
+  margin-bottom: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box; /* Makes sure padding doesn't affect width */
+}
+
+/* Style for checkbox */
+input[type="checkbox"] {
+  margin-top: 15px;
+}
+
+/* Label styling */
+label {
+  margin-top: 10px;
+  display: block; /* Makes the label take the full width and the input will be on the next line */
+  color: #333;
+  font-weight: bold;
+}
+
+/* Button styling */
+button {
+  background-color: #4CAF50;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+  button:hover {
+    background-color: #45a049;
+  }
+
+/* Focus styles for inputs and textareas */
+input[type="text"]:focus,
+input[type="url"]:focus,
+input[type="date"]:focus,
+select:focus,
+textarea:focus {
+  border-color: #4CAF50;
+  outline: none; /* Removes the default focus outline */
+}
+
+/* Error message styling */
+.error {
+  color: red;
+  font-size: 12px;
+}
+
+input.ng-invalid.ng-touched,
+textarea.ng-invalid.ng-touched,
+select.ng-invalid.ng-touched {
+  border: 1px solid red;
+}
+
+/* Responsive adjustments */
+@media (max-width: 640px) {
+  form {
+    padding: 10px;
+  }
+
+  button {
+    width: 100%; /* Full-width button on small screens */
+  }
+}

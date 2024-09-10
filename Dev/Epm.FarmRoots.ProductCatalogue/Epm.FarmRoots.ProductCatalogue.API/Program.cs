@@ -30,7 +30,7 @@ builder.Services.AddDbContext<ProductCatalogueDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 builder.Services.AddDbContext<InventoryDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
-builder.Services.AddDbContext<ApplicationDbContext>(options =>
+builder.Services.AddDbContext<ProductDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
@@ -81,7 +81,7 @@ void ApplyMigrations(IHost app)
 
     MigrateDbContext<ProductCatalogueDbContext>(services);
     MigrateDbContext<InventoryDbContext>(services);
-    MigrateDbContext<ApplicationDbContext>(services);
+    MigrateDbContext<ProductDbContext>(services);
 }
 
 void MigrateDbContext<TContext>(IServiceProvider services) where TContext : DbContext

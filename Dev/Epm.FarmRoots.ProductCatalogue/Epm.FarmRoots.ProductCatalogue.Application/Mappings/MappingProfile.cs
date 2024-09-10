@@ -8,9 +8,10 @@ namespace Epm.FarmRoots.ProductCatalogue.Application.Mappings
     {
         public MappingProfile()
         {
-            CreateMap<Product, ProductDto>().ReverseMap();
+            CreateMap<Product, CreateProductDto>().ReverseMap();
 
             CreateMap<Category, CategoryDto>().ReverseMap();
+            CreateMap<Product, ResponseProductDto>().ReverseMap();
 
         }
     }
