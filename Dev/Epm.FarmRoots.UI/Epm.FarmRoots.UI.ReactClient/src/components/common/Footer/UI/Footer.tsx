@@ -92,7 +92,7 @@ const Footer: React.FC = () => {
         {/* Categories Section */}
         <div>
           <h5 className="font-semibold text-xl">Categories</h5>
-          <div className="grid grid-cols-3 mt-3">
+          <div className="grid grid-cols-3 mt-3 cursor-pointer">
             {categoriesData.map((column, columnIndex) => (
               <div key={columnIndex} className="text-[#666] space-y-2">
                 {column.map((link) => (
