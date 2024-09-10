@@ -76,19 +76,24 @@ export class PictureUploadComponent implements OnInit {
     this.selectedFiles = this.selectedFiles.filter(f => f !== file);
   }
 
+  productId: number = 0; // Default to 0 or set dynamically
+
   uploadPictures() {
-    if (this.selectedFiles.length > 0) {
-      this.imageUploadService.uploadImages(this.selectedFiles).subscribe(
+    if (this.selectedFiles.length > 0 && this.productId > 0) {
+      this.imageUploadService.uploadImages(this.selectedFiles, this.productId).subscribe(
         response => {
-          this.toastr.success('Image successfully uploaded', 'Success');
+          this.toastr.success('Images successfully uploaded', 'Success');
           this.selectedFiles = [];
         },
         error => {
           this.toastr.error('Upload failed. Please try again.', 'Error');
         }
       );
+    } else {
+      this.toastr.error('Please select a valid product and images to upload.', 'Error');
     }
   }
+
 
   isFileSizeValid(file: CustomFile): boolean {
     return file.size <= this.maxFileSize;

@@ -10,10 +10,12 @@ export class ImageUploadService {
 
   constructor(private http: HttpClient) { }
 
-  uploadImages(files: File[]): Observable<any> {
+  uploadImages(files: File[], productId: number): Observable<any> {
     const formData = new FormData();
-    files.forEach(file => formData.append('images', file, file.name)); // Include filename
+    files.forEach(file => formData.append('images', file, file.name)); // Include filenames
+    formData.append('productId', productId.toString());
 
     return this.http.post(this.apiUrl, formData);
   }
+
 }

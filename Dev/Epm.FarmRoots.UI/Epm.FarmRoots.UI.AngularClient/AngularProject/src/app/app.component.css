@@ -4,10 +4,10 @@
   height: 100vh;
 }
 
-app-sidebar {
+/*app-sidebar {
   width: 250px;
   flex-shrink: 0;
-}
+}*/
 
 .main-content {
   flex: 1;

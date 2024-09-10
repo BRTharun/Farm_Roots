@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace Epm.FarmRoots.ProductCatalogue.Core.Entities
 {
@@ -8,8 +6,8 @@ namespace Epm.FarmRoots.ProductCatalogue.Core.Entities
     {
         [Key]
         public int ImagesId { get; set; }
-        public string? ImageUrl { get; set; } // Store image URL if you're saving images in the filesystem
-        public byte[] ImageData { get; set; } // Option to store image as binary data if using database storage
+        public string? ImageUrl { get; set; }
+        public byte[] ImageData { get; set; }
         public int ProductId { get; set; }
     }
 

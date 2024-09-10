@@ -1,5 +1,4 @@
-/* picture-upload.component.css */
-
+/* Container for the entire upload area */
 #pictureUploadPage {
   display: flex;
   flex-direction: column;
@@ -8,59 +7,120 @@
   border: 1px solid #ccc;
   background: white;
   box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-  max-width: 400px;
+  max-width: 600px; /* Adjust for better layout */
   margin: 20px auto;
+  margin-left: 250px; 
 }
 
-h2 {
-  margin-bottom: 15px;
-  color: var(--blue-color);
-}
-
-input[type="file"] {
-  margin-bottom: 15px;
-}
-
-button {
-  background-color: var(--blue-color);
-  color: var(--white-color);
-  border: none;
-  padding: 10px 20px;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 16px;
-}
-
-  button:hover {
-    background-color: #0056b3;
-  }
-
+/* Style for drag-and-drop area */
 .drop-area {
+    margin-top:20px;
   border: 2px dashed #ccc;
-  border-radius: 5px;
+  border-radius: 4px;
   padding: 20px;
   text-align: center;
+  margin-left: 250px;
   cursor: pointer;
+  margin-bottom: 20px;
+  background: #f9f9f9;
 }
 
+/* Style for thumbnail container and thumbnails */
+h3{
+    margin-left: 250px;
+}
+/*.thumbnail-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px; 
+  justify-content: center;
+  align-items:center;
+  flex-direction:row;
+  margin-bottom: 20px;*/
+  /*margin-left: 250px;*/
+/*}
+
+.thumbnail {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid #ddd;
+  padding: 10px;
+  border-radius: 4px;
+  background: #fff;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  max-width: 120px;
+}*/
 .thumbnail-container {
   display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  margin-bottom: 20px;
+  overflow-x: auto;
+  padding:0px;
+  margin-left: 250px;
 }
 
 .thumbnail {
-  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid #ddd;
+  padding: 10px; /* Reduced padding */
+  border-radius: 4px;
+  background: #fff;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  margin-right: 10px; /* Removed right margin */
+}
+
+.thumbnail-maincontainer {
+    margin-left : 250px;
+}
+
+.thumbnail:not(:last-child) {
+  margin-right: 5px; /* Adding small margin between thumbnails */
 }
 
   .thumbnail img {
-    width: 100px;
-    height: 100px;
-    object-fit: cover;
+    max-width: 100px;
+    max-height: 100px;
+    object-fit: contain;
+    margin-bottom: 10px;
   }
 
   .thumbnail button {
-    position: absolute;
-    top: 5px;
-    right: 5px;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    background-color: #f44336;
+    color: white;
+    font-size: 14px;
   }
+
+/* Container and style for upload button */
+.upload-button-container {
+  display: flex;
+  justify-content: safe center;
+  width: 100%; /* Full width for alignment */
+  margin-top: 20px; /* Space above the upload button */
+}
+
+.upload-button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  background-color: #4CAF50;
+  color: white;
+  font-size: 16px;
+}
+h2{
+    margin-left: 250px;
+}
+/**{
+    margin-left:250px
+
+}*/
+
+

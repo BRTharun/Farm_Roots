@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
-import { SidebarComponent } from './components/sidebar/sidebar.component'; // Import SidebarComponent
+import { SidenavComponent } from './components/sidenav/sidenav.component'; // Import SidebarComponent
 
 describe('AppComponent', () => {
   beforeEach(async () => {
@@ -11,7 +11,7 @@ describe('AppComponent', () => {
       ],
       declarations: [
         AppComponent,
-        SidebarComponent // Declare SidebarComponent
+        SidenavComponent // Declare SidebarComponent
       ],
     }).compileComponents();
   });

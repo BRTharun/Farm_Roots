@@ -26,9 +26,10 @@ namespace Epm.FarmRoots.ProductCatalogue.Test
         {
             // Arrange
             var files = new List<IFormFile>();
+            var productId = 123;
 
             // Act
-            var result = await _controller.UploadImages(files);
+            var result = await _controller.UploadImages(files, productId);
 
             // Assert
             var actionResult = result as BadRequestObjectResult;
@@ -56,6 +57,7 @@ namespace Epm.FarmRoots.ProductCatalogue.Test
             fileMock.Setup(_ => _.ContentType).Returns(contentType);
 
             var files = new List<IFormFile> { fileMock.Object };
+            var productId = 123;
 
             var createdImage = new Images { ImagesId = 1, ImageData = new byte[0] };
 
@@ -66,7 +68,7 @@ namespace Epm.FarmRoots.ProductCatalogue.Test
                 .ReturnsAsync(createdImage);
 
             // Act
-            var result = await _controller.UploadImages(files);
+            var result = await _controller.UploadImages(files, productId);
 
             // Assert
             var actionResult = result as CreatedAtActionResult;
@@ -77,13 +79,13 @@ namespace Epm.FarmRoots.ProductCatalogue.Test
         }
 
 
+
         [TestMethod]
         public async Task GetImageById_ShouldReturnNotFound_WhenImageDoesNotExist()
         {
             // Arrange
             var imageId = 1;
-            _mockImageService.Setup(service => service.GetImageByIdAsync(imageId))
-                .ReturnsAsync((Images)null);
+            _mockImageService.Setup(service => service.GetImageByIdAsync(imageId)).ReturnsAsync((Images)null);
 
             // Act
             var result = await _controller.GetImageById(imageId);

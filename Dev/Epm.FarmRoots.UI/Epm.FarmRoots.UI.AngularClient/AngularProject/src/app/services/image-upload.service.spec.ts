@@ -26,24 +26,29 @@ describe('ImageUploadService', () => {
 
   it('should upload images and return response', () => {
     const mockFile = new File(['sample'], 'sample.png', { type: 'image/png' });
+    const productId = 123; // Add productId for testing
     const formData = new FormData();
     formData.append('images', mockFile);
+    formData.append('productId', productId.toString());
 
-    service.uploadImages([mockFile]).subscribe((response) => {
+    service.uploadImages([mockFile], productId).subscribe((response) => {
       expect(response).toBeTruthy();
     });
 
     const req = httpMock.expectOne('https://localhost:7189/api/Images/upload');
     expect(req.request.method).toBe('POST');
+    expect(req.request.body.get('productId')).toBe(productId.toString());
     req.flush({ success: true }); // Mock the API response
   });
 
   it('should return error if upload fails', () => {
     const mockFile = new File(['sample'], 'sample.png', { type: 'image/png' });
+    const productId = 123; // Add productId for testing
     const formData = new FormData();
     formData.append('images', mockFile);
+    formData.append('productId', productId.toString());
 
-    service.uploadImages([mockFile]).subscribe(
+    service.uploadImages([mockFile], productId).subscribe(
       () => fail('Expected error, but got success response'),
       (error) => {
         expect(error.status).toBe(500);
