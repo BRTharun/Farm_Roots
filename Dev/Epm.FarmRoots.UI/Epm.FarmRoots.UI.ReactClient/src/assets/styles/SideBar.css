@@ -1,0 +1,43 @@
+/* src/SubCategorySidebar.css */
+.sidebar {
+    width: 250px;
+    background-color: #f8f9fa;
+    padding: 15px;
+    border-right: 1px solid #dee2e6;
+  }
+  
+  .sidebar-title {
+    margin-bottom: 1rem;
+    font-size: 1.25rem;
+    font-weight: 500;
+  }
+  
+  .list-group-item {
+    cursor: pointer;
+    /* transition: background-color 0.3s, border-left 0.3s; */
+    border: none;
+    outline: none;
+  }
+  
+  .list-group-item:nth-child(odd) {
+    background-color: #ffffff; /* White background for odd items */
+  }
+  
+  .list-group-item:nth-child(even) {
+    background-color: #f1f1f1; /* Light grey background for even items */
+  }
+  
+  .list-group-item:hover {
+    background-color: #e9ecef; /* Hover background color */
+  }
+  
+  .list-group-item.active {
+    border-left: 5px solid green; /* Red left border for active item */
+    color: black;
+  
+  }
+  
+  .img-thumbnail {
+    border: none;
+  }
+  
