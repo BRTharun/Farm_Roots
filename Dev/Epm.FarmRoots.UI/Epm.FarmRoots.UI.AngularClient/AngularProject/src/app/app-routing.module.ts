@@ -17,8 +17,7 @@ const routes: Routes = [
     { path: 'statistics', component: StatisticsComponent },
   { path: 'productinfo', component: ProductInfoComponent },
   { path: 'manufacturermapping', component: ManufacturerMappingsComponent },
-  {path: 'inventorymanagement', component : InventoryComponent}
-  { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
+  {path: 'inventorymanagement', component : InventoryComponent},
   { path: 'statistics', component: StatisticsComponent },
   { path: 'productinfo', component: ProductInfoComponent },
   { path: 'register', component: RegisterComponent },

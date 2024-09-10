@@ -7,7 +7,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule , FormsModule} from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
-import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { BodyComponent } from './components/body/body.component';
 import { SidenavComponent } from './components/sidenav/sidenav.component';
@@ -25,12 +24,8 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { PricePageComponent } from './components/price-page/price-page.component';
-import { ManufacturermappingComponent } from './components/manufacturermapping/manufacturermapping.component';
-import { FooterComponent } from './components/footer/footer.component';
-import { HeaderComponent } from './components/header/header.component';
 import { ToastrModule } from 'ngx-toastr';
 import { HttpClientModule } from '@angular/common/http';
-import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { CaptchaComponent } from './components/captcha/captcha.component';
 import { ChangePasswordComponent } from './components/change-password/change-password.component';
 import { EditProfileComponent } from './components/edit-profile/edit-profile.component';
@@ -52,8 +47,7 @@ import { RegisterComponent } from './components/register/register.component';
     CategorymappingComponent,
     ConfirmationDialogComponent,
     InventoryComponent,
-    ManufacturerMappingsComponent
-    ManufacturermappingComponent,
+    ManufacturerMappingsComponent,
     FooterComponent,
     HeaderComponent,
     CaptchaComponent,
