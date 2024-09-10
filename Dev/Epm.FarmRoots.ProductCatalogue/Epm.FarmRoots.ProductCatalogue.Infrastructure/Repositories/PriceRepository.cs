@@ -9,9 +9,9 @@ namespace Epm.FarmRoots.ProductCatalogue.Infrastructure.Repositories
 {
     public class PriceRepository : IPriceRepository
     {
-        private readonly ApplicationDbContext _context;
+        private readonly PriceDbContext _context;
 
-        public PriceRepository(ApplicationDbContext context)
+        public PriceRepository(PriceDbContext context)
         {
             _context = context;
         }
