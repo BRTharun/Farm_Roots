@@ -1,0 +1,80 @@
+/* price-page.component.css */
+.price-page-container {
+  margin-left: 250px; /* Adjust based on sidebar width */
+  padding-top: 80px; /* Adjust this value based on the actual height of your header */
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 60%; /* Adjust based on design preference */
+}
+
+.form-actions {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 20px;
+}
+
+.form-field {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin: 10px 0;
+}
+
+.special-dates input {
+  margin: 0 10px;
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 42px; /* Smaller width for more compact toggle */
+  height: 22px; /* Smaller height for more compact toggle */
+}
+
+  .switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: .4s;
+  border-radius: 22px; /* Rounded shape with the same height */
+}
+
+  .slider:before {
+    position: absolute;
+    content: "";
+    height: 18px; /* Smaller circle inside */
+    width: 18px; /* Smaller circle inside */
+    left: 2px;
+    bottom: 2px;
+    background-color: white;
+    transition: .4s;
+    border-radius: 50%; /* Circular */
+  }
+
+input:checked + .slider {
+  background-color: #4CAF50;
+}
+
+  input:checked + .slider:before {
+    transform: translateX(20px); /* Adjusted translation to new width */
+  }
+
+.error {
+  border-color: red; /* or any indication of an error */
+}

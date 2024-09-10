@@ -1,35 +1,65 @@
-import { TestBed } from '@angular/core/testing';
-import { RouterModule } from '@angular/router';
+import { TestBed, ComponentFixture, waitForAsync } from '@angular/core/testing';
 import { AppComponent } from './app.component';
+import { RouterTestingModule } from '@angular/router/testing';
+import { Component } from '@angular/core';
+
+// Mock components
+@Component({ selector: 'app-header', template: '' })
+class HeaderStubComponent { }
+
+@Component({ selector: 'app-side-bar', template: '' })
+class SidebarStubComponent { }
+
+@Component({ selector: 'app-footer', template: '' })
+class FooterStubComponent { }
 
 describe('AppComponent', () => {
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [
-        RouterModule.forRoot([])
-      ],
+  let component: AppComponent;
+  let fixture: ComponentFixture<AppComponent>;
+
+  beforeEach(waitForAsync(() => {
+    TestBed.configureTestingModule({
       declarations: [
-        AppComponent
+        AppComponent,
+        HeaderStubComponent,
+        SidebarStubComponent,
+        FooterStubComponent
       ],
+      imports: [
+        RouterTestingModule
+      ]
     }).compileComponents();
+  }));
+
+  beforeEach(() => {
+    fixture = TestBed.createComponent(AppComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
   });
 
   it('should create the app', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app).toBeTruthy();
+    expect(component).toBeTruthy();
   });
 
-  it(`should have as title 'AngularProject'`, () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app.title).toEqual('AngularProject');
+  it('should include an app-header component', () => {
+    const header = fixture.debugElement.nativeElement.querySelector('app-header');
+    expect(header).not.toBeNull();
   });
 
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('h1')?.textContent).toContain('Hello, AngularProject');
+  it('should include an app-side-bar component', () => {
+    const sidebar = fixture.debugElement.nativeElement.querySelector('app-side-bar');
+    expect(sidebar).not.toBeNull();
+  });
+
+  it('should include a main content area with a router-outlet', () => {
+    const mainContent = fixture.debugElement.nativeElement.querySelector('.main-content');
+    const routerOutlet = fixture.debugElement.nativeElement.querySelector('router-outlet');
+    expect(mainContent).not.toBeNull();
+    expect(routerOutlet).not.toBeNull();
+  });
+
+  it('should include an app-footer component', () => {
+    const footer = fixture.debugElement.nativeElement.querySelector('app-footer');
+    expect(footer).not.toBeNull();
   });
 });

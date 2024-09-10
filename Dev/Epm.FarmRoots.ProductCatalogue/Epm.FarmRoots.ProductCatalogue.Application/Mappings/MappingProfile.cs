@@ -11,7 +11,7 @@ namespace Epm.FarmRoots.ProductCatalogue.Application.Mappings
             CreateMap<Product, ProductDto>().ReverseMap();
 
             CreateMap<Category, CategoryDto>().ReverseMap();
-
+            CreateMap<Price, PriceDto>().ReverseMap();
         }
     }
 }
