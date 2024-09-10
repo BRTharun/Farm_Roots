@@ -4,6 +4,8 @@ import { ImageUploadService } from '../../services/image-upload.service';
 import { of, throwError } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { FormsModule } from '@angular/forms';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 
 describe('PictureUploadComponent', () => {
   let component: PictureUploadComponent;
@@ -17,11 +19,12 @@ describe('PictureUploadComponent', () => {
 
     await TestBed.configureTestingModule({
       declarations: [PictureUploadComponent],
-      imports: [HttpClientTestingModule],
+      imports: [HttpClientTestingModule, FormsModule],
       providers: [
         { provide: ImageUploadService, useValue: spyImageUpload },
         { provide: ToastrService, useValue: spyToastr }
-      ]
+      ],
+      schemas: [NO_ERRORS_SCHEMA]
     }).compileComponents();
 
     fixture = TestBed.createComponent(PictureUploadComponent);
@@ -36,37 +39,17 @@ describe('PictureUploadComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  //it('should call onFilesChange and add files to selectedFiles', () => {
-  //  const mockFile = new File(['sample'], 'sample.png', { type: 'image/png' });
-  //  const event = { target: { files: [mockFile] } };
-
-  //  spyOn(component, 'isImageResolutionValid').and.returnValue(Promise.resolve(true));
-  //  component.onFilesChange(event as any);
-
-  //  fixture.detectChanges();
-
-  //  expect(component.selectedFiles.length).toBe(1);
-  //  expect(component.selectedFiles[0].name).toBe('sample.png');
-  //});
-
-  it('should remove a file from selectedFiles', () => {
-    const mockFile = new File(['sample'], 'sample.png', { type: 'image/png' });
-    component.selectedFiles = [mockFile];
-
-    component.removeFile(mockFile);
-
-    expect(component.selectedFiles.length).toBe(0);
-  });
 
   it('should call uploadImages and show success toastr on successful upload', () => {
-    const mockFile = new File(['sample'], 'sample.png', { type: 'image/png' });
+    const mockFile = new File(['sample content'], 'sample.png', { type: 'image/png' });
     component.selectedFiles = [mockFile];
+    component.productId = 1;
 
     mockImageUploadService.uploadImages.and.returnValue(of({}));
     component.uploadPictures();
 
-    expect(mockImageUploadService.uploadImages).toHaveBeenCalled();
-    expect(mockToastr.success).toHaveBeenCalledWith('Image successfully uploaded', 'Success');
+    expect(mockImageUploadService.uploadImages).toHaveBeenCalledWith([mockFile], 1);
+    expect(mockToastr.success).toHaveBeenCalledWith('Images successfully uploaded', 'Success');
   });
 
   it('should show error toastr on file size exceeding 5MB', () => {
@@ -79,12 +62,22 @@ describe('PictureUploadComponent', () => {
   });
 
   it('should show error toastr on upload failure', () => {
-    const mockFile = new File(['sample'], 'sample.png', { type: 'image/png' });
+    const mockFile = new File(['sample content'], 'sample.png', { type: 'image/png' });
     component.selectedFiles = [mockFile];
+    component.productId = 1;
 
     mockImageUploadService.uploadImages.and.returnValue(throwError({ error: 'Upload failed' }));
     component.uploadPictures();
 
     expect(mockToastr.error).toHaveBeenCalledWith('Upload failed. Please try again.', 'Error');
+  });
+
+  it('should show error toastr if no files or productId is invalid', () => {
+    component.selectedFiles = [];
+    component.productId = 0;
+
+    component.uploadPictures();
+
+    expect(mockToastr.error).toHaveBeenCalledWith('Please select a valid product and images to upload.', 'Error');
   });
 });

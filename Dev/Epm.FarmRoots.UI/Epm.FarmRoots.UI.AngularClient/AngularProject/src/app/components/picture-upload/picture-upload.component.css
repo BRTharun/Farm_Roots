@@ -1,4 +1,3 @@
-/* Container for the entire upload area */
 #pictureUploadPage {
   display: flex;
   flex-direction: column;
@@ -7,12 +6,11 @@
   border: 1px solid #ccc;
   background: white;
   box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-  max-width: 600px; /* Adjust for better layout */
+  max-width: 600px; 
   margin: 20px auto;
   margin-left: 250px; 
 }
 
-/* Style for drag-and-drop area */
 .drop-area {
     margin-top:20px;
   border: 2px dashed #ccc;
@@ -25,32 +23,10 @@
   background: #f9f9f9;
 }
 
-/* Style for thumbnail container and thumbnails */
 h3{
     margin-left: 250px;
 }
-/*.thumbnail-container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px; 
-  justify-content: center;
-  align-items:center;
-  flex-direction:row;
-  margin-bottom: 20px;*/
-  /*margin-left: 250px;*/
-/*}
 
-.thumbnail {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  border: 1px solid #ddd;
-  padding: 10px;
-  border-radius: 4px;
-  background: #fff;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-  max-width: 120px;
-}*/
 .thumbnail-container {
   display: flex;
   flex-wrap: nowrap;
@@ -66,11 +42,11 @@ h3{
   flex-direction: column;
   align-items: center;
   border: 1px solid #ddd;
-  padding: 10px; /* Reduced padding */
+  padding: 10px; 
   border-radius: 4px;
   background: #fff;
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-  margin-right: 10px; /* Removed right margin */
+  margin-right: 10px;
 }
 
 .thumbnail-maincontainer {
@@ -78,7 +54,7 @@ h3{
 }
 
 .thumbnail:not(:last-child) {
-  margin-right: 5px; /* Adding small margin between thumbnails */
+  margin-right: 5px; 
 }
 
   .thumbnail img {
@@ -98,12 +74,11 @@ h3{
     font-size: 14px;
   }
 
-/* Container and style for upload button */
 .upload-button-container {
   display: flex;
   justify-content: safe center;
-  width: 100%; /* Full width for alignment */
-  margin-top: 20px; /* Space above the upload button */
+  width: 100%; 
+  margin-top: 20px; 
 }
 
 .upload-button {
@@ -118,9 +93,5 @@ h3{
 h2{
     margin-left: 250px;
 }
-/**{
-    margin-left:250px
-
-}*/
 
 

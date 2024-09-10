@@ -1,7 +1,8 @@
-<h2>Upload Pictures</h2>
+<h2>Upload Product Pictures</h2>
 
 <!-- File input and drag-and-drop area -->
 <div class="drop-area" (dragover)="onDragOver($event)" (drop)="onDrop($event)" (click)="fileInput.click()">
+  <input type="number" id="productId" [(ngModel)]="productId" min="1" required>
   <p>Drag & drop images here or click to browse</p>
   <input type="file" #fileInput (change)="onFilesChange($event)" accept="image/*" multiple style="display: none;">
 </div>
