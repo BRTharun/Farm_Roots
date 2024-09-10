@@ -40,3 +40,12 @@ app-footer {
   width: 100%;
   position: relative;
 }
+/* styles.css or app.component.css */
+.app-container {
+  display: flex;
+}
+
+.main-content {
+  flex-grow: 1;
+  margin-left: 200px; /* should match the width of the sidebar */
+}

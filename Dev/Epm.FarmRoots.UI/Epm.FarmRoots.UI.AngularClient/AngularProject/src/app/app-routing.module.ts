@@ -7,8 +7,17 @@ import { LoginComponent } from './components/login/login.component';
 import { EditProfileComponent } from './components/edit-profile/edit-profile.component';
 import { ChangePasswordComponent } from './components/change-password/change-password.component';
 import { ProfileComponent } from './components/profile/profile.component';
+import { PricePageComponent } from './components/price-page/price-page.component';
+import { ManufacturerMappingsComponent } from './components/manufacturer-mappings/manufacture-mapping.component';
+import { InventoryComponent } from './components/Inventory-Management/inventory-component';
 
 const routes: Routes = [
+    { path: 'price', component: PricePageComponent },
+    { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
+    { path: 'statistics', component: StatisticsComponent },
+  { path: 'productinfo', component: ProductInfoComponent },
+  { path: 'manufacturermapping', component: ManufacturerMappingsComponent },
+  {path: 'inventorymanagement', component : InventoryComponent}
   { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
   { path: 'statistics', component: StatisticsComponent },
   { path: 'productinfo', component: ProductInfoComponent },
@@ -18,6 +27,7 @@ const routes: Routes = [
   { path: 'change-password', component: ChangePasswordComponent },
   { path: 'profile', component: ProfileComponent }
 ];
+
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
