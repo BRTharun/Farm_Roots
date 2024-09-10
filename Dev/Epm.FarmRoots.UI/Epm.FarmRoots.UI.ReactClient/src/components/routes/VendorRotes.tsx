@@ -6,18 +6,16 @@ import VendorProducts from "../pages/vendor/VendorProducts";
 import AddProduct from "../pages/vendor/AddProduct";
 import VendorProfile from "../pages/vendor/VendorProfile";
 import EditProduct from "../pages/vendor/EditPage";
-import VendorCategoryPage from "../pages/vendor/VendorCategoryPage";
+import CategoryPage from "../pages/user/CategoryPage";
 import SubcategoryPage from "../pages/vendor/SubcategoryPage";
 import SubcategoryProductsPage from "../pages/vendor/SubcategoryProductsPage";
 import ManufacturerProductsPage from "../pages/vendor/ManufacturerProductsPage";
 import ManufacturersPage from "../pages/vendor/ManufacturersPage";
-import { Provider } from "react-redux";
-import vendorstore from "../utils/store/store";
+import VendorCategoryPage from "../pages/vendor/VendorCategoryPage";
 
-const MyRoutes: React.FC = () => {
+const VendorRoutes: React.FC = () => {
     return (
         <Routes>
-            <Route path="/" element={<HomePage />} />
             
             <Route path="/vendor" element={<VendorNavBar />} />
             <Route path="/add-product" element={<AddProduct />} />
@@ -42,4 +40,4 @@ const MyRoutes: React.FC = () => {
     );
 };
 
-export default MyRoutes;
+export default VendorRoutes;
