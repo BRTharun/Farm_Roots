@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace Epm.FarmRoots.ProductCatalogue.Core.Entities
 {
     public class Images
     {
+        [Key]
+        public int ImageId { get; set; }
     }
 }

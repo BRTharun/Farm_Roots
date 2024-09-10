@@ -1,14 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using static System.Net.Mime.MediaTypeNames;
-
-namespace Epm.FarmRoots.ProductCatalogue.Core.Entities
+﻿namespace Epm.FarmRoots.ProductCatalogue.Core.Entities
 {
     public class Product
     {
@@ -19,11 +9,17 @@ namespace Epm.FarmRoots.ProductCatalogue.Core.Entities
 
         public string ProductType { get; set; } = "Simple Product";
 
-        public required bool Published { get; set; }
+        //public required bool Published { get; set; }
 
         public required string ProductName { get; set; }
+        public required string ProductDescription { get; set; }
+        public required string ProductCategory { get; set; }
+        public required int ProductStock { get; set; }
+        public required decimal ProductMrp { get; set; }
+        public required decimal ProductSale_Price { get; set; }
+        public required byte[] ProductImage { get; set; }
 
-        public required string ShortDescription { get; set; }
+        public string ShortDescription { get; set; }
         public string? FullDescription { get; set; }
         public string ProductCondition { get; set; } = "New";
         public string CountryOfOrigin { get; set; } = "Not specified";

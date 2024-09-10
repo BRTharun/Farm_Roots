@@ -1,17 +1,9 @@
-using AutoMapper;
 using Epm.FarmRoots.ProductCatalogue.Application.Interfaces;
 using Epm.FarmRoots.ProductCatalogue.Application.Services;
-using Epm.FarmRoots.ProductCatalogue.Application.Mappings;
 using Epm.FarmRoots.ProductCatalogue.Core.Interfaces;
-using Epm.FarmRoots.ProductCatalogue.Infrastructure;
 using Epm.FarmRoots.ProductCatalogue.Infrastructure.Data;
 using Epm.FarmRoots.ProductCatalogue.Infrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
-using Epm.FarmRoots.ProductCatalogue.Application.Dtos;
-using Epm.FarmRoots.ProductCatalogue.API;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -24,6 +16,10 @@ builder.Services.AddScoped<IProductSearchRepository, ProductSearchRepository>();
 builder.Services.AddScoped<IProductSearchService, ProductSearchService>();
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
 builder.Services.AddScoped<IProductService, ProductService>();
+builder.Services.AddScoped<IManufacturerService,ManufacturerService>();
+builder.Services.AddScoped<IManufacturerRepository,ManufacturerRepository>();
+builder.Services.AddScoped<IInventoryService, InventoryCartService>();
+builder.Services.AddScoped<IInventoryCartRepository, InventoryCartRepository>();
 
 // Register DbContexts
 builder.Services.AddDbContext<ProductCatalogueDbContext>(options =>
@@ -32,6 +28,11 @@ builder.Services.AddDbContext<InventoryDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+builder.Services.AddDbContext<ManufacturerDbContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+builder.Services.AddDbContext<InventoryCartDbContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
 
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
@@ -82,6 +83,8 @@ void ApplyMigrations(IHost app)
     MigrateDbContext<ProductCatalogueDbContext>(services);
     MigrateDbContext<InventoryDbContext>(services);
     MigrateDbContext<ApplicationDbContext>(services);
+    MigrateDbContext<ManufacturerDbContext>(services);
+    MigrateDbContext<InventoryCartDbContext>(services);
 }
 
 void MigrateDbContext<TContext>(IServiceProvider services) where TContext : DbContext

@@ -12,6 +12,10 @@ namespace Epm.FarmRoots.ProductCatalogue.Application.Mappings
 
             CreateMap<Category, CategoryDto>().ReverseMap();
 
+            CreateMap<Manufacturer, ManufacturerDto>().ReverseMap();
+
+            CreateMap<Inventory, InventoryDto>().ReverseMap();
+
         }
     }
 }
