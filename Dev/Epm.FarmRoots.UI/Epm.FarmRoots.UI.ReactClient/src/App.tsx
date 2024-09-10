@@ -19,6 +19,7 @@ const App : React.FC = () => {
     {/* <div className='App min-h-screen flex items-center justify-center bg-gray-100'>
       <RegisterPage />
     </div> */}
+    <ShoppingCart/>
       </div>
       </>
   )
