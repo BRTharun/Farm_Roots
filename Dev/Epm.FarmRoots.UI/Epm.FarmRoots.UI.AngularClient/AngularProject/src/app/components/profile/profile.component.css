@@ -1,0 +1,63 @@
+/* Navbar specific styles */
+.navbar {
+  background-color: #4CAF50; /* Custom green background color */
+}
+
+.navbar-brand {
+  font-size: 1.5rem; /* Larger font size for brand/logo */
+  font-weight: bold; /* Bold font weight for better visibility */
+  color: #ffffff; /* White color for contrast against green background */
+}
+
+.navbar .fa-user {
+  color: #fff; /* Set the color to white or any that matches your design */
+  font-size: 1.5rem; /* Increase the size if needed */
+}
+
+/* Profile button customization */
+.profile-button {
+  padding: 8px 15px; /* Appropriate padding for button sizing */
+  width: 180px; /* Custom width */
+  height: 60px; /* Custom height, ensures sufficient clickable area */
+  font-size: 1.1rem; /* Enhanced font size for clarity */
+  background-color: #f0f0f0; /* Light grey background */
+  border: none; /* Remove default border */
+  color: #333; /* Dark color for text */
+  transition: background-color 0.3s, color 0.3s, transform 0.4s ease-in-out; /* Smooth transition for hover states and sliding */
+  position: relative;
+  /* Smooth transition for hover states */
+}
+
+  .profile-button:hover {
+    background-color: #e0e0e0; /* Slightly darker background on hover */
+    color: #000; /* Darken the text color */
+    transform: translateX(-15px); /* Maintain text color consistency on hover */
+  }
+
+/* Dropdown menu styling */
+.custom-dropdown-menu {
+  background-color: #ffffff; /* Bright clean background for dropdown */
+  border-radius: 0.25rem; /* Rounded corners for aesthetics */
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2); /* Subtle shadow for 3D effect */
+  min-width: 150px; /* Minimum width setup */
+  width: auto; /* Auto width to wrap content appropriately */
+}
+
+.dropdown-item {
+  color: #555; /* Dark grey color for dropdown text for accessibility */
+  font-size: 1rem; /* Readability with suitable font size */
+  padding: 8px 20px; /* Comfortable spacing within dropdown items */
+  transition: background-color 0.2s; /* Smooth transition for background hover effect */
+}
+
+  .dropdown-item:hover {
+    background-color: #e8f5e9; /* Very light green background on hover */
+  }
+
+/* Media queries for responsiveness */
+@media (max-width: 992px) {
+  .profile-button {
+    width: 100%; /* Full width in smaller screens */
+    margin-bottom: 15px; /* Spacing for aesthetics */
+  }
+}

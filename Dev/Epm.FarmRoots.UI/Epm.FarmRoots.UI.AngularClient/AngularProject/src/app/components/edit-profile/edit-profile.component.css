@@ -1,0 +1,37 @@
+.container {
+  max-width: 480px;
+  margin-left: 10%
+}
+
+.card {
+  border-radius: 8px; /* Rounds the corners of the card */
+  box-shadow: 0 8px 16px rgba(0,0,0,0.1); /* Subtle shadow for 3D effect */
+  border: none; /* Removes the default border */
+}
+
+.card-header {
+  background-color: #007bff;
+  color: #ffffff;
+}
+
+.card-title {
+  text-align: center;
+}
+
+.form-label {
+  font-weight: bold; /* Makes the form labels bold */
+}
+
+.btn-primary {
+  width: 100%; /* Makes the button take the full width of its container */
+  margin-top: 10px; /* Adds space above the button */
+}
+
+.form-control {
+  border-radius: 5px; /* Rounds the borders of the input */
+  border: 1px solid #ced4da; /* Gives a more defined edge with a mild gray border */
+}
+
+input[type="password"] {
+  background-image: none; /* Ensure no background image is present (in case of browser presets) */
+}

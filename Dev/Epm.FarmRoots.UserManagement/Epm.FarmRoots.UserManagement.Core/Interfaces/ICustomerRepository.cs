@@ -9,5 +9,7 @@ namespace Epm.FarmRoots.UserManagement.Core.Interfaces
         Task<bool> EmailExistsAsync(string email);
         Task<Customer> LoginCustomerAsync(string email, string password);
         Task<Customer?> GetCustomerByEmailAsync(string email);
+        Task UpdateCustomerAsync(Customer customer);
+        Task<Customer> GetCustomerByIdAsync(int id);
     }
 }

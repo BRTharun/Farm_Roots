@@ -57,5 +57,22 @@ namespace Epm.FarmRoots.UserManagement.Infrastructure.Repositories
         }
 
 
+        public async Task<Customer> GetCustomerByIdAsync(int customerId)
+        {
+            var customer = await _context.CustomerDb.FindAsync(customerId);
+            if (customer == null)
+            {
+                throw new KeyNotFoundException("Customer not found.");
+            }
+            return customer;
+        }
+
+
+        public async Task UpdateCustomerAsync(Customer customer)
+        {
+            _context.CustomerDb.Update(customer);
+            await _context.SaveChangesAsync();
+        }
+
     }
 }

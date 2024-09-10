@@ -21,7 +21,13 @@ import { FooterComponent } from './components/footer/footer.component';
 import { HeaderComponent } from './components/header/header.component';
 import { ToastrModule } from 'ngx-toastr';
 import { HttpClientModule } from '@angular/common/http';
-import { provideAnimationsAsync } from '@angular/platform-browser/animations/async'; 
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { CaptchaComponent } from './components/captcha/captcha.component';
+import { ChangePasswordComponent } from './components/change-password/change-password.component';
+import { EditProfileComponent } from './components/edit-profile/edit-profile.component';
+import { LoginComponent } from './components/login/login.component';
+import { ProfileComponent } from './components/profile/profile.component';
+import { RegisterComponent } from './components/register/register.component'; 
 
 
 @NgModule({
@@ -36,8 +42,15 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
     CategorymappingComponent,
     ManufacturermappingComponent,
     FooterComponent,
-    HeaderComponent
+    HeaderComponent,
+    CaptchaComponent,
+    ChangePasswordComponent,
+    EditProfileComponent,
+    LoginComponent,
+    ProfileComponent,
+    RegisterComponent
   ],
+
   imports: [
     BrowserModule,
     HttpClientModule,
@@ -50,6 +63,7 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
     MatToolbarModule,
     MatSidenavModule
   ],
+
   providers: [ProductService, provideAnimationsAsync()],
   bootstrap: [AppComponent]
 })

@@ -8,6 +8,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using Epm.FarmRoots.IdentityService;
+using Epm.FarmRoots.UserManagement.Core.Entities;
+using Microsoft.AspNetCore.Identity;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -27,8 +29,9 @@ builder.Services.AddCors(options =>
 builder.Services.AddScoped<ICustomerService, CustomerRegisterService>();
 builder.Services.AddScoped<IVendorService, VendorRegisterService>();
 builder.Services.AddScoped<ICustomerLoginService, CustomerLoginService>();
+builder.Services.AddScoped<ICustomerUpdateService, CustomerUpdateService>();
 builder.Services.AddScoped<IVendorLoginService, VendorLoginService>();
-
+builder.Services.AddScoped<IPasswordHasher<Customer>, PasswordHasher<Customer>>();
 builder.Services.AddScoped<ICustomerRepository, CustomerRepository>();
 builder.Services.AddScoped<IVendorRepository, VendorRepository>();
 
