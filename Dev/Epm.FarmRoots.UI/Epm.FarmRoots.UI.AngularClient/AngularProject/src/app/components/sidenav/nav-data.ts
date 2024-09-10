@@ -8,5 +8,15 @@ export const navbarData = [
     routeLink: 'price',
     icon: 'fal fa-box-open',
     label: 'Price'
+  },
+  {
+    routeLink: 'inventorymanagement',
+    icon: 'fal fa-box-open',
+    label: 'Inventory'
+  },
+  {
+    routeLink: 'manufacturermapping',
+    icon: 'fal fa-box-open',
+    label: 'ManufacturerMapping'
   }
 ];

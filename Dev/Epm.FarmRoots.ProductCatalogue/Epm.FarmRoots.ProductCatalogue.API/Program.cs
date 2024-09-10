@@ -28,8 +28,6 @@ builder.Services.AddDbContext<InventoryDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 builder.Services.AddDbContext<ProductDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 builder.Services.AddDbContext<PriceDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
-builder.Services.AddDbContext<ApplicationDbContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 builder.Services.AddDbContext<ManufacturerDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 builder.Services.AddDbContext<InventoryCartDbContext>(options =>
@@ -86,7 +84,6 @@ void ApplyMigrations(IHost app)
     MigrateDbContext<InventoryDbContext>(services);
     MigrateDbContext<PriceDbContext>(services);
     MigrateDbContext<ProductDbContext>(services);
-    MigrateDbContext<ApplicationDbContext>(services);
     MigrateDbContext<ManufacturerDbContext>(services);
     MigrateDbContext<InventoryCartDbContext>(services);
 }

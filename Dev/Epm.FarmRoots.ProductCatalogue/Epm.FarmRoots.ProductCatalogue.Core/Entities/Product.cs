@@ -8,7 +8,7 @@
 
         public string ProductType { get; set; } = "Simple Product";
 
-        //public required bool Published { get; set; }
+        public required bool Published { get; set; }
 
         public required string ProductName { get; set; }
         public required string ProductDescription { get; set; }
