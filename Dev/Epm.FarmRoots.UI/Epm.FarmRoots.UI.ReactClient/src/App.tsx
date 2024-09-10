@@ -14,7 +14,7 @@ const App : React.FC = () => {
       <Header />
       <MyRoutes />
       {/* <CategoryRoute /> */}
-      <Footer />
+      <Footer /> 
     {/* <div className='App min-h-screen flex items-center justify-center bg-gray-100'>
       <RegisterPage />
     </div> */}

@@ -1,4 +1,3 @@
-import React from "react";
 import PageWrapper from "../Wrapper & Cards/PageWrapper";
 import TopBanner from "../common/HomePage/UI/TopBanner";
 import MainCategoryContainer from "../common/HomePage/MainCategoryContainer";
