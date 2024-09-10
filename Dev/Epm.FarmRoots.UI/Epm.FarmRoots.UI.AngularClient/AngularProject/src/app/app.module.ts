@@ -17,16 +17,26 @@ import { PriceComponent } from './components/price/price.component';
 import { ImagesComponent } from './components/images/images.component';
 import { CategorymappingComponent } from './components/categorymapping/categorymapping.component';
 import { ManufacturermappingComponent } from './components/manufacturermapping/manufacturermapping.component';
-import { FooterComponent } from './components/footer/footer.component';
-import { HeaderComponent } from './components/header/header.component';
+
 import { ToastrModule } from 'ngx-toastr';
-import { HttpClientModule } from '@angular/common/http';
+
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async'; 
+import { HeaderComponent } from './components/header/header.component';
+import { FooterComponent } from './components/footer/footer.component';
+import { PricePageComponent } from './components/price-page/price-page.component';
+import { SideBarComponent } from './components/side-bar/side-bar.component';
+import { RouterModule, Routes } from '@angular/router';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
   declarations: [
-    AppComponent, 
+    AppComponent,
+    HeaderComponent,
+    FooterComponent,
+    PricePageComponent,
+    SideBarComponent
+     
     BodyComponent,
     SidenavComponent,
     StatisticsComponent,
@@ -34,16 +44,17 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
     PriceComponent,
     ImagesComponent,
     CategorymappingComponent,
-    ManufacturermappingComponent,
-    FooterComponent,
-    HeaderComponent
+    ManufacturermappingComponent
+    
   ],
   imports: [
     BrowserModule,
-    HttpClientModule,
-    ToastrModule.forRoot(),
-    ReactiveFormsModule,
     AppRoutingModule,
+    ReactiveFormsModule,
+    HttpClientModule,
+    
+    ToastrModule.forRoot(),
+    
     BrowserAnimationsModule,
     MatIconModule,
     MatButtonModule,
