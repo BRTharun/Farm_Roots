@@ -12,8 +12,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 builder.Services.AddScoped<ICategoryService, CategoryService>();
 builder.Services.AddScoped<ICategoryRepository, CategoryRepo>();
-builder.Services.AddScoped<IProductSearchRepository, ProductSearchRepository>();
-builder.Services.AddScoped<IProductSearchService, ProductSearchService>();
+builder.Services.AddScoped<IPriceRepository, PriceRepository>();
+builder.Services.AddScoped<IPriceService, PriceService>();
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
 builder.Services.AddScoped<IProductService, ProductService>();
 builder.Services.AddScoped<IManufacturerService,ManufacturerService>();
@@ -26,6 +26,8 @@ builder.Services.AddDbContext<ProductCatalogueDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 builder.Services.AddDbContext<InventoryDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+builder.Services.AddDbContext<ProductDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+builder.Services.AddDbContext<PriceDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 builder.Services.AddDbContext<ManufacturerDbContext>(options =>
@@ -82,6 +84,8 @@ void ApplyMigrations(IHost app)
 
     MigrateDbContext<ProductCatalogueDbContext>(services);
     MigrateDbContext<InventoryDbContext>(services);
+    MigrateDbContext<PriceDbContext>(services);
+    MigrateDbContext<ProductDbContext>(services);
     MigrateDbContext<ApplicationDbContext>(services);
     MigrateDbContext<ManufacturerDbContext>(services);
     MigrateDbContext<InventoryCartDbContext>(services);

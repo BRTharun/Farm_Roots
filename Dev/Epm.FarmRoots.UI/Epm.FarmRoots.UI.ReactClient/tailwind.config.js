@@ -9,6 +9,12 @@ export default {
       screens: {
         "md" : "800px",
       },
+      gridTemplateColumns: {
+        header: "1fr 1fr 4fr 1fr 0.6fr",
+      },
+      gridTemplateRows: {
+        productDetails: " 40% 1fr",
+      },
     },
   },
   plugins: [],

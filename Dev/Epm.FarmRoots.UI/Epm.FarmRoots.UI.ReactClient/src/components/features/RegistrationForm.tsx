@@ -3,7 +3,7 @@ import InputField from "../common/InputField";
 // import { Button } from "@epam/uui";
 import CheckBox from "../common/CheckBox";
 import Button from "../common/Button";
-import { toast, ToastContainer } from "react-toastify";
+import { toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import {
   validateEmail,
@@ -15,9 +15,11 @@ import { UserRole } from "../types/UserRole";
 import { FaInfoCircle } from "react-icons/fa";
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 import { Link } from "react-router-dom"; 
-import axios from "../services/api"
+import api from "../services/api";
 
-const REGISTER_URL = '/register';
+const CUSTOMER_REGISTER_URL = '/Customer/register';
+const VENDOR_REGISTER_URL = '/Vendor/register'
+
 
 interface Errors {
   name: string;
@@ -100,15 +102,15 @@ const RegistrationForm: React.FC = () => {
     e.preventDefault();
     if (validateForm()) {
       try {
-        const response = await axios.post(REGISTER_URL,
-          JSON.stringify({
-            email : formData.email,
-            password : formData.password
-          }), 
+        const MAIN_REGISTER_URL = formData.role === 'Customer' ? CUSTOMER_REGISTER_URL : VENDOR_REGISTER_URL;
+
+        const response = await api.post(
+          MAIN_REGISTER_URL,
+          formData,          
           {
             headers: {'Content-Type' : 'application/json'},
             withCredentials: true
-          }   
+          }
         );
         console.log(response.data);
         console.log(JSON.stringify(response));
@@ -118,14 +120,14 @@ const RegistrationForm: React.FC = () => {
         if (!err?.response) {
           setErrMsg('No Server Response');
       } else if (err.response?.status === 409) {
-          setErrMsg('Username Taken');
+          setErrMsg('Username Already Taken');
       } else {
-          setErrMsg('Registration Failed')
+          setErrMsg('Registration Failed');
       }
       toast.error(errMsg);
+      }
     }
-    }
-  };
+   };
 
   const handleReset = () => {
     setFormData({
@@ -168,17 +170,6 @@ const RegistrationForm: React.FC = () => {
 
   return (
     <>
-    <ToastContainer 
-    position="top-center"
-    autoClose={3000}
-    hideProgressBar={false}
-    newestOnTop={true}
-    closeOnClick
-    rtl={false}
-    pauseOnFocusLoss = {false}
-    draggable
-    pauseOnHover = {false}
-    theme="light"/>
     {
       success ? (
         <section className="flex flex-col items-center justify-center min-h-screen p-6 bg-gray-100">
@@ -199,6 +190,7 @@ const RegistrationForm: React.FC = () => {
       <section>
     <form
       onSubmit={handleSubmit}
+      // method="POST"
       className="max-w-lg mx-auto p-6 bg-white shadow-lg rounded-xl space-y-6"
     >
       <InputField
