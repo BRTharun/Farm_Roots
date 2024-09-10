@@ -1,0 +1,40 @@
+<div class="sidenav-container">
+  <div class="sidenav" [class.expanded]="isExpanded">
+    <ul class="subcategory-list">
+      <li *ngFor="let subcategory of subcategories" (click)="onSubcategoryClick(subcategory)" class="subcategory-item">
+        <img [src]="'data:image/jpeg;base64,' + subcategory.imageUrl" alt="{{ subcategory.subCategoryName }}" class="subcategory-icon">
+        <span class="subcategory-name">{{ subcategory.subCategoryName }}</span>
+      </li>
+    </ul>
+  </div>
+
+  <div class="sidenav-content">
+    <div class="toggle-icon-wrapper">
+      <div class="toggle-icon" (click)="toggleSidenav()">
+        <span>{{ isExpanded ? '>' : '<' }}</span>
+      </div>
+    </div>
+    <div class="main-content">
+      <div class="main-content">
+        <div *ngIf="products.length > 0; else noProductsTemplate">
+          <div class="product-grid">
+            <div *ngFor="let product of products" class="product-card">
+              <!-- Update the image source to use imageData instead of imageUrl -->
+              <img [src]="'data:image/jpeg;base64,' + product.ImageUrl" alt="{{ product.ProductName }}" class="product-image">
+              <div class="product-info">
+                <h3>{{ product.ProductName }}</h3>
+                <p>{{ product.ShortDescription }}</p>
+                <!-- Display the price -->
+                <p>Price: ${{ product.Price }}</p>
+                <button>Add to Cart</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    <ng-template #noProductsTemplate>
+      <div class="no-products">No products found for this category.</div>
+    </ng-template>
+  </div>
+</div>
+

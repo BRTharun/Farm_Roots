@@ -33,13 +33,14 @@ namespace Epm.FarmRoots.ProductCatalogue.Core.Entities
         public int PriceId { get; set; }
         public int InventoryId { get; set; }
         public int CategoryId { get; set; }
+
+        public int SubCategoryId { get; set; }
         public int ImagesId { get; set; }
         public int ManufacturerId { get; set; }
 
 
         //Navigation Properties
         public Price Price { get; set; }
-
         public Inventory Inventory { get; set; }
         public Images Images { get; set; }
         public Category Category { get; set; }
