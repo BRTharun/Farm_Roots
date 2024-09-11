@@ -1,7 +1,7 @@
 pipeline {
     agent { label 'linux' }
     environment {
-        DOTNET_SDK_VERSION = '8.0' // Update to the correct version that supports .NET 8.0 if necessary
+        DOTNET_SDK_VERSION = '8.0.100-rc.1' // Ensure this maps to the go-live release mentioned.
         DOTNET_INSTALL_DIR = "${HOME}/.dotnet"
         PATH = "${DOTNET_INSTALL_DIR}:${env.PATH}"
     }
