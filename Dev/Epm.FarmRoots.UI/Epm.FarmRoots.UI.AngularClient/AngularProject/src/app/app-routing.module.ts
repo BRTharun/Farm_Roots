@@ -3,13 +3,13 @@ import { RouterModule, Routes } from '@angular/router';
 import { StatisticsComponent } from './components/statistics/statistics.component';
 import { ProductInfoComponent } from './components/productinfo/productinfo.component';
 import { RegisterComponent } from './components/register/register.component';
-import { LoginComponent } from './components/login/login.component';
-import { EditProfileComponent } from './components/edit-profile/edit-profile.component';
-import { ChangePasswordComponent } from './components/change-password/change-password.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { PricePageComponent } from './components/price-page/price-page.component';
 import { ManufacturerMappingsComponent } from './components/manufacturer-mappings/manufacture-mapping.component';
 import { InventoryComponent } from './components/Inventory-Management/inventory-component';
+import { EditProfileComponent } from './components/edit-profile/edit-profile.component';
+import { ChangePasswordComponent } from './components/change-password/change-password.component';
+import { LoginComponent } from './components/login/login.component';
 
 const routes: Routes = [
     { path: 'price', component: PricePageComponent },

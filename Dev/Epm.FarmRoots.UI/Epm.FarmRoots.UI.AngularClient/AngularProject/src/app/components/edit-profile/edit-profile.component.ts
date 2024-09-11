@@ -31,7 +31,6 @@ export class EditProfileComponent implements OnInit {
       this.registrationService.updateProfile(6, formData).subscribe({
         next: (response) => {
           this.message = { text: 'Customer profile has been updated successfully.', type: 'success' };
-          setTimeout(() => this.message.text = null, 3000);
           alert('Profile updated successfully');
         },
         error: (error) => {
