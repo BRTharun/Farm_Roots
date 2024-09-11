@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <title></title>
+</head>
+<body>
+  <div class="manufacturer-mappings">
+    <h2>Manufacturer Mapping</h2>
+    <table class="table" *ngIf="manufacturers.length > 0">
+      <thead>
+        <tr>
+          <th>Manufacturer Name</th>
+          <th>Is Featured?</th>
+          <th>Display Order</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let manufacturer of manufacturers; let i = index">
+          <td>{{ manufacturer.manufactureName }}</td>
+          <td>
+            <div class="custom-control custom-switch">
+              <input type="checkbox" class="custom-control-input" id="customSwitch{{i}}"
+                     [(ngModel)]="manufacturer.manufactureFeaturedStatus" (change)="toggleFeatured(manufacturer)">
+              <label class="custom-control-label" for="customSwitch{{i}}">
+                {{ manufacturer.manufactureFeaturedStatus ? 'Yes' : 'No' }}
+              </label>
+            </div>
+          </td>
+          <td>
+            <input type="number" [(ngModel)]="manufacturer.manufactureDisplayOrder">
+          </td>
+          <td>
+            <button class="button-gap" (click)="saveManufacturer(manufacturer)">Save</button>
+            <button (click)="onDeleteSelected(manufacturer.manufactureId)">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</body>
+</html>

@@ -20,7 +20,7 @@ namespace Epm.FarmRoots.ProductCatalogue.API.Controllers
         }
 
         [HttpGet("SearchByName/{name}")]
-        public async Task<ActionResult<IEnumerable<ProductDto>>> SearchProductsByName(string name)
+        public async Task<ActionResult<IEnumerable<CreateProductDto>>> SearchProductsByName(string name)
         {
             var products = await _productSearchService.SearchProductsByNameAsync(name);
             if (products == null || !products.Any())
@@ -29,12 +29,12 @@ namespace Epm.FarmRoots.ProductCatalogue.API.Controllers
             }
 
             // Map domain entities to DTOs
-            var productDtos = _mapper.Map<IEnumerable<ProductDto>>(products);
+            var productDtos = _mapper.Map<IEnumerable<CreateProductDto>>(products);
             return Ok(productDtos);
         }
 
         [HttpGet("VoiceSearch")]
-        public async Task<ActionResult<IEnumerable<ProductDto>>> VoiceSearch([FromQuery] string query)
+        public async Task<ActionResult<IEnumerable<CreateProductDto>>> VoiceSearch([FromQuery] string query)
         {
             var products = await _productSearchService.SearchProductsByVoiceAsync(query);
             if (products == null || !products.Any())
@@ -43,7 +43,7 @@ namespace Epm.FarmRoots.ProductCatalogue.API.Controllers
             }
 
             // Map domain entities to DTOs
-            var productDtos = _mapper.Map<IEnumerable<ProductDto>>(products);
+            var productDtos = _mapper.Map<IEnumerable<CreateProductDto>>(products);
             return Ok(productDtos);
         }
     }

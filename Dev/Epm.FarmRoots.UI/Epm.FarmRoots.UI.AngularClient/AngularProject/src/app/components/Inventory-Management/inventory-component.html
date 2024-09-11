@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="utf-8" />
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <title></title>
+</head>
+<body>
+  <div class="inventory">
+    <h2>Inventory</h2>
+
+    <form [formGroup]="inventoryForm" (ngSubmit)="onSave()">
+      <div class="section">
+        <h3>Stock quantity</h3>
+        <label for="productStockQuantity">Stock Quantity</label>
+        <input id="productStockQuantity" formControlName="productStockQuantity" type="number">
+      </div>
+
+      <div class="section">
+        <h3>Cart quantity</h3>
+        <label for="minCartQuantity">Minimum cart quantity</label>
+        <input id="productMinCartQuantity" formControlName="productMinCartQuantity" type="number">
+
+        <label for="maxCartQuantity">Maximum cart quantity</label>
+        <input id="productMaxCartQuantity" formControlName="productMaxCartQuantity" type="number">
+      </div>
+
+      <div class="actions">
+        <button type="submit" class="btn btn-save">Save</button>
+        <button type="button" class="btn btn-delete" (click)="onDelete()">Delete</button>
+      </div>
+    </form>
+  </div>
+</body>
+</html>
