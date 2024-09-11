@@ -13,21 +13,11 @@ pipeline {
         stage('Setup Environment') {
             steps {
                 script {
-                    // Install necessary .NET dependencies
-                    sh '''
-                        sudo apt-get update
-                        sudo apt-get install -y libicu70 libssl-dev libkrb5-3 zlib1g
-                    '''
-
                     // Install the .NET SDK
                     sh '''
                         wget https://dot.net/v1/dotnet-install.sh
                         chmod +x dotnet-install.sh
                         ./dotnet-install.sh --version ${DOTNET_SDK_VERSION}
-                    '''
-
-                    // Add .NET to PATH for the current session
-                    sh '''
                         export PATH=${DOTNET_INSTALL_DIR}:${PATH}
                         echo "PATH updated: $PATH"
                     '''
@@ -38,7 +28,7 @@ pipeline {
         stage('Build .NET Application') {
             steps {
                 script {
-                    withEnv(["PATH=${DOTNET_INSTALL_DIR}:${env.PATH}"]) {
+                    withEnv(["PATH=${env.DOTNET_INSTALL_DIR}:${env.PATH}"]) {
                         dir('Dev') {
                             sh 'dotnet restore Epm.FRoots.sln'
                             sh 'dotnet build Epm.FRoots.sln'
@@ -74,7 +64,7 @@ pipeline {
         stage('Running .NET Tests') {
             steps {
                 script {
-                    withEnv(["PATH=${DOTNET_INSTALL_DIR}:${env.PATH}"]) {
+                    withEnv(["PATH=${env.DOTNET_INSTALL_DIR}:${env.PATH}"]) {
                         dir('Dev') {
                             sh 'find . -name TestResults -exec rm -rf {} +'
                             sh 'dotnet test Epm.FRoots.sln --collect:"XPlat Code Coverage" -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=opencover'
@@ -89,7 +79,7 @@ pipeline {
                 echo 'Angular Test'
                 script {
                     dir('Dev/Epm.LGoods.UI/epm.lgoods.angularclient') {
-                        sh 'npm test -- --coverage'
+                        sh 'npm test -- --code-coverage'
                     }
                 }
             }
