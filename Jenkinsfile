@@ -2,14 +2,11 @@ pipeline {
     agent { label 'windows' }
     environment {
         DOTNET_SDK_VERSION = '8.0'
+        GIT_CREDENTIAL_ID = 'fi2bjiJEpDTw4eTGh5yi'
     }
     tools {
         nodejs 'NodeJS_20.13.1'
     }
-    environment {
-        GIT_CREDENTIAL_ID = 'fi2bjiJEpDTw4eTGh5yi'
-    }
-    
     stages {
 
         stage('Checkout Code') {
