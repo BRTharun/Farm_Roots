@@ -33,7 +33,7 @@ const MainCategoryContainer: React.FC = () => {
   ];
 
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6 p-6">
+    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6 p-6" >
       {mainCategoryList.map((mainCategory) => (
         <MainCategory
           firstSubCategoryId={mainCategory.subCategories[0].id}
