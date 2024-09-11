@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { ProductService } from './product.service';
-import { Product } from '../models/product.model';
+import { Product } from '../models/productCustView.model';
 import { ResponseDto } from '../models/response.model';
 
 describe('ProductService', () => {

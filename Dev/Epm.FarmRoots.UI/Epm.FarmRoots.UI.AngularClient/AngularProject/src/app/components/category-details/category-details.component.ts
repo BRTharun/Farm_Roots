@@ -3,7 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { CategoryService } from '../../services/category.service';
 import { ProductService } from '../../services/product.service'; // Import ProductService
 import { Subcategory } from '../../models/subcategory.model';
-import { Product } from '../../models/product.model'; // Ensure you have a Product model
+import { Product } from '../../models/productCustView.model'; // Ensure you have a Product model
 import { ResponseDto } from '../../models/response.model'; // Ensure you have a Response model if needed
 
 @Component({

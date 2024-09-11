@@ -7,8 +7,6 @@ import { CategoriesComponent } from './components/categories/categories.componen
 import { CategoryDetailsComponent } from './components/category-details/category-details.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { HeaderComponent } from './components/header/header.component';
-import { SearchBarComponent } from './components/search-bar/search-bar.component';
-import { ProductSearchResultComponent } from './components/product-search-result/product-search-result.component';
 
 import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
@@ -24,8 +22,7 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
     CategoryDetailsComponent,
     FooterComponent,
     HeaderComponent,
-    SearchBarComponent,
-    ProductSearchResultComponent
+
   ],
   imports: [
     BrowserModule,
