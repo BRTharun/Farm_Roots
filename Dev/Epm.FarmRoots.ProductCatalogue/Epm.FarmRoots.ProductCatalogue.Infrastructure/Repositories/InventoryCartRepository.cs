@@ -7,26 +7,26 @@ namespace Epm.FarmRoots.ProductCatalogue.Infrastructure.Repositories
 {
     public class InventoryCartRepository :IInventoryCartRepository
     {
-        private readonly InventoryCartDbContext _context;
+        private readonly ProductDbContext _context;
 
-        public InventoryCartRepository(InventoryCartDbContext context)
+        public InventoryCartRepository(ProductDbContext context)
         {
             _context = context;
         }
 
         public async Task<IEnumerable<Inventory>> GetAllAsync()
         {
-            return await _context.Inventories.ToListAsync();
+            return await _context.Inventory.ToListAsync();
         }
 
         public async Task<Inventory> GetByIdAsync(int id)
         {
-            return await _context.Inventories.FindAsync(id);
+            return await _context.Inventory.FindAsync(id);
         }
 
         public async Task<Inventory> AddAsync(Inventory inventory)
         {
-            _context.Inventories.Add(inventory);
+            _context.Inventory.Add(inventory);
             await _context.SaveChangesAsync();
             return inventory;
         }
@@ -39,10 +39,10 @@ namespace Epm.FarmRoots.ProductCatalogue.Infrastructure.Repositories
 
         public async Task DeleteAsync(int id)
         {
-            var inventory = await _context.Inventories.FindAsync(id);
+            var inventory = await _context.Inventory.FindAsync(id);
             if (inventory != null)
             {
-                _context.Inventories.Remove(inventory);
+                _context.Inventory.Remove(inventory);
                 await _context.SaveChangesAsync();
             }
         }

@@ -4,12 +4,10 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { BrowserModule } from '@angular/platform-browser';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule , FormsModule} from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BodyComponent } from './components/body/body.component';
-import { SidenavComponent } from './components/sidenav/sidenav.component';
 import { StatisticsComponent } from './components/statistics/statistics.component';
 import { ProductService } from './services/product.service';
 import { ProductInfoComponent } from './components/productinfo/productinfo.component';
@@ -35,15 +33,17 @@ import { RegisterComponent } from './components/register/register.component';
 import { SidenavComponent } from './components/sidenav/sidenav.component';
 import { PictureUploadComponent } from './components/picture-upload/picture-upload.component';
 import { HomeComponent } from './components/home/home.component';
-import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; // Required for toastr
-import { ToastrModule } from 'ngx-toastr';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-/*import { SidenavComponent } from './components/sidenav/sidenav.component'; // Import ToastrModule*/
+import { CategoriesComponent } from './components/categories/categories.component';
+import { CategoryDetailsComponent } from './components/category-details/category-details.component';
+
+import { RouterModule } from '@angular/router';
+import { MaterialModule } from './material.module';
+
 
 @NgModule({
   declarations: [
-    AppComponent,
     HeaderComponent,
     FooterComponent,
     PricePageComponent,
@@ -63,20 +63,22 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     EditProfileComponent,
     LoginComponent,
     ProfileComponent,
-    RegisterComponent
-    AppComponent,
+    RegisterComponent,
     SidenavComponent,
     PictureUploadComponent,
     HomeComponent,
-    SidenavComponent
+    SidenavComponent,
+    AppComponent,
+    CategoriesComponent,
+    CategoryDetailsComponent,
+    FooterComponent,
+    HeaderComponent,
   ],
 
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    HttpClientModule,
-    BrowserAnimationsModule,
     MatIconModule,
     MatButtonModule,
     MatToolbarModule,
@@ -84,13 +86,13 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     MatDialogModule,
     FormsModule,
     MatSnackBarModule,
-    BrowserAnimationsModule
-    FormsModule,
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
     NgbModule, // Initialize ToastrModule
+    MaterialModule,
+    RouterModule
   ],
 
   providers: [ProductService, provideAnimationsAsync()],

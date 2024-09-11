@@ -3,7 +3,8 @@
     public class CategoryDto
     {
         public int CategoryId { get; set; }
-        public required string CategoryName {  get; set; }
-        public string? ImageUrl {  get; set; }  
+        public string CategoryName { get; set; }
+        public byte[]? ImageUrl { get; set; }
+        public ICollection<SubCategoryDto> SubCategories { get; set; } = new List<SubCategoryDto>();
     }
 }

@@ -11,7 +11,7 @@ describe('FooterComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [FooterComponent]
     })
-      .compileComponents();
+    .compileComponents();
   });
 
   beforeEach(() => {

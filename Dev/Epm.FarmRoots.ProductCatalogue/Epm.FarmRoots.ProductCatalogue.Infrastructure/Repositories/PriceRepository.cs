@@ -9,38 +9,38 @@ namespace Epm.FarmRoots.ProductCatalogue.Infrastructure.Repositories
 {
     public class PriceRepository : IPriceRepository
     {
-        private readonly PriceDbContext _context;
+        private readonly ProductDbContext _context;
 
-        public PriceRepository(PriceDbContext context)
+        public PriceRepository(ProductDbContext context)
         {
             _context = context;
         }
 
         public async Task<IEnumerable<Price>> GetAllAsync()
         {
-            return await _context.Prices.ToListAsync();
+            return await _context.Price.ToListAsync();
         }
 
         public async Task<Price> GetByIdAsync(int id)
         {
-            return await _context.Prices.FindAsync(id);
+            return await _context.Price.FindAsync(id);
         }
 
         public async Task AddAsync(Price price)
         {
-            _context.Prices.Add(price);
+            _context.Price.Add(price);
             await _context.SaveChangesAsync();
         }
 
         public async Task UpdateAsync(Price price)
         {
-            _context.Prices.Update(price);
+            _context.Price.Update(price);
             await _context.SaveChangesAsync();
         }
 
         public async Task DeleteAsync(Price price)
         {
-            _context.Prices.Remove(price);
+            _context.Price.Remove(price);
             await _context.SaveChangesAsync();
         }
     }

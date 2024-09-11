@@ -3,6 +3,7 @@ using Epm.FarmRoots.ProductCatalogue.Core.Interfaces;
 using Epm.FarmRoots.ProductCatalogue.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 
+
 namespace Epm.FarmRoots.ProductCatalogue.Infrastructure.Repositories
 {
     public class ProductSearchRepository : IProductSearchRepository

@@ -1,0 +1,124 @@
+/* Main sidenav container */
+.sidenav-container {
+  display: flex;
+  height: 100vh;
+  width: 100%;
+}
+
+/* Sidebar */
+.sidenav {
+  width: 250px;
+  background-color: #fafafa;
+  border-right: 1px solid #e0e0e0;
+  transition: width 0.3s ease;
+  overflow-y: auto;
+}
+
+  .sidenav.expanded {
+    width: 60px;
+  }
+
+/* Subcategory List */
+.subcategory-list {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* Subcategory Item */
+.subcategory-item {
+  display: flex;
+  align-items: center;
+  padding: 10px 15px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+  .subcategory-item:hover {
+    background-color: #f0f0f0;
+  }
+
+/* Subcategory Icon */
+.subcategory-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover; /* Ensures image covers the area without being stretched */
+  margin-right: 10px;
+}
+
+/* Subcategory Name */
+.subcategory-name {
+  font-size: 1.1rem;
+  color: #333;
+  white-space: nowrap; /* Prevents text from wrapping */
+  overflow: hidden; /* Hides overflow */
+  text-overflow: ellipsis; /* Adds ellipsis for long text */
+  flex-grow: 1;
+}
+
+/* Main Content Area */
+.sidenav-content {
+  flex-grow: 1;
+  padding: 20px;
+  background-color: #fff;
+  overflow-y: auto;
+}
+
+/* Toggle Icon */
+.toggle-icon-wrapper {
+  padding: 10px;
+  background-color: #eee;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  position: absolute;
+}
+
+.toggle-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  font-size: 20px;
+}
+
+
+/* Adjust positioning when sidenav is expanded */
+.sidenav.expanded .toggle-icon-wrapper {
+  right: -10px; /* Adjust position when sidebar is collapsed */
+}
+
+
+/* Responsive Handling */
+@media (max-width: 768px) {
+  .sidenav {
+    width: 200px;
+  }
+
+    .sidenav.expanded {
+      width: 50px;
+    }
+}
+
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 20px;
+  padding: 20px;
+}
+
+.product-card {
+  border: 1px solid #ccc;
+  padding: 10px;
+  text-align: center;
+}
+
+.product-image {
+  width: 100%;
+  height: auto;
+}
+
+.no-products {
+  text-align: center;
+  padding: 20px;
+}

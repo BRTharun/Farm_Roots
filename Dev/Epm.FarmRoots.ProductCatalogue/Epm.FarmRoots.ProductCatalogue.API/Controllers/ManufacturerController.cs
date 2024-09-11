@@ -8,9 +8,9 @@ namespace Epm.FarmRoots.ProductCatalogue.API.Controllers
     [ApiController]
     public class ManufacturerController : ControllerBase
     {
-        private readonly ManufacturerDbContext _context;
+        private readonly ProductDbContext _context;
 
-        public ManufacturerController(ManufacturerDbContext context)
+        public ManufacturerController(ProductDbContext context)
         {
             _context = context;
         }
@@ -18,7 +18,7 @@ namespace Epm.FarmRoots.ProductCatalogue.API.Controllers
         [HttpGet("{ManufacturerId}")]
         public async Task<IActionResult> GetManufacturerByManufacturerId(int ManufacturerId)
         {
-            var item = await _context.Manufacturers.FindAsync(ManufacturerId);
+            var item = await _context.Manufacturer.FindAsync(ManufacturerId);
             if (item != null)
             {
                 return Ok(item);
@@ -29,14 +29,14 @@ namespace Epm.FarmRoots.ProductCatalogue.API.Controllers
         [HttpGet]
         public async Task<IActionResult> GetManufacturers()
         {
-            var items = await _context.Manufacturers.ToListAsync();
+            var items = await _context.Manufacturer.ToListAsync();
             return Ok(items);
         }
 
         [HttpPut("{id}/toggle-featured")]
         public async Task<IActionResult> ToggleFeaturedStatus(int id)
         {
-            var manufacturer = await _context.Manufacturers.FindAsync(id);
+            var manufacturer = await _context.Manufacturer.FindAsync(id);
             if (manufacturer == null)
             {
                 return NotFound();
@@ -51,7 +51,7 @@ namespace Epm.FarmRoots.ProductCatalogue.API.Controllers
         [HttpPut("{id}/display-order")]
         public async Task<IActionResult> UpdateDisplayOrder(int id, [FromBody] int newDisplayOrder)
         {
-            var manufacturer = await _context.Manufacturers.FindAsync(id);
+            var manufacturer = await _context.Manufacturer.FindAsync(id);
             if (manufacturer == null)
             {
                 return NotFound();
@@ -66,7 +66,7 @@ namespace Epm.FarmRoots.ProductCatalogue.API.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> SoftDeleteManufacturer(int id)
         {
-            var manufacturer = await _context.Manufacturers.FindAsync(id);
+            var manufacturer = await _context.Manufacturer.FindAsync(id);
             if (manufacturer == null)
             {
                 return NotFound();

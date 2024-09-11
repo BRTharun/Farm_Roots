@@ -18,6 +18,14 @@ namespace Epm.FarmRoots.ProductCatalogue.Application.Mappings
 
             CreateMap<Inventory, InventoryDto>().ReverseMap();
 
+            CreateMap<SubCategory, SubCategoryDto>().ReverseMap();
+
+            CreateMap<Product, CustomerProductViewDto>()
+           .ForMember(dest => dest.ProductName, opt => opt.MapFrom(src => src.ProductName))
+           .ForMember(dest => dest.ShortDescription, opt => opt.MapFrom(src => src.ShortDescription))
+           .ForMember(dest => dest.Price, opt => opt.MapFrom(src => src.Price.SalePrice)) // Ensure Price is fetched with the product
+           .ForMember(dest => dest.ImageUrl, opt => opt.MapFrom(src => src.Images.ImageData)); // Ensure Images are fetched with the product
+
         }
     }
 }
