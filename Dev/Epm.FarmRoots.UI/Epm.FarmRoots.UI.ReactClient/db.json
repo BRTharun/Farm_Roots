@@ -1,0 +1,620 @@
+{
+    "categories": [
+      {
+        "name": "Fruits",
+        "image": "https://tinyurl.com/LG-Fruits2",
+        "subcategories": [
+          {
+            "name": "Citrus fruits",
+            "description": "Citrus fruits are a great source of vitamin C.",
+            "image": "https://th.bing.com/th/id/OIP.MiCy3TRVuj6Vth9YIBEcnQHaGi?w=213&h=187&c=7&r=0&o=5&pid=1.7"
+          },
+          {
+            "name": "Berries",
+            "description": "Berries are rich in antioxidants.",
+            "image": "https://freepngimg.com/thumb/berries/29022-4-berries-transparent-image.png"
+          },
+          {
+            "name": "Fresh fruits",
+            "description": "Fresh fruits are essential for a healthy diet.",
+            "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSBrPtB4GtayFzrxj9LIJNEXpwlU2Gj6ybuzw&s"
+          },
+          {
+            "name": "Tropical fruits",
+            "description": "Tropical fruits are grown in warm climates.",
+            "image": "https://nomadparadise.com/wp-content/uploads/2021/03/tropical-fruits-01.jpg"
+          }
+        ]
+      },
+      {
+        "name": "Vegetables",
+        "image": "https://tinyurl.com/LG-vegie",
+        "subcategories": [
+          {
+            "name": "Leafy greens",
+            "description": "Leafy greens are packed with nutrients.",
+            "image": "https://e7.pngegg.com/pngimages/518/986/png-clipart-variety-of-vegetables-leaf-vegetable-fruit-eating-food-fresh-green-vegetables-high-resolution-s-natural-foods-eating.png"
+          },
+          {
+            "name": "Root vegetables",
+            "description": "Root vegetables are hearty and filling.",
+            "image": "https://s20427.pcdn.co/wp-content/uploads/2017/12/ultimate-guide-to-root-vegetables.jpg"
+          },
+          {
+            "name": "Fresh vegetables",
+            "description": "Fresh vegetables are important for a balanced diet.",
+            "image": "https://media.product.which.co.uk/prod/images/original/gm-01cda294-344a-4fd8-871d-f99540df8b2e-fruit-and-vegmain-1.jpeg"
+          }
+        ]
+      },
+      {
+        "name": "Meat, Fish and Eggs",
+        "image": "https://tinyurl.com/LG-meati",
+        "subcategories": [
+          {
+            "name": "Chicken",
+            "description": "Fresh and organic chicken.",
+            "image": "https://www.bowrivermeatmarket.ca/wp-content/uploads/2019/08/Whole-Chicken-Raw-scaled.jpeg"
+          },
+          {
+            "name": "Fish and sea-food",
+            "description": "A variety of fresh fish and seafood.",
+            "image": "https://th.bing.com/th/id/OIP.Eado47SOJAn5-h_gVyyZ1AAAAA?rs=1&pid=ImgDetMain"
+          },
+          {
+            "name": "Mutton",
+            "description": "Premium quality mutton.",
+            "image": "https://th.bing.com/th/id/OIP.9SJ2yYkISA-3vOuO4KoDoAHaFj?rs=1&pid=ImgDetMain"
+          },
+          {
+            "name": "Eggs",
+            "description": "Farm fresh eggs.",
+            "image": "https://cdn.britannica.com/94/151894-050-F72A5317/Brown-eggs.jpg"
+          }
+        ]
+      },
+      {
+        "name": "Dairy Products",
+        "image": "https://tinyurl.com/LG-DairyProducts",
+        "subcategories": [
+          {
+            "name": "Milk",
+            "description": "Fresh milk from local farms.",
+            "image": "https://i.pinimg.com/originals/f8/5f/6f/f85f6f87a9ba9083a9d9feff5f90e884.png"
+          },
+          {
+            "name": "Cheese",
+            "description": "A variety of cheeses.",
+            "image": "https://th.bing.com/th/id/OIP.oTXnmZ-2Zoqz8_0GeGre6wHaFp?w=240&h=183&c=7&r=0&o=5&pid=1.7"
+          },
+          {
+            "name": "Yogurt",
+            "description": "Fresh and healthy yogurt.",
+            "image": "https://sb-assets.sgp1.cdn.digitaloceanspaces.com/product/main_image/26988/837423da-e24f-4d81-b8fd-91af44c56d06.jpg"
+          },
+          {
+            "name": "Butter and Cream",
+            "description": "Rich butter and cream.",
+            "image": "https://th.bing.com/th/id/OIP.PaqyQcJ4lHUd4EJabJnfIQAAAA?rs=1&pid=ImgDetMain"
+          }
+        ]
+      },
+      {
+        "name": "Cool drinks and juices",
+        "image": "https://tinyurl.com/Lg-Cooldrinks",
+        "subcategories": [
+          {
+            "name": "Soft drinks",
+            "description": "Popular soft drinks.",
+            "image": "https://th.bing.com/th/id/OIP.5uAZIBOe4DK4r7KUFnVeIwHaHa?rs=1&pid=ImgDetMain"
+          },
+          {
+            "name": "Fruit juices",
+            "description": "Freshly squeezed fruit juices.",
+            "image": "https://wallpapercave.com/wp/wp4665323.jpg"
+          },
+          {
+            "name": "Herbal drinks",
+            "description": "Healthy herbal drinks.",
+            "image": "https://th.bing.com/th/id/OIP.4cL6eTQnDtuRJFCu_6MwRgHaEK?rs=1&pid=ImgDetMain"
+          }
+        ]
+      },
+      {
+        "name": "Condiments and Spices",
+        "image": "https://tinyurl.com/LG-Spices",
+        "subcategories": [
+          {
+            "name": "Honey",
+            "description": "Natural and pure honey.",
+            "image": "https://th.bing.com/th/id/OIP.u5oEMjuQg-2FNort4wXbGwHaJ4?rs=1&pid=ImgDetMain"
+          },
+          {
+            "name": "Jams and preserves",
+            "description": "A variety of jams and preserves.",
+            "image": "https://th.bing.com/th/id/OIP.g6aW-byRGIfrdMlzpe91YAHaE8?rs=1&pid=ImgDetMain"
+          },
+          {
+            "name": "Hot sauces",
+            "description": "Spicy and flavorful hot sauces.",
+            "image": "https://th.bing.com/th/id/OIP.80AuQeB8VepEUeQpGkqpXQHaI4?rs=1&pid=ImgDetMain"
+          },
+          {
+            "name": "Herbs",
+            "description": "Fresh and dried herbs.",
+            "image": "https://th.bing.com/th/id/OIP.80AuQeB8VepEUeQpGkqpXQHaI4?rs=1&pid=ImgDetMain"
+          },
+          {
+            "name": "Spices",
+            "description": "A wide range of spices.",
+            "image": "https://th.bing.com/th/id/OIP.jnAo454BAu0Uf0KWjmYcBgHaD8?rs=1&pid=ImgDetMain"
+          }
+        ]
+      },
+      {
+        "name": "Baked Goods",
+        "image": "https://tinyurl.com/LG-Baked",
+        "subcategories": [
+          {
+            "name": "Bread",
+            "description": "Freshly baked bread.",
+            "image": "https://www.31daily.com/wp-content/uploads/2021/04/md-100-Whole-Wheat-Bread-11-1-of-1-scaled.jpg"
+          },
+          {
+            "name": "Pastries",
+            "description": "Delicious pastries.",
+            "image": "https://th.bing.com/th/id/OIP.QEWs2xBhY2C1eoCX82GrHwHaFj?rs=1&pid=ImgDetMain"
+          },
+          {
+            "name": "Cakes",
+            "description": "Assorted cakes for all occasions.",
+            "image": "https://th.bing.com/th/id/OIP.yXwgugGdqQMKhqZC0pSOJgHaHz?w=196&h=206&c=7&r=0&o=5&pid=1.7"
+          },
+          {
+            "name": "Cookies",
+            "description": "Crunchy and tasty cookies.",
+            "image": "https://www.kindlyunspoken.com/wp-content/uploads/2020/05/Best-Ever-Easy-Peanut-Butter-Chocolate-Chip-Cookies-6-scaled.jpg"
+          },
+          {
+            "name": "Pies",
+            "description": "Homemade pies with various fillings.",
+            "image": "https://th.bing.com/th/id/OIP.L0nqn_uRl_cyyjir-5fR7wHaE8?rs=1&pid=ImgDetMain"
+          }
+        ]
+      },
+      {
+        "name": "Grains",
+        "image": "https://tinyurl.com/LG-Grains",
+        "subcategories": [
+          {
+            "name": "Wheat products",
+            "description": "High-quality wheat products.",
+            "image": "https://th.bing.com/th/id/OIP.Q6y6ujDy6j1hB8L4O2IozAHaE7?rs=1&pid=ImgDetMain"
+          },
+          {
+            "name": "Rice",
+            "description": "Premium rice varieties.",
+            "image": "https://i5.walmartimages.com/asr/33db9a47-62a6-4439-91b0-b15c84350484_1.9b603a80daccaaed1137056c2003d839.jpeg"
+          },
+          {
+            "name": "Corn",
+            "description": "Fresh corn and cornmeal.",
+            "image": "https://th.bing.com/th/id/OIP.-S__7O-3-qGb41eI6A2r1AHaEo?rs=1&pid=ImgDetMain"
+          },
+          {
+            "name": "Oats",
+            "description": "Healthy oats and oatmeal.",
+            "image": "https://i5.walmartimages.com/asr/35a214fa-16d5-48ea-b0fd-6b548f35c4fe_1.f3ec24fc1698b961043346ecf4b4a494.jpeg"
+          }
+        ]
+      },
+      {
+        "name": "Treats",
+        "image": "https://tinyurl.com/LG-Treats",
+        "subcategories": [
+          {
+            "name": "Chocolates",
+            "description": "Rich and creamy chocolates.",
+            "image": "https://th.bing.com/th/id/OIP.NEwZv17zMGY923dAbYqBOwHaG0?rs=1&pid=ImgDetMain"
+          },
+          {
+            "name": "Sweets",
+            "description": "Traditional and modern sweets.",
+            "image": "https://th.bing.com/th/id/OIP.vWRbXZCP7DUncRmEpjzScAHaE9?rs=1&pid=ImgDetMain"
+          },
+          {
+            "name": "Protein bars",
+            "description": "Nutritious protein bars.",
+            "image": "https://i5.walmartimages.com/asr/135a4c08-71b2-4d66-a09a-a42ad36cf0e9.40d1c9afeb29f52af58dac6c84766c9e.jpeg"
+          },
+          {
+            "name": "Premium chocolates",
+            "description": "Luxury chocolates for special occasions.",
+            "image": "https://th.bing.com/th/id/OIP.w4AzD6ZiJPjr63DwDW9olQHaE8?rs=1&pid=ImgDetMain"
+          }
+        ]
+      },
+      {
+        "name": "Snacks",
+        "image": "https://static.vecteezy.com/system/resources/previews/012/896/481/non_2x/hand-drawn-snack-bag-illustration-png.png",
+        "subcategories": [
+          {
+            "name": "Chips",
+            "description": "Crispy and flavorful chips.",
+            "image": "https://i5.walmartimages.com/asr/c149c004-530a-401d-808a-7fff9765049b_1.3bcf96face69873e37f80607f5e6052e.jpeg"
+          },
+          {
+            "name": "Namkeens",
+            "description": "A variety of traditional namkeens.",
+            "image": "https://m.media-amazon.com/images/I/81sIAVyrl9L._SL1500_.jpg"
+          },
+          {
+            "name": "Dry Fruits and Nuts",
+            "description": "Healthy dry fruits and nuts.",
+            "image": "https://th.bing.com/th/id/OIP.ldchPGfzDfm8BqEFKWLjdgHaEG?rs=1&pid=ImgDetMain"
+          }
+        ]
+      },
+      {
+        "name": "Health and Wellness",
+        "image": "https://tinyurl.com/LG-Healthwellness",
+        "subcategories": [
+          {
+            "name": "Handwash",
+            "description": "Antibacterial handwash.",
+            "image": "https://m.media-amazon.com/images/I/61NReC378wL._SL1000_.jpg"
+          },
+          {
+            "name": "Cold and Cough",
+            "description": "Remedies for cold and cough.",
+            "image": "https://m.media-amazon.com/images/I/61NReC378wL._SL1000_.jpg"
+          },
+          {
+            "name": "Pain relief",
+            "description": "Effective pain relief products.",
+            "image": "https://cdn01.pharmeasy.in/dam/products_otc/Y52625/volini-pain-relief-gel-30g-with-volini-joint-xpert-4g-free-3-1671743401.jpg"
+          }
+        ]
+      },
+      {
+        "name": "Tea and Coffee",
+        "image": "https://tinyurl.com/LG-TeaCoffee",
+        "subcategories": [
+          {
+            "name": "Tea",
+            "description": "A variety of teas.",
+            "image": "https://th.bing.com/th/id/OIP.yGcYtrQV6MeMjnEx5QI4FgHaHa?rs=1&pid=ImgDetMain"
+          },
+          {
+            "name": "Coffee",
+            "description": "Premium coffee beans and blends.",
+            "image": "https://th.bing.com/th/id/OIP.yGcYtrQV6MeMjnEx5QI4FgHaHa?rs=1&pid=ImgDetMain"
+          },
+          {
+            "name": "Milk Drink mixes",
+            "description": "Delicious milk drink mixes.",
+            "image": "https://th.bing.com/th/id/OIP.f18CMn2aQ5PRCymmhi-GPQHaGD?rs=1&pid=ImgDetMain"
+          },
+          {
+            "name": "Green and Herbal Tea",
+            "description": "Healthy green and herbal teas.",
+            "image": "https://th.bing.com/th/id/OIP.f18CMn2aQ5PRCymmhi-GPQHaGD?rs=1&pid=ImgDetMain"
+          }
+        ]
+      },
+      {
+        "name": "Cleaning essentials",
+        "image": "https://tinyurl.com/LG-clean",
+        "subcategories": [
+          {
+            "name": "Cleaning tools",
+            "description": "A wide range of cleaning tools.",
+            "image": "https://i0.wp.com/summitmaids.com/wp-content/uploads/2023/01/10-cleaning-tools-you-need.jpg"
+          },
+          {
+            "name": "Detergents",
+            "description": "Effective detergents for all purposes.",
+            "image": "https://i0.wp.com/summitmaids.com/wp-content/uploads/2023/01/10-cleaning-tools-you-need.jpg"
+          },
+          {
+            "name": "Fresheners",
+            "description": "Air and fabric fresheners.",
+            "image": "https://i0.wp.com/summitmaids.com/wp-content/uploads/2023/01/10-cleaning-tools-you-need.jpg"
+          }
+        ]
+      },
+      {
+        "name": "Body care",
+        "image": "https://tinyurl.com/LG-BodyCare",
+        "subcategories": [
+          {
+            "name": "Skin care",
+            "description": "Premium skin care products.",
+            "image": "https://th.bing.com/th/id/OIP.o-MuJ2WeEwCE-m2XMJfLegAAAA?rs=1&pid=ImgDetMain"
+          },
+          {
+            "name": "Hair care",
+            "description": "Shampoos, conditioners, and more.",
+            "image": "https://th.bing.com/th/id/OIP.o-MuJ2WeEwCE-m2XMJfLegAAAA?rs=1&pid=ImgDetMain"
+          },
+          {
+            "name": "Soaps",
+            "description": "Natural and fragrant soaps.",
+            "image": "https://th.bing.com/th/id/OIP.o-MuJ2WeEwCE-m2XMJfLegAAAA?rs=1&pid=ImgDetMain"
+          }
+        ]
+      }
+    ],
+    "products": [
+      {
+        "id": 1,
+        "category": "Fruits",
+        "subcategory": "Citrus fruits",
+        "name": "Orange",
+        "price": 80,
+        "description": "Fresh and juicy oranges.",
+        "image": "https://www.rd.com/wp-content/uploads/2017/12/01_oranges_Finally%E2%80%94Here%E2%80%99s-Which-%E2%80%9COrange%E2%80%9D-Came-First-the-Color-or-the-Fruit_691064353_Lucky-Business.jpg?fit=640%2C427"
+      },
+      {
+        "id": 2,
+        "category": "Fruits",
+        "subcategory": "Berries",
+        "name": "Strawberry",
+        "price": 100,
+        "description": "Sweet and delicious strawberries.",
+        "image": "https://m.media-amazon.com/images/I/61dkuoS1sRL.jpg"
+      },
+      {
+        "id": 3,
+        "category": "Vegetables",
+        "subcategory": "Leafy greens",
+        "name": "Spinach",
+        "price": 20,
+        "description": "Fresh spinach, perfect for salads.",
+        "image": "https://images.moneycontrol.com/static-mcnews/2023/07/Health-benefits-of-spinach.jpg?impolicy=website&width=1600&height=900"
+      },
+      {
+        "id": 4,
+        "category": "Vegetables",
+        "subcategory": "Root vegetables",
+        "name": "Carrot",
+        "price": 30,
+        "description": "Crunchy and sweet carrots.",
+        "image": "https://cdn.britannica.com/70/158370-050-CC2F25D4/Carrots-Apiales-members.jpg"
+      },
+      {
+        "id": 5,
+        "category": "Meat, Fish and Eggs",
+        "subcategory": "Chicken",
+        "name": "Chicken Breast",
+        "price": 300,
+        "description": "Lean chicken breast, perfect for grilling.",
+        "image": "https://www.healthyfood.com/wp-content/uploads/2017/03/Ask-the-experts-Raw-chicken.jpg"
+      },
+      {
+        "id": 6,
+        "category": "Dairy Products",
+        "subcategory": "Milk",
+        "name": "Whole Milk",
+        "price": 30,
+        "description": "Fresh whole milk from local farms.",
+        "image": "https://5.imimg.com/data5/SELLER/Default/2023/2/AA/HB/ZU/68707536/product-jpeg-1000x1000-500x500.webp"
+      },
+      {
+        "id": 7,
+        "category": "Cool drinks and juices",
+        "subcategory": "Fruit juices",
+        "name": "Orange Juice",
+        "price": 50,
+        "description": "Freshly squeezed orange juice.",
+        "image": "https://5.imimg.com/data5/SELLER/Default/2023/2/AA/HB/ZU/68707536/product-jpeg-1000x1000-500x500.webp"
+      },
+      {
+        "id": 8,
+        "category": "Baked Goods",
+        "subcategory": "Bread",
+        "name": "Sourdough Bread",
+        "price": 40,
+        "description": "Artisan sourdough bread, baked fresh daily.",
+        "image": "https://assets.bonappetit.com/photos/5c62e4a3e81bbf522a9579ce/16:9/w_4000,h_2250,c_limit/milk-bread.jpg"
+      },
+      {
+        "id": 9,
+        "category": "Fruits",
+        "subcategory": "Tropical fruits",
+        "name": "Mango",
+        "price": 90,
+        "description": "Sweet and juicy mangoes.",
+        "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRN0Wfpzw8BkVS0tkIF8mVR-MatKmkaFlREGA&s"
+      },
+      {
+        "id": 10,
+        "category": "Vegetables",
+        "subcategory": "Fresh vegetables",
+        "name": "Bell Pepper",
+        "price": 25,
+        "description": "Crunchy and colorful bell peppers.",
+        "image": "https://fruitboxco.com/cdn/shop/products/Green_bell_pepper_800x.jpg?v=1579689894"
+      },
+      {
+        "id": 11,
+        "category": "Meat, Fish and Eggs",
+        "subcategory": "Fish and sea-food",
+        "name": "Salmon Fillet",
+        "price": 400,
+        "description": "Fresh and tender salmon fillet.",
+        "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTK-Ep8EnwvYGGyd2_tLxP4OuvupOxewg5Acw&s"
+      },
+      {
+        "id": 12,
+        "category": "Dairy Products",
+        "subcategory": "Cheese",
+        "name": "Cheddar Cheese",
+        "price": 150,
+        "description": "Sharp and tangy cheddar cheese.",
+        "image": "https://rukminim2.flixcart.com/image/850/1000/kpr8k280/jam-spread/1/d/o/250-processed-cheddar-cheese-block-imported-pouch-cheese-spread-original-imag3wzfsnpjcdef.jpeg?q=20&crop=false"
+      },
+      {
+        "id": 13,
+        "category": "Cool drinks and juices",
+        "subcategory": "Herbal drinks",
+        "name": "Green Tea",
+        "price": 40,
+        "description": "Refreshing and healthy green tea.",
+        "image": "https://m.media-amazon.com/images/I/71nDqDPyakL._AC_UF1000,1000_QL80_.jpg"
+      },
+      {
+        "id": 14,
+        "category": "Baked Goods",
+        "subcategory": "Cookies",
+        "name": "Chocolate Chip Cookies",
+        "price": 60,
+        "description": "Delicious chocolate chip cookies.",
+        "image": "https://m.media-amazon.com/images/I/71nDqDPyakL._AC_UF1000,1000_QL80_.jpg"
+      },
+      {
+        "id": 15,
+        "category": "Fruits",
+        "subcategory": "Fresh fruits",
+        "name": "Apple",
+        "price": 70,
+        "description": "Crisp and sweet apples.",
+        "image": "https://www.collinsdictionary.com/images/full/apple_158989157.jpg"
+      },
+      {
+        "id": 16,
+        "category": "Vegetables",
+        "subcategory": "Leafy greens",
+        "name": "Kale",
+        "price": 35,
+        "description": "Nutrient-rich kale leaves.",
+        "image": "https://www.asknestle.in/sites/default/files/2022-10/Green-Leafy-Vegetables-640x380.jpg"
+      },
+      {
+        "id": 17,
+        "category": "Meat, Fish and Eggs",
+        "subcategory": "Eggs",
+        "name": "Organic Eggs",
+        "price": 60,
+        "description": "Fresh organic eggs.",
+        "image": "https://cdn.britannica.com/94/151894-050-F72A5317/Brown-eggs.jpg"
+      },
+      {
+        "id": 18,
+        "category": "Dairy Products",
+        "subcategory": "Yogurt",
+        "name": "Greek Yogurt",
+        "price": 45,
+        "description": "Creamy and thick Greek yogurt.",
+        "image": "https://cdn.britannica.com/94/151894-050-F72A5317/Brown-eggs.jpg"
+      },
+      {
+        "id": 19,
+        "category": "Cool drinks and juices",
+        "subcategory": "Soft drinks",
+        "name": "Cola",
+        "price": 35,
+        "description": "Refreshing cola drink.",
+        "image": "https://cdn.britannica.com/94/151894-050-F72A5317/Brown-eggs.jpg"
+      },
+      {
+        "id": 20,
+        "category": "Baked Goods",
+        "subcategory": "Pies",
+        "name": "Apple Pie",
+        "price": 120,
+        "description": "Homemade apple pie.",
+        "image": "https://cdn.britannica.com/94/151894-050-F72A5317/Brown-eggs.jpg"
+      },
+      {
+        "id": 21,
+        "category": "Fruits",
+        "subcategory": "Tropical fruits",
+        "name": "Pineapple",
+        "price": 110,
+        "description": "Sweet and tangy pineapple.",
+        "image": "https://www.healthxchange.sg/sites/hexassets/Assets/food-nutrition/pineapple-health-benefits-and-ways-to-enjoy.jpg"
+      },
+      {
+        "id": 22,
+        "category": "Vegetables",
+        "subcategory": "Root vegetables",
+        "name": "Sweet Potato",
+        "price": 40,
+        "description": "Sweet and nutritious sweet potatoes.",
+        "image": "https://freshunlimited.in/cdn/shop/products/Sweet_Potato_640x.png?v=1609403004"
+      },
+      {
+        "id": 23,
+        "category": "Meat, Fish and Eggs",
+        "subcategory": "Chicken",
+        "name": "Chicken Thighs",
+        "price": 280,
+        "description": "Tender chicken thighs.",
+        "image": "https://www.fleshkart.com/uploads/product/1588068709-chicken-ull-leg.jpg"
+      },
+      {
+        "id": 24,
+        "category": "Dairy Products",
+        "subcategory": "Butter and Cream",
+        "name": "Butter",
+        "price": 70,
+        "description": "Rich and creamy butter.",
+        "image": "https://www.fleshkart.com/uploads/product/1588068709-chicken-ull-leg.jpg"
+      },
+      {
+        "id": 25,
+        "category": "Cool drinks and juices",
+        "subcategory": "Fruit juices",
+        "name": "Apple Juice",
+        "price": 55,
+        "description": "Fresh apple juice.",
+        "image": "https://m.media-amazon.com/images/I/919M7wD1c0L.jpg"
+      },
+      {
+        "id": 26,
+        "category": "Baked Goods",
+        "subcategory": "Cakes",
+        "name": "Chocolate Cake",
+        "price": 150,
+        "description": "Decadent chocolate cake.",
+        "image": "https://bluebowlrecipes.com/wp-content/uploads/2023/08/chocolate-truffle-cake-8844.jpg"
+      },
+      {
+        "id": 27,
+        "category": "Fruits",
+        "subcategory": "Berries",
+        "name": "Blueberries",
+        "price": 90,
+        "description": "Sweet and juicy blueberries.",
+        "image": "https://images-prod.healthline.com/hlcmsresource/images/AN_images/blueberries-1296x728-feature.jpg"
+      },
+      {
+        "id": 28,
+        "category": "Vegetables",
+        "subcategory": "Fresh vegetables",
+        "name": "Zucchini",
+        "price": 25,
+        "description": "Fresh and tender zucchini.",
+        "image": "https://images.everydayhealth.com/images/diet-nutrition/all-about-zucchini-nutrition-benefits-side-effects-1440x810.jpg"
+      },
+      {
+        "id": 29,
+        "category": "Meat, Fish and Eggs",
+        "subcategory": "Fish and sea-food",
+        "name": "Shrimp",
+        "price": 350,
+        "description": "Fresh and succulent shrimp.",
+        "image": "https://png.pngtree.com/png-clipart/20231116/original/pngtree-close-up-of-fresh-shrimp-shrimp-photo-png-image_13586743.png"
+      },
+      {
+        "id": 30,
+        "category": "Dairy Products",
+        "subcategory": "Cheese",
+        "name": "Mozzarella Cheese",
+        "price": 140,
+        "description": "Fresh mozzarella cheese.",
+        "image": "https://www.jiomart.com/images/product/original/491376662/amul-mozzarella-cheddar-diced-cheese-blend-200-g-pack-product-images-o491376662-p491376662-0-202406041526.jpg?im=Resize=(1000,1000)"
+      }
+    ]
+  }
