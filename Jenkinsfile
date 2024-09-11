@@ -1,7 +1,7 @@
 pipeline {
     agent { label 'linux' }
     environment {
-        DOTNET_SDK_VERSION = '8.0'
+        DOTNET_SDK_VERSION = '7.0.100' // Update this to a valid version, if 8.0 is not released
     }
     tools {
         nodejs 'NodeJS_20.13.1'
@@ -15,8 +15,8 @@ pipeline {
                     sh 'wget https://dot.net/v1/dotnet-install.sh'
                     sh 'chmod +x dotnet-install.sh'
                     sh './dotnet-install.sh --version ${DOTNET_SDK_VERSION}'
-                    sh 'export PATH=$PATH:$HOME/.dotnet'
-
+                    sh 'export PATH=$HOME/.dotnet:$PATH'
+                    
                     dir('Dev') {
                         sh 'dotnet restore Epm.FRoots.sln'
                         sh 'dotnet build Epm.FRoots.sln'
@@ -28,12 +28,12 @@ pipeline {
         stage('Build Angular Application') {
             steps {
                 echo 'Angular build'
-                // script {
-                //     dir('Dev/Epm.LGoods.UI/epm.lgoods.angularclient') {
-                //         sh 'npm install'
-                //         sh 'npm run build'
-                //     }
-                // }
+                script {
+                    dir('Dev/Epm.LGoods.UI/epm.lgoods.angularclient') {
+                        sh 'npm install'
+                        sh 'npm run build'
+                    }
+                }
             }
         }
 
@@ -62,22 +62,22 @@ pipeline {
         stage('Running Angular Tests') {
             steps {
                 echo 'Angular Test'
-                // script {
-                //     dir('Dev/Epm.LGoods.UI/epm.lgoods.angularclient') {
-                //         sh 'npm test -- --code-coverage'
-                //     }
-                // }
+                script {
+                    dir('Dev/Epm.LGoods.UI/epm.lgoods.angularclient') {
+                        sh 'npm test -- --code-coverage'
+                    }
+                }
             }
         }
 
         stage('Test React Application') {
             steps {
                 echo 'React Test'
-                // script {
-                //     dir('Dev/Epm.LGoods/UI/epm.lgoods.reactclient') {
-                //         sh 'npm test'
-                //     }
-                // }
+                script {
+                    dir('Dev/Epm.LGoods.UI/epm.lgoods.reactclient') {
+                        sh 'npm test'
+                    }
+                }
             }
         }
 
