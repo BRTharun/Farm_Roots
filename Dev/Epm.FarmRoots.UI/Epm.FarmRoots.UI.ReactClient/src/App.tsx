@@ -1,5 +1,5 @@
 import './App.css'
-// import RegisterPage from './components/pages/RegisterPage';
+import RegisterPage from './components/pages/RegisterPage';
 import Header from './components/common/Header/Header';
 import '@epam/uui-components/styles.css';
 import '@epam/uui/styles.css';
@@ -11,13 +11,13 @@ const App : React.FC = () => {
   return (
     <>
     <div className='pb-40 md:pb-0'>
-      <Header />
-      <MyRoutes />
+      {/* <Header />
+      <MyRoutes /> */}
       {/* <CategoryRoute /> */}
-      <Footer /> 
-    {/* <div className='App min-h-screen flex items-center justify-center bg-gray-100'>
+      {/* <Footer />  */}
+    <div className='App min-h-screen flex items-center justify-center bg-gray-100'>
       <RegisterPage />
-    </div> */}
+    </div>
       </div>
       </>
   )
