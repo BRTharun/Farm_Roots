@@ -6,9 +6,7 @@ namespace Epm.FarmRoots.ProductCatalogue.Infrastructure.Data
 {
     public class ProductDbContext : DbContext
     {
-        public ProductDbContext(DbContextOptions<ProductDbContext> options) : base(options)
-        {
-        }
+        public ProductDbContext(DbContextOptions<ProductDbContext> options) : base(options) { }
         public DbSet<Product> Products { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -21,16 +19,13 @@ namespace Epm.FarmRoots.ProductCatalogue.Infrastructure.Data
 
                 entity.Property(p => p.ProductName)
                     .IsRequired()
-                    .HasMaxLength(20);
+                    .HasMaxLength(50);
 
                 entity.Property(p => p.ShortDescription)
                     .IsRequired()
-                    .HasMaxLength(100);
+                    .HasMaxLength(500);
 
-                entity.Property(p => p.FullDescription).HasMaxLength(500); ;
-
-                entity.Property(p => p.Url)
-                    .HasMaxLength(255);
+                entity.Property(p => p.FullDescription);
 
                 entity.Property(p => p.ProductType)
                     .HasDefaultValue("Simple Product");
@@ -50,42 +45,15 @@ namespace Epm.FarmRoots.ProductCatalogue.Infrastructure.Data
                 entity.Property(p => p.Published)
                     .IsRequired();
 
-                // Configure relationships
-                entity.HasOne(p => p.Price)
-                      .WithOne()
-                      .HasForeignKey<Product>(p => p.PriceId);
+                entity.Property(p => p.ProductTags).HasConversion(
+                    v => string.Join(',', v),
+                    v => v.Split(',', StringSplitOptions.RemoveEmptyEntries).ToList());
 
-                entity.HasOne(p => p.Inventory)
-                      .WithOne()
-                      .HasForeignKey<Product>(p => p.InventoryId);
-
-                entity.HasOne(p => p.Images)
-                      .WithOne()
-                      .HasForeignKey<Product>(p => p.ImagesId);
-
-                entity.HasOne(p => p.Category)
-                      .WithOne()
-                      .HasForeignKey<Product>(p => p.CategoryId);
-
-                entity.HasOne(p => p.Manufacturer)
-                      .WithOne()
-                      .HasForeignKey<Product>(p => p.ManufacturerId);
+                modelBuilder.Entity<Product>()
+                    .HasOne(p => p.Images)
+                    .WithOne()
+                    .HasForeignKey<Images>(c => c.ProductId);
             });
-
-            //modelBuilder.Entity<Price>()
-            //    .HasKey(p => p.PriceId);
-
-            //modelBuilder.Entity<Inventory>()
-            //    .HasKey(i => i.InventoryId);
-
-            //modelBuilder.Entity<Images>()
-            //    .HasKey(i => i.ImagesId);
-
-            //modelBuilder.Entity<Category>()
-            //    .HasKey(c => c.CategoryId);
-
-            //modelBuilder.Entity<Manufacturer>()
-            //    .HasKey(m => m.ManufacturerId);
         }
     }
 }
