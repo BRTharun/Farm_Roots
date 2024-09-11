@@ -12,7 +12,7 @@ const App : React.FC = () => {
     <>
     <div className='pb-40 md:pb-0'>
       {/* <Header />
-      <MyRoutes /> */}
+      <MyRoutes />  */}
       {/* <CategoryRoute /> */}
       {/* <Footer />  */}
     <div className='App min-h-screen flex items-center justify-center bg-gray-100'>
