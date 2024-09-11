@@ -47,7 +47,7 @@ namespace Epm.FarmRoots.ProductCatalogue.API.Controllers
                 if (products == null || !products.Any())
                 {
                     _responseDto.IsSuccess = false;
-                    _responseDto.Message = "No products found for this category.";
+                    _responseDto.Message = "No products found for this subcategory.";
                 }
             }
             catch (Exception ex)

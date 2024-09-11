@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Epm.FarmRoots.ProductCatalogue.Core.Entities;
+﻿using Epm.FarmRoots.ProductCatalogue.Core.Entities;
 namespace Epm.FarmRoots.ProductCatalogue.Core.Interfaces
 {
     public interface ICategoryRepository

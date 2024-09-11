@@ -34,12 +34,6 @@ export class CategoryDetailsComponent implements OnInit {
         console.error('Error fetching subcategories', error);
       });
 
-      //this.productService.getProductsByCategory(categoryId).subscribe((products: Product[]) => {
-      //  this.products = products;
-      //}, (error: any) => {
-      //  console.error('Error fetching products', error);
-      //});
-
       this.productService.getCustomerProductsByCategoryId(categoryId).subscribe({
         next: (response) => {
           if (response.isSuccess && response.result) {
@@ -67,6 +61,19 @@ export class CategoryDetailsComponent implements OnInit {
 
   onSubcategoryClick(subcategory: Subcategory): void {
     console.log('Subcategory clicked:', subcategory);
-    this.router.navigate(['/subcategory', subcategory.subCategoryId]);
+    this.productService.getCustomerProductsBySubCategoryId(subcategory.subCategoryId).subscribe({
+      next: (response) => {
+        if (response.isSuccess && response.result && response.result.length > 0) {
+          this.products = response.result;
+        } else {
+          this.products = []; // Clear products if no success or empty array
+          this.errorMessage = 'No products found for this subcategory'; // Custom message for empty products
+        }
+      },
+      error: error => {
+        console.error('Error fetching customer products by subcategory', error);
+        this.errorMessage = 'Error fetching products'; // Use errorMessage to store error messages
+      }
+    });
   }
 }

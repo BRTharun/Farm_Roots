@@ -11,11 +11,11 @@ export class ProductService {
 
   constructor(private http: HttpClient) { }
 
-  ////getProductsByCategory(categoryId: number): Observable<Product[]> {
-  //  return this.http.get<Product[]>(`https://localhost:7189/api/Category/${categoryId}/products`);
-  //}
-
   getCustomerProductsByCategoryId(categoryId: number): Observable<any> {
     return this.http.get<ResponseDto<Product[]>>(`https://localhost:7189/api/Category/${categoryId}/customer-products`);
+  }
+
+  getCustomerProductsBySubCategoryId(subCategoryId: number): Observable<any> {
+    return this.http.get<ResponseDto<Product[]>>(`https://localhost:7189/api/SubCategory/${subCategoryId}/customer-sub-products`);
   }
 }

@@ -24,12 +24,9 @@ namespace Epm.FarmRoots.ProductCatalogue.Core.Entities
 
         public required decimal ProductCost { get; set; }
 
-        // This property corresponds to whether the "Buy" button should be disabled
         public required bool IsBuyButtonDisabled { get; set; }
 
-        // Foreign key for Product
         public required int ProductId { get; set; }
 
-        // Navigation property for the Product
     }
 }

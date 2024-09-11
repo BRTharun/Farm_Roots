@@ -1,17 +1,18 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.EntityFrameworkCore;
 using Moq;
-using Epm.FarmRoots.ProductCatalogue.Infrastructure.Repositories;
-using Epm.FarmRoots.ProductCatalogue.Infrastructure.Data;
+using Epm.FarmRoots.ProductCatalogue.Application.Dtos;
+using Epm.FarmRoots.ProductCatalogue.Application.Interfaces;
 using Epm.FarmRoots.ProductCatalogue.Core.Entities;
-using Microsoft.EntityFrameworkCore;
-using System.Threading.Tasks;
-using System;
+using Epm.FarmRoots.ProductCatalogue.Infrastructure.Data;
+using Epm.FarmRoots.ProductCatalogue.Infrastructure.Repositories;
 
 namespace Epm.FarmRoots.ProductCatalogue.Tests
 {
     [TestClass]
-    public class SubCategoryRepoTests
+    public class CategoryTests
     {
+        private Mock<ISubCategoryService> _mockSubCategoryService;
+        private Mock<ICategoryService> _mockCategoryService;
         private SubCategoryRepo _subCategoryRepo;
         private CategoryRepo _categoryRepo;
         private Mock<IServiceProvider> _mockServiceProvider;
@@ -28,6 +29,8 @@ namespace Epm.FarmRoots.ProductCatalogue.Tests
             _mockServiceProvider = new Mock<IServiceProvider>();
             _subCategoryRepo = new SubCategoryRepo(_dbContext, _mockServiceProvider.Object);
             _categoryRepo = new CategoryRepo(_dbContext, _mockServiceProvider.Object);
+            _mockSubCategoryService = new Mock<ISubCategoryService>();
+            _mockCategoryService = new Mock<ICategoryService>();
         }
 
         [TestMethod]
@@ -79,28 +82,6 @@ namespace Epm.FarmRoots.ProductCatalogue.Tests
             Assert.IsTrue(result.Any(c => c.CategoryName == "Clothing"));
         }
 
-        //[TestMethod]
-        //public async Task GetProductsByCategoryIdAsync_ShouldReturnProducts()
-        //{
-        //    // Assuming ProductDbContext and Products setup
-        //    var mockProductDbContext = new Mock<ProductDbContext>();
-        //    _mockServiceProvider.Setup(sp => sp.GetService(typeof(ProductDbContext)))
-        //                        .Returns(mockProductDbContext.Object);
-
-        //    var products = new List<Product>
-        //        {
-        //            new Product { ProductId = 1, PrdouctName = "Laptop", CategoryId = 1 },
-        //            new Product { ProductId = 2, ProductName = "Camera", CategoryId = 1 }
-        //        };
-
-        //    mockProductDbContext.Setup(db => db.Products).ReturnsDbSet(products);
-
-        //    var result = await _categoryRepo.GetProductsByCategoryIdAsync(1);
-        //    Assert.AreEqual(2, result.Count());
-        //    Assert.IsTrue(result.Any(p => p.ProductName == "Laptop"));
-        //    Assert.IsTrue(result.Any(p => p.ProductName == "Camera"));
-        //}
-
         [TestMethod]
         public async Task GetSubcategoriesByCategoryIdAsync_ShouldReturnSubCategories()
         {
@@ -140,28 +121,80 @@ namespace Epm.FarmRoots.ProductCatalogue.Tests
             var updatedSubCategory = await _dbContext.SubCategories.FindAsync(1);
             Assert.AreEqual("Updated Name", updatedSubCategory.SubCategoryName);
         }
+        [TestMethod]
+        public async Task GetCustomerProductsBySubCategoryId_WithValidId_ShouldReturnCustomerProducts()
+        {
+            // Arrange
+            var subCategoryId = 1;
+            var customerProducts = new List<CustomerProductViewDto>
+            {
+                new CustomerProductViewDto { ProductName = "Valencia Oranges", Price = 4.50m, ImageUrl = "http://example.com/oranges.jpg", ShortDescription = "Juicy Valencia oranges perfect for juicing" }
+            };
+            _mockSubCategoryService.Setup(service => service.GetCustomerProductsBySubCategoryIdAsync(subCategoryId))
+                                   .ReturnsAsync(customerProducts);
 
-        //[TestMethod]
-        //public async Task GetProductsBySubCategoryIdAsync_ShouldReturnProducts()
-        //{
-        //    // Assuming ProductDbContext and Products setup
-        //    var mockProductDbContext = new Mock<ProductDbContext>();
-        //    _mockServiceProvider.Setup(sp => sp.GetService(typeof(ProductDbContext)))
-        //                        .Returns(mockProductDbContext.Object);
+            // Act
+            var result = await _mockSubCategoryService.Object.GetCustomerProductsBySubCategoryIdAsync(subCategoryId);
 
-        //    var products = new List<Product>
-        //    {
-        //        new Product { ProductId = 1, ProductName = "iPhone", SubCategoryId = 1 },
-        //        new Product { ProductId = 2, ProductName = "Galaxy", SubCategoryId = 1 }
-        //    };
+            // Assert
+            Assert.IsNotNull(result);
+            Assert.AreEqual(1, result.Count());
+            Assert.AreEqual("Valencia Oranges", result.First().ProductName);
+        }
 
-        //    mockProductDbContext.Setup(db => db.Products).ReturnsDbSet(products);
+        [TestMethod]
+        public async Task GetCustomerProductsByCategoryId_WithValidId_ShouldReturnCustomerProducts()
+        {
+            // Arrange
+            var categoryId = 1;
+            var customerProducts = new List<CustomerProductViewDto>
+            {
+                new CustomerProductViewDto { ProductName = "Organic Apples", Price = 3.99m, ImageUrl = "http://example.com/apples.jpg", ShortDescription = "Fresh organic apples from local farms" }
+            };
+            _mockCategoryService.Setup(service => service.GetCustomerProductsByCategoryIdAsync(categoryId))
+                                .ReturnsAsync(customerProducts);
 
-        //    var result = await _subCategoryRepo.GetProductsBySubCategoryIdAsync(1);
-        //    Assert.AreEqual(2, result.Count());
-        //    Assert.IsTrue(result.Any(p => p.ProductName == "iPhone"));
-        //    Assert.IsTrue(result.Any(p => p.ProductName == "Galaxy"));
-        //}
+            // Act
+            var result = await _mockCategoryService.Object.GetCustomerProductsByCategoryIdAsync(categoryId);
+
+            // Assert
+            Assert.IsNotNull(result);
+            Assert.AreEqual(1, result.Count());
+            Assert.AreEqual("Organic Apples", result.First().ProductName);
+        }
+
+
+        [TestMethod]
+        public async Task GetCustomerProductsBySubCategoryId_WithNoProducts_ShouldReturnEmptyList()
+        {
+            // Arrange
+            var subCategoryId = 2; 
+            _mockSubCategoryService.Setup(service => service.GetCustomerProductsBySubCategoryIdAsync(subCategoryId))
+                                   .ReturnsAsync(new List<CustomerProductViewDto>());
+
+            // Act
+            var result = await _mockSubCategoryService.Object.GetCustomerProductsBySubCategoryIdAsync(subCategoryId);
+
+            // Assert
+            Assert.IsNotNull(result);
+            Assert.AreEqual(0, result.Count()); // Use Count() method here
+        }
+
+        [TestMethod]
+        public async Task GetCustomerProductsByCategoryId_WithNoProducts_ShouldReturnEmptyList()
+        {
+            // Arrange
+            var categoryId = 2;
+            _mockCategoryService.Setup(service => service.GetCustomerProductsByCategoryIdAsync(categoryId))
+                                .ReturnsAsync(new List<CustomerProductViewDto>());
+
+            // Act
+            var result = await _mockCategoryService.Object.GetCustomerProductsByCategoryIdAsync(categoryId);
+
+            // Assert
+            Assert.IsNotNull(result);
+            Assert.AreEqual(0, result.Count());
+        }
 
         [TestCleanup]
         public void Cleanup()

@@ -21,7 +21,7 @@ export class CategoriesComponent implements OnInit {
     });
   }
 
-  goToCategory(categoryId: number) {
+  goToCategory(categoryId?: number) {
     console.log("Category ID:", categoryId);  // This will show you what ID is being passed
     if (categoryId !== undefined) {
       this.router.navigate(['/category', categoryId]);

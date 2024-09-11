@@ -11,7 +11,7 @@ namespace Epm.FarmRoots.ProductCatalogue.Infrastructure.Repositories
     {
         private readonly ProductCatalogueDbContext _dbContext;
 
-        private readonly IServiceProvider _serviceProvider; // For creating ProductDbContext
+        private readonly IServiceProvider _serviceProvider;
 
         public CategoryRepo(ProductCatalogueDbContext dbContext, IServiceProvider serviceProvider)
         {
@@ -58,24 +58,13 @@ namespace Epm.FarmRoots.ProductCatalogue.Infrastructure.Repositories
 
         public async Task<IEnumerable<Product>> GetProductsByCategoryIdAsync(int categoryId)
         {
-            // Assuming ProductDbContext can be resolved through the service provider
-            //using (var scope = _serviceProvider.CreateScope())
-            //{
-            //    var productContext = scope.ServiceProvider.GetRequiredService<ProductDbContext>();
-            //    var products = await productContext.Products
-            //        .Where(p => p.CategoryId == categoryId)
-            //        .ToListAsync();
-
-            //    return products;
-            //}
-
             using (var scope = _serviceProvider.CreateScope())
             {
                 var productContext = scope.ServiceProvider.GetRequiredService<ProductDbContext>();
                 var products = await productContext.Products
                     .Where(p => p.CategoryId == categoryId)
-                    .Include(p => p.Price)   // Include Price assuming it's a navigation property
-                    .Include(p => p.Images)  // Include Images assuming it's a navigation property
+                    .Include(p => p.Price)   
+                    .Include(p => p.Images)  
                     .ToListAsync();
 
                 return products;
