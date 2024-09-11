@@ -6,9 +6,22 @@ pipeline {
     tools {
         nodejs 'NodeJS_20.13.1'
     }
-    
+    environment {
+        GIT_CREDENTIAL_ID = 'fi2bjiJEpDTw4eTGh5yi'
+    }
     
     stages {
+
+        stage('Checkout Code') {
+            steps {
+                script {
+                    checkout([$class: 'GitSCM', branches: [[name: '*/develop']], 
+                             userRemoteConfigs: [[url: 'https://githyd.epam.com/epm-pelg/june-10-team-7/farm-roots.git', 
+                                                 credentialsId: GIT_CREDENTIAL_ID]]])
+                }
+            }
+        }
+
 
         stage('Build .NET Application') {
             steps {
