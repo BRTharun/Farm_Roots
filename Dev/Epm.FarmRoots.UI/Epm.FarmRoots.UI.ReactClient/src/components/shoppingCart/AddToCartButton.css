@@ -1,0 +1,72 @@
+/* Styles for the AddToCartButton component */
+.add-to-cart-button {
+        background-color: #00cc00; /* Adjust color as needed */
+        color: white;
+        border: none;
+        border-radius: 8px;
+        padding: 10px;
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        font-size: 14px;
+        font-weight: bold;
+        transition: background-color 0.2s;
+      }
+      
+      .add-to-cart-button:hover {
+        background-color: #009900; /* Darker shade for hover effect */
+      }
+      
+      .add-to-cart-button .quantity-controls {
+        display: flex;
+        align-items: center;
+        margin: 0 auto;
+      }
+      
+      .add-to-cart-button .quantity-controls button {
+        background-color: #fff;
+        color: #00cc00;
+        border: 1px solid #00cc00;
+        padding: 5px;
+        border-radius: 5px;
+        cursor: pointer;
+        margin: 0 5px;
+        font-size: 16px;
+      }
+      
+      .add-to-cart-button .quantity-controls button:disabled {
+        background-color: #e0e0e0;
+        color: #aaa;
+        cursor: not-allowed;
+      }
+      
+      .add-to-cart-button .quantity-controls input {
+        width: 60px;
+        text-align: center;
+        margin: 0 10px;
+        padding: 5px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        font-size: 16px;
+        font-weight: bold;
+      }
+      
+      .add-to-cart-button .quantity-controls button:hover {
+        background-color: #e0e0e0; /* Light gray on hover */
+      }
+      
+      .proceed-button {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        background-color: #77ff00;
+        color: white;
+        border: none;
+        padding: 15px;
+        border-radius: 8px;
+        text-align: center;
+        font-weight: bold;
+        font-size: 1.2rem;
+        cursor: pointer;
+      }

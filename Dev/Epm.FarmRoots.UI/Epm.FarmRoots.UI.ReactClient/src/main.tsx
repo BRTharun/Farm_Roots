@@ -6,12 +6,17 @@ import { Provider } from 'react-redux'
 import store from './components/store/MainStore/store.tsx'
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from 'react-toastify';
+import Vendor from './vendor.tsx'
+
 
 
 createRoot(document.getElementById('root')!).render(
-  <Provider store={store}>
+  
+    
+      <Provider store={store}>
   <BrowserRouter>
     <App />
+        {/* <Vendor/> */}
           <ToastContainer 
           position="top-center"
           autoClose={3000}
@@ -24,5 +29,5 @@ createRoot(document.getElementById('root')!).render(
           pauseOnHover = {false}
           theme="light"/>
       </BrowserRouter>
-    </Provider>
+      </Provider>
 )

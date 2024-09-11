@@ -4,13 +4,8 @@ using Epm.FarmRoots.UserManagement.Application.Interfaces;
 using Epm.FarmRoots.UserManagement.Application.Services;
 using Epm.FarmRoots.UserManagement.Core.Entities;
 using Epm.FarmRoots.UserManagement.Core.Interfaces;
+using Microsoft.AspNetCore.Identity;
 using Moq;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 namespace Epm.FarmRoots.UserManagement.Test
 {
     public class CustomerRegistrationServicetests
@@ -18,13 +13,14 @@ namespace Epm.FarmRoots.UserManagement.Test
         private Mock<ICustomerRepository>? _mockCustomerRepository;
         private Mock<IMapper>? _mockMapper;
         private ICustomerService? _customerService;
+        private readonly IPasswordHasher<Customer> _passwordHasher;
 
         [TestInitialize]
         public void Setup()
         {
             _mockCustomerRepository = new Mock<ICustomerRepository>();
             _mockMapper = new Mock<IMapper>();
-            _customerService = new CustomerRegisterService(_mockCustomerRepository.Object, _mockMapper.Object);
+            _customerService = new CustomerRegisterService(_mockCustomerRepository.Object, _mockMapper.Object, _passwordHasher);
         }
 
         [TestMethod]

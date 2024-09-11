@@ -13,6 +13,7 @@ namespace Epm.FarmRoots.ProductCatalogue.Core.Entities
         public required string SubCategoryName { get; set; }
         public int CategoryId { get; set; }
         public byte[]? ImageUrl { get; set; }
+        public int ProductId { get; set; }
         public Category Category { get; set; }
     }
 }

@@ -1,0 +1,107 @@
+<div class="p-8 bg-gray-50 min-h-screen">
+  <form class="grid grid-cols-1 md:grid-cols-2 gap-6" [formGroup]="productForm" (ngSubmit)="onSubmit()">
+    <!-- Unique Product ID -->
+    <div class="flex items-center">
+      <label class="w-1/3 text-gray-700">Product ID</label>
+      <input type="text" name="productId" disabled class="w-2/3 bg-gray-100 border border-gray-300 rounded-md px-4 py-2" />
+    </div>
+
+    <!-- Product Type -->
+    <div class="flex items-center">
+      <label class="w-1/3 text-gray-700">Product type <span class="required">*</span></label>
+      <select formControlName="productType" name="productType" class="w-2/3 bg-white border border-gray-300 rounded-md px-4 py-2 focus:ring-2 focus:ring-indigo-500" required>
+        <option value="Simple product">Simple product</option>
+        <option value="Bundled product">Bundled product</option>
+      </select>
+      <div *ngIf="productForm.controls['productType'].touched && productForm.controls['productType'].errors" class="text-red-600 text-sm mt-1">
+        <div *ngIf="productForm.controls['productType'].errors['required']" style="color : red">Product Type is required.</div>
+      </div>
+    </div>
+
+    <!-- Published Toggle -->
+    <div class="flex items-center">
+      <label class="w-1/3 text-gray-700">Publish The Product <span class="required">*</span></label>
+      <div class="w-2/3">
+        <input type="checkbox" formControlName="published" name="published" class="toggle-checkbox hidden" id="published-toggle" />
+        <label for="published-toggle" class="toggle-label bg-yellow-400 relative inline-flex items-center h-6 rounded-full w-11">
+          <span class="toggle-dot bg-white inline-block w-4 h-4 transform rounded-full translate-x-0 transition-transform"></span>
+        </label>
+      </div>
+    </div>
+
+    <!-- Product Name -->
+    <div class="flex flex-col items-start my-2">
+      <label class="w-full text-gray-700">Product name <span class="text-red-500">*</span></label>
+      <input type="text" formControlName="productName" required class="w-full bg-white border border-gray-300 rounded-md px-4 py-2 focus:ring-2 focus:ring-indigo-500" />
+      <div *ngIf="productForm.controls['productName'].touched && productForm.controls['productName'].errors" class="text-red-600 text-sm mt-1">
+        <div *ngIf="productForm.controls['productName'].errors['required']" style="color : red">Product name is required.</div>
+        <div *ngIf="productForm.controls['productName'].errors['maxlength']" style="color : red">Product name cannot exceed 15 characters.</div>
+        <div *ngIf="productForm.get('productName').errors.alphaOnly" style="color : red">
+          Product name can only contain alphabets.
+        </div>
+      </div>
+    </div>
+
+    <!-- Short Description -->
+    <div class="flex flex-col items-start my-2">
+      <label class="w-full text-gray-700">Short description <span class="text-red-500">*</span></label>
+      <textarea formControlName="shortDescription" maxlength="500" required name="shortDescription" class="w-full bg-white border border-gray-300 rounded-md px-4 py-2 focus:ring-2 focus:ring-indigo-500"></textarea>
+      <div *ngIf="productForm.controls['shortDescription'].touched && productForm.controls['shortDescription'].errors" class="text-red-600 text-sm mt-1">
+        <div *ngIf="productForm.controls['shortDescription'].errors['required']" style="color : red">Short description is required.</div>
+        <div *ngIf="productForm.controls['shortDescription'].errors['maxlength']" style="color : red">Short description cannot exceed 50 characters.</div>
+      </div>
+    </div>
+
+    <!-- Full Description -->
+    <div class="flex items-center">
+      <label class="w-1/3 text-gray-700">Full description</label>
+      <textarea formControlName="fullDescription" name="fullDescription" maxlength="600" class="w-2/3 bg-white border border-gray-300 rounded-md px-4 py-2 focus:ring-2 focus:ring-indigo-500"></textarea>
+      <div *ngIf="productForm.controls['fullDescription'].touched && productForm.controls['shortDescription'].errors" class="text-red-600 text-sm mt-1">
+        <div *ngIf="productForm.controls['fullDescription'].errors['maxlength']" style="color : red">Short description cannot exceed 500 characters.</div>
+      </div>
+    </div>
+
+    <!-- Product Condition -->
+    <div class="flex items-center">
+      <label class="w-1/3 text-gray-700">Product condition <span class="required">*</span></label>
+      <select formControlName="productCondition" name="productCondition" required class="w-2/3 bg-white border border-gray-300 rounded-md px-4 py-2 focus:ring-2 focus:ring-indigo-500">
+        <option value="New">New</option>
+        <option value="Refurbished">Refurbished</option>
+        <option value="Used">Used</option>
+      </select>
+      <div *ngIf="productForm.controls['productCondition'].touched && productForm.controls['productCondition'].errors" class="text-red-600 text-sm mt-1">
+        <div *ngIf="productForm.controls['productCondition'].errors['required']" style="color : red">Product Condition is required.</div>
+      </div>
+    </div>
+
+    <!-- Product Tags (max 5) -->
+    <div class="flex items-center">
+      <label class="w-1/3 text-gray-700">Product tags</label>
+      <input type="text" formControlName="productTags" name="productTags" placeholder="Add up to 5 tags, comma separated" class="w-2/3 bg-white border border-gray-300 rounded-md px-4 py-2 focus:ring-2 focus:ring-indigo-500" />
+    </div>
+
+    <!-- Created Date -->
+    <!--<div class="flex items-center">
+    <label class="w-1/3 text-gray-700">CreatedOn</label>
+    <div class="relative w-2/3">
+      <input type="date" formControlName="createdDate" name="CreatedDate" disabled class="w-2/3 bg-gray-100 border border-gray-300 rounded-md px-4 py-2" />
+    </div>
+  </div>-->
+    <!-- Updated Date -->
+    <!--<div class="flex items-center">
+    <label class="w-1/3 text-gray-700">UpdateOn</label>
+    <div class="relative w-2/3">
+      <input type="date" formControlName="updatedDate" name="endDate" disabled class="w-2/3 bg-gray-100 border border-gray-300 rounded-md px-4 py-2" />
+    </div>
+  </div>-->
+    <!-- Submit Button -->
+    <div class="md:col-span-2">
+      <button type="submit" class="w-full bg-indigo-600 text-white px-4 py-2 rounded-md hover:bg-indigo-700 focus:ring-2 focus:ring-indigo-500">Save</button>
+    </div>
+
+    <!-- Edit and Save Button -->
+    <div class="md:col-span-2">
+      <button type="button" (click)="onEditandSave()" class="w-full bg-indigo-600 text-white px-4 py-2 rounded-md hover:bg-indigo-700 focus:ring-2 focus:ring-indigo-500">Edit&Save</button>
+    </div>
+  </form>
+</div>

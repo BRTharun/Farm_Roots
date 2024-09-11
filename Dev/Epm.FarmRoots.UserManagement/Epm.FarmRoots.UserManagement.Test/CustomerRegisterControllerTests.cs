@@ -13,12 +13,12 @@ namespace Epm.FarmRoots.UserManagement.Test
 
         private  Mock<ICustomerService>? _mockCustomerService;
         private  CustomerController? _customerController;
-
+        private readonly ICustomerUpdateService _customerUpdateService;
         [TestInitialize]
         public void Setup()
         {
             _mockCustomerService = new Mock<ICustomerService>();
-            _customerController = new CustomerController(_mockCustomerService.Object);
+            _customerController = new CustomerController(_mockCustomerService.Object, _customerUpdateService);
         }
 
         [TestMethod]

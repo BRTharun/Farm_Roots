@@ -3,6 +3,8 @@ using Epm.FarmRoots.UserManagement.Application.Dtos;
 using Epm.FarmRoots.UserManagement.Application.Interfaces;
 using Epm.FarmRoots.UserManagement.Core.Entities;
 using Epm.FarmRoots.UserManagement.Core.Interfaces;
+using Epm.FarmRoots.UserManagement.Core.Utilities;
+using Microsoft.AspNetCore.Identity;
 
 
 namespace Epm.FarmRoots.UserManagement.Application.Services
@@ -11,7 +13,8 @@ namespace Epm.FarmRoots.UserManagement.Application.Services
     {
         private readonly ICustomerRepository _customerRepository;
         private readonly IMapper _mapper;
-        public CustomerRegisterService(ICustomerRepository customerRepository, IMapper mapper)
+        private readonly IPasswordHasher<Customer> _passwordHasher;
+        public CustomerRegisterService(ICustomerRepository customerRepository, IMapper mapper, IPasswordHasher<Customer> passwordHasher)
         {
             _customerRepository = customerRepository;
             _mapper = mapper;
@@ -42,6 +45,46 @@ namespace Epm.FarmRoots.UserManagement.Application.Services
         public async Task<bool> EmailExistsAsync(string email)
         {
             return await _customerRepository.EmailExistsAsync(email);
+        }
+
+
+        public async Task<CustomerDto> ChangePasswordAsync(int customerId, string oldPassword, string newPassword)
+        {
+            //if (!UtilityServices.IsBase64String(oldPassword) || !UtilityServices.IsBase64String(newPassword))
+            //{
+            //    throw new ArgumentException("Passwords must be valid Base-64 encoded strings.");
+            //}
+
+            var oldPasswordDecode = UtilityServices.DecodePassword(oldPassword);
+            var newPasswordDecode = UtilityServices.DecodePassword(newPassword);
+            var customer = await _customerRepository.GetCustomerByIdAsync(customerId);
+            if (customer == null)
+            {
+                throw new KeyNotFoundException("Customer not found.");
+            }
+            var verificationResult = _passwordHasher.VerifyHashedPassword(customer, customer.Password, oldPasswordDecode);
+            if (verificationResult != PasswordVerificationResult.Success)
+            {
+                throw new ArgumentException("The old password is incorrect.");
+            }
+
+            if (!string.IsNullOrWhiteSpace(newPasswordDecode))
+            {
+                customer.Password = _passwordHasher.HashPassword(customer, newPasswordDecode);
+                await _customerRepository.UpdateCustomerAsync(customer);
+            }
+
+            return _mapper.Map<CustomerDto>(customer);
+        }
+
+        public async Task<CustomerDto> GetCustomerByIdAsync(int customerId)
+        {
+            var customer = await _customerRepository.GetCustomerByIdAsync(customerId);
+            if (customer == null)
+            {
+                throw new KeyNotFoundException("Customer not found.");
+            }
+            return _mapper.Map<CustomerDto>(customer);
         }
     }
 }

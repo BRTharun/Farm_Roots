@@ -1,0 +1,80 @@
+.inventory {
+  padding: 20px;
+}
+
+.section {
+  margin-bottom: 20px;
+}
+
+  .section h3 {
+    font-size: 16px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 5px;
+  }
+
+label {
+  display: block;
+  margin: 10px 0 5px;
+  font-weight: bold;
+}
+
+input, select {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.actions {
+  margin-top: 20px;
+}
+
+.btn {
+  margin-right: 10px;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.btn-preview {
+  background-color: #008CBA;
+  color: white;
+}
+
+.btn-save {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.btn-save-continue {
+  background-color: #FF9800;
+  color: white;
+}
+
+.btn-copy {
+  background-color: #FFEB3B;
+  color: black;
+}
+
+.btn-delete {
+  background-color: #f44336;
+  color: white;
+}
+
+.form-control {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.form-label {
+  margin-right: 10px;
+  width: 200px;
+}
+
+.input-small {
+  width: 150px;
+}
