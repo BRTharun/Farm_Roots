@@ -6,6 +6,7 @@ import '@epam/uui/styles.css';
 // import MyRoutes from './components/routes/MyRoutes';
 import Footer from './components/common/Footer/UI/Footer';
 import ProductRoutes from './components/routes/ProductRoutes';
+import VendorRoutes from './components/routes/VendorRotes';
 
 
 const App : React.FC = () => {
@@ -14,6 +15,7 @@ const App : React.FC = () => {
     <div className='pb-40 md:pb-0'>
       <Header />
       {/* <MyRoutes /> */}
+      {/* <VendorRoutes/> */}
       <ProductRoutes/>
       <Footer /> 
     {/* <div className='App min-h-screen flex items-center justify-center bg-gray-100'>
