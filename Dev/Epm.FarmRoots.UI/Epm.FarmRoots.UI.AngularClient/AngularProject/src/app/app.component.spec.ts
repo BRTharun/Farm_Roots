@@ -1,5 +1,6 @@
 import { TestBed, ComponentFixture, waitForAsync } from '@angular/core/testing';
 import { AppComponent } from './app.component';
+import { SidenavComponent } from './components/sidenav/sidenav.component'; // Import SidebarComponent
 import { RouterTestingModule } from '@angular/router/testing';
 import { Component } from '@angular/core';
 

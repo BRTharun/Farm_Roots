@@ -18,5 +18,8 @@ export const navbarData = [
     routeLink: 'manufacturermapping',
     icon: 'fal fa-box-open',
     label: 'ManufacturerMapping'
+    routeLink: 'upload-pictures',
+    icon: 'fal fa-images',
+    label: 'Pictures'
   }
 ];
