@@ -17,8 +17,11 @@ export class ProductService {
     getCustomerProductsByCategoryId(categoryId: number): Observable<any> {
         return this.http.get<ResponseDto<Product[]>>(`https://localhost:7189/api/Category/${categoryId}/customer-products`);
     }
-  createProduct(product: CreateProduct, tags: string[]): Observable<any> {
-    product.vendorId = 1;
+    createProduct(product: CreateProduct, tags: string[]): Observable<any> {
+      product.vendorId = 1;
+      product.categoryId = 1;
+      product.manufacturerId = 1;
+      product.subcategoryId = 2;
     product.productTags = tags;
     return this.http.post(this.apiUrl, product);
   }

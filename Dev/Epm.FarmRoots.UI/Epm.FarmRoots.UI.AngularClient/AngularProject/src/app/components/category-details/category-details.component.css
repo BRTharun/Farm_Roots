@@ -2,12 +2,13 @@
 .sidenav-container {
   display: flex;
   height: 100vh;
-  width: 100%;
+  /*width: 100%;*/
 }
 
 /* Sidebar */
 .sidenav {
-  width: 250px;
+  /*width: 250px;*/
+  flex: 0 0 250px;
   background-color: #fafafa;
   border-right: 1px solid #e0e0e0;
   transition: width 0.3s ease;
@@ -15,7 +16,8 @@
 }
 
   .sidenav.expanded {
-    width: 60px;
+    /*width: 60px;*/
+    flex: 0 0 60px;
   }
 
 /* Subcategory List */

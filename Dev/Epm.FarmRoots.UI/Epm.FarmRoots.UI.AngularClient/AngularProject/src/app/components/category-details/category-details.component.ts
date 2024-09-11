@@ -14,13 +14,13 @@ import { ResponseDto } from '../../models/response.model'; // Ensure you have a 
 export class CategoryDetailsComponent implements OnInit {
   isExpanded: boolean = true;
   subcategories: Subcategory[] = [];
-  products: Product[] = []; // Use the Product model if available
+  products: Product[] = []; 
   errorMessage: string = ''; 
 
   constructor(
     private route: ActivatedRoute,
     private categoryService: CategoryService,
-    private productService: ProductService, // Add ProductService
+    private productService: ProductService,
     private router: Router
   ) { }
 

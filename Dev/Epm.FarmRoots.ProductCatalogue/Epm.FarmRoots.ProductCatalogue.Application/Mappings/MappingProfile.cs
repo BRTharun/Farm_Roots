@@ -24,8 +24,11 @@ namespace Epm.FarmRoots.ProductCatalogue.Application.Mappings
            .ForMember(dest => dest.ProductName, opt => opt.MapFrom(src => src.ProductName))
            .ForMember(dest => dest.ShortDescription, opt => opt.MapFrom(src => src.ShortDescription))
            .ForMember(dest => dest.Price, opt => opt.MapFrom(src => src.Price.SalePrice)) // Ensure Price is fetched with the product
-           .ForMember(dest => dest.ImageUrl, opt => opt.MapFrom(src => src.Images.ImageData)); // Ensure Images are fetched with the product
-
+           .ForMember(dest => dest.ImageUrl, opt => opt.MapFrom(src =>
+                src.Images != null && src.Images.Any() && src.Images.First().ImageData != null
+                ? Convert.ToBase64String(src.Images.First().ImageData)
+                : null
+                ));
         }
     }
 }

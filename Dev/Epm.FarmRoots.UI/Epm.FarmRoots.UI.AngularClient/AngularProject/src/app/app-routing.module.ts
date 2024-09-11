@@ -10,6 +10,7 @@ import { InventoryComponent } from './components/Inventory-Management/inventory-
 import { EditProfileComponent } from './components/edit-profile/edit-profile.component';
 import { ChangePasswordComponent } from './components/change-password/change-password.component';
 import { LoginComponent } from './components/login/login.component';
+//import { ProductInfoComponent } from './components/product-info/product-info.component';
 import { PictureUploadComponent } from './components/picture-upload/picture-upload.component';
 
 const routes: Routes = [

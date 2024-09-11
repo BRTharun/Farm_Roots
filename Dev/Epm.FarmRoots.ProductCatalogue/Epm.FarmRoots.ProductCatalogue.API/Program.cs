@@ -8,6 +8,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.OpenApi.Models;
 using Microsoft.AspNetCore.Http.Features;
 using Swashbuckle.AspNetCore.SwaggerGen;
+using Epm.FarmRoots.ProductCatalogue.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -31,8 +32,9 @@ builder.Services.AddScoped<IInventoryService, InventoryCartService>();
 builder.Services.AddScoped<IInventoryCartRepository, InventoryCartRepository>();
 
 // Register DbContexts
-builder.Services.AddDbContext<ProductDbContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+builder.Services.AddDbContext<ProductDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+
 
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 

@@ -67,7 +67,12 @@ namespace Epm.FarmRoots.ProductCatalogue.Infrastructure.Data
                 //modelBuilder.Entity<Product>()
                 //    .HasOne(p => p.Manufacturer)
                 //    .WithOne()
-                //    .HasForeignKey<Product>(c => c.ProductId);
+                //    .HasForeignKey<Manufacturer>(c => c.ProductId);
+
+                modelBuilder.Entity<Product>()
+                    .HasOne(p => p.Manufacturer)
+                    .WithMany()
+                    .HasForeignKey(p => p.ManufacturerId);
 
                 modelBuilder.Entity<Product>()
                     .HasOne(p => p.Inventory)
@@ -75,24 +80,29 @@ namespace Epm.FarmRoots.ProductCatalogue.Infrastructure.Data
                     .HasForeignKey<Inventory>(c => c.ProductId);
 
                 modelBuilder.Entity<Product>()
-                    .HasOne(p => p.Images)
+                    .HasMany(p => p.Images)
                     .WithOne()
-                    .HasForeignKey<Images>(c => c.ProductId);
+                    .HasForeignKey(c => c.ProductId);
+
+                //modelBuilder.Entity<Product>()
+                //    .HasOne(p => p.Category)
+                //    .WithOne()
+                //    .HasForeignKey<Product>(c => c.ProductId);
 
                 modelBuilder.Entity<Product>()
-                    .HasOne(p => p.Category)
-                    .WithOne()
-                    .HasForeignKey<Product>(c => c.ProductId);
+                    .HasOne(p => p.Category) // Each product has one Category
+                    .WithMany() // No navigation property back to Products in Category
+                    .HasForeignKey(p => p.CategoryId); // Foreign key in Product pointing to Category
 
                 modelBuilder.Entity<Images>(entity =>
                 {
                     entity.HasKey(e => e.ImagesId);
                     entity.Property(e => e.ImageUrl)
-                          .HasMaxLength(2048); // Adjust the length according to your requirements
+                          .HasMaxLength(2048); 
                     entity.Property(e => e.ImageData)
-                          .HasColumnType("varbinary(max)"); // For storing binary data
+                          .HasColumnType("varbinary(max)"); 
                     entity.Property(e => e.ProductId)
-                          .IsRequired(); // Ensures ProductId is not null
+                          .IsRequired(); 
                 });
 
                 modelBuilder.Entity<Inventory>(entity =>
