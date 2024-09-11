@@ -16,7 +16,7 @@ const Vendor: React.FC = () => {
         <>
             <Provider store={vendorstore}>
             <div>
-                <VendorRoutes/>
+                
             </div>
             </Provider>
         </>

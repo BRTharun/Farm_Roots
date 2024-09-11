@@ -15,8 +15,8 @@ createRoot(document.getElementById('root')!).render(
     
       <Provider store={store}>
   <BrowserRouter>
-    {/* <App /> */}
-        <Vendor/>
+    <App />
+        {/* <Vendor/> */}
           <ToastContainer 
           position="top-center"
           autoClose={3000}

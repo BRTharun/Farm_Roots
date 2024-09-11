@@ -73,13 +73,30 @@ const VendorCategoryPage: React.FC = () => {
                 <Sidebar />
             </div>
             <div className="md:ml-64 mt-12 w-full">
-                <TopBar/>
+                <TopBar />
                 <div className="mt-12 p-2">
                     <div className="overflow-x-auto">
                         <h1 className="text-2xl font-bold mb-6">Categories</h1>
                         {status === "loading" && <p>Loading...</p>}
                         {status === "failed" && (
-                            <p className="text-red-500">{error}</p>
+                            <div className="flex items-center justify-center min-h-screen bg-gray-100">
+                                <div className="text-center">
+                                    <div className="text-6xl font-bold text-gray-700 mb-4">
+                                        404
+                                    </div>
+                                    <div className="text-xl text-gray-500">
+                                        Profile Not Found
+                                    </div>
+                                    <div className="mt-4">
+                                        <a
+                                            href="/"
+                                            className="text-blue-500 underline"
+                                        >
+                                            Go back to Home
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
                         )}
                         <div className="flex mb-4">
                             <input

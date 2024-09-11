@@ -16,7 +16,6 @@ import VendorCategoryPage from "../pages/vendor/VendorCategoryPage";
 const VendorRoutes: React.FC = () => {
     return (
         <Routes>
-            
             <Route path="/vendor" element={<VendorNavBar />} />
             <Route path="/add-product" element={<AddProduct />} />
             <Route path="/my-products" element={<VendorProducts />} />

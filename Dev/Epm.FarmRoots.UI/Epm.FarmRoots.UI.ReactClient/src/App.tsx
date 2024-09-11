@@ -5,16 +5,18 @@ import '@epam/uui-components/styles.css';
 import '@epam/uui/styles.css';
 import MyRoutes from './components/routes/MyRoutes';
 import Footer from './components/common/Footer/UI/Footer';
+import VendorRoutes from './components/routes/VendorRotes';
 // import CategoryRoute from './components/routes/CategoryRoute';
 
 const App : React.FC = () => {
   return (
     <>
     <div className='pb-40 md:pb-0'>
-      <Header />
-      <MyRoutes />
+      
+      {/* <MyRoutes /> */}
+      <VendorRoutes/>
       {/* <CategoryRoute /> */}
-      <Footer /> 
+      
     {/* <div className='App min-h-screen flex items-center justify-center bg-gray-100'>
       <RegisterPage />
     </div> */}
