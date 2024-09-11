@@ -1,31 +1,25 @@
 pipeline {
-    agent { label 'windows' }
+    agent { label 'linux' }
     environment {
         DOTNET_SDK_VERSION = '8.0'
-        GIT_CREDENTIAL_ID = 'fi2bjiJEpDTw4eTGh5yi'
     }
     tools {
         nodejs 'NodeJS_20.13.1'
     }
+    
     stages {
-
-        stage('Checkout Code') {
-            steps {
-                script {
-                    checkout([$class: 'GitSCM', branches: [[name: '*/develop']], 
-                             userRemoteConfigs: [[url: 'https://githyd.epam.com/epm-pelg/june-10-team-7/farm-roots.git', 
-                                                 credentialsId: GIT_CREDENTIAL_ID]]])
-                }
-            }
-        }
-
-
         stage('Build .NET Application') {
             steps {
                 script {
+                    // Install the .NET SDK if not already installed
+                    sh 'wget https://dot.net/v1/dotnet-install.sh'
+                    sh 'chmod +x dotnet-install.sh'
+                    sh './dotnet-install.sh --version ${DOTNET_SDK_VERSION}'
+                    sh 'export PATH=$PATH:$HOME/.dotnet'
+
                     dir('Dev') {
-                        bat 'dotnet restore Epm.FRoots.sln'
-                        bat 'dotnet build Epm.FRoots.sln' 
+                        sh 'dotnet restore Epm.FRoots.sln'
+                        sh 'dotnet build Epm.FRoots.sln'
                     }
                 }
             }
@@ -36,51 +30,41 @@ pipeline {
                 echo 'Angular build'
                 // script {
                 //     dir('Dev/Epm.LGoods.UI/epm.lgoods.angularclient') {
-                //         bat 'npm install'
-                        
-                //         bat 'npm run build' 
+                //         sh 'npm install'
+                //         sh 'npm run build'
                 //     }
                 // }
             }
         }
-        
 
-
-	stage('Build React Application') {
+        stage('Build React Application') {
             steps {
                 script {
                     dir('Dev/Epm.FarmRoots.UI/Epm.FarmRoots.UI.ReactClient') {
-                        bat 'npm install'
-                        
-                        bat 'npm run build' 
+                        sh 'npm install'
+                        sh 'npm run build'
                     }
                 }
             }
         }
 
-
         stage('Running .NET Tests') {
             steps {
                 script {
                     dir('Dev') {
-                        
-                        bat 'FOR /R %%G IN (TestResults) DO IF EXIST "%%G" RMDIR /S /Q "%%G"'
-
-                        bat 'dotnet test Epm.FRoots.sln --collect:"XPlat Code Coverage" -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=opencover'
-                     }
+                        sh 'find . -name TestResults -exec rm -rf {} +'
+                        sh 'dotnet test Epm.FRoots.sln --collect:"XPlat Code Coverage" -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=opencover'
+                    }
                 }
             }
         }
-
-
-
 
         stage('Running Angular Tests') {
             steps {
                 echo 'Angular Test'
                 // script {
                 //     dir('Dev/Epm.LGoods.UI/epm.lgoods.angularclient') {
-                //         bat 'npm test -- --code-coverage'
+                //         sh 'npm test -- --code-coverage'
                 //     }
                 // }
             }
@@ -90,8 +74,8 @@ pipeline {
             steps {
                 echo 'React Test'
                 // script {
-                //     dir('Dev/Epm.LGoods.UI/epm.lgoods.reactclient') {
-                //         bat 'npm test' 
+                //     dir('Dev/Epm.LGoods/UI/epm.lgoods.reactclient') {
+                //         sh 'npm test'
                 //     }
                 // }
             }
@@ -101,14 +85,13 @@ pipeline {
             steps {
                 script {
                     def scannerHome = tool 'SonarQube Scanner'
-                        withSonarQubeEnv('SonarHyd') {
-                            bat "${scannerHome}/bin/sonar-scanner.bat"
+                    withSonarQubeEnv('SonarHyd') {
+                        sh "${scannerHome}/bin/sonar-scanner"
                     }
                 }
             }
         }
     }
-    
 
     post {
         always {
