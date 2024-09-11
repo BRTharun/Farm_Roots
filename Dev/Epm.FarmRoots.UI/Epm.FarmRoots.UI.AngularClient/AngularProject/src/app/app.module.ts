@@ -32,12 +32,8 @@ import { EditProfileComponent } from './components/edit-profile/edit-profile.com
 import { LoginComponent } from './components/login/login.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { RegisterComponent } from './components/register/register.component'; 
-import { SidenavComponent } from './components/sidenav/sidenav.component';
 import { PictureUploadComponent } from './components/picture-upload/picture-upload.component';
 import { HomeComponent } from './components/home/home.component';
-import { HttpClientModule } from '@angular/common/http';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; // Required for toastr
-import { ToastrModule } from 'ngx-toastr';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 /*import { SidenavComponent } from './components/sidenav/sidenav.component'; // Import ToastrModule*/
 
@@ -63,9 +59,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     EditProfileComponent,
     LoginComponent,
     ProfileComponent,
-    RegisterComponent
-    AppComponent,
-    SidenavComponent,
+    RegisterComponent,
     PictureUploadComponent,
     HomeComponent,
     SidenavComponent
@@ -84,11 +78,6 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     MatDialogModule,
     FormsModule,
     MatSnackBarModule,
-    BrowserAnimationsModule
-    FormsModule,
-    AppRoutingModule,
-    HttpClientModule,
-    BrowserAnimationsModule,
     ToastrModule.forRoot(),
     NgbModule, // Initialize ToastrModule
   ],

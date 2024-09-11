@@ -8,6 +8,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.OpenApi.Models;
 using Microsoft.AspNetCore.Http.Features;
 using Swashbuckle.AspNetCore.SwaggerGen;
+using Epm.FarmRoots.ProductCatalogue.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -33,13 +34,11 @@ builder.Services.AddDbContext<ProductCatalogueDbContext>(options =>
 builder.Services.AddDbContext<InventoryDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 builder.Services.AddDbContext<ProductDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
-builder.Services.AddDbContext<PriceDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+//builder.Services.AddDbContext<PriceDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 builder.Services.AddDbContext<ManufacturerDbContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 builder.Services.AddDbContext<InventoryCartDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
-builder.Services.AddDbContext<ImageDbContext>(options =>
-            options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
@@ -99,13 +98,13 @@ void ApplyMigrations(IHost app)
     using var scope = app.Services.CreateScope();
     var services = scope.ServiceProvider;
 
-    MigrateDbContext<ProductCatalogueDbContext>(services);
-    MigrateDbContext<InventoryDbContext>(services);
-    MigrateDbContext<PriceDbContext>(services);
     MigrateDbContext<ProductDbContext>(services);
-    MigrateDbContext<ManufacturerDbContext>(services);
-    MigrateDbContext<InventoryCartDbContext>(services);
-    MigrateDbContext<ImageDbContext>(services);
+    //MigrateDbContext<ProductCatalogueDbContext>(services);
+    //MigrateDbContext<InventoryDbContext>(services);
+    //MigrateDbContext<PriceDbContext>(services);
+    //MigrateDbContext<ImageDbContext>(services);
+    //MigrateDbContext<ManufacturerDbContext>(services);
+    //MigrateDbContext<InventoryCartDbContext>(services);
 }
 
 void MigrateDbContext<TContext>(IServiceProvider services) where TContext : DbContext

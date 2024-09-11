@@ -8,6 +8,9 @@ namespace Epm.FarmRoots.ProductCatalogue.Infrastructure.Data
     {
         public ProductDbContext(DbContextOptions<ProductDbContext> options) : base(options) { }
         public DbSet<Product> Products { get; set; }
+        public DbSet<Images> Images { get; set; }
+        public DbSet<Price> Price { get; set; }
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -68,6 +71,53 @@ namespace Epm.FarmRoots.ProductCatalogue.Infrastructure.Data
                     .HasOne(p => p.Images)
                     .WithOne()
                     .HasForeignKey<Images>(c => c.ProductId);
+
+                modelBuilder.Entity<Images>(entity =>
+                {
+                    entity.HasKey(e => e.ImagesId);
+                    entity.Property(e => e.ImageUrl)
+                          .HasMaxLength(2048);
+                    entity.Property(e => e.ImageData)
+                          .HasColumnType("varbinary(max)");
+                    entity.Property(e => e.ProductId)
+                          .IsRequired();
+                });
+
+                modelBuilder.Entity<Price>(entity =>
+                {
+                    entity.HasKey(p => p.PriceId);
+
+                    entity.Property(p => p.SalePrice)
+                        .IsRequired()
+                        .HasColumnType("decimal(18, 2)");
+
+                    entity.Property(p => p.Mrp)
+                        .IsRequired()
+                        .HasColumnType("decimal(18, 2)");
+
+                    entity.Property(p => p.SpecialPrice)
+                        .HasColumnType("decimal(18, 2)");
+
+                    entity.Property(p => p.SpecialPriceFromDate)
+                        .HasColumnType("datetime2");
+
+                    entity.Property(p => p.SpecialPriceToDate)
+                        .HasColumnType("datetime2");
+
+                    entity.Property(p => p.Discount)
+                        .IsRequired()
+                        .HasColumnType("decimal(18, 2)");
+
+                    entity.Property(p => p.ProductCost)
+                        .IsRequired()
+                        .HasColumnType("decimal(18, 2)");
+                    entity.Property(p => p.ProductId).IsRequired();
+                    entity.Property(p => p.IsBuyButtonDisabled)
+                        .IsRequired();
+
+
+
+                });
             });
         }
     }

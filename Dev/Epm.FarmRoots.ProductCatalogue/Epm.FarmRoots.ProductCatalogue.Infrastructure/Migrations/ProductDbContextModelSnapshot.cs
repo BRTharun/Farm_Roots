@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace Epm.FarmRoots.ProductCatalogue.Infrastructure.Migrations.ProductDb
+namespace Epm.FarmRoots.ProductCatalogue.Infrastructure.Migrations
 {
     [DbContext(typeof(ProductDbContext))]
     partial class ProductDbContextModelSnapshot : ModelSnapshot
@@ -31,11 +31,12 @@ namespace Epm.FarmRoots.ProductCatalogue.Infrastructure.Migrations.ProductDb
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ImagesId"));
 
                     b.Property<byte[]>("ImageData")
+                        .IsRequired()
                         .HasColumnType("varbinary(max)");
 
                     b.Property<string>("ImageUrl")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(2048)
+                        .HasColumnType("nvarchar(2048)");
 
                     b.Property<int>("ProductId")
                         .HasColumnType("int");
@@ -50,35 +51,48 @@ namespace Epm.FarmRoots.ProductCatalogue.Infrastructure.Migrations.ProductDb
 
             modelBuilder.Entity("Epm.FarmRoots.ProductCatalogue.Core.Entities.Inventory", b =>
                 {
-                    b.Property<int>("InventoryId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("InventoryId"));
-
                     b.Property<int>("ProductId")
                         .HasColumnType("int");
 
-                    b.HasKey("InventoryId");
+                    b.Property<int>("ProductMaxCartQuantity")
+                        .HasColumnType("int");
 
-                    b.HasIndex("ProductId")
-                        .IsUnique();
+                    b.Property<int>("ProductMinCartQuantity")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ProductStockQuantity")
+                        .HasColumnType("int");
+
+                    b.HasKey("ProductId");
 
                     b.ToTable("Inventory");
                 });
 
             modelBuilder.Entity("Epm.FarmRoots.ProductCatalogue.Core.Entities.Manufacturer", b =>
                 {
-                    b.Property<int>("ManufacturerId")
+                    b.Property<int>("ManufactureId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ManufacturerId"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ManufactureId"));
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("ManufactureDisplayOrder")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("ManufactureFeaturedStatus")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("ManufactureName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("ProductId")
                         .HasColumnType("int");
 
-                    b.HasKey("ManufacturerId");
+                    b.HasKey("ManufactureId");
 
                     b.HasIndex("ProductId")
                         .IsUnique();
@@ -95,22 +109,25 @@ namespace Epm.FarmRoots.ProductCatalogue.Infrastructure.Migrations.ProductDb
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PriceId"));
 
                     b.Property<decimal>("Discount")
-                        .HasColumnType("decimal(18,2)");
+                        .HasColumnType("decimal(18, 2)");
 
                     b.Property<bool>("IsBuyButtonDisabled")
                         .HasColumnType("bit");
 
+                    b.Property<decimal>("Mrp")
+                        .HasColumnType("decimal(18, 2)");
+
                     b.Property<decimal>("ProductCost")
-                        .HasColumnType("decimal(18,2)");
+                        .HasColumnType("decimal(18, 2)");
 
                     b.Property<int>("ProductId")
                         .HasColumnType("int");
 
-                    b.Property<decimal>("RegularPrice")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<decimal>("SalePrice")
+                        .HasColumnType("decimal(18, 2)");
 
                     b.Property<decimal>("SpecialPrice")
-                        .HasColumnType("decimal(18,2)");
+                        .HasColumnType("decimal(18, 2)");
 
                     b.Property<DateTime>("SpecialPriceFromDate")
                         .HasColumnType("datetime2");
@@ -180,7 +197,7 @@ namespace Epm.FarmRoots.ProductCatalogue.Infrastructure.Migrations.ProductDb
                         .HasMaxLength(500)
                         .HasColumnType("nvarchar(500)");
 
-                    b.Property<DateTime?>("UpdatedOn")
+                    b.Property<DateTime>("UpdatedOn")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
                         .HasDefaultValueSql("GETDATE()");

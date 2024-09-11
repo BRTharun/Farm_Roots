@@ -1,6 +1,7 @@
 ﻿using Epm.FarmRoots.ProductCatalogue.Application.Interfaces;
 using Epm.FarmRoots.ProductCatalogue.Core.Entities;
 using Epm.FarmRoots.ProductCatalogue.Infrastructure;
+using Epm.FarmRoots.ProductCatalogue.Infrastructure.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,9 +12,9 @@ namespace Epm.FarmRoots.ProductCatalogue.Application.Services
 {
     public class ImageService : IImageService
     {
-        private readonly ImageDbContext _context;
+        private readonly ProductDbContext _context;
 
-        public ImageService(ImageDbContext context)
+        public ImageService(ProductDbContext context)
         {
             _context = context;
         }
