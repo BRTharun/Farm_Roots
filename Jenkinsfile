@@ -10,33 +10,33 @@ pipeline {
     }
     
     stages {
-        stage('Setup Environment') {
-            steps {
-                script {
-                    // Install the .NET SDK
-                    sh '''
-                        wget https://dot.net/v1/dotnet-install.sh
-                        chmod +x dotnet-install.sh
-                        ./dotnet-install.sh --version ${DOTNET_SDK_VERSION}
-                        export PATH=${DOTNET_INSTALL_DIR}:${PATH}
-                        echo "PATH updated: $PATH"
-                    '''
-                }
-            }
-        }
+        // stage('Setup Environment') {
+        //     steps {
+        //         script {
+        //             // Install the .NET SDK
+        //             sh '''
+        //                 wget https://dot.net/v1/dotnet-install.sh
+        //                 chmod +x dotnet-install.sh
+        //                 ./dotnet-install.sh --version ${DOTNET_SDK_VERSION}
+        //                 export PATH=${DOTNET_INSTALL_DIR}:${PATH}
+        //                 echo "PATH updated: $PATH"
+        //             '''
+        //         }
+        //     }
+        // }
 
-        stage('Build .NET Application') {
-            steps {
-                script {
-                    withEnv(["PATH=${env.DOTNET_INSTALL_DIR}:${env.PATH}"]) {
-                        dir('Dev') {
-                            sh 'dotnet restore Epm.FRoots.sln'
-                            sh 'dotnet build Epm.FRoots.sln'
-                        }
-                    }
-                }
-            }
-        }
+        // stage('Build .NET Application') {
+        //     steps {
+        //         script {
+        //             withEnv(["PATH=${env.DOTNET_INSTALL_DIR}:${env.PATH}"]) {
+        //                 dir('Dev') {
+        //                     sh 'dotnet restore Epm.FRoots.sln'
+        //                     sh 'dotnet build Epm.FRoots.sln'
+        //                 }
+        //             }
+        //         }
+        //     }
+        // }
 
         // stage('Build Angular Application') {
         //     steps {
@@ -50,16 +50,16 @@ pipeline {
         //     }
         // }
 
-        // stage('Build React Application') {
-        //     steps {
-        //         script {
-        //             dir('Dev/Epm.FarmRoots.UI/Epm.FarmRoots.UI.ReactClient') {
-        //                 sh 'npm install'
-        //                 sh 'npm run build'
-        //             }
-        //         }
-        //     }
-        // }
+        stage('Build React Application') {
+            steps {
+                script {
+                    dir('Dev/Epm.FarmRoots.UI/Epm.FarmRoots.UI.ReactClient') {
+                        sh 'npm install'
+                        sh 'npm run build'
+                    }
+                }
+            }
+        }
 
         // stage('Running .NET Tests') {
         //     steps {
