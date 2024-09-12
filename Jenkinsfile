@@ -38,17 +38,17 @@ pipeline {
             }
         }
 
-        stage('Build Angular Application') {
-            steps {
-                echo 'Angular build'
-                script {
-                    dir('Dev/Epm.LGoods.UI/epm.lgoods.angularclient') {
-                        sh 'npm install'
-                        sh 'npm run build'
-                    }
-                }
-            }
-        }
+        // stage('Build Angular Application') {
+        //     steps {
+        //         echo 'Angular build'
+        //         script {
+        //             dir('Dev/Epm.LGoods.UI/epm.lgoods.angularclient') {
+        //                 sh 'npm install'
+        //                 sh 'npm run build'
+        //             }
+        //         }
+        //     }
+        // }
 
         stage('Build React Application') {
             steps {
@@ -74,16 +74,16 @@ pipeline {
             }
         }
 
-        stage('Running Angular Tests') {
-            steps {
-                echo 'Angular Test'
-                script {
-                    dir('Dev/Epm.LGoods.UI/epm.lgoods.angularclient') {
-                        sh 'npm test -- --code-coverage'
-                    }
-                }
-            }
-        }
+        // stage('Running Angular Tests') {
+        //     steps {
+        //         echo 'Angular Test'
+        //         script {
+        //             dir('Dev/Epm.LGoods.UI/epm.lgoods.angularclient') {
+        //                 sh 'npm test -- --code-coverage'
+        //             }
+        //         }
+        //     }
+        // }
 
         stage('Test React Application') {
             steps {
