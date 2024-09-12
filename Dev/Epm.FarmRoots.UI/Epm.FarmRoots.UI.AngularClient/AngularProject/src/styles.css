@@ -19,9 +19,8 @@ body {
   background-color: #fff;
   margin: 1.25rem 0 1.25rem 0;
   box-shadow: 0 .25rem .5rem #e6edef;
-  .card-head
-
-{
+}
+  .card-head{
   padding: 1rem 1.5rem;
   border-bottom: 1px solid #edf1f7;
   font-size: 1rem;
@@ -30,7 +29,7 @@ body {
 
 .card-body {
   padding: 1rem 1.5rem;
-}
+
 }
 
 html, body { height: 100%; }

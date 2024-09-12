@@ -6,6 +6,7 @@
   top: 0;
   width: 5rem;
   height: 100vh;
+  margin-left: 0px;
   box-shadow: 0.063rem 0 1.25rem 0 #8690a3;
 }
 
@@ -93,6 +94,7 @@
         margin-left: 1.5rem;
       }
 
+
     .sidenav-nav .sidenav-nav-item:hover .sidenav-nav-link {
       background-color: #fff;
       color: #000;
@@ -106,3 +108,4 @@
   .active .sidenav-link-text {
     color: #000;
   }
+

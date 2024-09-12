@@ -9,8 +9,6 @@ namespace Epm.FarmRoots.ProductCatalogue.Core.Entities
         public string ManufactureName { get; set; }
         public bool ManufactureFeaturedStatus { get; set; }
         public int ManufactureDisplayOrder { get; set; }
-
         public bool IsActive { get; set; } = true;
-        public int ProductId {  get; set; }
     }
 }

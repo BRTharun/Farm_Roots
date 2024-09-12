@@ -1,5 +1,6 @@
 ﻿using Epm.FarmRoots.UserManagement.Application.Dtos;
 using Epm.FarmRoots.UserManagement.Application.Interfaces;
+using Epm.FarmRoots.UserManagement.Core.Entities;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Text.RegularExpressions;
@@ -11,9 +12,11 @@ namespace Epm.FarmRoots.UserManagement.API.Controllers
     public class CustomerController : ControllerBase
     {
         private readonly ICustomerService _customerService;
-        public CustomerController(ICustomerService customerService)
+        private readonly ICustomerUpdateService _customerUpdateService;
+        public CustomerController(ICustomerService customerService, ICustomerUpdateService customerUpdateService)
         {
             _customerService = customerService;
+            _customerUpdateService = customerUpdateService;
         }
 
         [HttpPost]
@@ -54,6 +57,51 @@ namespace Epm.FarmRoots.UserManagement.API.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError, "Error retrieving data from the database");
             }
         }
+
+
+
+        [HttpPut("UpdateCustomer/{customerId}")]
+        public async Task<IActionResult> UpdateCustomer(int customerId, [FromBody] CustomerUpdateDto customerDto)
+        {
+            try
+            {
+                var updatedCustomerDto = await _customerUpdateService.UpdateCustomerDetailsAsync(customerId, customerDto);
+                return Ok(updatedCustomerDto);
+            }
+            catch (KeyNotFoundException knfe)
+            {
+                return NotFound(knfe.Message);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, "An error occurred while updating the customer." + ex.Message);
+            }
+        }
+
+
+        [HttpPut("ChangePassword/{customerId}")]
+        public async Task<IActionResult> ChangePassword(int customerId, [FromBody] ChangePasswordModel passwordModel)
+        {
+            if (string.IsNullOrWhiteSpace(passwordModel.NewPassword))
+            {
+                return BadRequest("New password must not be empty.");
+            }
+
+            try
+            {
+                CustomerDto updatedCustomer = await _customerService.ChangePasswordAsync(customerId, passwordModel.OldPassword, passwordModel.NewPassword);
+                return Ok(updatedCustomer);
+            }
+            catch (KeyNotFoundException ex)
+            {
+                return BadRequest(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, "An error occurred while updating the password." + ex.Message);
+            }
+        }
+
 
         private string HashPassword(object password)
         {

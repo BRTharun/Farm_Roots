@@ -10,7 +10,7 @@ namespace Epm.FarmRoots.UserManagement.API.Controllers
     public class VendorLoginController : ControllerBase
     {
         private readonly IVendorLoginService _vendorLoginService;
-        private readonly TokenService _tokenService; // Ensure this is injected
+        private readonly TokenService _tokenService;
 
         public VendorLoginController(IVendorLoginService vendorLoginService, TokenService tokenService)
         {
@@ -34,7 +34,6 @@ namespace Epm.FarmRoots.UserManagement.API.Controllers
                     return Unauthorized("Invalid email or password.");
                 }
 
-                // Generate JWT Token
                 var token = _tokenService.GenerateToken(vendor.Email, "Vendor");
                 return Ok(new { token });
             }

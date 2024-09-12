@@ -9,9 +9,9 @@ namespace Epm.FarmRoots.ProductCatalogue.API.Controllers
     [ApiController]
     public class InventoryCartController : ControllerBase
     {
-        private readonly InventoryCartDbContext _context;
+        private readonly ProductDbContext _context;
 
-        public InventoryCartController(InventoryCartDbContext context)
+        public InventoryCartController(ProductDbContext context)
         {
             this._context = context;
         }
@@ -19,13 +19,13 @@ namespace Epm.FarmRoots.ProductCatalogue.API.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Inventory>>> GetInventories()
         {
-            return await _context.Inventories.ToListAsync();
+            return await _context.Inventory.ToListAsync();
         }
 
         [HttpGet("{id}")]
         public async Task<ActionResult<Inventory>> GetInventory(int id)
         {
-            var inventory = await _context.Inventories.FindAsync(id);
+            var inventory = await _context.Inventory.FindAsync(id);
 
             if (inventory == null)
             {
@@ -38,7 +38,7 @@ namespace Epm.FarmRoots.ProductCatalogue.API.Controllers
         [HttpPost]
         public async Task<ActionResult<Inventory>> PostInventory(Inventory inventory)
         {
-            _context.Inventories.Add(inventory);
+            _context.Inventory.Add(inventory);
             await _context.SaveChangesAsync();
 
             return CreatedAtAction(nameof(GetInventory), new { id = inventory.ProductId }, inventory);
@@ -77,13 +77,13 @@ namespace Epm.FarmRoots.ProductCatalogue.API.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteInventory(int id)
         {
-            var inventory = await _context.Inventories.FindAsync(id);
+            var inventory = await _context.Inventory.FindAsync(id);
             if (inventory == null)
             {
                 return NotFound();
             }
 
-            _context.Inventories.Remove(inventory);
+            _context.Inventory.Remove(inventory);
             await _context.SaveChangesAsync();
 
             return NoContent();
@@ -91,7 +91,7 @@ namespace Epm.FarmRoots.ProductCatalogue.API.Controllers
 
         private bool InventoryExists(int id)
         {
-            return _context.Inventories.Any(e => e.ProductId == id);
+            return _context.Inventory.Any(e => e.ProductId == id);
         }
     }
 }

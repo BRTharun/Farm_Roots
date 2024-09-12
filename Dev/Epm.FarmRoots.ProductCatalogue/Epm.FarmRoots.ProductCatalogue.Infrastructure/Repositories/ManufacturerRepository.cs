@@ -7,9 +7,9 @@ namespace Epm.FarmRoots.ProductCatalogue.Infrastructure.Repositories
 {
     public class ManufacturerRepository : IManufacturerRepository
     {
-        private readonly ManufacturerDbContext _context;
+        private readonly ProductDbContext _context;
 
-        public ManufacturerRepository(ManufacturerDbContext context)
+        public ManufacturerRepository(ProductDbContext context)
         {
             _context = context;
         }
@@ -30,6 +30,6 @@ namespace Epm.FarmRoots.ProductCatalogue.Infrastructure.Repositories
             await _context.SaveChangesAsync();
         }
 
-        public IQueryable<Manufacturer> Manufacturers => _context.Manufacturers;
+        public IQueryable<Manufacturer> Manufacturers => _context.Manufacturer;
     }
 }

@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Epm.FarmRoots.ProductCatalogue.Core.Entities;
+﻿using Epm.FarmRoots.ProductCatalogue.Core.Entities;
 namespace Epm.FarmRoots.ProductCatalogue.Core.Interfaces
 {
     public interface ICategoryRepository
@@ -12,5 +7,7 @@ namespace Epm.FarmRoots.ProductCatalogue.Core.Interfaces
         Task<Category> GetCategoryByNameAsync(string name);
         Task AddCategoryAsync(Category category);
         Task<List<Category>> GetAllCategoriesAsync();
+        Task<IEnumerable<Product>> GetProductsByCategoryIdAsync(int categoryId);
+        Task<IEnumerable<SubCategory>> GetSubcategoriesByCategoryIdAsync(int categoryId);
     }
 }

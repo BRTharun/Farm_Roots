@@ -14,5 +14,7 @@ namespace Epm.FarmRoots.UserManagement.Application.Interfaces
         Task<CustomerDto> RegisterCustomerAsync(CustomerDto customerDto);
         Task<List<CustomerDto>> GetAllCustomersAsync();
         Task<bool> EmailExistsAsync(string email);
+        Task<CustomerDto> GetCustomerByIdAsync(int id);
+        Task<CustomerDto> ChangePasswordAsync(int customerId, string oldPassword, string newPassword);
     }
 }

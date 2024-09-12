@@ -10,7 +10,7 @@ interface SideNavToggle {
 @Component({
   selector: 'app-sidenav',
   templateUrl: './sidenav.component.html',
-  styleUrls: ['./sidenav.component.scss'],
+  styleUrls: ['./sidenav.component.css'],
   animations: [
     trigger('fadeInOut', [
       transition(':enter', [
