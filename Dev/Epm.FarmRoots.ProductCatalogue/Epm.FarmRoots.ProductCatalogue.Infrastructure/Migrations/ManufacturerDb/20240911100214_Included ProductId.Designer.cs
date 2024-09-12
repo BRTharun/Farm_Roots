@@ -3,6 +3,7 @@ using Epm.FarmRoots.ProductCatalogue.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Epm.FarmRoots.ProductCatalogue.Infrastructure.Migrations.ManufacturerDb
 {
     [DbContext(typeof(ManufacturerDbContext))]
-    partial class ManufacturerDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240911100214_Included ProductId")]
+    partial class IncludedProductId
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

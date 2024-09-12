@@ -5,7 +5,9 @@ import Sidebar from "./SideBar";
 import "../../../assets/styles/CategoryPage.css";
 
 interface Subcategory {
+  id: string;
   name: string;
+  image: string;
 }
 
 interface Product {
@@ -20,7 +22,6 @@ const CategoryPage: React.FC = () => {
   const [subcategories, setSubcategories] = useState<Subcategory[]>([]);
   const [products, setProducts] = useState<Product[]>([]);
   const [selectedSubcategory, setSelectedSubcategory] = useState<string | null>(null);
-
 
   useEffect(() => {
     fetch(`http://localhost:9002/categories?name=${categoryName}`)
@@ -69,7 +70,7 @@ const CategoryPage: React.FC = () => {
           <Sidebar
             subcategories={subcategories}
             onSelectSubCategory={handleSubcategoryClick}
-            activeSubcategory={selectedSubcategory}
+            activeSubcategory={selectedSubcategory || ""}
           />
         </div>
         <div className="col-md-9">
@@ -115,3 +116,4 @@ const CategoryPage: React.FC = () => {
 
 export default CategoryPage;
 
+ 
