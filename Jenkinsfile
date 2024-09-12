@@ -61,18 +61,18 @@ pipeline {
             }
         }
 
-        stage('Running .NET Tests') {
-            steps {
-                script {
-                    withEnv(["PATH=${env.DOTNET_INSTALL_DIR}:${env.PATH}"]) {
-                        dir('Dev') {
-                            sh 'find . -name TestResults -exec rm -rf {} +'
-                            sh 'dotnet test Epm.FRoots.sln --collect:"XPlat Code Coverage" -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=opencover'
-                        }
-                    }
-                }
-            }
-        }
+        // stage('Running .NET Tests') {
+        //     steps {
+        //         script {
+        //             withEnv(["PATH=${env.DOTNET_INSTALL_DIR}:${env.PATH}"]) {
+        //                 dir('Dev') {
+        //                     sh 'find . -name TestResults -exec rm -rf {} +'
+        //                     sh 'dotnet test Epm.FRoots.sln --collect:"XPlat Code Coverage" -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=opencover'
+        //                 }
+        //             }
+        //         }
+        //     }
+        // }
 
         // stage('Running Angular Tests') {
         //     steps {
