@@ -50,16 +50,16 @@ pipeline {
         //     }
         // }
 
-        stage('Build React Application') {
-            steps {
-                script {
-                    dir('Dev/Epm.FarmRoots.UI/Epm.FarmRoots.UI.ReactClient') {
-                        sh 'npm install'
-                        sh 'npm run build'
-                    }
-                }
-            }
-        }
+        // stage('Build React Application') {
+        //     steps {
+        //         script {
+        //             dir('Dev/Epm.FarmRoots.UI/Epm.FarmRoots.UI.ReactClient') {
+        //                 sh 'npm install'
+        //                 sh 'npm run build'
+        //             }
+        //         }
+        //     }
+        // }
 
         // stage('Running .NET Tests') {
         //     steps {
