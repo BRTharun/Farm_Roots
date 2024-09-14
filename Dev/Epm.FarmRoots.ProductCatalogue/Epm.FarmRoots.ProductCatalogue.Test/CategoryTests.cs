@@ -128,7 +128,7 @@ namespace Epm.FarmRoots.ProductCatalogue.Tests
             var subCategoryId = 1;
             var customerProducts = new List<CustomerProductViewDto>
             {
-                new CustomerProductViewDto { ProductName = "Valencia Oranges", Price = 4.50m, ImageUrl = "http://example.com/oranges.jpg", ShortDescription = "Juicy Valencia oranges perfect for juicing" }
+                new CustomerProductViewDto { ProductName = "Valencia Oranges", Price = 4.50m, Image = "http://example.com/oranges.jpg", ShortDescription = "Juicy Valencia oranges perfect for juicing" }
             };
             _mockSubCategoryService.Setup(service => service.GetCustomerProductsBySubCategoryIdAsync(subCategoryId))
                                    .ReturnsAsync(customerProducts);
@@ -149,7 +149,7 @@ namespace Epm.FarmRoots.ProductCatalogue.Tests
             var categoryId = 1;
             var customerProducts = new List<CustomerProductViewDto>
             {
-                new CustomerProductViewDto { ProductName = "Organic Apples", Price = 3.99m, ImageUrl = "http://example.com/apples.jpg", ShortDescription = "Fresh organic apples from local farms" }
+                new CustomerProductViewDto { ProductName = "Organic Apples", Price = 3.99m, Image = "http://example.com/apples.jpg", ShortDescription = "Fresh organic apples from local farms" }
             };
             _mockCategoryService.Setup(service => service.GetCustomerProductsByCategoryIdAsync(categoryId))
                                 .ReturnsAsync(customerProducts);

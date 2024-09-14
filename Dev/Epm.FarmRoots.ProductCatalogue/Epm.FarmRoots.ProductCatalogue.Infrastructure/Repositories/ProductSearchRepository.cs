@@ -20,6 +20,8 @@ namespace Epm.FarmRoots.ProductCatalogue.Infrastructure.Repositories
             var keywords = keyword.Split(' ').Select(k => k.Trim().ToLower()).Where(k => !string.IsNullOrEmpty(k)).Distinct();
 
             return await _context.Products
+                                 .Include(p => p.Images)
+                                 .Include(p => p.Price)
                                  .Where(p => keywords.Any(k => p.ProductName.ToLower().Contains(k) || p.ShortDescription.ToLower().Contains(k)))
                                  .ToListAsync();
         }

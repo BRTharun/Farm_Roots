@@ -24,8 +24,8 @@ describe('ProductService', () => {
 
   it('should return an array of products for a given category', () => {
     const mockProducts: Product[] = [
-      { ProductName: 'Apple', ShortDescription: 'fresh apple', Price: 1.20, ImageUrl: 'agsuyahacdad' },
-      { ProductName: 'Banana', ShortDescription: 'fresh banana', Price: 0.50, ImageUrl: 'afdseyuhiydfgh' }
+      { productId: 1, productName: 'Apple', shortDescription: 'fresh apple', price: 1.20, image: 'agsuyahacdad' },
+      { productId: 2, productName: 'Banana', shortDescription: 'fresh banana', price: 0.50, image: 'afdseyuhiydfgh' }
     ];
     const categoryId = 1;
     const mockResponse: ResponseDto<Product[]> = {
@@ -57,8 +57,8 @@ describe('ProductService', () => {
     req.error(errorResponse);
     it('should return an array of products for a given subcategory', () => {
       const mockProducts: Product[] = [
-        { ProductName: 'Apple', ShortDescription: 'fresh apple', Price: 1.20, ImageUrl: 'agsuyahacdad' },
-        { ProductName: 'Banana', ShortDescription: 'fresh banana', Price: 0.50, ImageUrl: 'afdseyuhiydfgh' }
+        { productId: 1, productName: 'Apple', shortDescription: 'fresh apple', price: 1.20, image: 'agsuyahacdad' },
+        { productId: 2, productName: 'Banana', shortDescription: 'fresh banana', price: 0.50, image: 'afdseyuhiydfgh' }
       ];
       const subCategoryId = 2;
       const mockResponse: ResponseDto<Product[]> = {

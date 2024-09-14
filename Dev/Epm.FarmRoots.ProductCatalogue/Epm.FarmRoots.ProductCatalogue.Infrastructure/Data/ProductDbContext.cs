@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 
 using Epm.FarmRoots.ProductCatalogue.Core.Entities;
+using Epm.FarmRoots.ProductCatalogue.Infrastructure.Utilities;
 
 namespace Epm.FarmRoots.ProductCatalogue.Infrastructure.Data
 {
@@ -64,11 +65,6 @@ namespace Epm.FarmRoots.ProductCatalogue.Infrastructure.Data
                 .WithOne()
                 .HasForeignKey<Price>(c => c.ProductId);
 
-                //modelBuilder.Entity<Product>()
-                //    .HasOne(p => p.Manufacturer)
-                //    .WithOne()
-                //    .HasForeignKey<Manufacturer>(c => c.ProductId);
-
                 modelBuilder.Entity<Product>()
                     .HasOne(p => p.Manufacturer)
                     .WithMany()
@@ -83,11 +79,6 @@ namespace Epm.FarmRoots.ProductCatalogue.Infrastructure.Data
                     .HasMany(p => p.Images)
                     .WithOne()
                     .HasForeignKey(c => c.ProductId);
-
-                //modelBuilder.Entity<Product>()
-                //    .HasOne(p => p.Category)
-                //    .WithOne()
-                //    .HasForeignKey<Product>(c => c.ProductId);
 
                 modelBuilder.Entity<Product>()
                     .HasOne(p => p.Category) // Each product has one Category
@@ -178,7 +169,6 @@ namespace Epm.FarmRoots.ProductCatalogue.Infrastructure.Data
                         .HasColumnType("datetime2");
 
                     entity.Property(p => p.Discount)
-                        .IsRequired()
                         .HasColumnType("decimal(18, 2)");
 
                     entity.Property(p => p.ProductCost)
@@ -201,7 +191,7 @@ namespace Epm.FarmRoots.ProductCatalogue.Infrastructure.Data
                 entity.Property(e => e.CategoryName)
                       .IsRequired()
                       .HasMaxLength(100);
-                entity.Property(e => e.ImageUrl);
+                entity.Property(e => e.Image);
 
                 entity.HasMany(e => e.SubCategories)
                       .WithOne(sc => sc.Category)
@@ -215,7 +205,7 @@ namespace Epm.FarmRoots.ProductCatalogue.Infrastructure.Data
                 entity.Property(e => e.SubCategoryName)
                       .IsRequired()
                       .HasMaxLength(100);
-                entity.Property(e => e.ImageUrl);
+                entity.Property(e => e.Image);
                 entity.Property(e => e.CategoryId);
 
                 entity.HasOne(e => e.Category)
@@ -223,106 +213,108 @@ namespace Epm.FarmRoots.ProductCatalogue.Infrastructure.Data
                       .HasForeignKey(e => e.CategoryId);
             });
 
-            // Seed data for Category
-            modelBuilder.Entity<Category>().HasData(
-                new Category { CategoryId = 1, CategoryName = "Fruits", ImageUrl = defaultCategoryImage },
-                new Category { CategoryId = 2, CategoryName = "Vegetables", ImageUrl = defaultCategoryImage },
-                new Category { CategoryId = 3, CategoryName = "Meat, Fish and Eggs", ImageUrl = defaultCategoryImage },
-                new Category { CategoryId = 4, CategoryName = "Dairy Products", ImageUrl = defaultCategoryImage },
-                new Category { CategoryId = 5, CategoryName = "Cool drinks and juices", ImageUrl = defaultCategoryImage },
-                new Category { CategoryId = 6, CategoryName = "Condiments and Spices", ImageUrl = defaultCategoryImage },
-                new Category { CategoryId = 7, CategoryName = "Baked Goods", ImageUrl = defaultCategoryImage },
-                new Category { CategoryId = 8, CategoryName = "Grains", ImageUrl = defaultCategoryImage },
-                new Category { CategoryId = 9, CategoryName = "Treats", ImageUrl = defaultCategoryImage },
-                new Category { CategoryId = 10, CategoryName = "Snacks", ImageUrl = defaultCategoryImage },
-                new Category { CategoryId = 11, CategoryName = "Health and Wellness", ImageUrl = defaultCategoryImage },
-                new Category { CategoryId = 12, CategoryName = "Tea and coffee, more", ImageUrl = defaultCategoryImage },
-                new Category { CategoryId = 13, CategoryName = "Cleaning essentials", ImageUrl = defaultCategoryImage },
-                new Category { CategoryId = 14, CategoryName = "Body care", ImageUrl = defaultCategoryImage },
-                new Category { CategoryId = 15, CategoryName = "Other", ImageUrl = defaultCategoryImage }
-            );
+            //Seed data for Category
+
+           modelBuilder.Entity<Category>().HasData(
+               new Category { CategoryId = 1, CategoryName = "Fruits" },
+               new Category { CategoryId = 2, CategoryName = "Vegetables" },
+               new Category { CategoryId = 3, CategoryName = "Meat, Fish and Eggs" },
+               new Category { CategoryId = 4, CategoryName = "Dairy Products" },
+               new Category { CategoryId = 5, CategoryName = "Cool drinks and juices" },
+               new Category { CategoryId = 6, CategoryName = "Condiments and Spices" },
+               new Category { CategoryId = 7, CategoryName = "Baked Goods" },
+               new Category { CategoryId = 8, CategoryName = "Grains" },
+               new Category { CategoryId = 9, CategoryName = "Treats" },
+               new Category { CategoryId = 10, CategoryName = "Snacks" },
+               new Category { CategoryId = 11, CategoryName = "Health and Wellness" },
+               new Category { CategoryId = 12, CategoryName = "Tea and coffee, more" },
+               new Category { CategoryId = 13, CategoryName = "Cleaning essentials" },
+               new Category { CategoryId = 14, CategoryName = "Body care" },
+               new Category { CategoryId = 15, CategoryName = "Other" }
+           );
 
             modelBuilder.Entity<SubCategory>().HasData(
-                // Subcategories for Fruits (CategoryId = 1)
-                new SubCategory { SubCategoryId = 1, SubCategoryName = "Citrus fruits", CategoryId = 1, ImageUrl = defaultSubCategoryImage },
-                new SubCategory { SubCategoryId = 2, SubCategoryName = "Berries", CategoryId = 1, ImageUrl = defaultSubCategoryImage },
-                new SubCategory { SubCategoryId = 3, SubCategoryName = "Fresh fruits", CategoryId = 1, ImageUrl = defaultSubCategoryImage },
-                new SubCategory { SubCategoryId = 4, SubCategoryName = "Tropical fruits", CategoryId = 1, ImageUrl = defaultSubCategoryImage },
+                 // Subcategories for Fruits (CategoryId = 1)
+                 new SubCategory { SubCategoryId = 1, SubCategoryName = "Citrus fruits", CategoryId = 1 },
+                 new SubCategory { SubCategoryId = 2, SubCategoryName = "Berries", CategoryId = 1 },
+                 new SubCategory { SubCategoryId = 3, SubCategoryName = "Fresh fruits", CategoryId = 1 },
+                 new SubCategory { SubCategoryId = 4, SubCategoryName = "Tropical fruits", CategoryId = 1 },
 
-                // Subcategories for Vegetables (CategoryId = 2)
-                new SubCategory { SubCategoryId = 5, SubCategoryName = "Leafy greens", CategoryId = 2, ImageUrl = defaultSubCategoryImage },
-                new SubCategory { SubCategoryId = 6, SubCategoryName = "Root vegetables", CategoryId = 2, ImageUrl = defaultSubCategoryImage },
-                new SubCategory { SubCategoryId = 7, SubCategoryName = "Fresh vegetables", CategoryId = 2, ImageUrl = defaultSubCategoryImage },
+                 // Subcategories for Vegetables (CategoryId = 2)
+                 new SubCategory { SubCategoryId = 5, SubCategoryName = "Leafy greens", CategoryId = 2 },
+                 new SubCategory { SubCategoryId = 6, SubCategoryName = "Root vegetables", CategoryId = 2},
+                 new SubCategory { SubCategoryId = 7, SubCategoryName = "Fresh vegetables", CategoryId = 2 },
 
-                // Subcategories for Meat, Fish and Eggs (CategoryId = 3)
-                new SubCategory { SubCategoryId = 8, SubCategoryName = "Chicken", CategoryId = 3, ImageUrl = defaultSubCategoryImage },
-                new SubCategory { SubCategoryId = 9, SubCategoryName = "Fish and sea-food", CategoryId = 3, ImageUrl = defaultSubCategoryImage },
-                new SubCategory { SubCategoryId = 10, SubCategoryName = "Mutton", CategoryId = 3, ImageUrl = defaultSubCategoryImage },
-                new SubCategory { SubCategoryId = 11, SubCategoryName = "Eggs", CategoryId = 3, ImageUrl = defaultSubCategoryImage },
+                 // Subcategories for Meat, Fish and Eggs (CategoryId = 3)
+                 new SubCategory { SubCategoryId = 8, SubCategoryName = "Chicken", CategoryId = 3},
+                 new SubCategory { SubCategoryId = 9, SubCategoryName = "Fish and sea-food", CategoryId = 3 },
+                 new SubCategory { SubCategoryId = 10, SubCategoryName = "Mutton", CategoryId = 3 },
+                 new SubCategory { SubCategoryId = 11, SubCategoryName = "Eggs", CategoryId = 3 },
 
-                // Subcategories for Dairy Products (CategoryId = 4)
-                new SubCategory { SubCategoryId = 12, SubCategoryName = "Milk", CategoryId = 4, ImageUrl = defaultSubCategoryImage },
-                new SubCategory { SubCategoryId = 13, SubCategoryName = "Cheese", CategoryId = 4, ImageUrl = defaultSubCategoryImage },
-                new SubCategory { SubCategoryId = 14, SubCategoryName = "Yogurt", CategoryId = 4, ImageUrl = defaultSubCategoryImage },
-                new SubCategory { SubCategoryId = 15, SubCategoryName = "Butter and Cream", CategoryId = 4, ImageUrl = defaultSubCategoryImage },
+                 // Subcategories for Dairy Products (CategoryId = 4)
+                 new SubCategory { SubCategoryId = 12, SubCategoryName = "Milk", CategoryId = 4 },
+                 new SubCategory { SubCategoryId = 13, SubCategoryName = "Cheese", CategoryId = 4 },
+                 new SubCategory { SubCategoryId = 14, SubCategoryName = "Yogurt", CategoryId = 4},
+                 new SubCategory { SubCategoryId = 15, SubCategoryName = "Butter and Cream", CategoryId = 4},
 
-                // Subcategories for Cool drinks and juices (CategoryId = 5)
-                new SubCategory { SubCategoryId = 16, SubCategoryName = "Soft drinks", CategoryId = 5, ImageUrl = defaultSubCategoryImage },
-                new SubCategory { SubCategoryId = 17, SubCategoryName = "Fruit juices", CategoryId = 5, ImageUrl = defaultSubCategoryImage },
-                new SubCategory { SubCategoryId = 18, SubCategoryName = "Herbal drinks", CategoryId = 5, ImageUrl = defaultSubCategoryImage },
+                 // Subcategories for Cool drinks and juices (CategoryId = 5)
+                 new SubCategory { SubCategoryId = 16, SubCategoryName = "Soft drinks", CategoryId = 5 },
+                 new SubCategory { SubCategoryId = 17, SubCategoryName = "Fruit juices", CategoryId = 5 },
+                 new SubCategory { SubCategoryId = 18, SubCategoryName = "Herbal drinks", CategoryId = 5 },
 
-                // Subcategories for Condiments and Spices (CategoryId = 6)
-                new SubCategory { SubCategoryId = 19, SubCategoryName = "Honey", CategoryId = 6, ImageUrl = defaultSubCategoryImage },
-                new SubCategory { SubCategoryId = 20, SubCategoryName = "Jams and preserves", CategoryId = 6, ImageUrl = defaultSubCategoryImage },
-                new SubCategory { SubCategoryId = 21, SubCategoryName = "Hot sauces", CategoryId = 6, ImageUrl = defaultSubCategoryImage },
-                new SubCategory { SubCategoryId = 22, SubCategoryName = "Herbs", CategoryId = 6, ImageUrl = defaultSubCategoryImage },
-                new SubCategory { SubCategoryId = 23, SubCategoryName = "Spices", CategoryId = 6, ImageUrl = defaultSubCategoryImage },
+                 // Subcategories for Condiments and Spices (CategoryId = 6)
+                 new SubCategory { SubCategoryId = 19, SubCategoryName = "Honey", CategoryId = 6 },
+                 new SubCategory { SubCategoryId = 20, SubCategoryName = "Jams and preserves", CategoryId = 6 },
+                 new SubCategory { SubCategoryId = 21, SubCategoryName = "Hot sauces", CategoryId = 6 },
+                 new SubCategory { SubCategoryId = 22, SubCategoryName = "Herbs", CategoryId = 6 },
+                 new SubCategory { SubCategoryId = 23, SubCategoryName = "Spices", CategoryId = 6 },
 
-                // Subcategories for Baked Goods (CategoryId = 7)
-                new SubCategory { SubCategoryId = 24, SubCategoryName = "Bread", CategoryId = 7, ImageUrl = defaultSubCategoryImage },
-                new SubCategory { SubCategoryId = 25, SubCategoryName = "Pastries", CategoryId = 7, ImageUrl = defaultSubCategoryImage },
-                new SubCategory { SubCategoryId = 26, SubCategoryName = "Cakes", CategoryId = 7, ImageUrl = defaultSubCategoryImage },
-                new SubCategory { SubCategoryId = 27, SubCategoryName = "Cookies", CategoryId = 7, ImageUrl = defaultSubCategoryImage },
-                new SubCategory { SubCategoryId = 28, SubCategoryName = "Pies", CategoryId = 7, ImageUrl = defaultSubCategoryImage },
+                 // Subcategories for Baked Goods (CategoryId = 7)
+                 new SubCategory { SubCategoryId = 24, SubCategoryName = "Bread", CategoryId = 7 },
+                 new SubCategory { SubCategoryId = 25, SubCategoryName = "Pastries", CategoryId = 7 },
+                 new SubCategory { SubCategoryId = 26, SubCategoryName = "Cakes", CategoryId = 7 },
+                 new SubCategory { SubCategoryId = 27, SubCategoryName = "Cookies", CategoryId = 7 },
+                 new SubCategory { SubCategoryId = 28, SubCategoryName = "Pies", CategoryId = 7 },
 
-                // Subcategories for Grains (CategoryId = 8)
-                new SubCategory { SubCategoryId = 29, SubCategoryName = "Wheat products", CategoryId = 8, ImageUrl = defaultSubCategoryImage },
-                new SubCategory { SubCategoryId = 30, SubCategoryName = "Rice", CategoryId = 8, ImageUrl = defaultSubCategoryImage },
-                new SubCategory { SubCategoryId = 31, SubCategoryName = "Corn", CategoryId = 8, ImageUrl = defaultSubCategoryImage },
-                new SubCategory { SubCategoryId = 32, SubCategoryName = "Oats", CategoryId = 8, ImageUrl = defaultSubCategoryImage },
+                 // Subcategories for Grains (CategoryId = 8)
+                 new SubCategory { SubCategoryId = 29, SubCategoryName = "Wheat products", CategoryId = 8 },
+                 new SubCategory { SubCategoryId = 30, SubCategoryName = "Rice", CategoryId = 8 },
+                 new SubCategory { SubCategoryId = 31, SubCategoryName = "Corn", CategoryId = 8 },
+                 new SubCategory { SubCategoryId = 32, SubCategoryName = "Oats", CategoryId = 8 },
 
-                // Subcategories for Treats (CategoryId = 9)
-                new SubCategory { SubCategoryId = 33, SubCategoryName = "Chocolates", CategoryId = 9, ImageUrl = defaultSubCategoryImage },
-                new SubCategory { SubCategoryId = 34, SubCategoryName = "Sweets", CategoryId = 9, ImageUrl = defaultSubCategoryImage },
-                new SubCategory { SubCategoryId = 35, SubCategoryName = "Protein bar", CategoryId = 9, ImageUrl = defaultSubCategoryImage },
-                new SubCategory { SubCategoryId = 36, SubCategoryName = "Premium chocolates", CategoryId = 9, ImageUrl = defaultSubCategoryImage },
+                 // Subcategories for Treats (CategoryId = 9)
+                 new SubCategory { SubCategoryId = 33, SubCategoryName = "Chocolates", CategoryId = 9 },
+                 new SubCategory { SubCategoryId = 34, SubCategoryName = "Sweets", CategoryId = 9 },
 
-                // Subcategories for Snacks (CategoryId = 10)
-                new SubCategory { SubCategoryId = 37, SubCategoryName = "Chips", CategoryId = 10, ImageUrl = defaultSubCategoryImage },
-                new SubCategory { SubCategoryId = 38, SubCategoryName = "Namkeens", CategoryId = 10, ImageUrl = defaultSubCategoryImage },
-                new SubCategory { SubCategoryId = 39, SubCategoryName = "Dry Fruits and Nuts", CategoryId = 10, ImageUrl = defaultSubCategoryImage },
+                 new SubCategory { SubCategoryId = 35, SubCategoryName = "Protein bar", CategoryId = 9},
+                 new SubCategory { SubCategoryId = 36, SubCategoryName = "Premium chocolates", CategoryId = 9},
 
-                // Subcategories for Health and Wellness (CategoryId = 11)
-                new SubCategory { SubCategoryId = 40, SubCategoryName = "Handwash", CategoryId = 11, ImageUrl = defaultSubCategoryImage },
-                new SubCategory { SubCategoryId = 41, SubCategoryName = "Cold and Cough", CategoryId = 11, ImageUrl = defaultSubCategoryImage },
-                new SubCategory { SubCategoryId = 42, SubCategoryName = "Pain relief", CategoryId = 11, ImageUrl = defaultSubCategoryImage },
+                 // Subcategories for Snacks (CategoryId = 10)
+                 new SubCategory { SubCategoryId = 37, SubCategoryName = "Chips", CategoryId = 10},
+                 new SubCategory { SubCategoryId = 38, SubCategoryName = "Namkeens", CategoryId = 10},
+                 new SubCategory { SubCategoryId = 39, SubCategoryName = "Dry Fruits and Nuts", CategoryId = 10},
 
-                // Subcategories for Tea and coffee, more (CategoryId = 12)
-                new SubCategory { SubCategoryId = 43, SubCategoryName = "Tea", CategoryId = 12, ImageUrl = defaultSubCategoryImage },
-                new SubCategory { SubCategoryId = 44, SubCategoryName = "Coffee", CategoryId = 12, ImageUrl = defaultSubCategoryImage },
-                new SubCategory { SubCategoryId = 45, SubCategoryName = "Milk Drink mixes", CategoryId = 12, ImageUrl = defaultSubCategoryImage },
-                new SubCategory { SubCategoryId = 46, SubCategoryName = "Green and Herbal Tea", CategoryId = 12, ImageUrl = defaultSubCategoryImage },
+                 // Subcategories for Health and Wellness (CategoryId = 11)
+                 new SubCategory { SubCategoryId = 40, SubCategoryName = "Handwash", CategoryId = 11},
+                 new SubCategory { SubCategoryId = 41, SubCategoryName = "Cold and Cough", CategoryId = 11 },
+                 new SubCategory { SubCategoryId = 42, SubCategoryName = "Pain relief", CategoryId = 11 },
 
-                // Subcategories for Cleaning essentials (CategoryId = 13)
-                new SubCategory { SubCategoryId = 47, SubCategoryName = "Cleaning tools", CategoryId = 13, ImageUrl = defaultSubCategoryImage },
-                new SubCategory { SubCategoryId = 48, SubCategoryName = "Detergents", CategoryId = 13, ImageUrl = defaultSubCategoryImage },
-                new SubCategory { SubCategoryId = 49, SubCategoryName = "Liquids", CategoryId = 13, ImageUrl = defaultSubCategoryImage },
+                 // Subcategories for Tea and coffee, more (CategoryId = 12)
+                 new SubCategory { SubCategoryId = 43, SubCategoryName = "Tea", CategoryId = 12 },
+                 new SubCategory { SubCategoryId = 44, SubCategoryName = "Coffee", CategoryId = 12 },
+                 new SubCategory { SubCategoryId = 45, SubCategoryName = "Milk Drink mixes", CategoryId = 12 },
+                 new SubCategory { SubCategoryId = 46, SubCategoryName = "Green and Herbal Tea", CategoryId = 12 },
 
-                // Subcategories for Body care (CategoryId = 14)
-                new SubCategory { SubCategoryId = 50, SubCategoryName = "Skin care", CategoryId = 14, ImageUrl = defaultSubCategoryImage },
-                new SubCategory { SubCategoryId = 51, SubCategoryName = "Hair care", CategoryId = 14, ImageUrl = defaultSubCategoryImage },
-                new SubCategory { SubCategoryId = 52, SubCategoryName = "Soaps", CategoryId = 14, ImageUrl = defaultSubCategoryImage }
-            );
+                 // Subcategories for Cleaning essentials (CategoryId = 13)
+                 new SubCategory { SubCategoryId = 47, SubCategoryName = "Cleaning tools", CategoryId = 13 },
+                 new SubCategory { SubCategoryId = 48, SubCategoryName = "Detergents", CategoryId = 13 },
+                 new SubCategory { SubCategoryId = 49, SubCategoryName = "Liquids", CategoryId = 13 },
+
+                 // Subcategories for Body care (CategoryId = 14)
+                 new SubCategory { SubCategoryId = 50, SubCategoryName = "Skin care", CategoryId = 14 },
+                 new SubCategory { SubCategoryId = 51, SubCategoryName = "Hair care", CategoryId = 14  },
+                 new SubCategory { SubCategoryId = 52, SubCategoryName = "Soaps", CategoryId = 14 }
+                 );
         }
     }
 }

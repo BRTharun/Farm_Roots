@@ -22,7 +22,7 @@ namespace Epm.FarmRoots.ProductCatalogue.Core.Entities
 
         public DateTime SpecialPriceToDate { get; set; }
 
-        public required decimal Discount { get; set; }
+        public decimal Discount { get; set; }
 
         public required decimal ProductCost { get; set; }
 

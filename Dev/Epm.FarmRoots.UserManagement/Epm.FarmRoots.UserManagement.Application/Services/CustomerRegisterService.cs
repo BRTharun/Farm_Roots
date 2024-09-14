@@ -18,6 +18,7 @@ namespace Epm.FarmRoots.UserManagement.Application.Services
         {
             _customerRepository = customerRepository;
             _mapper = mapper;
+            _passwordHasher = passwordHasher;
         }
         public async Task<CustomerDto> RegisterCustomerAsync(CustomerDto customerDto)
         {
@@ -50,27 +51,21 @@ namespace Epm.FarmRoots.UserManagement.Application.Services
 
         public async Task<CustomerDto> ChangePasswordAsync(int customerId, string oldPassword, string newPassword)
         {
-            //if (!UtilityServices.IsBase64String(oldPassword) || !UtilityServices.IsBase64String(newPassword))
-            //{
-            //    throw new ArgumentException("Passwords must be valid Base-64 encoded strings.");
-            //}
 
-            var oldPasswordDecode = UtilityServices.DecodePassword(oldPassword);
-            var newPasswordDecode = UtilityServices.DecodePassword(newPassword);
             var customer = await _customerRepository.GetCustomerByIdAsync(customerId);
             if (customer == null)
             {
                 throw new KeyNotFoundException("Customer not found.");
             }
-            var verificationResult = _passwordHasher.VerifyHashedPassword(customer, customer.Password, oldPasswordDecode);
+            var verificationResult = _passwordHasher.VerifyHashedPassword(customer, customer.Password, oldPassword);
             if (verificationResult != PasswordVerificationResult.Success)
             {
                 throw new ArgumentException("The old password is incorrect.");
             }
 
-            if (!string.IsNullOrWhiteSpace(newPasswordDecode))
+            if (!string.IsNullOrWhiteSpace(newPassword))
             {
-                customer.Password = _passwordHasher.HashPassword(customer, newPasswordDecode);
+                customer.Password = _passwordHasher.HashPassword(customer, newPassword);
                 await _customerRepository.UpdateCustomerAsync(customer);
             }
 

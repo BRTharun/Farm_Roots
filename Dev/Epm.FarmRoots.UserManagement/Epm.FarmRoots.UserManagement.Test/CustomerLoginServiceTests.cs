@@ -4,6 +4,7 @@ using Epm.FarmRoots.UserManagement.Application.Dtos;
 using Epm.FarmRoots.UserManagement.Application.Interfaces;
 using Epm.FarmRoots.UserManagement.Core.Entities;
 using Epm.FarmRoots.UserManagement.Core.Interfaces;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Moq;
 
@@ -16,6 +17,7 @@ namespace Epm.FarmRoots.UserManagement.Test
         private Mock<TokenService>? _tokenServiceMock;
         private IMapper? _mapper;
         private ICustomerLoginService? _service;
+        private IPasswordHasher<Customer> _passwordHasher;
 
         [TestInitialize]
         public void Setup()
@@ -26,7 +28,10 @@ namespace Epm.FarmRoots.UserManagement.Test
             var config = new MapperConfiguration(cfg => cfg.CreateMap<Customer, LoginResponseDto>());
             _mapper = config.CreateMapper();
 
-            _service = new CustomerLoginService(_customerRepositoryMock.Object, _mapper, _tokenServiceMock.Object);
+            _service = new CustomerLoginService(_customerRepositoryMock.Object, _mapper, _tokenServiceMock.Object, _passwordHasher);
+          
+
+   
         }
 
         [TestMethod]

@@ -31,7 +31,7 @@
 
     <!-- Product Name -->
     <div class="flex flex-col items-start my-2">
-      <label class="w-full text-gray-700">Product name <span class="text-red-500">*</span></label>
+      <label class="w-full text-gray-700">Product name <span class="required">*</span></label>
       <input type="text" formControlName="productName" required class="w-full bg-white border border-gray-300 rounded-md px-4 py-2 focus:ring-2 focus:ring-indigo-500" />
       <div *ngIf="productForm.controls['productName'].touched && productForm.controls['productName'].errors" class="text-red-600 text-sm mt-1">
         <div *ngIf="productForm.controls['productName'].errors['required']" style="color : red">Product name is required.</div>
@@ -44,7 +44,7 @@
 
     <!-- Short Description -->
     <div class="flex flex-col items-start my-2">
-      <label class="w-full text-gray-700">Short description <span class="text-red-500">*</span></label>
+      <label class="w-full text-gray-700">Short description <span class="required">*</span></label>
       <textarea formControlName="shortDescription" maxlength="500" required name="shortDescription" class="w-full bg-white border border-gray-300 rounded-md px-4 py-2 focus:ring-2 focus:ring-indigo-500"></textarea>
       <div *ngIf="productForm.controls['shortDescription'].touched && productForm.controls['shortDescription'].errors" class="text-red-600 text-sm mt-1">
         <div *ngIf="productForm.controls['shortDescription'].errors['required']" style="color : red">Short description is required.</div>
@@ -57,7 +57,7 @@
       <label class="w-1/3 text-gray-700">Full description</label>
       <textarea formControlName="fullDescription" name="fullDescription" maxlength="600" class="w-2/3 bg-white border border-gray-300 rounded-md px-4 py-2 focus:ring-2 focus:ring-indigo-500"></textarea>
       <div *ngIf="productForm.controls['fullDescription'].touched && productForm.controls['shortDescription'].errors" class="text-red-600 text-sm mt-1">
-        <div *ngIf="productForm.controls['fullDescription'].errors['maxlength']" style="color : red">Short description cannot exceed 500 characters.</div>
+        <div *ngIf="productForm.controls['fullDescription'].errors['maxlength']" style="color : red">Full description cannot exceed 500 characters.</div>
       </div>
     </div>
 
