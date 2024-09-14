@@ -2,7 +2,7 @@ import React, { useEffect, Suspense } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../utils/store/store";
 import { fetchVendorProfile } from "../../utils/slices/vendorSlice";
-import TopBanner from "../../common/HomePage/UI/TopBanner";
+//import TopBanner from "../../common/HomePage/UI/TopBanner";
 import TopBar from "../../common/vendor/TopBar";
 import Sidebar from "../../common/vendor/Sidebar";
 

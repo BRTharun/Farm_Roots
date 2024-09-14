@@ -6,7 +6,7 @@ import { Provider } from 'react-redux'
 import store from './components/store/MainStore/store.tsx'
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from 'react-toastify';
-import Vendor from './vendor.tsx'
+//import Vendor from './vendor.tsx'
 
 
 
