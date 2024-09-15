@@ -4,7 +4,7 @@
     {
         public int CategoryId { get; set; }
         public required string CategoryName { get; set; }
-        public byte[]? ImageUrl { get; set; }
+        public byte[]? Image { get; set; }
         public ICollection<SubCategory> SubCategories { get; set; } = new List<SubCategory>();
 
     }

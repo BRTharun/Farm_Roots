@@ -21,7 +21,7 @@ interface AuthProviderProps {
 export const AuthProvider : React.FC<AuthProviderProps> = ({ children }) => {
     const [user, setUser] = useState<User | null>(null);
 
-    const register = useCallback (async (name : string, email: string, phone: string, password : string, role: string ) => {
+    const register = useCallback (async (name : string, email: string, phone: string ,role: string ) => {
         console.log("Registering user:", name, email, phone, role);
         setUser({name, email, phone, role});
     },[]);

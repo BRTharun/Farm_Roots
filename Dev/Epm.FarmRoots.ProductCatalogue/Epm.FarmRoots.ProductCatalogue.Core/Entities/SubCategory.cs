@@ -5,7 +5,7 @@
         public int SubCategoryId { get; set; }
         public required string SubCategoryName { get; set; }
         public int CategoryId { get; set; }
-        public byte[]? ImageUrl { get; set; }
+        public byte[]? Image { get; set; }
         public Category Category { get; set; }
     }
 }

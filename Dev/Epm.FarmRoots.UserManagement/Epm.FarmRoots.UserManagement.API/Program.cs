@@ -34,6 +34,8 @@ builder.Services.AddScoped<IVendorLoginService, VendorLoginService>();
 builder.Services.AddScoped<IPasswordHasher<Customer>, PasswordHasher<Customer>>();
 builder.Services.AddScoped<ICustomerRepository, CustomerRepository>();
 builder.Services.AddScoped<IVendorRepository, VendorRepository>();
+builder.Services.AddScoped<IPasswordHasher<Vendor>, PasswordHasher<Vendor>>();
+
 
 var config = builder.Configuration;
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
@@ -72,4 +74,24 @@ app.UseAuthorization();
 
 app.MapControllers();
 
+// Apply database migrations
+ApplyMigrations(app); 
+
 app.Run();
+
+void ApplyMigrations(IHost app)
+{
+    using var scope = app.Services.CreateScope();
+    var services = scope.ServiceProvider;
+
+    MigrateDbContext<ApplicationDbContext>(services);
+}
+
+void MigrateDbContext<TContext>(IServiceProvider services) where TContext : DbContext
+{
+    var context = services.GetRequiredService<TContext>();
+    if (context.Database.GetPendingMigrations().Any())
+    {
+        context.Database.Migrate();
+    }
+}

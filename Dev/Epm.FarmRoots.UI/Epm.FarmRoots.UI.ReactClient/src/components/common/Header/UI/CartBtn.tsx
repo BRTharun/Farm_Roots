@@ -4,11 +4,11 @@ import { useNavigate, useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { setLoginComponent } from "../../../store/Reducer/headerLoginSlice";
 import { toast } from "react-toastify";
-import { VendorRootState } from "../../../store/MainStore/store";
+import { RootState } from "../../../store/MainStore/store";
 
 const CartBtn: React.FC = () => {
-    const { total } = useSelector((state: VendorRootState) => state.cartSlice);
-    const { auth } = useSelector((state: VendorRootState) => state.authSlice);
+    const { total } = useSelector((state: RootState) => state.cartSlice);
+    const { auth } = useSelector((state: RootState) => state.authSlice);
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const { pathname } = useLocation();

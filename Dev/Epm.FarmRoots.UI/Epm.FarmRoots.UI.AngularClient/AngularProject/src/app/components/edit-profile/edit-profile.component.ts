@@ -28,7 +28,7 @@ export class EditProfileComponent implements OnInit {
     if (this.editProfileForm.valid) {
       const formData = this.editProfileForm.value;
       console.log(formData);
-      this.registrationService.updateProfile(6, formData).subscribe({
+      this.registrationService.updateProfile(4, formData).subscribe({
         next: (response) => {
           this.message = { text: 'Customer profile has been updated successfully.', type: 'success' };
           alert('Profile updated successfully');

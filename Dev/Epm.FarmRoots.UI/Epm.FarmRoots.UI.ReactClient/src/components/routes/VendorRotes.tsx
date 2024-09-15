@@ -1,12 +1,12 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
-import HomePage from "../pages/HomePage";
+//import HomePage from "../pages/HomePage";
 import VendorNavBar from "../common/vendor/VendorNavBar";
 import VendorProducts from "../pages/vendor/VendorProducts";
 import AddProduct from "../pages/vendor/AddProduct";
 import VendorProfile from "../pages/vendor/VendorProfile";
 import EditProduct from "../pages/vendor/EditPage";
-import CategoryPage from "../pages/user/CategoryPage";
+//import CategoryPage from "../pages/user/CategoryPage";
 import SubcategoryPage from "../pages/vendor/SubcategoryPage";
 import SubcategoryProductsPage from "../pages/vendor/SubcategoryProductsPage";
 import ManufacturerProductsPage from "../pages/vendor/ManufacturerProductsPage";
