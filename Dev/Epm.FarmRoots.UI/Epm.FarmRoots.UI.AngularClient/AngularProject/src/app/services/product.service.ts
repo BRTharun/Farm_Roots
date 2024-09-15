@@ -31,6 +31,10 @@ export class ProductService {
     }
 
   updateProduct(productId: number, product: ResponseProduct): Observable<any> {
+    product.vendorId = 1;
+    product.categoryId = 1;
+    product.manufacturerId = 1;
+    product.subcategoryId = 2;
     return this.http.put(`${this.apiUrl}/${productId}`, product);
   }
 }

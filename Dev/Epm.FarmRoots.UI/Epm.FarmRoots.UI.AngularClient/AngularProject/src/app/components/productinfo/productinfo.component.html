@@ -3,7 +3,7 @@
     <!-- Unique Product ID -->
     <div class="flex items-center">
       <label class="w-1/3 text-gray-700">Product ID</label>
-      <input type="text" name="productId" disabled class="w-2/3 bg-gray-100 border border-gray-300 rounded-md px-4 py-2" />
+      <input type="text" name="productId" formControlName="productId" disabled class="w-2/3 bg-gray-100 border border-gray-300 rounded-md px-4 py-2" />
     </div>
 
     <!-- Product Type -->
@@ -78,22 +78,29 @@
     <div class="flex items-center">
       <label class="w-1/3 text-gray-700">Product tags</label>
       <input type="text" formControlName="productTags" name="productTags" placeholder="Add up to 5 tags, comma separated" class="w-2/3 bg-white border border-gray-300 rounded-md px-4 py-2 focus:ring-2 focus:ring-indigo-500" />
+      <div *ngIf="productForm.get('productTags').errors?.maxTagsExceeded" style="color : red">
+        Maximum 5 tags are allowed.
+      </div>
     </div>
 
+    <!-- ... -->
     <!-- Created Date -->
-    <!--<div class="flex items-center">
-    <label class="w-1/3 text-gray-700">CreatedOn</label>
-    <div class="relative w-2/3">
-      <input type="date" formControlName="createdDate" name="CreatedDate" disabled class="w-2/3 bg-gray-100 border border-gray-300 rounded-md px-4 py-2" />
-    </div>
-  </div>-->
+    <!--<div class="flex items-center" *ngIf="isDataSaved">
+      <label class="w-1/3 text-gray-700">CreatedOn</label>
+      <div class="relative w-2/3">
+        <input type="text" formControlName="createdDate" name="CreatedDate" disabled class="w-2/3 bg-gray-100 border border-gray-300 rounded-md px-4 py-2" />
+      </div>
+    </div>-->
+
     <!-- Updated Date -->
-    <!--<div class="flex items-center">
-    <label class="w-1/3 text-gray-700">UpdateOn</label>
-    <div class="relative w-2/3">
-      <input type="date" formControlName="updatedDate" name="endDate" disabled class="w-2/3 bg-gray-100 border border-gray-300 rounded-md px-4 py-2" />
-    </div>
-  </div>-->
+    <!--<div class="flex items-center" *ngIf="isDataSaved">
+      <label class="w-1/3 text-gray-700">UpdateOn</label>
+      <div class="relative w-2/3">
+        <input type="text" formControlName="updatedDate" name="endDate" disabled class="w-2/3 bg-gray-100 border border-gray-300 rounded-md px-4 py-2" />
+      </div>
+    </div>-->
+
+    <!-- ... -->
     <!-- Submit Button -->
     <div class="md:col-span-2">
       <button type="submit" class="w-full bg-indigo-600 text-white px-4 py-2 rounded-md hover:bg-indigo-700 focus:ring-2 focus:ring-indigo-500">Save</button>

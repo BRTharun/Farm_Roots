@@ -4,11 +4,9 @@ using Epm.FarmRoots.ProductCatalogue.Core.Interfaces;
 using Epm.FarmRoots.ProductCatalogue.Infrastructure.Data;
 using Epm.FarmRoots.ProductCatalogue.Infrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
 using Microsoft.OpenApi.Models;
 using Microsoft.AspNetCore.Http.Features;
-using Swashbuckle.AspNetCore.SwaggerGen;
-using Epm.FarmRoots.ProductCatalogue.Infrastructure;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -33,11 +31,7 @@ builder.Services.AddScoped<IInventoryCartRepository, InventoryCartRepository>();
 
 // Register DbContexts
 builder.Services.AddDbContext<ProductDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
-
-
-
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
-
 // CORS policy setup
 builder.Services.AddCors(options =>
 {
@@ -48,7 +42,6 @@ builder.Services.AddCors(options =>
               .AllowAnyMethod();
     });
 });
-
 
 // Configure file upload size (optional, you can adjust the limit)
 builder.Services.Configure<FormOptions>(options =>

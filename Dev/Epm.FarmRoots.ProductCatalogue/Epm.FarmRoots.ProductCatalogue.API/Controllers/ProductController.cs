@@ -158,7 +158,7 @@ namespace Epm.FarmRoots.ProductCatalogue.Api.Controllers
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
-                return StatusCode(500, "A server error occurred while creating the product.");
+                return StatusCode(500, "A server error occurred while updating the product.");
             }
         }
 
