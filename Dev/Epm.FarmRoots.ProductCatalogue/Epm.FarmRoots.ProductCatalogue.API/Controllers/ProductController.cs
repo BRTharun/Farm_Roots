@@ -5,7 +5,7 @@ using Epm.FarmRoots.ProductCatalogue.Application.Interfaces;
 namespace Epm.FarmRoots.ProductCatalogue.Api.Controllers
 {
     [ApiController]
-    [Route("api/products")]
+    [Route("api/FarmRoots/[controller]")]
     public class ProductsController : ControllerBase
     {
         private readonly IProductService _productService;

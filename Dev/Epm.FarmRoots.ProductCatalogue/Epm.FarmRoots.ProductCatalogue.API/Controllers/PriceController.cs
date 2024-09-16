@@ -2,12 +2,11 @@
 using Microsoft.AspNetCore.Mvc;
 using Epm.FarmRoots.ProductCatalogue.Application.Dtos;
 using Epm.FarmRoots.ProductCatalogue.Application.Interfaces;
-using System.Threading.Tasks;
 
 namespace Epm.FarmRoots.ProductCatalogue.API.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("api/FarmRoots/[controller]")]
     public class PriceController : ControllerBase
     {
         private readonly IPriceService _priceService;

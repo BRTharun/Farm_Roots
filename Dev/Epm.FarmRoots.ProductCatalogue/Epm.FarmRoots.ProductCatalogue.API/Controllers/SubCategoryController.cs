@@ -1,12 +1,10 @@
 ﻿using Epm.FarmRoots.ProductCatalogue.Application.Dtos;
 using Epm.FarmRoots.ProductCatalogue.Application.Interfaces;
-using Epm.FarmRoots.ProductCatalogue.Application.Services;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Epm.FarmRoots.ProductCatalogue.API.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/FarmRoots/[controller]")]
     [ApiController]
     public class SubCategoryController : ControllerBase
     {

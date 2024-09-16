@@ -9,7 +9,7 @@ import { Price } from '../models/price.model';
   providedIn: 'root'
 })
 export class PriceService {
-  private apiBaseUrl = 'https://localhost:7189/api/Price';
+  private apiBaseUrl = 'https://localhost:7189/api/FarmRoots/Price';
 
   constructor(private http: HttpClient) { }
 

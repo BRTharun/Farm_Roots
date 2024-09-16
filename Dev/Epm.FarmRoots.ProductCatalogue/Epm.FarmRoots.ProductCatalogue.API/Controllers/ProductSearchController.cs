@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Epm.FarmRoots.ProductCatalogue.API.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/FarmRoots/[controller]")]
     [ApiController]
     public class ProductSearchController : ControllerBase
     {

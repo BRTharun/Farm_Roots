@@ -7,7 +7,7 @@ import { Subcategory } from '../models/subcategory.model';
 describe('CategoryService', () => {
   let service: CategoryService;
   let httpMock: HttpTestingController;
-  const baseUrl = 'https://localhost:7189/api/Category';
+  const baseUrl = 'https://localhost:7189/api/FarmRoots/Category';
 
   beforeEach(() => {
     TestBed.configureTestingModule({

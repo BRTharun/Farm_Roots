@@ -9,7 +9,7 @@ import { Manufacturer } from '../models/manufacturer.model';
   providedIn: 'root'
 })
 export class ManufacturerService {
-  private apiUrl = 'https://localhost:7189/api/Manufacturer';
+  private apiUrl = 'https://localhost:7189/api/FarmRoots/Manufacturer';
 
   constructor(private http: HttpClient) { }
 

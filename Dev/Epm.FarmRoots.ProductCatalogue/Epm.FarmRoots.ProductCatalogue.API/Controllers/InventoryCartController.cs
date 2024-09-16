@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Epm.FarmRoots.ProductCatalogue.API.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/FarmRoots/[controller]")]
     [ApiController]
     public class InventoryCartController : ControllerBase
     {

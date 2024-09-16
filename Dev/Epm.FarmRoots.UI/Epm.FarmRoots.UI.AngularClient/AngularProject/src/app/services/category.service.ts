@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
-import { throwError } from 'rxjs';
 import { Category } from '../models/category.model';
 import { Subcategory } from '../models/subcategory.model';
 
@@ -12,7 +11,7 @@ import { Subcategory } from '../models/subcategory.model';
 })
 
 export class CategoryService {
-  private baseUrl = 'https://localhost:7189/api/Category';
+  private baseUrl = 'https://localhost:7189/api/FarmRoots/Category';
 
   constructor(private http: HttpClient) { }
 

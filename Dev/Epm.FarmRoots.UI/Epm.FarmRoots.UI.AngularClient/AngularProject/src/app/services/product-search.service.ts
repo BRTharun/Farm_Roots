@@ -8,7 +8,7 @@ import { Product } from '../models/productCustView.model';
   providedIn: 'root'
 })
 export class ProductSearchService {
-  private apiUrl = 'https://localhost:7189/api/ProductSearch';
+  private apiUrl = 'https://localhost:7189/api/FarmRoots/ProductSearch';
 
   constructor(private http: HttpClient) { }
 

@@ -39,7 +39,7 @@ describe('ProductService', () => {
       expect(products.result).toEqual(mockProducts);
     });
 
-    const req = httpMock.expectOne(`https://localhost:7189/api/Category/${categoryId}/customer-products`);
+    const req = httpMock.expectOne(`https://localhost:7189/api/FarmRoots/Category/${categoryId}/customer-products`);
     expect(req.request.method).toBe('GET');
     req.flush(mockResponse);
   });
@@ -53,7 +53,7 @@ describe('ProductService', () => {
       error: (error) => expect(error.error).toBe(errorResponse)
     });
 
-    const req = httpMock.expectOne(`https://localhost:7189/api/Category/${categoryId}/customer-products`);
+    const req = httpMock.expectOne(`https://localhost:7189/api/FarmRoots/Category/${categoryId}/customer-products`);
     req.error(errorResponse);
     it('should return an array of products for a given subcategory', () => {
       const mockProducts: Product[] = [
@@ -72,7 +72,7 @@ describe('ProductService', () => {
         expect(products.result).toEqual(mockProducts);
       });
 
-      const req = httpMock.expectOne(`https://localhost:7189/api/SubCategory/${subCategoryId}/customer-sub-products`);
+      const req = httpMock.expectOne(`https://localhost:7189/api/FarmRoots/SubCategory/${subCategoryId}/customer-sub-products`);
       expect(req.request.method).toBe('GET');
       req.flush(mockResponse);
     });
@@ -86,7 +86,7 @@ describe('ProductService', () => {
         error: (error) => expect(error.error).toBe(errorResponse)
       });
 
-      const req = httpMock.expectOne(`https://localhost:7189/api/SubCategory/${subCategoryId}/customer-sub-products`);
+      const req = httpMock.expectOne(`https://localhost:7189/api/FarmRoots/SubCategory/${subCategoryId}/customer-sub-products`);
       req.error(errorResponse);
     });
   });

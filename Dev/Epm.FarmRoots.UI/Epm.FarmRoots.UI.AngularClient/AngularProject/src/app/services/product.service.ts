@@ -10,12 +10,12 @@ import { CreateProduct, ResponseProduct} from '../models/product';
 })
 export class ProductService {
 
-  private apiUrl = 'https://localhost:7189/api/products'; // Adjust the API URL as needed
+  private apiUrl = 'https://localhost:7189/api/FarmRoots/Products'; // Adjust the API URL as needed
 
   constructor(private http: HttpClient) { }
 
     getCustomerProductsByCategoryId(categoryId: number): Observable<any> {
-        return this.http.get<ResponseDto<Product[]>>(`https://localhost:7189/api/Category/${categoryId}/customer-products`);
+      return this.http.get<ResponseDto<Product[]>>(`https://localhost:7189/api/FarmRoots/Category/${categoryId}/customer-products`);
     }
     createProduct(product: CreateProduct, tags: string[]): Observable<any> {
       product.vendorId = 1;
@@ -27,7 +27,7 @@ export class ProductService {
   }
 
     getCustomerProductsBySubCategoryId(subCategoryId: number): Observable<any> {
-        return this.http.get<ResponseDto<Product[]>>(`https://localhost:7189/api/SubCategory/${subCategoryId}/customer-sub-products`);
+      return this.http.get<ResponseDto<Product[]>>(`https://localhost:7189/api/FarmRoots/FarmRoots/SubCategory/${subCategoryId}/customer-sub-products`);
     }
 
   updateProduct(productId: number, product: ResponseProduct): Observable<any> {

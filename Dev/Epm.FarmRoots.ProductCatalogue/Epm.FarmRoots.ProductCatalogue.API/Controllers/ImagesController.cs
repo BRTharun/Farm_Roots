@@ -5,11 +5,10 @@ using Microsoft.AspNetCore.Mvc;
 namespace Epm.FarmRoots.ProductCatalogue.API.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("api/FarmRoots/[controller]")]
     public class ImagesController : ControllerBase
     {
         private readonly IImageService _imageService;
-
         public ImagesController(IImageService imageService)
         {
             _imageService = imageService;

@@ -4,8 +4,8 @@ using Epm.FarmRoots.ProductCatalogue.Application.Interfaces;
 
 namespace Epm.FarmRoots.ProductCatalogue.API.Controllers
 {
-    [Route("api/[controller]")]
     [ApiController]
+    [Route("api/FarmRoots/[controller]")]
     public class CategoryController : ControllerBase
     {
         private readonly ICategoryService _categoryService;
