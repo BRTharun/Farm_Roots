@@ -56,7 +56,14 @@ export class ProductInfoComponent implements OnInit {
     if (this.productForm.valid) {
       const formValue = this.productForm.value;
       const tags = formValue.productTags ? formValue.productTags.split(',').map((tag: string) => tag.trim()).filter((tag: string) => tag !== '') : [];
-      
+
+      if (tags.length > 5) {
+        const productTagsControl = this.productForm.get('productTags');
+        if (productTagsControl) {
+          productTagsControl.setErrors({ 'maxTagsExceeded': true });
+        }
+        return;
+      }
 
       console.log("Submitting Product:", this.productForm.value);
 
@@ -67,7 +74,6 @@ export class ProductInfoComponent implements OnInit {
           alert('Data has been saved successfully!');
           this.isDataSaved = true;
           this.fillFormWithSavedData();
-          localStorage.setItem('savedProduct', JSON.stringify(this.savedProduct)); // Store the saved product data in local storage
         },
         (error: any) => {
           console.error('Failed to save data!', error);
