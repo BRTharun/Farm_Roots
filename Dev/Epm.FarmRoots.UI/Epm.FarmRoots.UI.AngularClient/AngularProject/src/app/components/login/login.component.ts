@@ -17,16 +17,26 @@ export class LoginComponent {
 
   login() {
     const body = { email: this.email, password: this.password, role: this.role };
-    const url = 'https://localhost:44350/customerlogin/login';
+    const url = this.role === 'vendor' ? 'https://localhost:44350/vendorlogin/login' : 'https://localhost:44350/customerlogin/login';
 
     this.http.post<any>(url, body).subscribe(
       (response) => {
-        localStorage.setItem('token', response.token);
-        this.router.navigate(['/profile']);
+        if (response.token && response.id) {
+          localStorage.setItem('token', response.token);
+          localStorage.setItem('userId', response.id);
+
+          if (this.role === 'customer') {
+            this.router.navigate(['/profile']);
+          } else if (this.role === 'vendor') {
+            this.router.navigate(['/vendorprofile']);
+          }
+        } else {
+          this.errorMessage = 'Login Failed: Missing token or user information.';
+        }
       },
       (error) => {
         console.error('Login error', error);
-        this.errorMessage = 'Login failed. Please check your credentials and try again.';
+        this.errorMessage = error.error?.message || 'Login failed. Please check your credentials and try again.';
       }
     );
   }

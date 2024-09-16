@@ -3,6 +3,7 @@ using Epm.FarmRoots.UserManagement.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Epm.FarmRoots.UserManagement.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240915090002_Added_CustomerDb")]
+    partial class Added_CustomerDb
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -135,52 +138,6 @@ namespace Epm.FarmRoots.UserManagement.Infrastructure.Migrations
                     b.ToTable("VendorDb");
                 });
 
-            modelBuilder.Entity("Epm.FarmRoots.UserManagement.Core.Entities.VendorAddress", b =>
-                {
-                    b.Property<int>("VendorAddressId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("VendorAddressId"));
-
-                    b.Property<string>("BuildingAndBlockNo")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<string>("HouseNoAndFloor")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<string>("LandmarkAndAreaName")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<string>("Pincode")
-                        .IsRequired()
-                        .HasMaxLength(6)
-                        .HasColumnType("nvarchar(6)");
-
-                    b.Property<int>("VendorId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("VendorShopName")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .IsUnicode(true)
-                        .HasColumnType("nvarchar(100)")
-                        .HasComment("Shop name must be between 3 and 100 characters long, including letters, numbers, spaces, and certain special characters like hyphens, apostrophes, and periods.")
-                        .HasAnnotation("MinLength", 3);
-
-                    b.HasKey("VendorAddressId");
-
-                    b.HasIndex("VendorId");
-
-                    b.ToTable("VendorAddressDb");
-                });
-
             modelBuilder.Entity("Epm.FarmRoots.UserManagement.Core.Entities.CustomerAddress", b =>
                 {
                     b.HasOne("Epm.FarmRoots.UserManagement.Core.Entities.Customer", "Customer")
@@ -192,25 +149,9 @@ namespace Epm.FarmRoots.UserManagement.Infrastructure.Migrations
                     b.Navigation("Customer");
                 });
 
-            modelBuilder.Entity("Epm.FarmRoots.UserManagement.Core.Entities.VendorAddress", b =>
-                {
-                    b.HasOne("Epm.FarmRoots.UserManagement.Core.Entities.Vendor", "Vendor")
-                        .WithMany("VendorAddresses")
-                        .HasForeignKey("VendorId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Vendor");
-                });
-
             modelBuilder.Entity("Epm.FarmRoots.UserManagement.Core.Entities.Customer", b =>
                 {
                     b.Navigation("CustomerAddresses");
-                });
-
-            modelBuilder.Entity("Epm.FarmRoots.UserManagement.Core.Entities.Vendor", b =>
-                {
-                    b.Navigation("VendorAddresses");
                 });
 #pragma warning restore 612, 618
         }

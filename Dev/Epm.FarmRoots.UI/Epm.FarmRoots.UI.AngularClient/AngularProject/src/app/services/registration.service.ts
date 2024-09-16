@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
+import { CustomerAddress } from '../models/customer-address';
 @Injectable({
   providedIn: 'root'
 })
@@ -28,26 +29,29 @@ export class RegistrationService {
 
   updateProfile(customerId: number, data: { name: string, email: string, phoneNumber: string }): Observable<any> {
     const url = `${this.baseUrl}/Customer/UpdateCustomer/${customerId}`;
-    return this.http.put(url, data).pipe(
-      catchError(error => this.handleError(error))
+    return this.http.put(url, data).pipe(catchError(error => this.handleError(error))
     );
   }
 
+
+
+
+  addAddress(customerId: number, address: CustomerAddress): Observable<any> {
+    return this.http.post(`${this.baseUrl}/customers/${customerId}/AddAddresses`, address);
+  }
+
+  updateAddress(customerId: number, addressId: number, address: CustomerAddress): Observable<any> {
+    return this.http.put(`${this.baseUrl}/customers/${customerId}/addresses/${addressId}`, address);
+  }
+
+  getAddressesByCustomerId(customerId: number): Observable<CustomerAddress[]> {
+    return this.http.get<CustomerAddress[]>(`${this.baseUrl}/customers/${customerId}/GetAddresses`);
+  }
 
 
   changePassword(customerId: number, passwordDetails: { oldPassword: string, newPassword: string }): Observable<any> {
     const url = `${this.baseUrl}/Customer/ChangePassword/${customerId}`;
     return this.http.put(url, passwordDetails);
-  }
-
-
-  login(email: string, password: string, role: string): Observable<any> {
-    const url = `${this.baseUrl}/customerlogin/login`;
-    const body = { email, password, role };
-
-    return this.http.post<any>(url, body).pipe(map(response => response),
-      catchError(this.handleError)
-    );
   }
 
   private handleError(error: any): Observable<never> {

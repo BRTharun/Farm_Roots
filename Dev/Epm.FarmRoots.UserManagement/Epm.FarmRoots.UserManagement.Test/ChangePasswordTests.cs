@@ -4,11 +4,6 @@ using Epm.FarmRoots.UserManagement.Application.Interfaces;
 using Epm.FarmRoots.UserManagement.Core.Entities;
 using Microsoft.AspNetCore.Mvc;
 using Moq;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Epm.FarmRoots.UserManagement.Test
 {
@@ -16,6 +11,7 @@ namespace Epm.FarmRoots.UserManagement.Test
     {
         private  Mock<ICustomerService> _mockService;
         private Mock<ICustomerUpdateService> _mockUpdateService;
+        private Mock<ICustomerAddressService> _mockcustomerAddressService;
         private CustomerController _controller;
 
         [TestInitialize]
@@ -23,7 +19,8 @@ namespace Epm.FarmRoots.UserManagement.Test
         {
             _mockService = new Mock<ICustomerService>();
             _mockUpdateService = new Mock<ICustomerUpdateService>();
-            _controller = new CustomerController(_mockService.Object, _mockUpdateService.Object);
+            _mockcustomerAddressService = new Mock<ICustomerAddressService>();
+            _controller = new CustomerController(_mockService.Object, _mockUpdateService.Object, _mockcustomerAddressService.Object);
         }
 
         [TestMethod]

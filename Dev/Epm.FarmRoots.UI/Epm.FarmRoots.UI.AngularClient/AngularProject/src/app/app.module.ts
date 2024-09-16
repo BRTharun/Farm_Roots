@@ -26,12 +26,12 @@ import { FooterComponent } from './components/footer/footer.component';
 import { PricePageComponent } from './components/price-page/price-page.component';
 import { ToastrModule } from 'ngx-toastr';
 import { HttpClientModule } from '@angular/common/http';
-import { CaptchaComponent } from './components/captcha/captcha.component';
 import { ChangePasswordComponent } from './components/change-password/change-password.component';
 import { EditProfileComponent } from './components/edit-profile/edit-profile.component';
 import { LoginComponent } from './components/login/login.component';
 import { ProfileComponent } from './components/profile/profile.component';
-import { RegisterComponent } from './components/register/register.component'; 
+import { RegisterComponent } from './components/register/register.component';
+import { AddCustomerAddressComponent } from './components/add-customer-address/add-customer-address.component'; 
 
 @NgModule({
   declarations: [
@@ -50,12 +50,12 @@ import { RegisterComponent } from './components/register/register.component';
     ManufacturerMappingsComponent,
     FooterComponent,
     HeaderComponent,
-    CaptchaComponent,
     ChangePasswordComponent,
     EditProfileComponent,
     LoginComponent,
     ProfileComponent,
-    RegisterComponent
+    RegisterComponent,
+    AddCustomerAddressComponent
   ],
 
   imports: [

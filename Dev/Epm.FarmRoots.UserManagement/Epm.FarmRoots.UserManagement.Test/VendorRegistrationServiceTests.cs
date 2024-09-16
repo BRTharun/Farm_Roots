@@ -36,7 +36,7 @@ namespace Epm.FarmRoots.UserManagement.Test
 
             var vendor = new Vendor
             {
-                Id = 1,
+                VendorId = 1,
                 Name = "John Vendor",
                 Email = "johnvendor@example.com",
                 PhoneNumber = "1234567890",

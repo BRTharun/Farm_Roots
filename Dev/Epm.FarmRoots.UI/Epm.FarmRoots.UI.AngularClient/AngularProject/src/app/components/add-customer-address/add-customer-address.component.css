@@ -1,0 +1,76 @@
+
+.card {
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.card-header {
+  background-color: #343a40;
+  color: #ffffff;
+  border-bottom: none;
+  border-radius: 10px 10px 0 0;
+}
+
+.card-title {
+  font-size: 20px;
+  margin: 0;
+}
+
+.card-body {
+  padding: 20px;
+}
+
+.form-control {
+  border-radius: 6px;
+  border: 1px solid #ced4da;
+}
+
+  .form-control:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.25);
+  }
+
+.custom-label {
+  font-weight: 500; /* Makes the label slightly bold */
+  font-size: 16px; /* Increases label font size */
+  color: #343a40; /* Darker label color */
+}
+
+  .custom-label .text-danger {
+    font-weight: bold;
+    font-size: 16px; /* Match label size */
+    color: #ff0000; /* Red color for asterisk */
+  }
+
+.text-danger {
+  color: #ff0000;
+  font-size: 0.875rem;
+}
+
+.text-danger {
+  font-size: 0.875rem;
+}
+
+.btn-primary {
+  background-color: #007bff;
+  border-color: #007bff;
+}
+
+  .btn-primary:hover {
+    background-color: #0056b3;
+    border-color: #004085;
+  }
+
+@media (max-width: 768px) {
+  .navbar {
+    padding: 10px 10px;
+  }
+
+  .navbar-nav .bi-person-circle {
+    font-size: 24px;
+  }
+
+  .form-control {
+    font-size: 14px;
+  }
+}

@@ -46,7 +46,7 @@ namespace Epm.FarmRoots.UserManagement.Test
             // Arrange
             var vendor = new Vendor
             {
-                Id = 1,
+                VendorId = 1,
                 Name = "John Doe",
                 Email = "test@example.com",
                 PhoneNumber = "123-456-7890",
@@ -65,7 +65,7 @@ namespace Epm.FarmRoots.UserManagement.Test
             // Arrange
             var vendor = new Vendor
             {
-                Id = 1, // Assuming Id is also needed but not required
+                VendorId = 1, // Assuming VendorId is also needed but not required
                 Name = "John Doe",
                 Email = "test@example.com",
                 PhoneNumber = "123-456-7890",

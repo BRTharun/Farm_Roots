@@ -26,7 +26,7 @@ namespace Epm.FarmRoots.UserManagement.Infrastructure.Repositories
         }
         public async Task<Vendor?> GetVendorByIdAsync(int id)
         {
-            return await _context.VendorDb.FirstOrDefaultAsync(v => v.Id == id);
+            return await _context.VendorDb.FirstOrDefaultAsync(v => v.VendorId == id);
         }
 
         public async Task<bool> EmailExistsAsync(string email)

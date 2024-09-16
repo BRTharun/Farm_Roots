@@ -20,5 +20,6 @@ namespace Epm.FarmRoots.UserManagement.Core.Entities
         public required string PhoneNumber { get; set; }
 
         public required string Password { get; set; }
+        public List<CustomerAddress> CustomerAddresses { get; set; } = new List<CustomerAddress>();
     }
 }

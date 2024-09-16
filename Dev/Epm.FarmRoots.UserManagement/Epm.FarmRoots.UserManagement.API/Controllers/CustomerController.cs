@@ -13,10 +13,14 @@ namespace Epm.FarmRoots.UserManagement.API.Controllers
     {
         private readonly ICustomerService _customerService;
         private readonly ICustomerUpdateService _customerUpdateService;
-        public CustomerController(ICustomerService customerService, ICustomerUpdateService customerUpdateService)
+        private readonly ICustomerAddressService _customerAddressService;
+        private readonly IVendorAddressService _vendorAddressService;
+        public CustomerController(ICustomerService customerService, ICustomerUpdateService customerUpdateService, ICustomerAddressService customerAddressService, IVendorAddressService vendorAddressService)
         {
             _customerService = customerService;
             _customerUpdateService = customerUpdateService;
+            _customerAddressService = customerAddressService;
+            _vendorAddressService = vendorAddressService;
         }
 
         [HttpPost]
@@ -82,6 +86,10 @@ namespace Epm.FarmRoots.UserManagement.API.Controllers
         [HttpPut("ChangePassword/{customerId}")]
         public async Task<IActionResult> ChangePassword(int customerId, [FromBody] ChangePasswordModel passwordModel)
         {
+            if (passwordModel == null)
+            {
+                return BadRequest("The password model must not be null.");
+            }
             if (string.IsNullOrWhiteSpace(passwordModel.NewPassword))
             {
                 return BadRequest("New password must not be empty.");
@@ -102,6 +110,108 @@ namespace Epm.FarmRoots.UserManagement.API.Controllers
             }
         }
 
+
+        [HttpPost("customers/{customerId}/AddAddresses")]
+        public async Task<IActionResult> AddAddress(int customerId, [FromBody] CustomerAddressDto addressDto)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            await _customerAddressService.AddCustomerAddressAsync(customerId, addressDto);
+            return Ok(new { Success = true, Message = "Address added successfully." });
+        }
+
+
+
+        [HttpPut("customers/{customerId}/addresses/{addressId}")]
+        public async Task<IActionResult> UpdateAddress(int customerId, int addressId, [FromBody] CustomerAddressDto addressDto)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            addressDto.CustomerAddressId = addressId;
+            addressDto.CustomerId = customerId;
+            try
+            {
+                await _customerAddressService.UpdateCustomerAddressAsync(addressDto);
+                return Ok(new { Success = true, Message = "Address updated successfully." });
+            }
+            catch (KeyNotFoundException knfe)
+            {
+                return NotFound(knfe.Message);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, "An error occurred while updating the address.");
+            }
+        }
+
+
+        [HttpGet("customers/{customerId}/GetAddresses")]
+        public async Task<IActionResult> GetAddressesByCustomerIdAsync(int customerId)
+        {
+            var addresses = await _customerAddressService.GetAddressesByCustomerIdAsync(customerId);
+            if (addresses == null || addresses.Count == 0)
+            {
+                return NotFound($"No addresses found for Customer ID {customerId}.");
+            }
+
+            return Ok(addresses);
+        }
+
+        [HttpPost("{vendorId}/AddAddresses")]
+        public async Task<IActionResult> AddAddress(int vendorId, [FromBody] VendorAddressDto addressDto)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            await _vendorAddressService.AddVendorAddressAsync(vendorId, addressDto);
+            return Ok(new { Success = true, Message = "Address added successfully." });
+        }
+
+        [HttpPut("{vendorId}/addresses/{addressId}")]
+        public async Task<IActionResult> UpdateAddress(int vendorId, int addressId, [FromBody] VendorAddressDto addressDto)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            addressDto.VendorAddressId = addressId;
+            addressDto.VendorId = vendorId;
+
+            try
+            {
+                await _vendorAddressService.UpdateVendorAddressAsync(addressDto);
+                return Ok(new { Success = true, Message = "Address updated successfully." });
+            }
+            catch (KeyNotFoundException knfe)
+            {
+                return NotFound(knfe.Message);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, "An error occurred while updating the address.");
+            }
+        }
+
+
+        [HttpGet("{vendorId}/GetAddresses")]
+        public async Task<IActionResult> GetAddressesByVendorIdAsync(int vendorId)
+        {
+            var addresses = await _vendorAddressService.GetAddressesByVendorIdAsync(vendorId);
+            if (addresses == null || addresses.Count == 0)
+            {
+                return NotFound($"No addresses found for Vendor ID {vendorId}.");
+            }
+
+            return Ok(addresses);
+        }
 
         private string HashPassword(object password)
         {

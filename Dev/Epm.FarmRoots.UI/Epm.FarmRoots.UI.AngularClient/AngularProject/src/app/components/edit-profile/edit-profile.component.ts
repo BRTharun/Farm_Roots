@@ -1,19 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { RegistrationService } from '../../services/registration.service';
+
 @Component({
   selector: 'app-edit-profile',
   templateUrl: './edit-profile.component.html',
-  styleUrl: './edit-profile.component.css'
+  styleUrls: ['./edit-profile.component.css']
 })
 export class EditProfileComponent implements OnInit {
 
   editProfileForm!: FormGroup;
   message = { text: null as string | null, type: null as string | null };
 
-  constructor(private fb: FormBuilder, private registrationService: RegistrationService) {
-    registrationService.updateProfile;
-  }
+  constructor(private fb: FormBuilder, private registrationService: RegistrationService) { }
 
   ngOnInit(): void {
     this.editProfileForm = this.fb.group({
@@ -23,12 +22,12 @@ export class EditProfileComponent implements OnInit {
     });
   }
 
-
   onSubmit(): void {
-    if (this.editProfileForm.valid) {
+    const customerId = localStorage.getItem('userId');
+    console.log("userId");
+    if (this.editProfileForm.valid && customerId) {
       const formData = this.editProfileForm.value;
-      console.log(formData);
-      this.registrationService.updateProfile(6, formData).subscribe({
+      this.registrationService.updateProfile(+customerId, formData).subscribe({
         next: (response) => {
           this.message = { text: 'Customer profile has been updated successfully.', type: 'success' };
           alert('Profile updated successfully');
@@ -39,8 +38,7 @@ export class EditProfileComponent implements OnInit {
         }
       });
     } else {
-      this.message = { text: 'Please fill all required fields correctly.', type: 'error' };
+      this.message = { text: 'Please ensure all fields are filled correctly.', type: 'error' };
     }
   }
-
 }

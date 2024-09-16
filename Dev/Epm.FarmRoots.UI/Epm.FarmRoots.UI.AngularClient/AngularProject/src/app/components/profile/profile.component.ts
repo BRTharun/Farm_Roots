@@ -7,10 +7,11 @@ import { Router } from '@angular/router';
   styleUrl: './profile.component.css'
 })
 export class ProfileComponent {
+  currentView: string = '';
   constructor(private router: Router) { }
+
   logout() {
-    // Assuming logout means just clearing the local storage and redirecting to login page
-    localStorage.clear(); // Clear user token or other data from storage
+    localStorage.clear();
 
     // Add here any needed API calls to your back-end to notify about logout or invalidate session
     // Example (uncomment and adjust if needed):
@@ -18,7 +19,7 @@ export class ProfileComponent {
     //   console.log('Logged out successfully');
     // });
 
-    this.router.navigate(['/header']); // Redirect to login page after logout
+    this.router.navigate(['/login']);
   }
 
 }

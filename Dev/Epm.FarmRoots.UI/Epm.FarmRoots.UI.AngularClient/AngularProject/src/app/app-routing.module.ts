@@ -10,6 +10,7 @@ import { InventoryComponent } from './components/Inventory-Management/inventory-
 import { EditProfileComponent } from './components/edit-profile/edit-profile.component';
 import { ChangePasswordComponent } from './components/change-password/change-password.component';
 import { LoginComponent } from './components/login/login.component';
+import { AddCustomerAddressComponent } from './components/add-customer-address/add-customer-address.component';
 
 const routes: Routes = [
     { path: 'price', component: PricePageComponent },
@@ -22,9 +23,8 @@ const routes: Routes = [
   { path: 'productinfo', component: ProductInfoComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'edit-profile', component: EditProfileComponent },
-  { path: 'change-password', component: ChangePasswordComponent },
-  { path: 'profile', component: ProfileComponent }
+  { path: 'profile', component: ProfileComponent, children: [{ path: 'edit-profile', component: EditProfileComponent }, { path: 'change-password', component: ChangePasswordComponent }, { path: 'add-customer-address', component: AddCustomerAddressComponent }] },
+  { path: 'profile/address', component: AddCustomerAddressComponent }
 ];
 
 
