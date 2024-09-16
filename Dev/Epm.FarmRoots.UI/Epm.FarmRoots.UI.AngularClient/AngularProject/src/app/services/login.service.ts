@@ -7,12 +7,12 @@ import { catchError, map } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class LoginService {
-  private apiUrl = 'https://localhost:44350';  // Use API Gateway URL
+  private apiUrl = 'https://localhost:44350';
 
   constructor(private http: HttpClient) { }
 
   login(email: string, password: string, role: string): Observable<any> {
-    const url = `${this.apiUrl}/customerlogin/login`; // Adjust endpoint if needed
+    const url = `${this.apiUrl}/customerlogin/login`;
     const body = { email, password, role };
 
     return this.http.post<any>(url, body).pipe(

@@ -24,7 +24,6 @@ export class LoginComponent {
         if (response.token && response.id) {
           localStorage.setItem('token', response.token);
           localStorage.setItem('userId', response.id);
-
           if (this.role === 'customer') {
             this.router.navigate(['/profile']);
           } else if (this.role === 'vendor') {

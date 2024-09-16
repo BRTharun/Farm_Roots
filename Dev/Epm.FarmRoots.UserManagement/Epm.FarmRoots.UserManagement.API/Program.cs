@@ -28,6 +28,7 @@ builder.Services.AddCors(options =>
 
 builder.Services.AddScoped<ICustomerService, CustomerRegisterService>();
 builder.Services.AddScoped<ICustomerAddressService, CustomerAddressService>();
+builder.Services.AddScoped<IVendorAddressService, VendorAddressService>();
 builder.Services.AddScoped<IVendorService, VendorRegisterService>();
 builder.Services.AddScoped<ICustomerLoginService, CustomerLoginService>();
 builder.Services.AddScoped<ICustomerUpdateService, CustomerUpdateService>();
@@ -36,6 +37,7 @@ builder.Services.AddScoped<IPasswordHasher<Customer>, PasswordHasher<Customer>>(
 builder.Services.AddScoped<ICustomerRepository, CustomerRepository>();
 builder.Services.AddScoped<IVendorRepository, VendorRepository>();
 builder.Services.AddScoped<ICustomerAddressRepository, CustomerAddressRepository>();
+builder.Services.AddScoped<IVendorAddressRepository, VendorAddressRepository>();
 
 var config = builder.Configuration;
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
@@ -73,5 +75,23 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
-
+ApplyMigrations(app);
 app.Run();
+
+
+void ApplyMigrations(IHost app)
+{
+    using var scope = app.Services.CreateScope();
+    var services = scope.ServiceProvider;
+
+    MigrateDbContext<ApplicationDbContext>(services);
+}
+
+void MigrateDbContext<TContext>(IServiceProvider services) where TContext : DbContext
+{
+    var context = services.GetRequiredService<TContext>();
+    if (context.Database.GetPendingMigrations().Any())
+    {
+        context.Database.Migrate();
+    }
+}

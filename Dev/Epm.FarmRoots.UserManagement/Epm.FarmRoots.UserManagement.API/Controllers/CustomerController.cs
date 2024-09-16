@@ -14,13 +14,11 @@ namespace Epm.FarmRoots.UserManagement.API.Controllers
         private readonly ICustomerService _customerService;
         private readonly ICustomerUpdateService _customerUpdateService;
         private readonly ICustomerAddressService _customerAddressService;
-        private readonly IVendorAddressService _vendorAddressService;
-        public CustomerController(ICustomerService customerService, ICustomerUpdateService customerUpdateService, ICustomerAddressService customerAddressService, IVendorAddressService vendorAddressService)
+        public CustomerController(ICustomerService customerService, ICustomerUpdateService customerUpdateService, ICustomerAddressService customerAddressService)
         {
             _customerService = customerService;
             _customerUpdateService = customerUpdateService;
             _customerAddressService = customerAddressService;
-            _vendorAddressService = vendorAddressService;
         }
 
         [HttpPost]
@@ -157,57 +155,6 @@ namespace Epm.FarmRoots.UserManagement.API.Controllers
             if (addresses == null || addresses.Count == 0)
             {
                 return NotFound($"No addresses found for Customer ID {customerId}.");
-            }
-
-            return Ok(addresses);
-        }
-
-        [HttpPost("{vendorId}/AddAddresses")]
-        public async Task<IActionResult> AddAddress(int vendorId, [FromBody] VendorAddressDto addressDto)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
-            await _vendorAddressService.AddVendorAddressAsync(vendorId, addressDto);
-            return Ok(new { Success = true, Message = "Address added successfully." });
-        }
-
-        [HttpPut("{vendorId}/addresses/{addressId}")]
-        public async Task<IActionResult> UpdateAddress(int vendorId, int addressId, [FromBody] VendorAddressDto addressDto)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
-            addressDto.VendorAddressId = addressId;
-            addressDto.VendorId = vendorId;
-
-            try
-            {
-                await _vendorAddressService.UpdateVendorAddressAsync(addressDto);
-                return Ok(new { Success = true, Message = "Address updated successfully." });
-            }
-            catch (KeyNotFoundException knfe)
-            {
-                return NotFound(knfe.Message);
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(500, "An error occurred while updating the address.");
-            }
-        }
-
-
-        [HttpGet("{vendorId}/GetAddresses")]
-        public async Task<IActionResult> GetAddressesByVendorIdAsync(int vendorId)
-        {
-            var addresses = await _vendorAddressService.GetAddressesByVendorIdAsync(vendorId);
-            if (addresses == null || addresses.Count == 0)
-            {
-                return NotFound($"No addresses found for Vendor ID {vendorId}.");
             }
 
             return Ok(addresses);
