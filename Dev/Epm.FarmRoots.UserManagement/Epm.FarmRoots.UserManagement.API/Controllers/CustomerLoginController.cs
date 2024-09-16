@@ -10,7 +10,7 @@ namespace Epm.FarmRoots.UserManagement.API.Controllers
     public class CustomerLoginController : ControllerBase
     {
         private readonly ICustomerLoginService _customerLoginService;
-        private readonly TokenService _tokenService; 
+        private readonly TokenService _tokenService;
 
         public CustomerLoginController(ICustomerLoginService customerLoginService, TokenService tokenService)
         {
@@ -34,8 +34,7 @@ namespace Epm.FarmRoots.UserManagement.API.Controllers
                     return Unauthorized("Invalid email or password.");
                 }
 
-                var token = _tokenService.GenerateToken(customer.Email, "Customer");
-                return Ok(new { token });
+                return Ok(new { customer.Token, customer.Id });
             }
             catch (UnauthorizedAccessException ex)
             {

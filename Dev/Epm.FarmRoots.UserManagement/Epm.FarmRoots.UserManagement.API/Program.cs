@@ -34,6 +34,7 @@ builder.Services.AddScoped<ICustomerLoginService, CustomerLoginService>();
 builder.Services.AddScoped<ICustomerUpdateService, CustomerUpdateService>();
 builder.Services.AddScoped<IVendorLoginService, VendorLoginService>();
 builder.Services.AddScoped<IPasswordHasher<Customer>, PasswordHasher<Customer>>();
+builder.Services.AddScoped<IPasswordHasher<Vendor>, PasswordHasher<Vendor>>();
 builder.Services.AddScoped<ICustomerRepository, CustomerRepository>();
 builder.Services.AddScoped<IVendorRepository, VendorRepository>();
 builder.Services.AddScoped<ICustomerAddressRepository, CustomerAddressRepository>();
