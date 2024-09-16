@@ -13,6 +13,7 @@
         public required string ProductName { get; set; }
 
         public required string ShortDescription { get; set; }
+
         public string? FullDescription { get; set; }
         public string ProductCondition { get; set; } = "New";
         public string CountryOfOrigin { get; set; } = "Not specified";

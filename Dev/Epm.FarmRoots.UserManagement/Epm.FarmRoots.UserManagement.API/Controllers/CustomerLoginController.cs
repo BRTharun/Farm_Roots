@@ -34,9 +34,7 @@ namespace Epm.FarmRoots.UserManagement.API.Controllers
                     return Unauthorized("Invalid email or password.");
                 }
 
-                var customerId = customer.Id;
-                var token = _tokenService.GenerateToken(customer.Email, "Customer");
-                return Ok(new { token, customerId });
+                return Ok(new { customer.Token, customer.Id });
             }
             catch (UnauthorizedAccessException ex)
             {
