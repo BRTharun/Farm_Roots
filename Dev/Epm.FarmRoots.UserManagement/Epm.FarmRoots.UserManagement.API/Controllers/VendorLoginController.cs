@@ -34,7 +34,13 @@ namespace Epm.FarmRoots.UserManagement.API.Controllers
                     return Unauthorized("Invalid email or password.");
                 }
 
-                return Ok(new { vendor.Token, vendor.Id });
+                return Ok(new
+                {
+                    vendor.Token,
+                    vendor.Id,
+
+                    role = "vendor"
+                });
             }
             catch (UnauthorizedAccessException)
             {

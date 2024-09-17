@@ -2,6 +2,7 @@
 using Epm.FarmRoots.UserManagement.Application.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Epm.FarmRoots.IdentityService;
+using Epm.FarmRoots.UserManagement.Core.Entities;
 
 namespace Epm.FarmRoots.UserManagement.API.Controllers
 {
@@ -34,7 +35,12 @@ namespace Epm.FarmRoots.UserManagement.API.Controllers
                     return Unauthorized("Invalid email or password.");
                 }
 
-                return Ok(new { customer.Token, customer.Id });
+                return Ok(new
+                {
+                    customer.Token,
+                    customer.Id,
+                    role = "customer" // Adding role attribute
+                });
             }
             catch (UnauthorizedAccessException ex)
             {

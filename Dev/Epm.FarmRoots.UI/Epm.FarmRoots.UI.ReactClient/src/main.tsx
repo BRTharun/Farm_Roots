@@ -14,7 +14,7 @@ createRoot(document.getElementById('root')!).render(
   
     
       <Provider store={store}>
-  <BrowserRouter>
+  
     <App />
         {/* <Vendor/> */}
           <ToastContainer 
@@ -28,6 +28,5 @@ createRoot(document.getElementById('root')!).render(
           draggable
           pauseOnHover = {false}
           theme="light"/>
-      </BrowserRouter>
       </Provider>
 )
