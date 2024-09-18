@@ -2,6 +2,8 @@
 using Epm.FarmRoots.UserManagement.Application.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Epm.FarmRoots.IdentityService;
+using Microsoft.AspNetCore.Identity.Data;
+using Microsoft.AspNetCore.Identity;
 
 namespace Epm.FarmRoots.UserManagement.API.Controllers
 {
@@ -10,7 +12,7 @@ namespace Epm.FarmRoots.UserManagement.API.Controllers
     public class CustomerLoginController : ControllerBase
     {
         private readonly ICustomerLoginService _customerLoginService;
-        private readonly TokenService _tokenService; 
+        private readonly TokenService _tokenService;
 
         public CustomerLoginController(ICustomerLoginService customerLoginService, TokenService tokenService)
         {
@@ -41,5 +43,7 @@ namespace Epm.FarmRoots.UserManagement.API.Controllers
                 return Unauthorized(ex.Message);
             }
         }
+
+
     }
 }

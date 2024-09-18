@@ -9,5 +9,7 @@ namespace Epm.FarmRoots.UserManagement.Core.Interfaces
         Task<bool> EmailExistsAsync(string email);
         Task<Vendor> LoginVendorAsync(string email, string password);
         Task<Vendor?> GetVendorByEmailAsync(string email);
+        Task UpdateVendorAsync(Vendor vendor);//
+
     }
 }

@@ -51,7 +51,12 @@ namespace Epm.FarmRoots.UserManagement.Infrastructure.Repositories
             return await _context.VendorDb.FirstOrDefaultAsync(v => v.Email == email);
         }
 
+        public async Task UpdateVendorAsync(Vendor vendor)
+        {
+            _context.VendorDb.Update(vendor);
 
+            await _context.SaveChangesAsync();
+        }
 
     }
 }

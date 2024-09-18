@@ -36,12 +36,22 @@ builder.Services.AddScoped<ICustomerRepository, CustomerRepository>();
 builder.Services.AddScoped<IVendorRepository, VendorRepository>();
 builder.Services.AddScoped<IPasswordHasher<Vendor>, PasswordHasher<Vendor>>();
 
+builder.Services.Configure<EmailSettings>(builder.Configuration.GetSection("EmailSettings"));
+
+
+builder.Services.AddScoped<IPasswordResetService, PasswordResetService>();//
+builder.Services.AddScoped<IEmailService, EmailService>();//
+builder.Services.AddScoped<IPasswordResetRepository, PasswordResetRepository>();//
+
+
 
 var config = builder.Configuration;
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(config.GetConnectionString("DefaultConnection")));
 
 builder.Services.AddScoped<TokenService>();
+
+//builder.Services.Configure<SmtpSettings>(config.GetSection("SmtpSettings"));
 
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>

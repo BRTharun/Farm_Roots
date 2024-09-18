@@ -1,4 +1,5 @@
 ﻿using Epm.FarmRoots.UserManagement.Application.Dtos;
+using Epm.FarmRoots.UserManagement.Core.Entities;
 
 namespace Epm.FarmRoots.UserManagement.Application.Interfaces
 {

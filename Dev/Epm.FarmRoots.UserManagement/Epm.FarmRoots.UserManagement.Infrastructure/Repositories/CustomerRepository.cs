@@ -1,5 +1,4 @@
-﻿
-using Epm.FarmRoots.UserManagement.Core.Entities;
+﻿using Epm.FarmRoots.UserManagement.Core.Entities;
 using Epm.FarmRoots.UserManagement.Core.Interfaces;
 using Epm.FarmRoots.UserManagement.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
@@ -14,7 +13,7 @@ namespace Epm.FarmRoots.UserManagement.Infrastructure.Repositories
             _context = context;
         }
 
-     
+
         public async Task<Customer> RegisterCustomerAsync(Customer customer)
         {
             var existingCustomer = await _context.CustomerDb.FirstOrDefaultAsync(c => c.Email == customer.Email);
@@ -71,6 +70,7 @@ namespace Epm.FarmRoots.UserManagement.Infrastructure.Repositories
         public async Task UpdateCustomerAsync(Customer customer)
         {
             _context.CustomerDb.Update(customer);
+
             await _context.SaveChangesAsync();
         }
 

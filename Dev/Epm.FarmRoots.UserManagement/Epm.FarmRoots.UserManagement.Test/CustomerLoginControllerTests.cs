@@ -15,29 +15,29 @@ namespace Epm.FarmRoots.UserManagement.Test
         private Mock<TokenService>? _tokenServiceMock;
         private CustomerLoginController? _controller;
 
-        [TestInitialize]
-        public void Setup()
-        {
-            _customerLoginServiceMock = new Mock<ICustomerLoginService>();
+        //[TestInitialize]
+        //public void Setup()
+        //{
+        //    _customerLoginServiceMock = new Mock<ICustomerLoginService>();
 
-            var inMemorySettings = new Dictionary<string, string>
-            {
-                {"Jwt:Key", "testkeytestkeytestkeytestkeytestkeytestkeytestkeytestkey"},
-                {"Jwt:Issuer", "testissuer"},
-                {"Jwt:Audience", "testaudience"}
-            };
+        //    var inMemorySettings = new Dictionary<string, string>
+        //    {
+        //        {"Jwt:Key", "testkeytestkeytestkeytestkeytestkeytestkeytestkeytestkey"},
+        //        {"Jwt:Issuer", "testissuer"},
+        //        {"Jwt:Audience", "testaudience"}
+        //    };
 
-            var configuration = new ConfigurationBuilder()
-                .AddInMemoryCollection(inMemorySettings)
-                .Build();
+        //    var configuration = new ConfigurationBuilder()
+        //        .AddInMemoryCollection(inMemorySettings)
+        //        .Build();
 
-            _tokenServiceMock = new Mock<TokenService>(configuration);
+        //    _tokenServiceMock = new Mock<TokenService>(configuration);
 
-            _tokenServiceMock.Setup(service => service.GenerateToken(It.IsAny<string>(), It.IsAny<string>()))
-                .Returns("testtoken");
+        //    _tokenServiceMock.Setup(service => service.GenerateToken(It.IsAny<string>(), It.IsAny<string>()))
+        //        .Returns("testtoken");
 
-            _controller = new CustomerLoginController(_customerLoginServiceMock.Object, _tokenServiceMock.Object);
-        }
+        //    _controller = new CustomerLoginController(_customerLoginServiceMock.Object, _tokenServiceMock.Object);
+        //}
 
         [TestMethod]
         public async Task Login_ValidCredentials_ReturnsOkWithToken()
