@@ -51,4 +51,3 @@ const Sidebar: React.FC<SidebarProps> = ({ subcategories, onSelectSubCategory, a
 };
 
 export default Sidebar;
-

@@ -154,7 +154,7 @@ export const validationSchema = Yup.object({
             }
         ),
 
-    special_price_from: Yup.lazy((context) => {
+    special_price_from: Yup.lazy((value, context) => {
         const special_price = context.parent.special_price;
         if (special_price !== undefined) {
             return Yup.date()
@@ -174,7 +174,7 @@ export const validationSchema = Yup.object({
         return Yup.date().notRequired();
     }),
 
-    special_price_to: Yup.lazy((context) => {
+    special_price_to: Yup.lazy((value, context) => {
         const special_price = context.parent.special_price;
         if (special_price !== undefined) {
             return Yup.date()

@@ -14,7 +14,7 @@ import TopBar from "../../common/vendor/TopBar";
 const ManufacturersPage: React.FC = () => {
     const dispatch = useDispatch<AppDispatch>();
     const navigate = useNavigate();
-    const { manufacturers, status} = useSelector(
+    const { manufacturers, status, error } = useSelector(
         (state: RootState) => state.manufacturers
     );
 
