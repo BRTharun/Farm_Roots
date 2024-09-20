@@ -4,6 +4,7 @@ import ShopSelector from './UI/ShopSelector';
 import HeaderSearch from './UI/HeaderSearch';
 import AccountSelect from './UI/AccountSelect';
 import CartBtn from './UI/CartBtn';
+import Profile from './UI/Profile';
 
 
 function Header () {
@@ -12,7 +13,8 @@ function Header () {
       <Brand />
       <ShopSelector />
       <HeaderSearch />
-      <AccountSelect />
+      {/* <AccountSelect /> */}
+      <Profile />
       <CartBtn />
     </header>
   );

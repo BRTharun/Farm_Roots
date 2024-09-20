@@ -9,7 +9,7 @@
     "isolatedModules": true,
     "moduleDetection": "force",
     "noEmit": true,
-    "jsx": "react-jsx",
+    "jsx": "react",
     "allowJs": true,  // Allow JavaScript files to be included
     "checkJs": false, // Disable type checking for JavaScript files
 
@@ -17,7 +17,8 @@
     "strict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "noFallthroughCasesInSwitch": true
+    "noFallthroughCasesInSwitch": true,
+    "esModuleInterop": true
   },
   "include": ["src/**/*"]
 }

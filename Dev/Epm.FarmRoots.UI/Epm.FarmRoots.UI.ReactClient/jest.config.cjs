@@ -8,6 +8,7 @@ module.exports = {
   transform: {
     '^.+\\.tsx?$': 'ts-jest',
     '^.+\\.js?$': 'babel-jest',
+    '^.+\\.(jpg|jpeg|png|gif|webp|avif|svg)$': 'jest-transform-stub',
   },
   testPathIgnorePatterns: ['/node_modules/', '/dist/'],
   moduleNameMapper: {
