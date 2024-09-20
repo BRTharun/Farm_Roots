@@ -1,7 +1,7 @@
 import { useState } from "react"; 
 import { MdKeyboardArrowRight } from "react-icons/md";
-import { mockFAQs } from "./mockFAQs"; // Import mock data
-import '../../../assets/styles/FAQPage.css'; // Import normal CSS
+import { mockFAQs } from "./mockFAQs"; 
+import '../../../assets/styles/FAQPage.css'; 
 
 interface FAQ {
   id: number;

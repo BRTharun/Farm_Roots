@@ -65,7 +65,6 @@ export default function AccountMenuSection({ active }: AccountMenuSectionProps) 
         </div>
       </div>
 
-      {/* Main Content Area */}
       <div className="content-container">
         <Routes>
           <Route path="orders" element={<OrdersPage />} />

@@ -11,7 +11,8 @@
     "test": "vitest",
     "test:watch": "vitest --watch",
     "coverage": "vitest run --coverage",
-    "testing": "jest --config jest.config.cjs"
+    "testing": "jest --config jest.config.cjs",
+    "testing:coverage" : "jest --config jest.config.cjs run --coverage"
   },
   "dependencies": {
     "@babel/runtime": "^7.25.6",

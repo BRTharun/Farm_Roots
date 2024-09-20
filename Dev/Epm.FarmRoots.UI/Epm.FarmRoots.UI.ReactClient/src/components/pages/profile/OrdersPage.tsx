@@ -7,9 +7,10 @@ const OrdersPage: React.FC = () => {
   const navigate = useNavigate(); 
 
   const handleClick = () => {
+    console.log("Button clicked");
     navigate('/'); 
   };
-
+  
   return (
     <div className="no-orders-found-container">
       <img src={emptyOrderBag} alt="No Orders" className="no-orders-image" />

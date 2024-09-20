@@ -1,4 +1,3 @@
-// mockFAQs.js
 export const mockFAQs = [
   { id: '1', name: 'Tell me about FarmRoots?', answer: "Farm Roots is an online platform that offers fresh, locally sourced produce and groceries, connecting customers with local farms and suppliers." },
   { id: '2', name: 'How do I track my order?', answer: 'You can track your order using the tracking number provided in your confirmation email.' },

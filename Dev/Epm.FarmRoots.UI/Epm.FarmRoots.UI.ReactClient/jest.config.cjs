@@ -4,7 +4,8 @@ module.exports = {
   setupFilesAfterEnv: ['<rootDir>/src/setupTests.ts'], // Adjust path if necessary
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node'],
   collectCoverage: true,
-  coverageReporters: ["html", "text-summary"],
+  coverageDirectory: 'coverage',
+  coverageReporters: ["html", "text-summary",'json', 'text', 'lcov', 'clover'],
   transform: {
     '^.+\\.tsx?$': 'ts-jest',
     '^.+\\.js?$': 'babel-jest',
