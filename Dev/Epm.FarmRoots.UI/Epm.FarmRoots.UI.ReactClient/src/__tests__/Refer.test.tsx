@@ -1,5 +1,5 @@
 import { render, screen, fireEvent } from '@testing-library/react';
-import Refer from '../components/pages/profile/Refer'; // Adjust the import path as necessary
+import Refer from '../components/pages/profile/Refer'; 
 
 describe('Refer Component', () => {
   let originalNavigatorShare: typeof navigator.share | undefined;
@@ -41,3 +41,4 @@ describe('Refer Component', () => {
     window.alert = originalAlert;
   });
 });
+

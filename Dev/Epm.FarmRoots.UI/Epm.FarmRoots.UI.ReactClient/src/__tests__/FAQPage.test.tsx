@@ -1,22 +1,29 @@
 import { render, screen, fireEvent } from '@testing-library/react';
-import FAQS from '../components/pages/profile/FAQPage'; 
+import FAQS from '../components/pages/profile/FAQPage';
+import { mockFAQs } from '../components/pages/profile/mockFAQs'; 
+
+interface FAQ {
+  id: string;
+  name: string;
+  answer: string;
+}
 
 describe('FAQS Component', () => {
   beforeEach(() => {
     render(<FAQS />);
   });
 
-  test('renders FAQS component', () => {
+  test('renders FAQS component with the heading', () => {
     const heading = screen.getByRole('heading', { name: /FAQs/i });
     expect(heading).toBeInTheDocument();
   });
 
-  test('clicking on an FAQ toggles its answer', () => {
-    const faqItem = screen.getByText(/Tell me about FarmRoots?/i); 
-    fireEvent.click(faqItem);
-    expect(screen.getByText(/Farm Roots is an online platform that offers fresh, locally sourced produce and groceries, connecting customers with local farms and suppliers./i)).toBeInTheDocument(); 
-
-    
+  mockFAQs.forEach(({ name, answer }: FAQ) => {
+    test(`clicking on FAQ "${name}" toggles its answer`, () => {
+      const faqItem = screen.getByText(name);
+      fireEvent.click(faqItem);
+      expect(screen.getByText(answer)).toBeInTheDocument();
+    });
   });
 
   test('clicking "Contact Us" button opens email client', () => {
@@ -26,6 +33,7 @@ describe('FAQS Component', () => {
       href: '',
       assign: jest.fn(),
     };
+
 
     // @ts-ignore to bypass TypeScript check
     delete window.location;

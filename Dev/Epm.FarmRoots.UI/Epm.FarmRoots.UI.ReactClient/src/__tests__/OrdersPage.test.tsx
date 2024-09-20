@@ -1,5 +1,5 @@
 import { render, screen, fireEvent } from '@testing-library/react';
-import OrdersPage from '../../src/components/pages/profile/OrdersPage';
+import OrdersPage from '../components/pages/profile/OrdersPage';
 import { useNavigate } from 'react-router-dom';
 
 jest.mock('react-router-dom', () => ({
@@ -32,3 +32,4 @@ describe('OrdersPage', () => {
     expect(navigate).toHaveBeenCalledWith('/');
   });
 });
+

@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react';
-import AddressPage from '../../src/components/pages/profile/AddressPage'; 
+import AddressPage from '../components/pages/profile/AddressPage'; 
 
 describe('AddressPage', () => {
   test('renders AddressPage correctly', () => {
@@ -9,3 +9,4 @@ describe('AddressPage', () => {
     expect(heading).toBeInTheDocument();
   });
 });
+
