@@ -50,19 +50,19 @@ namespace Epm.FarmRoots.UserManagement.API.Controllers
             return Ok(new { message = "Password updated successfully." });
         }
 
-        [HttpGet("test-email")]
-        public async Task<IActionResult> TestEmail()
-        {
-            try
-            {
-                await _emailService.SendEmailAsync("test@example.com", "Test Email", "This is a test email.");
-                return Ok("Test email sent successfully.");
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(500, $"Error sending test email: {ex.Message}");
-            }
-        }
+        //[HttpGet("test-email")]
+        //public async Task<IActionResult> TestEmail()
+        //{
+        //    try
+        //    {
+        //        await _emailService.SendEmailAsync("test@example.com", "Test Email", "This is a test email.");
+        //        return Ok("Test email sent successfully.");
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return StatusCode(500, $"Error sending test email: {ex.Message}");
+        //    }
+        //}
 
         private bool IsValidEmail(string email)
         {

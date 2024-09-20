@@ -12,6 +12,9 @@ import { ChangePasswordComponent } from './components/change-password/change-pas
 import { LoginComponent } from './components/login/login.component';
 //import { ProductInfoComponent } from './components/product-info/product-info.component';
 import { PictureUploadComponent } from './components/picture-upload/picture-upload.component';
+import { RequestPasswordResetComponent } from './components/request-password-reset/request-password-reset.component';
+import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
+
 
 const routes: Routes = [
     { path: 'price', component: PricePageComponent },
@@ -29,7 +32,9 @@ const routes: Routes = [
   { path: 'profile', component: ProfileComponent },
   { path: 'upload-pictures', component: PictureUploadComponent },
   { path: 'categories', component: CategoriesComponent },
-  { path: 'category/:id', component: CategoryDetailsComponent }
+  { path: 'category/:id', component: CategoryDetailsComponent },
+  { path: 'forgot-password', component: RequestPasswordResetComponent },
+  { path: 'reset-password', component: ResetPasswordComponent }
 ];
 
 import { CategoriesComponent } from './components/categories/categories.component';

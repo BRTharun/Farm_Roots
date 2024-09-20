@@ -5,6 +5,7 @@ using Microsoft.Extensions.Configuration;
 using Epm.FarmRoots.IdentityService;
 using Microsoft.AspNetCore.Mvc;
 using Moq;
+using Newtonsoft.Json;
 
 namespace Epm.FarmRoots.UserManagement.Test
 {
@@ -15,28 +16,51 @@ namespace Epm.FarmRoots.UserManagement.Test
         private Mock<TokenService>? _tokenServiceMock;
         private CustomerLoginController? _controller;
 
-        //[TestInitialize]
-        //public void Setup()
+        [TestInitialize]
+        public void Setup()
+        {
+            _customerLoginServiceMock = new Mock<ICustomerLoginService>();
+
+            var inMemorySettings = new Dictionary<string, string>
+            {
+                {"Jwt:Key", "testkeytestkeytestkeytestkeytestkeytestkeytestkeytestkey"},
+                {"Jwt:Issuer", "testissuer"},
+                {"Jwt:Audience", "testaudience"}
+            };
+
+            var configuration = new ConfigurationBuilder()
+                .AddInMemoryCollection(inMemorySettings)
+                .Build();
+
+            _tokenServiceMock = new Mock<TokenService>(configuration);
+            _tokenServiceMock.Setup(service => service.GenerateToken(It.IsAny<string>(), It.IsAny<string>()))
+                             .Returns("testtoken");
+
+            _controller = new CustomerLoginController(_customerLoginServiceMock.Object, _tokenServiceMock.Object);
+        }
+
+        //[TestMethod]
+        //public async Task Login_ValidCredentials_ReturnsOkWithToken()
         //{
-        //    _customerLoginServiceMock = new Mock<ICustomerLoginService>();
+        //    // Arrange
+        //    var loginDto = new LoginDto { Email = "test@example.com", Password = "correctpassword" };
+        //    var expectedToken = "testtoken";
+        //    var customer = new LoginResponseDto { Email = loginDto.Email, Token = expectedToken };
 
-        //    var inMemorySettings = new Dictionary<string, string>
-        //    {
-        //        {"Jwt:Key", "testkeytestkeytestkeytestkeytestkeytestkeytestkeytestkey"},
-        //        {"Jwt:Issuer", "testissuer"},
-        //        {"Jwt:Audience", "testaudience"}
-        //    };
+        //    _customerLoginServiceMock?.Setup(service => service.LoginCustomerAsync(loginDto.Email, loginDto.Password))
+        //        .ReturnsAsync(customer);
 
-        //    var configuration = new ConfigurationBuilder()
-        //        .AddInMemoryCollection(inMemorySettings)
-        //        .Build();
+        //    // Act
+        //    var result = await _controller.Login(loginDto);
 
-        //    _tokenServiceMock = new Mock<TokenService>(configuration);
+        //    // Assert
+        //    var okResult = result as OkObjectResult;
+        //    Assert.IsNotNull(okResult, "Expected OkObjectResult");
+        //    Assert.IsNotNull(okResult.Value, "OkObjectResult.Value is null");
 
-        //    _tokenServiceMock.Setup(service => service.GenerateToken(It.IsAny<string>(), It.IsAny<string>()))
-        //        .Returns("testtoken");
-
-        //    _controller = new CustomerLoginController(_customerLoginServiceMock.Object, _tokenServiceMock.Object);
+        //    dynamic response = okResult.Value;
+        //    Assert.IsNotNull(response.Token, "Response does not contain 'token'");
+        //    Assert.AreEqual(expectedToken, response.token, "Token value mismatch");
         //}
 
         [TestMethod]
@@ -45,9 +69,8 @@ namespace Epm.FarmRoots.UserManagement.Test
             // Arrange
             var loginDto = new LoginDto { Email = "test@example.com", Password = "correctpassword" };
             var expectedToken = "testtoken";
-            var customer = new LoginResponseDto { Email = loginDto.Email, Token = expectedToken };
+            var customer = new LoginResponseDto { Email = loginDto.Email, Token = expectedToken, Id = 1 };
 
-            // Set up mocks
             _customerLoginServiceMock?.Setup(service => service.LoginCustomerAsync(loginDto.Email, loginDto.Password))
                 .ReturnsAsync(customer);
 
@@ -57,16 +80,18 @@ namespace Epm.FarmRoots.UserManagement.Test
             // Assert
             var okResult = result as OkObjectResult;
             Assert.IsNotNull(okResult, "Expected OkObjectResult");
-
-            // Ensure the result value is not null
             Assert.IsNotNull(okResult.Value, "OkObjectResult.Value is null");
 
-            // Cast result value to dynamic object
-            dynamic response = okResult.Value;
+            // Serialize and deserialize the result to a dictionary
+            var json = JsonConvert.SerializeObject(okResult.Value);
+            var response = JsonConvert.DeserializeObject<Dictionary<string, object>>(json);
 
+            // Check the values
+            Assert.IsTrue(response.ContainsKey("Token"), "Response does not contain 'Token'");
+            Assert.AreEqual(expectedToken, response["Token"].ToString(), "Token value mismatch");
+            Assert.IsTrue(response.ContainsKey("Id"), "Response does not contain 'Id'");
+            Assert.AreEqual(1, Convert.ToInt32(response["Id"]), "Id value mismatch");
         }
-
-
 
         [TestMethod]
         public async Task Login_InvalidModelState_ReturnsBadRequest()
@@ -95,10 +120,12 @@ namespace Epm.FarmRoots.UserManagement.Test
         {
             // Arrange
             var loginDto = new LoginDto { Email = "test@example.com", Password = "WrongPassword" };
-            _customerLoginServiceMock?.Setup(service => service.LoginCustomerAsync(loginDto.Email, loginDto.Password)).ThrowsAsync(new UnauthorizedAccessException("Invalid email or password."));
+            _customerLoginServiceMock?
+                .Setup(service => service.LoginCustomerAsync(loginDto.Email, loginDto.Password))
+                .ThrowsAsync(new UnauthorizedAccessException("Invalid email or password."));
 
             // Act
-            var result = await _controller.Login(loginDto);
+            var result = await _controller!.Login(loginDto);
 
             // Assert
             var unauthorizedResult = result as UnauthorizedObjectResult;
@@ -115,7 +142,8 @@ namespace Epm.FarmRoots.UserManagement.Test
             // Arrange
             var loginDto = new LoginDto { Email = "test@example.com", Password = "Password123!" };
 
-            _customerLoginServiceMock?.Setup(s => s.LoginCustomerAsync(loginDto.Email, loginDto.Password)).ReturnsAsync((LoginResponseDto)null);
+            _customerLoginServiceMock?.Setup(s => s.LoginCustomerAsync(loginDto.Email, loginDto.Password))
+                         .ReturnsAsync((LoginResponseDto)null);
 
             // Act
             var result = await _controller.Login(loginDto);

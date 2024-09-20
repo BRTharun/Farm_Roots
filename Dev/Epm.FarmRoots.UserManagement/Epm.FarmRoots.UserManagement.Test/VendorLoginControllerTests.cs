@@ -5,6 +5,7 @@ using Microsoft.Extensions.Configuration;
 using Epm.FarmRoots.IdentityService;
 using Microsoft.AspNetCore.Mvc;
 using Moq;
+using Newtonsoft.Json;
 
 namespace Epm.FarmRoots.UserManagement.Test
 {
@@ -20,7 +21,6 @@ namespace Epm.FarmRoots.UserManagement.Test
         {
             _vendorLoginServiceMock = new Mock<IVendorLoginService>();
 
-            // Setting up configuration for TokenService
             var inMemorySettings = new Dictionary<string, string>
             {
                 {"Jwt:Key", "testkeytestkeytestkeytestkeytestkeytestkeytestkeytestkey"},
@@ -33,9 +33,8 @@ namespace Epm.FarmRoots.UserManagement.Test
                 .Build();
 
             _tokenServiceMock = new Mock<TokenService>(configuration);
-
             _tokenServiceMock.Setup(service => service.GenerateToken(It.IsAny<string>(), It.IsAny<string>()))
-                .Returns("testtoken");
+                             .Returns("testtoken");
 
             _controller = new VendorLoginController(_vendorLoginServiceMock.Object, _tokenServiceMock.Object);
         }
@@ -48,7 +47,6 @@ namespace Epm.FarmRoots.UserManagement.Test
             var expectedToken = "testtoken";
             var vendor = new LoginResponseDto { Email = loginDto.Email, Token = expectedToken };
 
-            // Set up mocks
             _vendorLoginServiceMock?.Setup(service => service.LoginVendorAsync(loginDto.Email, loginDto.Password))
                 .ReturnsAsync(vendor);
 
@@ -58,16 +56,15 @@ namespace Epm.FarmRoots.UserManagement.Test
             // Assert
             var okResult = result as OkObjectResult;
             Assert.IsNotNull(okResult, "Expected OkObjectResult");
-
-            // Ensure the result value is not null
             Assert.IsNotNull(okResult.Value, "OkObjectResult.Value is null");
 
-            // Cast result value to dynamic object
-            dynamic response = okResult.Value;
+            // Serialize and deserialize the result to a dictionary
+            var json = JsonConvert.SerializeObject(okResult.Value);
+            var response = JsonConvert.DeserializeObject<Dictionary<string, object>>(json);
 
-            // Ensure the response contains the 'token' key and its value matches the expected token
-            Assert.IsNotNull(response.token, "Response does not contain 'token'");
-            Assert.AreEqual(expectedToken, response.token, "Token value mismatch");
+            // Check the values
+            Assert.IsTrue(response.ContainsKey("Token"), "Response does not contain 'Token'");
+            Assert.AreEqual(expectedToken, response["Token"].ToString(), "Token value mismatch");
         }
 
         [TestMethod]

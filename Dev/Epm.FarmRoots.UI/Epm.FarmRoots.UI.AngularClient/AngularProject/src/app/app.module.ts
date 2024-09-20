@@ -40,6 +40,8 @@ import { CategoryDetailsComponent } from './components/category-details/category
 
 import { RouterModule } from '@angular/router';
 import { MaterialModule } from './material.module';
+import { RequestPasswordResetComponent } from './components/request-password-reset/request-password-reset.component';
+import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
 
 
 @NgModule({
@@ -73,6 +75,8 @@ import { MaterialModule } from './material.module';
     CategoryDetailsComponent,
     FooterComponent,
     HeaderComponent,
+    RequestPasswordResetComponent,
+    ResetPasswordComponent,
   ],
 
   imports: [
@@ -90,7 +94,7 @@ import { MaterialModule } from './material.module';
     HttpClientModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
-    NgbModule, // Initialize ToastrModule
+    NgbModule,
     MaterialModule,
     RouterModule
   ],
