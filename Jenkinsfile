@@ -10,45 +10,45 @@ pipeline {
     }
     
     stages {
-        // stage('Setup Environment') {
-        //     steps {
-        //         script {
-        //             // Install the .NET SDK
-        //             sh '''
-        //                 wget https://dot.net/v1/dotnet-install.sh
-        //                 chmod +x dotnet-install.sh
-        //                 ./dotnet-install.sh --version ${DOTNET_SDK_VERSION}
-        //                 export PATH=${DOTNET_INSTALL_DIR}:${PATH}
-        //                 echo "PATH updated: $PATH"
-        //             '''
-        //         }
-        //     }
-        // }
+        stage('Setup Environment') {
+            steps {
+                script {
+                    // Install the .NET SDK
+                    sh '''
+                        wget https://dot.net/v1/dotnet-install.sh
+                        chmod +x dotnet-install.sh
+                        ./dotnet-install.sh --version ${DOTNET_SDK_VERSION}
+                        export PATH=${DOTNET_INSTALL_DIR}:${PATH}
+                        echo "PATH updated: $PATH"
+                    '''
+                }
+            }
+        }
 
-        // stage('Build .NET Application') {
-        //     steps {
-        //         script {
-        //             withEnv(["PATH=${env.DOTNET_INSTALL_DIR}:${env.PATH}"]) {
-        //                 dir('Dev') {
-        //                     sh 'dotnet restore Epm.FRoots.sln'
-        //                     sh 'dotnet build Epm.FRoots.sln'
-        //                 }
-        //             }
-        //         }
-        //     }
-        // }
+        stage('Build .NET Application') {
+            steps {
+                script {
+                    withEnv(["PATH=${env.DOTNET_INSTALL_DIR}:${env.PATH}"]) {
+                        dir('Dev') {
+                            sh 'dotnet restore Epm.FRoots.sln'
+                            sh 'dotnet build Epm.FRoots.sln'
+                        }
+                    }
+                }
+            }
+        }
 
-        // stage('Build Angular Application') {
-        //     steps {
-        //         echo 'Angular build'
-        //         script {
-        //             dir('Dev/Epm.LGoods.UI/epm.lgoods.angularclient') {
-        //                 sh 'npm install'
-        //                 sh 'npm run build'
-        //             }
-        //         }
-        //     }
-        // }
+        stage('Build Angular Application') {
+            steps {
+                echo 'Angular build'
+                script {
+                    dir('Dev/Epm.LGoods.UI/epm.lgoods.angularclient') {
+                        sh 'npm install'
+                        sh 'npm run build'
+                    }
+                }
+            }
+        }
 
         stage('Build React Application') {
             steps {
