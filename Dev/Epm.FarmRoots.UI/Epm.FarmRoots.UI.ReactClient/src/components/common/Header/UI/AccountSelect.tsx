@@ -6,7 +6,7 @@ import { setLoginComponent } from "../../../store/Reducer/headerLoginSlice";
 import UserDropDown from "./UserDropDown";
 
 const AccountSelect: React.FC = () => {
-  const auth = true; 
+  const auth = false; 
   const dispatch = useDispatch();
   const [options, showOptions] = useState<boolean>(false);
 

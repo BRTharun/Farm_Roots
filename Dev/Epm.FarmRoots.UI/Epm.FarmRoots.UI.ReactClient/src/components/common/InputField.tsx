@@ -1,4 +1,4 @@
-import React, {forwardRef} from 'react';
+import React, { forwardRef } from 'react';
 
 interface InputFieldProps {
   label?: string;
@@ -15,7 +15,7 @@ interface InputFieldProps {
   onKeyDown?: (e: React.KeyboardEvent<HTMLInputElement>) => void;
 }
 
-const InputField =  forwardRef<HTMLInputElement, InputFieldProps>(({
+const InputField = forwardRef<HTMLInputElement, InputFieldProps>(({
   label,
   type,
   name,
@@ -32,6 +32,7 @@ const InputField =  forwardRef<HTMLInputElement, InputFieldProps>(({
   const handleCopyPasteCut = (e: React.ClipboardEvent<HTMLInputElement>) => {
     e.preventDefault(); // Prevent copy, cut, and paste actions
   };
+
   return (
     <div className={`mb-4 ${className}`}>
       {label && (
@@ -39,20 +40,21 @@ const InputField =  forwardRef<HTMLInputElement, InputFieldProps>(({
           {label} {additionalLabel}
         </label>
       )}
-       <div className="relative">
-      <input
-        type={type}
-        name={name}
-        value={value}
-        onChange={onChange}
-        placeholder={placeholder}
-        maxLength={maxLength}  // Adding maxLength to the input field
-        required={required}
-        onKeyDown={onKeyDown}
-        className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
-        onCopy={handleCopyPasteCut}
-        ref = {ref}
-      />
+      <div className="relative">
+        <input
+          id={name} // Add id here to associate with label
+          type={type}
+          name={name}
+          value={value}
+          onChange={onChange}
+          placeholder={placeholder}
+          maxLength={maxLength}
+          required={required}
+          onKeyDown={onKeyDown}
+          className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
+          onCopy={handleCopyPasteCut}
+          ref={ref}
+        />
       </div>
       {error && <p className="text-red-500 text-sm">{error}</p>}
     </div>
