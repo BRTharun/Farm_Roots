@@ -12,10 +12,10 @@ import {
 } from "react-router-dom";
 import SignIn from "./client/src/components/SignIn";
 import HomePage from "./components/pages/HomePage";
-import CategoryHomePage from "./components/pages/products/CategoryHomePage";
+//import CategoryHomePage from "./components/pages/products/CategoryHomePage";
 import CategoryPage from "./components/pages/products/CategoryPage";
 import ProductDetailPage from "./components/pages/products/ProductDetailPage";
-import VendorNavBar from "./components/common/vendor/VendorNavBar";
+//import VendorNavBar from "./components/common/vendor/VendorNavBar";
 import VendorProducts from "./components/pages/vendor/VendorProducts";
 import AddProduct from "./components/pages/vendor/AddProduct";
 import VendorProfile from "./components/pages/vendor/VendorProfile";
@@ -26,7 +26,8 @@ import ManufacturerProductsPage from "./components/pages/vendor/ManufacturerProd
 import ManufacturersPage from "./components/pages/vendor/ManufacturersPage";
 import VendorCategoryPage from "./components/pages/vendor/VendorCategoryPage";
 import { useSelector } from "react-redux";
-import { RootState } from "./components/store/MainStore/store";
+//import { RootState } from "./components/store/MainStore/store";
+import NewVendorProfile from "./components/pages/vendor/VendorAddress";
 
 const App: React.FC = () => {
     const role = useSelector((state: any) => state.userLogin.userLogin?.role);
@@ -36,8 +37,9 @@ const App: React.FC = () => {
             {role !== "vendor" && <Header />}
             <div className="">
                 <Routes>
+                    <Route path='/test' element={<NewVendorProfile/>}></Route>
 
-                <Route path="/" element={<SignIn />} />
+                <Route path="/" element={<SignIn />} />t
                     {role === "customer" && (
                         <>
                             

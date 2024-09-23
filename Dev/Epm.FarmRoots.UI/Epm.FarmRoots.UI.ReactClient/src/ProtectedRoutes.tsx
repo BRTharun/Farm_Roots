@@ -9,7 +9,7 @@ interface ProtectedRouteProps {
 }
 
 const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ allowedRoles }) => {
-    const user = useSelector((state: RootState) => state.userLogin.userLogin?.role);
+    const user = useSelector((state: RootState) => state.userLogin.userLogin);
     //const vendor = useSelector((state: RootState) => state.vendor?.vendor);
 
     const isAuthorized = allowedRoles.includes(

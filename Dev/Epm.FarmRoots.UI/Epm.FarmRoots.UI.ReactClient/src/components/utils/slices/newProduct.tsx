@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-import { RootState } from "../store/store";
+//import { RootState } from "../store/store";
 
 // Define a type for the product
 export interface Product {
@@ -110,7 +110,7 @@ const productsSlice = createSlice({
             .addCase(addPrice.pending, (state) => {
                 state.status = "loading";
             })
-            .addCase(addPrice.fulfilled, (state, action) => {
+            .addCase(addPrice.fulfilled, (state) => {
                 state.status = "succeeded";
             })
             .addCase(addPrice.rejected, (state, action) => {

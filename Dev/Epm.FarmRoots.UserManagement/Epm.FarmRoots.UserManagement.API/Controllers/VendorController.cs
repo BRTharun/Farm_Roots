@@ -51,7 +51,7 @@ namespace Epm.FarmRoots.UserManagement.API.Controllers
             }
 
             await _vendorAddressService.AddVendorAddressAsync(vendorId, addressDto);
-            return Ok(new { Success = true, Message = "Address added successfully." });
+            return Ok(addressDto);
         }
 
         [HttpPut("{vendorId}/addresses/{addressId}")]
@@ -68,7 +68,7 @@ namespace Epm.FarmRoots.UserManagement.API.Controllers
             try
             {
                 await _vendorAddressService.UpdateVendorAddressAsync(addressDto);
-                return Ok(new { Success = true, Message = "Address updated successfully." });
+                return Ok(addressDto);
             }
             catch (KeyNotFoundException knfe)
             {

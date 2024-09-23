@@ -1,4 +1,4 @@
-import React, { Suspense, lazy, useState } from "react";
+import React, { Suspense, lazy } from "react";
 import { useDispatch } from "react-redux";
 import { useFormik } from "formik";
 import * as Yup from "yup";
@@ -14,7 +14,7 @@ const AddProduct: React.FC = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch<AppDispatch>();
 
-    const [productID, setProductID] = useState<number | null>(null);
+    
 
     const formik = useFormik({
         initialValues: {
@@ -63,7 +63,7 @@ const AddProduct: React.FC = () => {
 
             try {
                 const productResponse = await dispatch(addProduct(product)).unwrap();
-                setProductID(productResponse.productId);
+                
 
                 const price = {
                     salePrice: values.salePrice,

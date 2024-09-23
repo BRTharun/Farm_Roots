@@ -74,7 +74,7 @@ const RegistrationForm: React.FC = () => {
         const newErrors = {
             name: validateName(formData.name)
                 ? ""
-                : "Name only contain alphabets and Should not be Empty",
+                : "Name only contains alphabets and should not be empty",
             email: validateEmail(formData.email) ? "" : "Invalid email address",
             password: validatePassword(formData.password)
                 ? ""
@@ -88,21 +88,30 @@ const RegistrationForm: React.FC = () => {
                 : "Invalid phone number",
             role: formData.role ? "" : "Please select a role",
         };
+
         setErrors(newErrors);
         focusFirstErrorField(newErrors);
 
-        const firstError = Object.values(newErrors).find(
+        // Collect all error messages into an array
+        const errorMessages = Object.values(newErrors).filter(
             (error) => error !== ""
         );
-        if (firstError) {
-            toast.error(firstError); // Show the first validation error as a toast
+
+        // Show all the error messages at once using a toast for each
+        if (errorMessages.length > 0) {
+            errorMessages.forEach((error) => toast.error(error)); // Display all errors
+            return false; // Return false to indicate form is not valid
         }
 
-        return Object.values(newErrors).every((error) => error === "");
+        return true; // Return true if no errors
     };
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
+
+        // Clear the previous error message before submitting the form again
+        setErrMsg("");
+
         if (validateForm()) {
             try {
                 const MAIN_REGISTER_URL =
@@ -112,21 +121,34 @@ const RegistrationForm: React.FC = () => {
 
                 const response = await api.post(MAIN_REGISTER_URL, formData, {
                     headers: { "Content-Type": "application/json" },
-                    withCredentials: true,
+                    withCredentials: false,
                 });
+
+                // Registration successful
                 console.log(response.data);
-                console.log(JSON.stringify(response));
                 setSuccess(true);
                 toast.success("Registration successful!");
-            } catch (err) {
-                if (!err?.response) {
-                    setErrMsg("No Server Response");
-                } else if (err.response?.status === 409) {
-                    setErrMsg("Username Already Taken");
+            } catch (err: any) {
+                // Check if the error response is available and extract the message
+                if (err.response) {
+                    const statusCode = err.response.status;
+
+                    // If the error status is 400 (Bad Request), display the backend error message
+                    if (statusCode === 400 && err.response.data?.message) {
+                        setErrMsg(err.response.data.message);
+                        toast.error(errMsg);
+                    } else if (statusCode === 409) {
+                        setErrMsg(err.response.data.message);
+                        toast.error(errMsg);
+                    } else {
+                        setErrMsg(err.response.data.message);
+                        toast.error(errMsg);
+                    }
                 } else {
-                    setErrMsg("Registration Failed");
+                    // If there's no server response
+                    setErrMsg("No Server Response");
+                    toast.error("No Server Response");
                 }
-                toast.error(errMsg);
             }
         }
     };

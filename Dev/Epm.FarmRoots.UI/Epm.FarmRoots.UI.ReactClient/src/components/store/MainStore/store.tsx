@@ -11,6 +11,7 @@ import subcategoryProductsReducer from "../../utils/slices/subcategoryProducts";
 import manufacturerReducer from "../../utils/slices/manufactuer";
 import { CartItem } from "../../types/cartItem";
 import userLoginReducer from "../../utils/slices/userLogin";
+import newProfileReducer from "../../utils/slices/newVendor"
 
 
 // Define the shape of your root state
@@ -40,6 +41,7 @@ export type RootState = {
     subcategoryProducts: ReturnType<typeof subcategoryProductsReducer>;
     manufacturers: ReturnType<typeof manufacturerReducer>;
     userLogin:ReturnType<typeof userLoginReducer>;
+    newProfile:ReturnType<typeof newProfileReducer>;
 };
 
 // Create the store
@@ -55,7 +57,8 @@ const store = configureStore({
         subcategories: subcategoryReducer,
         subcategoryProducts: subcategoryProductsReducer,
         manufacturers: manufacturerReducer,
-        userLogin: userLoginReducer
+        userLogin: userLoginReducer,
+        newProfile:newProfileReducer
     },
 });
 

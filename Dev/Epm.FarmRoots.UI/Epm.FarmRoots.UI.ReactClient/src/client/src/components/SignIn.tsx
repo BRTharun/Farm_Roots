@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import './SignIn.css';
-import axios from 'axios';
+
 import { loginUser, loginVendor } from '../../../components/utils/slices/userLogin';
 import { useNavigate } from "react-router-dom";
-import { AppDispatch, RootState } from '../../../components/store/MainStore/store'
+import { AppDispatch } from '../../../components/store/MainStore/store'
 import { useDispatch, useSelector } from "react-redux";
 
 const SignIn: React.FC = () => {
     const [username, setUsername] = useState<string>('ram@g.com');
     const [password, setPassword] = useState<string>('RamRam@18');
     const [role, setRole] = useState<string>('customer'); // Default role is customer
-    const [error, setError] = useState<string>('');
+    const [error] = useState<string>('');
     const dispatch = useDispatch<AppDispatch>();
     const navigate = useNavigate();
 

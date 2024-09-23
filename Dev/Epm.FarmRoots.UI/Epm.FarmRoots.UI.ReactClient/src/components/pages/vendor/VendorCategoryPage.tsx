@@ -1,4 +1,4 @@
-import React, { useState, useEffect, Suspense } from "react";
+import React, { useState, useEffect} from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom"; // Import the useNavigate hook
 import {
@@ -11,14 +11,13 @@ import {
 import { AppDispatch, RootState } from "../../utils/store/store";
 //import { COUNTRY_LIST } from "../utils/constants/countryList";
 import { CATEGORIES } from "../../utils/constants/categoryList";
-import TopBanner from "../../common/HomePage/UI/TopBanner";
 import TopBar from "../../common/vendor/TopBar";
 import Sidebar from "../../common/vendor/Sidebar";
 
 const VendorCategoryPage: React.FC = () => {
     const dispatch = useDispatch<AppDispatch>();
     const navigate = useNavigate();
-    const { categories, status, error } = useSelector(
+    const { categories, status } = useSelector(
         (state: RootState) => state.categories
     );
     console.log("dk", categories);
