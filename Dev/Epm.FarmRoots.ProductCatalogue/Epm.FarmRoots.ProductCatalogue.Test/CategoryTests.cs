@@ -5,6 +5,7 @@ using Epm.FarmRoots.ProductCatalogue.Application.Interfaces;
 using Epm.FarmRoots.ProductCatalogue.Core.Entities;
 using Epm.FarmRoots.ProductCatalogue.Infrastructure.Data;
 using Epm.FarmRoots.ProductCatalogue.Infrastructure.Repositories;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Epm.FarmRoots.ProductCatalogue.Tests
 {
@@ -168,7 +169,7 @@ namespace Epm.FarmRoots.ProductCatalogue.Tests
         public async Task GetCustomerProductsBySubCategoryId_WithNoProducts_ShouldReturnEmptyList()
         {
             // Arrange
-            var subCategoryId = 2; 
+            var subCategoryId = 2;
             _mockSubCategoryService.Setup(service => service.GetCustomerProductsBySubCategoryIdAsync(subCategoryId))
                                    .ReturnsAsync(new List<CustomerProductViewDto>());
 

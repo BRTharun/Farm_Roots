@@ -46,5 +46,11 @@ namespace Epm.FarmRoots.ProductCatalogue.Application.Services
             var productDtos = _mapper.Map<IEnumerable<CustomerProductViewDto>>(products);
             return productDtos;
         }
+
+        public async Task<IEnumerable<CreateProductDto>> GetProductsBySubcategoryIdAsync(int subCategoryId)
+        {
+            var products = await _categoryRepository.GetProductsBySubcategoryIdAsync(subCategoryId);
+            return _mapper.Map<IEnumerable<CreateProductDto>>(products);
+        }
     }
 }

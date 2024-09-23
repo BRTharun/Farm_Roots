@@ -1,14 +1,15 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, of, throwError } from 'rxjs';
 import { Inventory } from '../models/inventory.model';
+import { catchError } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class InventoryService {
 
-  private apiUrl = 'https://localhost:7189/api/FarmRoots/InventoryCart';
+  private apiUrl = 'https://localhost:7189/api/InventoryCart';
 
   constructor(private http: HttpClient) { }
 
@@ -17,18 +18,23 @@ export class InventoryService {
   }
 
   getInventoryById(productId: number): Observable<Inventory> {
-    return this.http.get<Inventory>(`${this.apiUrl}/${productId}`);
+    return this.http.get<Inventory>(`${this.apiUrl}/by-product/${productId}`).pipe(
+      catchError(error => {
+        if (error.status === 404) {
+          return of({ productId } as Inventory);
+        }
+        return throwError(() => error);
+      })
+    );
   }
 
-  updateInventory(inventory: Inventory): Observable<Inventory> {
-    return this.http.put<Inventory>(`${this.apiUrl}/${inventory.productId}`, inventory);
-  }
-
-  addInventory(inventory: Inventory): Observable<Inventory> {
-    return this.http.post<Inventory>(this.apiUrl, inventory);
-  }
-
-  deleteInventory(productId: number): Observable<void> {
-    return this.http.delete<void>(`${this.apiUrl}/${productId}`);
+  saveInventory(inventory: Inventory): Observable<Inventory> {
+    const body = {
+      productId: inventory.productId,
+      stockQuantity: inventory.productStockQuantity,
+      minCartQuantity: inventory.productMinCartQuantity,
+      maxCartQuantity: inventory.productMaxCartQuantity
+    };
+    return this.http.post<Inventory>(`${this.apiUrl}`, body);
   }
 }

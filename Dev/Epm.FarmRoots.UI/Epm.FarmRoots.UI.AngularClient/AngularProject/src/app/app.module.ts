@@ -37,7 +37,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CategoriesComponent } from './components/categories/categories.component';
 import { CategoryDetailsComponent } from './components/category-details/category-details.component';
-
+import { VendorCategoriesComponent } from './components/VendorCategories/Vendor-Category.component';
+import { SubcategoryComponent } from './components/VendorSubCategory/Vendor-Subcategory.component';
 import { RouterModule } from '@angular/router';
 import { MaterialModule } from './material.module';
 
@@ -67,6 +68,8 @@ import { MaterialModule } from './material.module';
     SidenavComponent,
     PictureUploadComponent,
     HomeComponent,
+    VendorCategoriesComponent,
+    SubcategoryComponent,
     SidenavComponent,
     AppComponent,
     CategoriesComponent,

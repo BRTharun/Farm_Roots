@@ -10,5 +10,7 @@ namespace Epm.FarmRoots.ProductCatalogue.Application.Interfaces
         Task<IEnumerable<SubCategoryDto>> GetSubcategoriesByCategoryIdAsync(int categoryId);
 
         Task<IEnumerable<CustomerProductViewDto>> GetCustomerProductsByCategoryIdAsync(int categoryId);
+
+        Task<IEnumerable<CreateProductDto>> GetProductsBySubcategoryIdAsync(int subCategoryId);
     }
 }

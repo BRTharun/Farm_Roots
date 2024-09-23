@@ -9,7 +9,7 @@ import { ResponseDto } from '../../models/response.model'; // Ensure you have a 
 @Component({
   selector: 'app-category-details',
   templateUrl: './category-details.component.html',
-  styleUrls: ['./category-details.component.scss']
+  styleUrls: ['./category-details.component.css']
 })
 export class CategoryDetailsComponent implements OnInit {
   isExpanded: boolean = true;

@@ -11,6 +11,8 @@ import { EditProfileComponent } from './components/edit-profile/edit-profile.com
 import { ChangePasswordComponent } from './components/change-password/change-password.component';
 import { LoginComponent } from './components/login/login.component';
 //import { ProductInfoComponent } from './components/product-info/product-info.component';
+import { VendorCategoriesComponent } from './components/VendorCategories/Vendor-Category.component';
+import { SubcategoryComponent } from './components/VendorSubCategory/Vendor-Subcategory.component';
 import { PictureUploadComponent } from './components/picture-upload/picture-upload.component';
 
 const routes: Routes = [
@@ -29,7 +31,9 @@ const routes: Routes = [
   { path: 'profile', component: ProfileComponent },
   { path: 'upload-pictures', component: PictureUploadComponent },
   { path: 'categories', component: CategoriesComponent },
-  { path: 'category/:id', component: CategoryDetailsComponent }
+  { path: 'category/:id', component: CategoryDetailsComponent },
+  { path: 'vendor-category', component: VendorCategoriesComponent },
+  { path: 'vendor-category/:categoryId/subcategory', component: SubcategoryComponent }
 ];
 
 import { CategoriesComponent } from './components/categories/categories.component';

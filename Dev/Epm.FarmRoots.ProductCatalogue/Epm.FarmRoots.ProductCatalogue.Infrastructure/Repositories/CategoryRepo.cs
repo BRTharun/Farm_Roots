@@ -63,8 +63,8 @@ namespace Epm.FarmRoots.ProductCatalogue.Infrastructure.Repositories
                 var productContext = scope.ServiceProvider.GetRequiredService<ProductDbContext>();
                 var products = await productContext.Products
                     .Where(p => p.CategoryId == categoryId)
-                    .Include(p => p.Price)   
-                    .Include(p => p.Images)  
+                    .Include(p => p.Price)
+                    .Include(p => p.Images)
                     .ToListAsync();
 
                 return products;
@@ -78,6 +78,12 @@ namespace Epm.FarmRoots.ProductCatalogue.Infrastructure.Repositories
                 .ToListAsync();
 
             return subcategories;
+        }
+        public async Task<IEnumerable<Product>> GetProductsBySubcategoryIdAsync(int subCategoryId)
+        {
+            return await _dbContext.Products
+                                 .Where(p => p.SubCategoryId == subCategoryId)
+                                 .ToListAsync();
         }
     }
 }

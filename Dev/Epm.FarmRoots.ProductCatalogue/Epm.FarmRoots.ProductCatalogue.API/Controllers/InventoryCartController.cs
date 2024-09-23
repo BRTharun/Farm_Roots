@@ -19,7 +19,8 @@ namespace Epm.FarmRoots.ProductCatalogue.API.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Inventory>>> GetInventories()
         {
-            return await _context.Inventory.ToListAsync();
+            var inventories = await _context.Inventory.ToListAsync();
+            return Ok(inventories); // This wraps the list in an OkObjectResult
         }
 
         [HttpGet("{id}")]
@@ -41,7 +42,7 @@ namespace Epm.FarmRoots.ProductCatalogue.API.Controllers
             _context.Inventory.Add(inventory);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction(nameof(GetInventory), new { id = inventory.ProductId }, inventory);
+            return CreatedAtAction(nameof(GetInventory), new { id = inventory.InventoryId }, inventory);
         }
 
         [HttpPut("{id}")]
@@ -91,7 +92,7 @@ namespace Epm.FarmRoots.ProductCatalogue.API.Controllers
 
         private bool InventoryExists(int id)
         {
-            return _context.Inventory.Any(e => e.ProductId == id);
+            return _context.Inventory.Any(e => e.InventoryId == id);
         }
     }
 }

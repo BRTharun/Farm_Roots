@@ -1,36 +1,35 @@
-<!DOCTYPE html>
+<div class="inventory">
+  <h2>Inventory</h2>
+  <form [formGroup]="inventoryForm" (ngSubmit)="onSave()">
+    <div class="section">
+      <h3>Stock quantity</h3>
+      <label for="productStockQuantity">Stock Quantity <span class="required-asterisk">*</span></label>
+      <input id="productStockQuantity" formControlName="productStockQuantity" type="number" required>
+      <div *ngIf="inventoryForm.get('productStockQuantity')?.errors && inventoryForm.get('productStockQuantity')?.touched">
+        <div *ngIf="inventoryForm.get('productStockQuantity')?.errors.required" class="error-message">This field is required.</div>
+        <div *ngIf="inventoryForm.get('productStockQuantity')?.errors.min" class="error-message">Stock quantity cannot be negative.</div>
+      </div>
+    </div>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-  <meta charset="utf-8" />
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-  <title></title>
-</head>
-<body>
-  <div class="inventory">
-    <h2>Inventory</h2>
-
-    <form [formGroup]="inventoryForm" (ngSubmit)="onSave()">
-      <div class="section">
-        <h3>Stock quantity</h3>
-        <label for="productStockQuantity">Stock Quantity</label>
-        <input id="productStockQuantity" formControlName="productStockQuantity" type="number">
+    <div class="section">
+      <h3>Cart quantity</h3>
+      <label for="minCartQuantity">Minimum cart quantity <span class="required-asterisk">*</span></label>
+      <input id="productMinCartQuantity" formControlName="productMinCartQuantity" type="number" required>
+      <div *ngIf="inventoryForm.get('productMinCartQuantity')?.errors && inventoryForm.get('productMinCartQuantity')?.touched">
+        <div *ngIf="inventoryForm.get('productMinCartQuantity')?.errors.required" class="error-message">This field is required.</div>
+        <div *ngIf="inventoryForm.get('productMinCartQuantity')?.errors.min" class="error-message">Minimum cart quantity must be at least 1.</div>
       </div>
 
-      <div class="section">
-        <h3>Cart quantity</h3>
-        <label for="minCartQuantity">Minimum cart quantity</label>
-        <input id="productMinCartQuantity" formControlName="productMinCartQuantity" type="number">
-
-        <label for="maxCartQuantity">Maximum cart quantity</label>
-        <input id="productMaxCartQuantity" formControlName="productMaxCartQuantity" type="number">
+      <label for="maxCartQuantity">Maximum cart quantity <span class="required-asterisk">*</span></label>
+      <input id="productMaxCartQuantity" formControlName="productMaxCartQuantity" type="number" required>
+      <div *ngIf="inventoryForm.get('productMaxCartQuantity')?.errors && inventoryForm.get('productMaxCartQuantity')?.touched">
+        <div *ngIf="inventoryForm.get('productMaxCartQuantity')?.errors.required" class="error-message">This field is required.</div>
+        <div *ngIf="inventoryForm.get('productMaxCartQuantity')?.errors.min" class="error-message">Maximum cart quantity must be at least 1.</div>
       </div>
+    </div>
 
-      <div class="actions">
-        <button type="submit" class="btn btn-save">Save</button>
-        <!--<button type="button" class="btn btn-delete" (click)="onDelete()">Delete</button>-->
-      </div>
-    </form>
-  </div>
-</body>
-</html>
+    <div class="actions">
+      <button type="submit" class="btn btn-save">Save</button>
+    </div>
+  </form>
+</div>

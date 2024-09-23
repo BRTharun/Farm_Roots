@@ -1,0 +1,27 @@
+<div class="subcategory-selection">
+<select #subcategorySelect class="dropdown">
+  <option value="" disabled selected>Select Subcategory</option>
+  <option *ngFor="let subcategory of subcategories" [value]="subcategory.subCategoryId">
+    {{ subcategory.subCategoryName }}
+  </option>
+</select>
+<button class="btn-add" (click)="addSubcategoryToDisplay(+subcategorySelect.value)">Add</button>
+</div>
+
+<!-- List of displayed subcategories -->
+<table>
+  <thead>
+    <tr>
+      <th>Subcategory Name</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let subcategory of displayedSubcategories">
+      <td>{{ subcategory.subCategoryName}}</td>
+      <td>
+        <button class="btn-delete" (click)="deleteSubcategoryFromDisplay(subcategory.subCategoryId)">Delete</button>
+      </td>
+    </tr>
+  </tbody>
+</table>

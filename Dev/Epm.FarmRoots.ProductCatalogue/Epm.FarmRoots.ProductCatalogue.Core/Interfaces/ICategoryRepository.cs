@@ -9,5 +9,7 @@ namespace Epm.FarmRoots.ProductCatalogue.Core.Interfaces
         Task<List<Category>> GetAllCategoriesAsync();
         Task<IEnumerable<Product>> GetProductsByCategoryIdAsync(int categoryId);
         Task<IEnumerable<SubCategory>> GetSubcategoriesByCategoryIdAsync(int categoryId);
+
+        Task<IEnumerable<Product>> GetProductsBySubcategoryIdAsync(int subCategoryId);
     }
 }

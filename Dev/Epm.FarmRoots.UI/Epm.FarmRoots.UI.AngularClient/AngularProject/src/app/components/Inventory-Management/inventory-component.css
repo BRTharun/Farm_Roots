@@ -78,3 +78,12 @@ input, select {
 .input-small {
   width: 150px;
 }
+
+.error-message {
+  color: red;
+  font-size: 12px;
+}
+
+.required-asterisk {
+  color: red;
+}

@@ -12,7 +12,7 @@ namespace Epm.FarmRoots.ProductCatalogue.Application.Dtos
         public string ProductCondition { get; set; } = "New";
         public List<string>? ProductTags { get; set; } = new List<string>();
         public int VendorId { get; set; }
-
+        public int ProductId { get; set; }
         public int CategoryId { get; set; }
         public int ManufacturerId { get; set; }
         public int SubCategoryId { get; set; }

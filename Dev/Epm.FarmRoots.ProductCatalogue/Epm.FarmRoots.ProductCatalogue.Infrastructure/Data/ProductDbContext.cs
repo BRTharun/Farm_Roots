@@ -72,8 +72,8 @@ namespace Epm.FarmRoots.ProductCatalogue.Infrastructure.Data
 
                 modelBuilder.Entity<Product>()
                     .HasOne(p => p.Inventory)
-                    .WithOne()
-                    .HasForeignKey<Inventory>(c => c.ProductId);
+                    .WithOne(i => i.Product)
+                    .HasForeignKey<Inventory>(i => i.ProductId);
 
                 modelBuilder.Entity<Product>()
                     .HasMany(p => p.Images)
@@ -81,9 +81,9 @@ namespace Epm.FarmRoots.ProductCatalogue.Infrastructure.Data
                     .HasForeignKey(c => c.ProductId);
 
                 modelBuilder.Entity<Product>()
-                    .HasOne(p => p.Category) // Each product has one Category
-                    .WithMany() // No navigation property back to Products in Category
-                    .HasForeignKey(p => p.CategoryId); // Foreign key in Product pointing to Category
+                    .HasOne(p => p.Category)
+                    .WithMany()
+                    .HasForeignKey(p => p.CategoryId);
 
                 modelBuilder.Entity<Images>(entity =>
                 {

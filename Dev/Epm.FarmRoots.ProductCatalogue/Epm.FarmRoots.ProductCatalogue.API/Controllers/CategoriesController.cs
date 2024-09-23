@@ -35,6 +35,50 @@ namespace Epm.FarmRoots.ProductCatalogue.API.Controllers
             return _responseDto;
         }
 
+        [HttpGet("{categoryId}/subcategories")]
+        public async Task<ResponseDto> GetSubcategoriesByCategoryId(int categoryId)
+        {
+            try
+            {
+                var subcategories = await _categoryService.GetSubcategoriesByCategoryIdAsync(categoryId);
+                _responseDto.Result = subcategories;
+                _responseDto.IsSuccess = true;
+                if (subcategories == null || !subcategories.Any())
+                {
+                    _responseDto.IsSuccess = false;
+                    _responseDto.Message = "No subcategories found for this category.";
+                }
+            }
+            catch (Exception ex)
+            {
+                _responseDto.IsSuccess = false;
+                _responseDto.Message = ex.Message;
+            }
+            return _responseDto;
+        }
+
+        [HttpGet("{categoryId}/subcategories/{subCategoryId}/products")]
+        public async Task<ResponseDto> GetProductsBySubcategoryId(int categoryId, int subCategoryId)
+        {
+            try
+            {
+                var products = await _categoryService.GetProductsBySubcategoryIdAsync(subCategoryId);
+                _responseDto.Result = products;
+                _responseDto.IsSuccess = true;
+                if (products == null || !products.Any())
+                {
+                    _responseDto.IsSuccess = false;
+                    _responseDto.Message = "No products found for this subcategory.";
+                }
+            }
+            catch (Exception ex)
+            {
+                _responseDto.IsSuccess = false;
+                _responseDto.Message = ex.Message;
+            }
+            return _responseDto;
+        }
+
         [HttpGet("{id}/products")]
         public async Task<ResponseDto> GetProductsByCategoryId(int id)
         {
@@ -65,23 +109,6 @@ namespace Epm.FarmRoots.ProductCatalogue.API.Controllers
                     _responseDto.IsSuccess = false;
                     _responseDto.Message = "No products found for this category.";
                 }
-            }
-            catch (Exception ex)
-            {
-                _responseDto.IsSuccess = false;
-                _responseDto.Message = ex.Message;
-            }
-            return _responseDto;
-        }
-
-        [HttpGet("{id}/subcategories")]
-        public async Task<ResponseDto> GetSubcategoriesByCategoryId(int id)
-        {
-            try
-            {
-                var subcategories = await _categoryService.GetSubcategoriesByCategoryIdAsync(id);
-                _responseDto.Result = subcategories;
-                _responseDto.IsSuccess = true;
             }
             catch (Exception ex)
             {

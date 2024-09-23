@@ -1,0 +1,36 @@
+<!-- Container for category selection and add button -->
+<div class="category-selection">
+  <select #categorySelect class="dropdown">
+    <option value="" disabled selected>Select Category</option>
+    <option *ngFor="let category of allCategories" [value]="category.categoryId">
+      {{ category.categoryName }}
+    </option>
+  </select>
+  <button class="btn-add" (click)="addCategoryToDisplay(categorySelect.value)">Add</button>
+</div>
+
+<!-- List of displayed categories with clickable names -->
+<table>
+  <thead>
+    <tr>
+      <th>Category Name</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tr *ngFor="let category of displayedCategories">
+    <td (click)="onCategorySelected(category.categoryId)" class="clickable">
+      {{ category.categoryName }}
+    </td>
+    <td>
+      <button class="btn-delete" (click)="deleteCategoryFromDisplay(category.categoryId)">Delete</button>
+    </td>
+  </tr>
+</table>
+
+<!-- List of subcategories for the selected category -->
+<ul>
+  <li *ngFor="let subCategory of subCategories">
+    {{ subCategory.subCategoryName }}
+    <button (click)="deleteSubCategory(subCategory.subCategoryId)">Delete</button>
+  </li>
+</ul>
