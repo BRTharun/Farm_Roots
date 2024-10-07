@@ -1,18 +1,19 @@
 <testExecutions version="1">
   <file path="src\components\__tests__\vendor\AddProduct.test.tsx">
-    <testCase name="AddProduct Component Tests - component should render input elements for product details" duration="115" />
-    <testCase name="AddProduct Component Tests - fields should have initial empty or default values" duration="43" />
-    <testCase name="AddProduct Component Tests - valid inputs should not show error messages and submit successfully" duration="229" />
-    <testCase name="AddProduct Component Tests - should display error message when required fields are empty on submit" duration="91" />
-    <testCase name="AddProduct Component Tests - should display error for invalid image URL" duration="49" />
-    <testCase name="AddProduct Component Tests - should enforce correct constraints on stock, regular price, and sale price" duration="67" />
-    <testCase name="AddProduct Component Tests - should display error for MRP greater than Sale Price" duration="62" />
-    <testCase name="AddProduct Component Tests - should handle category selection change" duration="26" />
-    <testCase name="AddProduct Component Tests - should not accept negative stock" duration="80" />
-    <testCase name="AddProduct Component Tests - should not accept negative prices" duration="70" />
+    <testCase name="AddProduct Component Tests - component should render input elements for product details" duration="169" />
+    <testCase name="AddProduct Component Tests - fields should have initial empty or default values" duration="53" />
+    <testCase name="AddProduct Component Tests - should display error message when required fields are empty on submit" duration="240" />
+    <testCase name="AddProduct Component Tests - valid inputs should not show error messages and submit successfully" duration="202" />
+    <testCase name="AddProduct Component Tests - should display error message when required fields are empty on submit" duration="118" />
+    <testCase name="AddProduct Component Tests - should display error for invalid image URL" duration="76" />
+    <testCase name="AddProduct Component Tests - should enforce correct constraints on stock, regular price, and sale price" duration="111" />
+    <testCase name="AddProduct Component Tests - should display error for MRP greater than Sale Price" duration="124" />
+    <testCase name="AddProduct Component Tests - should handle category selection change" duration="24" />
+    <testCase name="AddProduct Component Tests - should not accept negative stock" duration="90" />
+    <testCase name="AddProduct Component Tests - should not accept negative prices" duration="118" />
   </file>
   <file path="src\components\__tests__\vendor\VendorProfile.test.tsx">
-    <testCase name="VendorProfile - displays loading shimmer when loading" duration="71" />
-    <testCase name="VendorProfile - displays profile data when available" duration="44" />
+    <testCase name="VendorProfile - displays loading shimmer when loading" duration="89" />
+    <testCase name="VendorProfile - displays profile data when available" duration="58" />
   </file>
 </testExecutions>

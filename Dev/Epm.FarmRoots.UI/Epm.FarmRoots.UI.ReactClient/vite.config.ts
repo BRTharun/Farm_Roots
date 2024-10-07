@@ -15,9 +15,9 @@ export default defineConfig({
         }
     },
     test: {
-        // reporters: [
-        //     ["vitest-sonar-reporter", { outputFile: "sonar-report.xml" }],
-        // ],
+        reporters: [
+            ["vitest-sonar-reporter", { outputFile: "sonar-report.xml" }],
+        ],
         globals: true,
         environment: "jsdom",
         setupFiles: ["./src/setupTests.ts"],
