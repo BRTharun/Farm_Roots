@@ -45,18 +45,18 @@ describe("AddProduct Component Tests", () => {
         expect((screen.getByLabelText(/MRP/i) as HTMLInputElement).value).toBe("0");
     });
 
-    // test("should display error message when required fields are empty on submit", async () => {
-    //     fireEvent.submit(screen.getByRole("button", { name: /Add Product/i }));
-    //     await waitFor(() => {
-    //         expect(screen.getByText(/Name is required/i)).toBeInTheDocument();
-    //         expect(screen.getByText(/Category is required/i)).toBeInTheDocument();
-    //         expect(screen.getByText(/Image URL is required/i)).toBeInTheDocument();
-    //         expect(screen.getByText(/Description is required/i)).toBeInTheDocument();
-    //         expect(screen.getByText(/Stock cannot be less than one/i)).toBeInTheDocument();
-    //         expect(screen.getByText(/Sale's Price cannot be less than one/i)).toBeInTheDocument();
-    //         expect(screen.getByText(/Mrp Price cannot be greater than Regular Price/i)).toBeInTheDocument();
-    //     });
-    // });
+    test("should display error message when required fields are empty on submit", async () => {
+        fireEvent.submit(screen.getByRole("button", { name: /Add Product/i }));
+        await waitFor(() => {
+            expect(screen.getByText(/Name is required/i)).toBeInTheDocument();
+            expect(screen.getByText(/Category is required/i)).toBeInTheDocument();
+            expect(screen.getByText(/Image URL is required/i)).toBeInTheDocument();
+            expect(screen.getByText(/Description is required/i)).toBeInTheDocument();
+            expect(screen.getByText(/Stock cannot be less than one/i)).toBeInTheDocument();
+            expect(screen.getByText(/Sale's Price cannot be less than one/i)).toBeInTheDocument();
+            expect(screen.getByText(/Mrp Price cannot be less than one/i)).toBeInTheDocument();
+        });
+    });
 
     // test("should display error message when required fields are empty on submit", async () => {
     //     render(
