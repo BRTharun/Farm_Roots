@@ -1,8 +1,0 @@
-<div class="category-container">
-  <mat-card *ngFor="let category of categories" class="category-card" (click)="goToCategory(category.categoryId)">
-    <img mat-card-image [src]="'data:image/jpeg;base64,' + category.image" alt="{{ category.categoryName }}">
-    <mat-card-content>
-      <mat-card-title>{{ category.categoryName }}</mat-card-title>
-    </mat-card-content>
-  </mat-card>
-</div>

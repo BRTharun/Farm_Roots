@@ -4,10 +4,12 @@ import { BiUserCircle } from "react-icons/bi";
 import { useDispatch } from "react-redux"; 
 import { setLoginComponent } from "../../../store/Reducer/headerLoginSlice";
 import UserDropDown from "./UserDropDown";
+import { useNavigate } from "react-router-dom";
 
 const AccountSelect: React.FC = () => {
   const auth = false; 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [options, showOptions] = useState<boolean>(false);
 
   return (
@@ -30,7 +32,7 @@ const AccountSelect: React.FC = () => {
         <>
           <button
             className="cursor-pointer"
-            onClick={() => dispatch(setLoginComponent())}
+            onClick={() => navigate("/register")}
           >
             Login
           </button>

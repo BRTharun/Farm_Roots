@@ -10,14 +10,14 @@ const ProductPageContext = React.createContext({
 
 const ProductPageContextProvider = ({ setLoader, children, setIsPresent }) => {
   const { mainCategoryId } = useParams();
-  
+
   // Fetching subcategories
-  const { data: subCategoryData, error: subCategoryError } = useFetch(
+  const { data: subCategoryData } = useFetch(
     SUB_CATEGORY_API_URL(mainCategoryId),
     false,
     setLoader,
     (data) => {
-      const resultArray = data?.result || []; // Extract array from result field
+      const resultArray = data?.result || [];
       if (Array.isArray(resultArray)) {
         setIsPresent(resultArray.length > 0);
       } else {
@@ -28,14 +28,13 @@ const ProductPageContextProvider = ({ setLoader, children, setIsPresent }) => {
   );
 
   // Fetching products
-  const { data: productsData, error: productsError } = useFetch(
+  const { data: productsData } = useFetch(
     PRODUCT_API_URL(mainCategoryId)
   );
 
   // Ensure subCategoryList and productsList are always arrays
   const subCategoryList = Array.isArray(subCategoryData?.result) ? subCategoryData.result : [];
   const productsList = Array.isArray(productsData?.result) ? productsData.result : [];
-
 
   return (
     <ProductPageContext.Provider value={{ subCategoryList, productsList }}>

@@ -37,24 +37,8 @@ export class ManufacturerMappingsComponent implements OnInit {
   saveManufacturer(manufacturer: Manufacturer) {
     if (!manufacturer) {
       console.error('No manufacturer provided for update');
-      this.snackBar.open('No manufacturer data provided.', 'Close', {
-        duration: 3000,
-        verticalPosition: 'top',
-        horizontalPosition: 'center'
-      });
       return;
     }
-
-    // Validation for manufactureDisplayOrder
-    if (manufacturer.manufactureDisplayOrder < 0 || !Number.isInteger(manufacturer.manufactureDisplayOrder)) {
-      this.snackBar.open('Display Order must be a whole number.', 'Close', {
-        duration: 3000,
-        verticalPosition: 'top',
-        horizontalPosition: 'center'
-      });
-      return;
-    }
-
     const manufacturerId = manufacturer.manufactureId;
     const newDisplayOrder = manufacturer.manufactureDisplayOrder;
 
@@ -66,19 +50,9 @@ export class ManufacturerMappingsComponent implements OnInit {
           this.manufacturers[index].manufactureDisplayOrder = newDisplayOrder;
         }
         this.addingNew = false;
-        this.snackBar.open('Manufacturer updated successfully', 'Close', {
-          duration: 3000,
-          verticalPosition: 'top',
-          horizontalPosition: 'center'
-        });
       },
       error: (error) => {
         console.error('Failed to update manufacturer', error);
-        this.snackBar.open('Failed to update manufacturer. Please try again.', 'Close', {
-          duration: 3000,
-          verticalPosition: 'bottom',
-          horizontalPosition: 'center'
-        });
       }
     });
   }

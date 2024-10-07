@@ -22,7 +22,7 @@ export class ChangePasswordComponent implements OnInit {
   onSubmit(): void {
     if (this.changePasswordForm.valid) {
       const formValues = this.changePasswordForm.value;
-      this.registrationService.changePassword(4, formValues).subscribe({
+      this.registrationService.changePassword(22, formValues).subscribe({
         next: (response) => {
           console.log('Password changed successfully', response);
           alert('Password updated successfully');

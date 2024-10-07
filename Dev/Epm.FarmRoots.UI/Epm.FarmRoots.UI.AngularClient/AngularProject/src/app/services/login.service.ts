@@ -12,7 +12,7 @@ export class LoginService {
   constructor(private http: HttpClient) { }
 
   login(email: string, password: string, role: string): Observable<any> {
-    const url = `${this.apiUrl}/{role}login/login`; // Adjust endpoint if needed
+    const url = `${this.apiUrl}/customerlogin/login`; // Adjust endpoint if needed
     const body = { email, password, role };
 
     return this.http.post<any>(url, body).pipe(

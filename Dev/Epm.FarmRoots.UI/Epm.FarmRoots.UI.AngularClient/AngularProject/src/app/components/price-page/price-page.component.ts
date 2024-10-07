@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, ValidatorFn, AbstractControl } from '@angular/forms';
-import { PriceService } from '../../services/price.service';
-import { Price } from '../../models/price.model';
+import { PriceService } from '../../services/price.service';  
+import { Price } from '../../models/price.model';  
 
 @Component({
   selector: 'app-price-page',
@@ -24,7 +24,7 @@ export class PricePageComponent implements OnInit {
       specialPrice: new FormControl(null, Validators.min(0)),
       fromDate: new FormControl(),
       toDate: new FormControl(),
-      discount: new FormControl(null, Validators.min(0)),
+      discount: new FormControl(null, [Validators.required, Validators.min(0)]),
       productCost: new FormControl(null, [Validators.required, Validators.min(0)]),
       isBuyButtonDisabled: new FormControl(false),
       productId: new FormControl(null, [Validators.required, Validators.min(0)])
@@ -65,6 +65,7 @@ export class PricePageComponent implements OnInit {
         }
       );
     } else {
+      
       if (this.priceForm.errors?.['priceError']) {
         alert(this.priceForm.errors['priceError']);
       } else if (this.priceForm.errors?.['specialPriceError']) {
@@ -99,14 +100,15 @@ export class PricePageComponent implements OnInit {
       alert('Please fill the required details.');
     }
   }
-
+  
+  
 
   dateLessThan(from: string, to: string): ValidatorFn {
     return (control: AbstractControl): { [key: string]: any } | null => {
       const fromControl = control.get(from);
       const toControl = control.get(to);
-      if (fromControl && toControl && fromControl.value >= toControl.value) {
-        return { dateRange: 'To date should be greater than From date.' };
+      if (fromControl && toControl && fromControl.value > toControl.value) {
+        return { dateRange: 'End date should be greater than start date.' };
       }
       return null;
     };

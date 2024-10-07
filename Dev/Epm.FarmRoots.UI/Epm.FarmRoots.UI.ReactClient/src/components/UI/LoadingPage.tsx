@@ -7,7 +7,7 @@ interface LoadingPageProps {
 
 const LoadingPage: React.FC<LoadingPageProps> = ({ className }) => {
   return (
-    <div className={`${className ? className : ""} flex justify-center items-center`}>
+    <div data-testid="loading-page" className={`${className ? className : ""} flex justify-center items-center`}>
       <Loader className="text-9xl text-green-800" />
     </div>
   );

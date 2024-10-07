@@ -15,13 +15,13 @@ function CartBtn() {
 
   // CART BTN HANDELER
   const onClickCartBtn = () => {
-    if (pathname === "/cart") return;
-    if (auth) {
+    // if (pathname === "/cart") return;
+    // if (auth) {
       navigate("/cart");
-    } else {
-      toast.info("To open cart u have to login");
-      dispatch(setLoginComponent());
-    }
+    // } else {
+    //   toast.info("To open cart u have to login");
+    //   dispatch(setLoginComponent());
+    // }
   };
 
   return (

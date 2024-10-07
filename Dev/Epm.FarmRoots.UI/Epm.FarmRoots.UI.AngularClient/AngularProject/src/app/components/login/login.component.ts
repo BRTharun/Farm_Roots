@@ -17,9 +17,7 @@ export class LoginComponent {
 
   login() {
     const body = { email: this.email, password: this.password, role: this.role };
-    const url = this.role === 'vendor'
-      ? 'https://localhost:44350/vendorlogin/login'
-      : 'https://localhost:44350/customerlogin/login';
+    const url = 'https://localhost:44350/customerlogin/login';
 
     this.http.post<any>(url, body).subscribe(
       (response) => {

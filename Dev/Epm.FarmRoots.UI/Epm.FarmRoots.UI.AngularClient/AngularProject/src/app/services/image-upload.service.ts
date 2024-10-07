@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class ImageUploadService {
-  private apiUrl = 'https://localhost:7189/api/FarmRoots/Images/upload';
+  private apiUrl = 'https://localhost:7189/api/Images/upload';
 
   constructor(private http: HttpClient) { }
 

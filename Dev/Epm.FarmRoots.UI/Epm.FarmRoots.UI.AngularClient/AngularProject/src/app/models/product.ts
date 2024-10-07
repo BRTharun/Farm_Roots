@@ -9,10 +9,7 @@ export interface ResponseProduct {
   fullDescription?: string;
   productCondition: string;
   productTags: string[];
-  vendorId: number;
-  categoryId: number;
-  manufacturerId: number;
-  subcategoryId: number;
+  vendorId: number; 
 }
 export interface CreateProduct {
   productType: string;
@@ -23,7 +20,4 @@ export interface CreateProduct {
   productCondition: string;
   productTags: string[];
   vendorId: number;
-  categoryId: number;
-  manufacturerId: number;
-  subcategoryId: number;
 }

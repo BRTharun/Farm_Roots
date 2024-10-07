@@ -8,7 +8,7 @@ import { Inventory } from '../models/inventory.model';
 })
 export class InventoryService {
 
-  private apiUrl = 'https://localhost:7189/api/FarmRoots/InventoryCart';
+  private apiUrl = 'https://localhost:7189/api/InventoryCart';
 
   constructor(private http: HttpClient) { }
 

@@ -35,7 +35,7 @@ describe('ImageUploadService', () => {
       expect(response).toBeTruthy();
     });
 
-    const req = httpMock.expectOne('https://localhost:7189/api/FarmRoots/Images/upload');
+    const req = httpMock.expectOne('https://localhost:7189/api/Images/upload');
     expect(req.request.method).toBe('POST');
     expect(req.request.body.get('productId')).toBe(productId.toString());
     req.flush({ success: true }); // Mock the API response
@@ -55,7 +55,7 @@ describe('ImageUploadService', () => {
       }
     );
 
-    const req = httpMock.expectOne('https://localhost:7189/api/FarmRoots/Images/upload');
+    const req = httpMock.expectOne('https://localhost:7189/api/Images/upload');
     req.flush('Upload failed', { status: 500, statusText: 'Server Error' });
   });
 });

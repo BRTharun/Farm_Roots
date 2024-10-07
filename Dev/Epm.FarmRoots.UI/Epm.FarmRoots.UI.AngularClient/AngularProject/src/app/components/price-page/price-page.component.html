@@ -1,22 +1,22 @@
 <div class="price-page-container">
   <form [formGroup]="priceForm" (ngSubmit)="onSubmit()">
-
+    
 
     <div class="form-field">
-      <label for="salePrice">Sale Price<span class="required-asterisk">*</span></label>
+      <label for="salePrice">Sale Price</label>
       <input formControlName="salePrice" id="salePrice" type="number" required min="0" [ngClass]="{'error': (priceForm.get('salePrice')?.touched && priceForm.get('salePrice')?.errors)}">
-      <div *ngIf="priceForm.get('salePrice')?.touched && priceForm.get('salePrice')?.errors?.['required']" class="error-message">
+      <div *ngIf="priceForm.get('salePrice')?.touched && priceForm.get('salePrice')?.errors?.['required']">
         Field is required
       </div>
-      <div *ngIf="priceForm.get('salePrice')?.errors?.['priceError'] && priceForm.get('salePrice')?.touched" class="error-message">
+      <div *ngIf="priceForm.get('salePrice')?.errors?.['priceError'] && priceForm.get('salePrice')?.touched">
         {{ priceForm.get('salePrice')?.errors?.['priceError'] }}
       </div>
     </div>
 
     <div class="form-field">
-      <label for="mrp">MRP<span class="required-asterisk">*</span></label>
+      <label for="mrp">MRP</label>
       <input formControlName="mrp" id="mrp" type="number" required min="0" [ngClass]="{'error': (priceForm.get('mrp')?.touched && priceForm.get('mrp')?.errors)}">
-      <div *ngIf="priceForm.get('mrp')?.touched && priceForm.get('mrp')?.errors?.['required']" class="error-message">
+      <div *ngIf="priceForm.get('mrp')?.touched && priceForm.get('mrp')?.errors?.['required']">
         Field is required
       </div>
     </div>
@@ -38,16 +38,16 @@
 
     <div class="form-field">
       <label for="discount">Discount</label>
-      <input formControlName="discount" id="discount" type="number" min="0" [ngClass]="{'error': (priceForm.get('discount')?.touched && priceForm.get('discount')?.invalid)}">
-      <div *ngIf="priceForm.get('discount')?.touched && priceForm.get('discount')?.errors?.['min']" class="error-message">
-        Discount cannot be less than 0
+      <input formControlName="discount" id="discount" type="number" required min="0" [ngClass]="{'error': (priceForm.get('discount')?.touched && priceForm.get('discount')?.errors)}">
+      <div *ngIf="priceForm.get('discount')?.touched && priceForm.get('discount')?.errors?.['required']">
+        Field is required
       </div>
     </div>
 
     <div class="form-field">
-      <label for="productCost">Product Cost<span class="required-asterisk">*</span></label>
+      <label for="productCost">Product Cost</label>
       <input formControlName="productCost" id="productCost" type="number" required min="0" [ngClass]="{'error': (priceForm.get('productCost')?.touched && priceForm.get('productCost')?.errors)}">
-      <div *ngIf="priceForm.get('productCost')?.touched && priceForm.get('productCost')?.errors?.['required']" class="error-message">
+      <div *ngIf="priceForm.get('productCost')?.touched && priceForm.get('productCost')?.errors?.['required']">
         Field is required
       </div>
       <div *ngIf="priceForm.get('productCost')?.errors?.['productCostError'] && priceForm.get('productCost')?.touched">
@@ -64,9 +64,9 @@
     </div>
 
     <div class="form-field">
-      <label for="productId">Product ID<span class="required-asterisk">*</span></label>
+      <label for="productId">Product ID</label>
       <input formControlName="productId" id="productId" type="number" required min="0" [ngClass]="{'error': (priceForm.get('productId')?.touched && priceForm.get('productId')?.errors)}">
-      <div *ngIf="priceForm.get('productId')?.touched && priceForm.get('productId')?.errors?.['required']" class="error-message">
+      <div *ngIf="priceForm.get('productId')?.touched && priceForm.get('productId')?.errors?.['required']">
         Field is required
       </div>
     </div>
