@@ -1,4 +1,5 @@
-import { render, screen, fireEvent, waitFor } from "@testing-library/react";
+import { render, screen, fireEvent } from "@testing-library/react";
+import { waitFor } from "@testing-library/react";
 import { Provider } from "react-redux";
 import store from "../../utils/store"; // Assuming store is exported from here
 import AddProduct from "../../pages/vendor/AddProduct";
