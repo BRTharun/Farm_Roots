@@ -10,29 +10,29 @@ pipeline {
     
     stages {
 
-        stage('Build .NET Application') {
-            steps {
-                script {
-                    dir('Dev') {
-                        bat 'dotnet restore Epm.FRoots.sln'
-                        bat 'dotnet build Epm.FRoots.sln' 
-                    }
-                }
-            }
-        }
+        // stage('Build .NET Application') {
+        //     steps {
+        //         script {
+        //             dir('Dev') {
+        //                 bat 'dotnet restore Epm.FRoots.sln'
+        //                 bat 'dotnet build Epm.FRoots.sln' 
+        //             }
+        //         }
+        //     }
+        // }
 
-        stage('Build Angular Application') {
-            steps {
-                echo 'Angular build'
-                // script {
-                //     dir('Dev/Epm.LGoods.UI/epm.lgoods.angularclient') {
-                //         bat 'npm install'
+        // stage('Build Angular Application') {
+        //     steps {
+        //         echo 'Angular build'
+        //         // script {
+        //         //     dir('Dev/Epm.LGoods.UI/epm.lgoods.angularclient') {
+        //         //         bat 'npm install'
                         
-                //         bat 'npm run build' 
-                //     }
-                // }
-            }
-        }
+        //         //         bat 'npm run build' 
+        //         //     }
+        //         // }
+        //     }
+        // }
         
 
 
@@ -49,32 +49,32 @@ pipeline {
         }
 
 
-        stage('Running .NET Tests') {
-            steps {
-                script {
-                    dir('Dev') {
+        // stage('Running .NET Tests') {
+        //     steps {
+        //         script {
+        //             dir('Dev') {
                         
-                        bat 'FOR /R %%G IN (TestResults) DO IF EXIST "%%G" RMDIR /S /Q "%%G"'
+        //                 bat 'FOR /R %%G IN (TestResults) DO IF EXIST "%%G" RMDIR /S /Q "%%G"'
 
-                        bat 'dotnet test Epm.FRoots.sln --collect:"XPlat Code Coverage" -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=opencover'
-                     }
-                }
-            }
-        }
-
-
+        //                 bat 'dotnet test Epm.FRoots.sln --collect:"XPlat Code Coverage" -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=opencover'
+        //              }
+        //         }
+        //     }
+        // }
 
 
-        stage('Running Angular Tests') {
-            steps {
-                echo 'Angular Test'
-                // script {
-                //     dir('Dev/Epm.LGoods.UI/epm.lgoods.angularclient') {
-                //         bat 'npm test -- --code-coverage'
-                //     }
-                // }
-            }
-        }
+
+
+        // stage('Running Angular Tests') {
+        //     steps {
+        //         echo 'Angular Test'
+        //         // script {
+        //         //     dir('Dev/Epm.LGoods.UI/epm.lgoods.angularclient') {
+        //         //         bat 'npm test -- --code-coverage'
+        //         //     }
+        //         // }
+        //     }
+        // }
 
         stage('Test React Application') {
             steps {
