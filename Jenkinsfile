@@ -89,7 +89,7 @@ pipeline {
             steps {
                 echo 'React Test'
                 script {
-                    dir('Dev/Epm.LGoods.UI/epm.lgoods.reactclient') {
+                    dir('Dev/Epm.FarmRoots.UI/Epm.FarmRoots.UI.ReactClient') {
                         sh 'npm test'
                     }
                 }
