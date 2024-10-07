@@ -1,7 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1726845075756" clover="3.2.0">
-  <project timestamp="1726845075757" name="All files">
-    <metrics statements="115" coveredstatements="106" conditionals="33" coveredconditionals="24" methods="24" coveredmethods="23" elements="172" coveredelements="153" complexity="0" loc="115" ncloc="115" packages="3" files="13" classes="13"/>
+<coverage generated="1726853243887" clover="3.2.0">
+  <project timestamp="1726853243887" name="All files">
+    <metrics statements="143" coveredstatements="126" conditionals="37" coveredconditionals="25" methods="30" coveredmethods="26" elements="210" coveredelements="177" complexity="0" loc="143" ncloc="143" packages="5" files="17" classes="17"/>
+    <package name="assets.HowItWorks">
+      <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      <file name="open-app.svg" path="C:\Users\varunteja_bandaru\Desktop\Changes\farm-roots\Dev\Epm.FarmRoots.UI\Epm.FarmRoots.UI.ReactClient\src\assets\HowItWorks\open-app.svg">
+        <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="1" count="1" type="stmt"/>
+      </file>
+      <file name="place-order.svg" path="C:\Users\varunteja_bandaru\Desktop\Changes\farm-roots\Dev\Epm.FarmRoots.UI\Epm.FarmRoots.UI.ReactClient\src\assets\HowItWorks\place-order.svg">
+        <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="1" count="1" type="stmt"/>
+      </file>
+    </package>
     <package name="assets.images.Refer">
       <metrics statements="6" coveredstatements="6" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
       <file name="referral-hand.svg" path="C:\Users\varunteja_bandaru\Desktop\Changes\farm-roots\Dev\Epm.FarmRoots.UI\Epm.FarmRoots.UI.ReactClient\src\assets\images\Refer\referral-hand.svg">
@@ -34,6 +45,41 @@
       <file name="empty-bag.avif" path="C:\Users\varunteja_bandaru\Desktop\Changes\farm-roots\Dev\Epm.FarmRoots.UI\Epm.FarmRoots.UI.ReactClient\src\assets\images\orders\empty-bag.avif">
         <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
         <line num="1" count="1" type="stmt"/>
+      </file>
+    </package>
+    <package name="components.pages.products">
+      <metrics statements="26" coveredstatements="18" conditionals="4" coveredconditionals="1" methods="6" coveredmethods="3"/>
+      <file name="HowItWorks.tsx" path="C:\Users\varunteja_bandaru\Desktop\Changes\farm-roots\Dev\Epm.FarmRoots.UI\Epm.FarmRoots.UI.ReactClient\src\components\pages\products\HowItWorks.tsx">
+        <metrics statements="7" coveredstatements="7" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <line num="2" count="1" type="stmt"/>
+        <line num="3" count="1" type="stmt"/>
+        <line num="4" count="1" type="stmt"/>
+        <line num="5" count="1" type="stmt"/>
+        <line num="7" count="1" type="stmt"/>
+        <line num="8" count="3" type="stmt"/>
+        <line num="39" count="1" type="stmt"/>
+      </file>
+      <file name="ProductDetail.tsx" path="C:\Users\varunteja_bandaru\Desktop\Changes\farm-roots\Dev\Epm.FarmRoots.UI\Epm.FarmRoots.UI.ReactClient\src\components\pages\products\ProductDetail.tsx">
+        <metrics statements="19" coveredstatements="11" conditionals="4" coveredconditionals="1" methods="5" coveredmethods="2"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="2" count="1" type="stmt"/>
+        <line num="3" count="1" type="stmt"/>
+        <line num="4" count="1" type="stmt"/>
+        <line num="14" count="1" type="stmt"/>
+        <line num="15" count="1" type="stmt"/>
+        <line num="16" count="1" type="stmt"/>
+        <line num="18" count="1" type="stmt"/>
+        <line num="19" count="1" type="stmt"/>
+        <line num="21" count="0" type="cond" truecount="0" falsecount="1"/>
+        <line num="22" count="0" type="stmt"/>
+        <line num="24" count="0" type="stmt"/>
+        <line num="27" count="0" type="stmt"/>
+        <line num="28" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="29" count="0" type="stmt"/>
+        <line num="31" count="0" type="stmt"/>
+        <line num="34" count="1" type="cond" truecount="1" falsecount="0"/>
+        <line num="36" count="0" type="stmt"/>
+        <line num="57" count="1" type="stmt"/>
       </file>
     </package>
     <package name="components.pages.profile">

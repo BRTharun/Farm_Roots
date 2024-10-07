@@ -5,7 +5,9 @@ import Sidebar from "./SideBar";
 import "../../../assets/styles/CategoryPage.css";
 
 interface Subcategory {
+  id: string;
   name: string;
+  image: string;
 }
 
 interface Product {
@@ -21,7 +23,6 @@ const CategoryPage: React.FC = () => {
   const [products, setProducts] = useState<Product[]>([]);
   const [selectedSubcategory, setSelectedSubcategory] = useState<string | null>(null);
 
-
   useEffect(() => {
     fetch(`http://localhost:9002/categories?name=${categoryName}`)
       .then((response) => {
@@ -33,7 +34,6 @@ const CategoryPage: React.FC = () => {
       .then((data) => {
         const category = data[0];
         setSubcategories(category.subcategories);
-
         if (category.subcategories.length > 0) {
           const firstSubcategory = category.subcategories[0].name;
           setSelectedSubcategory(firstSubcategory);
@@ -44,9 +44,7 @@ const CategoryPage: React.FC = () => {
   }, [categoryName]);
 
   const fetchProducts = (subcategoryName: string) => {
-    fetch(
-      `http://localhost:9002/products?category=${categoryName}&subcategory=${subcategoryName}`
-    )
+    fetch(`http://localhost:9002/products?category=${categoryName}&subcategory=${subcategoryName}`)
       .then((response) => {
         if (!response.ok) {
           throw new Error("Network response was not ok");
@@ -69,7 +67,7 @@ const CategoryPage: React.FC = () => {
           <Sidebar
             subcategories={subcategories}
             onSelectSubCategory={handleSubcategoryClick}
-            activeSubcategory={selectedSubcategory}
+            activeSubcategory={selectedSubcategory || ""}
           />
         </div>
         <div className="col-md-9">
@@ -78,10 +76,7 @@ const CategoryPage: React.FC = () => {
             {products.map((product) => (
               <div key={product.id} className="col-md-4 mb-4">
                 <div className="card product-card">
-                  <Link
-                    to={`/product/${product.id}`}
-                    className="text-decoration-none text-dark"
-                  >
+                  <Link to={`/product/${product.id}`} className="text-decoration-none text-dark">
                     <img
                       src={product.image}
                       className="card-img-top product-image"
@@ -89,9 +84,7 @@ const CategoryPage: React.FC = () => {
                     />
                     <div className="card-body d-flex flex-column">
                       <h5 className="card-title">{product.name}</h5>
-                      <p className="card-text">
-                        Rs. {product.price.toFixed(2)}
-                      </p>
+                      <p className="card-text">Rs. {product.price.toFixed(2)}</p>
                       <button
                         className="btn btn-primary mt-auto"
                         onClick={(e) => {
@@ -114,4 +107,5 @@ const CategoryPage: React.FC = () => {
 };
 
 export default CategoryPage;
+
 
