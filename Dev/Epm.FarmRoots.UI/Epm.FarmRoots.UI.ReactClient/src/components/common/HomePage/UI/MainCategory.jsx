@@ -11,7 +11,7 @@ function MainCategory({ name, image, id }) {
       <div className="hover:bg-green-100 transition-all bg-white shrink-0 w-full sm:w-48 md:w-52 lg:w-60 h-auto max-w-xs mx-auto my-4 p-4 shadow-md rounded-md hover:shadow-lg transform hover:-translate-y-1">
         <div className="relative w-full h-36 mb-3">
           <img
-            className="absolute inset-0 w-full h-full object-cover rounded-md"
+            className="absolute inset-0 w-full h-full object-contain rounded-md"
             src={imageUrl}
             alt={`${name} category`}
           />
