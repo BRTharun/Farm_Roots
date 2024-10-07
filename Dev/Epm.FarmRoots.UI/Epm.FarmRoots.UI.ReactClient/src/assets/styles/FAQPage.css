@@ -1,0 +1,63 @@
+
+.faqs-container {
+    padding: 20px;
+    width: 70%;
+    height: auto; 
+    overflow: auto;
+  }
+  
+  .list-of-faqs {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .faq {
+    padding: 20px 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    text-decoration: none;
+    color: black;
+    cursor: pointer;
+  }
+  
+  .faq-descr {
+    font-weight: 500;
+  }
+  
+  .right-arrow-icon {
+    font-size: 20px;
+    color: green;
+    transition: transform 0.3s ease;
+  }
+  
+  .right-arrow-icon.rotated {
+    transform: rotate(90deg);
+  }
+  
+  .line {
+    border: 1px solid rgb(247, 242, 242);
+  }
+  
+  .faq-answer {
+    padding: 10px 0;
+    font-size: 16px;
+    color: #333;
+    margin: 0;
+  }
+  
+  .contact-button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: green;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  
+  .contact-button:hover {
+    background-color: lightgreen;
+  }
+  

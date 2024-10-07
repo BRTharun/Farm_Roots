@@ -1,0 +1,69 @@
+
+
+.address-page-container {
+    padding: 20px;
+  }
+  
+  .add-address-btn {
+    background-color: #4CAF50; 
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin-bottom: 20px;
+    cursor: pointer;
+  }
+  
+  .add-address-form {
+    border: 1px solid #ddd;
+    padding: 20px;
+    background-color: #f9f9f9;
+    margin-top: 20px;
+  }
+  
+  .add-address-form label {
+    display: block;
+    margin-bottom: 10px;
+  }
+  
+  .add-address-form input {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+  }
+  
+  .save-btn {
+    background-color: #4CAF50; 
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin-right: 10px;
+    cursor: pointer;
+  }
+  
+  .cancel-btn {
+    background-color: #f44336; 
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+  }
+  
+  .address-list {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .address-item {
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin-bottom: 10px;
+  }
+  
+  .address-item h4 {
+    margin: 0;
+  }
+  
+  .address-item p {
+    margin: 5px 0 0;
+  }
+  
