@@ -55,6 +55,7 @@ pipeline {
                 script {
                     dir('Dev/Epm.FarmRoots.UI/Epm.FarmRoots.UI.ReactClient') {
                         sh 'npm install'
+                        sh 'npm install @testing-library/react --save-dev'
                         sh 'npm run build'
                     }
                 }
