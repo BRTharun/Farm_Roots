@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 import { IoMdArrowDropdown, IoMdArrowDropup } from "react-icons/io";
 import { BiUserCircle } from "react-icons/bi";
-import { useDispatch } from "react-redux"; 
-import { setLoginComponent } from "../../../store/Reducer/headerLoginSlice";
+// import { useDispatch } from "react-redux"; 
+// import { setLoginComponent } from "../../../store/Reducer/headerLoginSlice";
 import UserDropDown from "./UserDropDown";
 import { useNavigate } from "react-router-dom";
 
 const AccountSelect: React.FC = () => {
   const auth = false; 
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   const navigate = useNavigate();
   const [options, showOptions] = useState<boolean>(false);
 

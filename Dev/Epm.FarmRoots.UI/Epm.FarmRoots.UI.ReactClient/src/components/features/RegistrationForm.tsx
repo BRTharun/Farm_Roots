@@ -131,7 +131,7 @@ const RegistrationForm: React.FC = () => {
           // If the error status is 400 (Bad Request), display the backend error message
           if (statusCode === 400 && err.response.data?.message) {
             setErrMsg(err.response.data.message);
-            toast.error(err.response.data.message);
+            toast.error(errMsg);
           } else if (statusCode === 409) {
             setErrMsg('Username Already Taken');
             toast.error('Username Already Taken');
