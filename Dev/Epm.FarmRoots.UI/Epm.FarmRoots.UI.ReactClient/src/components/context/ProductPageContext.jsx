@@ -1,6 +1,6 @@
 import React from "react";
 import { useParams } from "react-router-dom";
-import useFetch from "../Hooks/useFetch";
+import useFetch from "../hooks/useFetch";
 import { SUB_CATEGORY_API_URL, PRODUCT_API_URL } from "../services/api";
 
 const ProductPageContext = React.createContext({
