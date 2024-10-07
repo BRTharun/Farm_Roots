@@ -93,6 +93,7 @@ pipeline {
                 script {
                     dir('Dev/Epm.FarmRoots.UI/Epm.FarmRoots.UI.ReactClient') {
                         sh 'npm run test'
+                        sh 'npx vitest run --coverage'
                     }
                 }
             }
